@@ -1,0 +1,33 @@
+# Testing method (battle and other Core rules)
+
+Goal: every rule change is checked in seconds, without opening Unity, and the same tests still run in Unity's Test Runner.
+
+## The loop
+
+| Step | Command | Time |
+| --- | --- | --- |
+| Run everything | `tools/csharp/test.sh` | ~2 s |
+| Run one area | `tools/csharp/test.sh Energy` (name filter) | ~1.5 s |
+| Balance report | `tools/csharp/test.sh -Main Gacha.Tests.Tools.BalanceSweep` | ~10 s |
+| Final check | Unity → Window → General → Test Runner → EditMode → Run All | on a PC |
+
+`test.sh` compiles `Scripts/Core` + `Tests` with the C# 9 compiler bundled in PowerShell 7 (same language version as Unity) and runs the tests in memory. It needs `pwsh` (set `PWSH=` if it is not on PATH). Tests may only use the NUnit subset in `tools/csharp/NUnitShim.cs`; add to the shim (with the real NUnit signature) rather than to a test.
+
+## Five kinds of test, cheapest first
+
+| Kind | What it proves | How it is written | Example |
+| --- | --- | --- | --- |
+| 1. Rule tests | One formula or rule gives the exact number | Hand-written, tiny lab fight, assert on numbers | DEF 300 halves damage; counter race deals +10% |
+| 2. Kit tests | Every ability of all 60 heroes runs and does what its tags say | **Generated from heroes.json** (TestCaseSource over hero ids): no per-hero code | Halcyra's Static Mark applies Soaked; every ultimate fires within 60 s |
+| 3. Invariant tests | Nothing impossible ever happens | Hundreds of seeded random 5v5 battles, checks after every tick | HP in [0, max]; energy in [0, 100]; shield ≤ 50% max HP; control ≤ 2.5 s; battle ends by the time limit |
+| 4. Golden replays | A rule change didn't silently change outcomes | Fixed teams + seed; event-log hash stored in the test | Changing a formula fails the hash on purpose; update the hash in the same commit |
+| 5. Balance sweep | Nobody is broken (a report, not a pass/fail test) | Thousands of random teams; win rate per hero, race and role | Flags heroes outside 40-60% |
+
+## Rules that keep it fast
+
+- **Assert on the event log, not on internals.** The battle emits structured events (cast, damage, heal, shield, status on/off, energy, death). Tests query the log, so they survive refactors.
+- **Lab builder, not setup code.** `Lab.Seed(1).Ally("halcyra").Enemy(Lab.Dummy).Run(10)` builds a fight in one line. Dummies have fixed stats and never act unless asked.
+- **Seeds are fixed.** Every random roll goes through `Gacha.Core.Rng`; a failing seed is a reproducible bug.
+- **Kits are data, so kit tests are data.** Adding hero 61 adds its tests automatically. A new op or status must be added to the validator, or the data test fails.
+- **One failing test first, then the code** for each new rule (TDD); run the filter for that area while working, everything before committing.
+- **Whole suite under 10 s.** If it grows past that, shrink random-battle counts in invariant tests (the sweep is where volume belongs).
