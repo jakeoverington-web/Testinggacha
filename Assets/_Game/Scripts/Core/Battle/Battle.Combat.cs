@@ -426,6 +426,14 @@ namespace Gacha.Core.Battle
                     }
                 }
                 for (int i = u.Shields.Count - 1; i >= 0; i--) { u.Shields[i].Remaining -= dt; if (u.Shields[i].Remaining <= 0) u.Shields.RemoveAt(i); }
+                // max HP can shrink (Dragonform ends): keep shields within the cap
+                double over = u.ShieldTotal - T.ShieldCap * u.MaxHp;
+                for (int i = u.Shields.Count - 1; i >= 0 && over > 1e-9; i--)
+                {
+                    double cut = Math.Min(over, u.Shields[i].Amount);
+                    u.Shields[i].Amount -= cut; over -= cut;
+                    if (u.Shields[i].Amount <= 1e-9) u.Shields.RemoveAt(i);
+                }
                 if (u.Hp > u.MaxHp) u.Hp = u.MaxHp;
             }
         }

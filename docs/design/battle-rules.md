@@ -7,6 +7,7 @@ Code: `Assets/_Game/Scripts/Core/Battle/` (engine-free). Tuning: `Data/battle.js
 | Rule | Value |
 | --- | --- |
 | Timestep | 0.1 s; every unit acts every tick; order alternates teams and flips each tick |
+| Hero HP | Every hero's HP x 1.5 in battle (`hpScale`), for fights of about 30 s |
 | Time limit | 90 s; a timeout counts as a loss for the attacker (team A) |
 | Field | 16 m × 6 m, allies left, enemies right; formation = grid cells (front col x = 2.5 m, back x = 5 m) |
 | Each tick, per unit | Ultimate at 100 energy → Skill 1 → Skill 2 → basic attack if the target is in range → else move |
@@ -32,7 +33,7 @@ Code: `Assets/_Game/Scripts/Core/Battle/` (engine-free). Tuning: `Data/battle.js
 | Diminishing returns | 1st control full; 2nd within 4 s half; any more inside the 6 s window resisted |
 | Control immunity | Blocks stun, sleep, root, fear, charm, silence, knock-up (Lunaith's is sleep and stun only) |
 | Stacking | Burn, bleed, poison stack to 3; other statuses refresh to the stronger value and longer time |
-| Shields | Stack, capped at 50% max HP, last 10 s, not dispellable |
+| Shields | Stack, capped at 50% max HP (trimmed if max HP shrinks), last 10 s, not dispellable |
 | Revive | Once per hero per battle |
 
 ## AI

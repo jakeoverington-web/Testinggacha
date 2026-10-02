@@ -201,6 +201,17 @@ namespace Gacha.Tests
         }
 
         [Test]
+        public void Shields_TrimmedWhenMaxHpShrinks()
+        {
+            var b = Lab.Seed(1).Ally("draxa").Enemy("dummy").Build();
+            var d = b.Units[0];
+            b.ApplyStatus(d, d, "dragonform", 0.5, 0.5, null);
+            b.AddShield(d, d, d.MaxHp, 0);                      // fills the bigger cap
+            b.RunFor(1.0);                                      // dragonform ends
+            Assert.LessOrEqual(d.ShieldTotal, b.T.ShieldCap * d.MaxHp + 1e-6);
+        }
+
+        [Test]
         public void ReviveOnlyOnce()
         {
             var b = Lab.Seed(1).Ally("dummy").Enemy("dummy").Build();
@@ -239,7 +250,7 @@ namespace Gacha.Tests
             data.BonusFiveOfOne = new System.Collections.Generic.Dictionary<string, double> { { "hp", 0.2 } };
             var b = new Battle(data, new TeamSetup("valeria", "ilyra", "aurelle", "seravelle", "lucienne"), new TeamSetup("sangrael"), 1);
             var v = b.Units[0];
-            Assert.AreEqual(v.Def.Stats.Hp * 1.2, v.MaxHp, 1e-6);
+            Assert.AreEqual(v.Def.Stats.Hp * data.Tuning.HpScale * 1.2, v.MaxHp, 1e-6);
             Assert.AreEqual(0.0, b.Units[5].BonusHpPct, 1e-9, "a lone hero gets no bonus");
         }
     }

@@ -1,6 +1,7 @@
 {
   "_schema": "battle v1 - tuning for the real-time battle sim (Core/Battle). Rules: docs/design/battle-rules.md. All values are tuning starting points.",
   "tick": 0.1,
+  "hpScale": 1.5,
   "timeLimit": 90,
   "field": { "halfWidth": 8.0, "halfDepth": 3.0 },
   "formation": {

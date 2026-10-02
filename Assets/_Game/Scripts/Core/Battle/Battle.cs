@@ -59,7 +59,7 @@ namespace Gacha.Core.Battle
             {
                 if (!Data.Heroes.TryGetValue(setup.Heroes[i], out var def)) throw new ArgumentException("Unknown hero " + setup.Heroes[i]);
                 var s = def.Stats.Clone();
-                s.Hp *= setup.StatScale; s.Atk *= setup.StatScale; s.Def *= setup.StatScale;
+                s.Hp *= setup.StatScale * T.HpScale; s.Atk *= setup.StatScale; s.Def *= setup.StatScale;
                 var u = new Unit { Index = Units.Count, Team = team, Def = def, Id = def.Id, Base = s };
                 var cell = cells[i % cells.Count];
                 double side = team == 0 ? -1 : 1;
