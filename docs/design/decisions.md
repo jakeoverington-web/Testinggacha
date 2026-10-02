@@ -36,6 +36,7 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 - Pity and spark thresholds; max stars and costs per star.
 - Gear slots per hero.
 - Team bonus values for 3+2 and 5 of a core type.
+- Core count (4 or 5) and whether Wood and Sea stay as cores. Being shortlisted from 100 elf types in the Elf Types Shortlist (Claude Docs).
 - Wood and Sea sub-races (provisional). Mermaid needs a floating/hovering battle move, since battles are free-moving.
 - Idle-loot cap in hours.
 - ~~Platform plan for adult art~~ Resolved: personal build, installed directly on the owner's phone; no store release, so no store content rules apply.
