@@ -16,14 +16,14 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 | 9 | Banners | One limited rate-up banner | Featured hero joins standard pool when banner ends | 2026-10-02 |
 | 10 | Pity | Hard pity that carries over + spark points | Spark lets players pick the featured hero | 2026-10-02 |
 | 11 | Launch modes | Arena PvP, Guild + guild boss | Events later via reusable special encounter | 2026-10-02 |
-| 12 | Rarity | No rarity tiers; stars only | TO CONFIRM (vs R/SR/SSR) | 2026-10-02 |
+| 12 | Rarity | No rarity tiers; stars only | Confirmed by owner | 2026-10-02 |
 | 13 | Engine | Unity, C# | Chosen for official Live2D/Spine support and mobile SDKs | 2026-10-02 |
 | 14 | Build order | Systems first, art last | Placeholders until phase 5 | 2026-10-02 |
 | 15 | Pop-ups | None unprompted | Banned: purchase offers, sale banners, login reward windows, event announcements, anything that appears without a tap. Allowed: anything the player taps to open (skill info, tooltips, panels, confirmations) | 2026-10-02 |
 
 ## Open questions
 
-- Rarity tiers (row 12) and what hard pity guarantees if there are none.
+- What the hard pity number and spark threshold should be (row 10).
 - Pity and spark thresholds; max stars and costs per star.
 - Number of elements, factions and gear slots per hero.
 - Idle-loot cap in hours.
