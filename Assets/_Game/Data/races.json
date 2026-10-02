@@ -1,5 +1,5 @@
 {
-  "_schema": "races v3 \u2014 5 core races (combat) with sub-races (looks/theme only); ids are permanent, display names provisional, loop order confirmed. Decisions rows 3, 20, 22",
+  "_schema": "races v4 — 5 core races (combat) with sub-races (looks/theme only); ids are permanent, display names provisional, loop order confirmed. Sub-race lists = exactly the sub-races heroes.json uses. draftLoreName/homeland come from the World Bible draft (not approved). Decisions rows 3, 20, 22, 27",
   "cores": [
     {
       "id": "high",
@@ -8,12 +8,17 @@
       "accent": "#D9B45A",
       "light": "warm gold dawn, high-key",
       "subraces": [
+        "gilded",
         "seraph",
         "sun",
+        "templar",
+        "choir",
         "dawn",
-        "gilded",
+        "halo",
         "phoenix"
-      ]
+      ],
+      "draftLoreName": "Lumarin",
+      "homeland": "The Gilded Spire"
     },
     {
       "id": "dark",
@@ -22,12 +27,15 @@
       "accent": "#B3263A",
       "light": "cold crimson night, low-key",
       "subraces": [
-        "raven",
         "blood",
         "shadow",
+        "raven",
         "ash",
-        "ember"
-      ]
+        "ember",
+        "grave"
+      ],
+      "draftLoreName": "Noctyr",
+      "homeland": "Ashmourne"
     },
     {
       "id": "nature",
@@ -36,11 +44,17 @@
       "accent": "#4FAF77",
       "light": "dappled emerald forest",
       "subraces": [
-        "wood",
-        "wild",
         "fae",
-        "stag"
-      ]
+        "thorn",
+        "wild",
+        "wood",
+        "moth",
+        "owl",
+        "stag",
+        "willow"
+      ],
+      "draftLoreName": "Verdani",
+      "homeland": "The Elderwild"
     },
     {
       "id": "ocean",
@@ -49,12 +63,17 @@
       "accent": "#2F8FD0",
       "light": "deep blue-teal moonlit water",
       "subraces": [
-        "siren",
-        "mermaid",
-        "storm",
+        "abyss",
         "pearl",
-        "abyss"
-      ]
+        "siren",
+        "storm",
+        "coral",
+        "kraken",
+        "mermaid",
+        "rain"
+      ],
+      "draftLoreName": "Thalyri",
+      "homeland": "The Drowned Reach"
     },
     {
       "id": "arcane",
@@ -63,39 +82,56 @@
       "accent": "#8A7BE0",
       "light": "indigo starlight, floating runes",
       "subraces": [
+        "dragon",
+        "rune",
         "star",
-        "moon",
-        "void",
         "time",
-        "dragon"
-      ]
+        "void",
+        "dream",
+        "moon"
+      ],
+      "draftLoreName": "Aethari",
+      "homeland": "The Unlit Observatory"
     }
   ],
   "subraces": {
+    "gilded": "Gilded",
     "seraph": "Seraph",
     "sun": "Sun",
+    "templar": "Templar",
+    "choir": "Choir",
     "dawn": "Dawn",
-    "gilded": "Gilded",
+    "halo": "Halo",
     "phoenix": "Phoenix",
-    "raven": "Raven",
     "blood": "Blood",
     "shadow": "Shadow",
+    "raven": "Raven",
     "ash": "Ash",
     "ember": "Ember",
-    "star": "Star",
-    "moon": "Moon",
-    "void": "Void",
-    "time": "Time",
-    "dragon": "Dragon",
-    "siren": "Siren",
-    "mermaid": "Mermaid",
-    "storm": "Storm",
-    "pearl": "Pearl",
-    "abyss": "Abyss",
-    "wood": "Wood",
-    "wild": "Wild",
+    "grave": "Grave",
     "fae": "Fae",
-    "stag": "Stag"
+    "thorn": "Thorn",
+    "wild": "Wild",
+    "wood": "Wood",
+    "moth": "Moth",
+    "owl": "Owl",
+    "stag": "Stag",
+    "willow": "Willow",
+    "abyss": "Abyss",
+    "pearl": "Pearl",
+    "siren": "Siren",
+    "storm": "Storm",
+    "coral": "Coral",
+    "kraken": "Kraken",
+    "mermaid": "Mermaid",
+    "rain": "Rain",
+    "dragon": "Dragon",
+    "rune": "Rune",
+    "star": "Star",
+    "time": "Time",
+    "void": "Void",
+    "dream": "Dream",
+    "moon": "Moon"
   },
   "counterDamageBonus": 0.1,
   "teamBonus": {
