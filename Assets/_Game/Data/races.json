@@ -1,5 +1,5 @@
 {
-  "_schema": "races v1 \u2014 4 core types (combat) with sub-races (design/lore only); ids are permanent. Decisions rows 3 and 22",
+  "_schema": "races v2 \u2014 5 core races (combat) with sub-races (looks/theme only); ids are permanent. Decisions rows 3, 20, 22",
   "cores": [
     {
       "id": "high",
@@ -9,67 +9,90 @@
       "light": "warm gold dawn, high-key",
       "subraces": [
         "seraph",
-        "star",
-        "sun"
+        "sun",
+        "dawn",
+        "gilded"
       ]
     },
     {
       "id": "dark",
       "name": "Dark Elves",
-      "counters": "wood",
+      "counters": "ash",
       "accent": "#B3263A",
       "light": "cold crimson night, low-key",
       "subraces": [
         "raven",
         "blood",
-        "shadow"
+        "shadow",
+        "siren"
+      ]
+    },
+    {
+      "id": "ash",
+      "name": "Ash Elves",
+      "counters": "wood",
+      "accent": "#E0662F",
+      "light": "ember glow from below, smoke",
+      "subraces": [
+        "ash",
+        "ember",
+        "forge",
+        "dragon"
       ]
     },
     {
       "id": "wood",
       "name": "Wood Elves",
-      "counters": "sea",
+      "counters": "star",
       "accent": "#4FAF77",
-      "light": "dappled emerald forest",
+      "light": "dappled emerald through leaves",
       "subraces": [
+        "wood",
         "wild",
         "fae",
-        "wood"
-      ],
-      "_provisional": true
+        "stag"
+      ]
     },
     {
-      "id": "sea",
-      "name": "Sea Elves",
+      "id": "star",
+      "name": "Star Elves",
       "counters": "high",
-      "accent": "#3BA7B8",
-      "light": "teal moonlit coast",
+      "accent": "#8A7BE0",
+      "light": "indigo night, starlight particles",
       "subraces": [
+        "star",
+        "moon",
         "storm",
-        "siren",
-        "mermaid"
-      ],
-      "_provisional": true
+        "void"
+      ]
     }
   ],
   "subraces": {
-    "seraph": "Seraph Elves",
-    "star": "Star Elves",
-    "sun": "Sun Elves",
-    "raven": "Raven Elves",
-    "blood": "Blood Elves",
-    "shadow": "Shadow Elves",
-    "wild": "Wild Elves",
-    "fae": "Fae Elves",
-    "wood": "Wood Elves",
-    "storm": "Storm Elves",
-    "siren": "Siren Elves",
-    "mermaid": "Mermaid Elves"
+    "seraph": "Seraph",
+    "sun": "Sun",
+    "dawn": "Dawn",
+    "gilded": "Gilded",
+    "raven": "Raven",
+    "blood": "Blood",
+    "shadow": "Shadow",
+    "siren": "Siren",
+    "ash": "Ash",
+    "ember": "Ember",
+    "forge": "Forge",
+    "dragon": "Dragon",
+    "wood": "Wood",
+    "wild": "Wild",
+    "fae": "Fae",
+    "stag": "Stag",
+    "star": "Star",
+    "moon": "Moon",
+    "storm": "Storm",
+    "void": "Void"
   },
   "counterDamageBonus": 0.1,
   "teamBonus": {
     "_note": "values to be tuned; null = not set yet",
     "threePlusTwo": null,
-    "fiveOfOneType": null
+    "fiveOfOneCore": null
   }
 }
