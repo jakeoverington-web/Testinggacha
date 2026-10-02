@@ -5,7 +5,7 @@ Design source of truth: `docs/design/decisions.md`. If code and that file disagr
 
 ## Current phase
 
-Phase 1 — Core loop greybox (auto-battle sim, 5-hero team, element + faction bonuses, campaign stages, idle loot).
+Phase 1 — Core loop greybox (auto-battle sim, 5-hero team, core-type counters + team bonuses, campaign stages, idle loot).
 Phases: 1 Core loop → 2 Hero progression → 3 Gacha and roster → 4 Modes → 5 Art pass.
 Do not start work from a later phase unless asked.
 
@@ -55,4 +55,4 @@ docs/design/        decisions log and design notes
 - Placeholder and art files are named by slot: `hero_<id>_fullbody`, `hero_<id>_card`, `hero_<id>_icon`, `banner_<id>_splash`.
 - Art slot sizes: full-body 1:2, card 3:4, icon 1:1, banner splash 9:16. Do not change without updating the decisions log.
 - Reference resolution: 1080 × 2340 portrait; keep UI inside safe areas.
-- Art guideline: WLOP-inspired, elves only (decisions rows 20, 22). The UI follows the art (row 23). Every character is an adult.
+- Art guideline: WLOP-inspired, elves only: 4 core types (High, Dark, Wood, Sea) with sub-races (decisions rows 3, 20, 22). The UI follows the art (row 23). Every character is an adult.

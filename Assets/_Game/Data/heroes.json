@@ -1,11 +1,11 @@
 {
-  "_schema": "hero v1 — one entry per hero; ids are permanent",
+  "_schema": "hero v2 — one entry per hero; ids are permanent",
   "heroes": [
     {
       "id": "seraphine",
       "name": "Seraphine",
-      "element": "light",
-      "faction": "faction_a",
+      "core": "high",
+      "subrace": "seraph",
       "role": "support",
       "maxStars": 5,
       "baseStats": { "hp": 1000, "atk": 100, "def": 80, "spd": 100 },
