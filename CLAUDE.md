@@ -55,4 +55,4 @@ docs/design/        decisions log and design notes
 - Placeholder and art files are named by slot: `hero_<id>_fullbody`, `hero_<id>_card`, `hero_<id>_icon`, `banner_<id>_splash`.
 - Art slot sizes: full-body 1:2, card 3:4, icon 1:1, banner splash 9:16. Do not change without updating the decisions log.
 - Reference resolution: 1080 × 2340 portrait; keep UI inside safe areas.
-- Art guideline: WLOP-inspired, elves only: 5 core races (High, Dark, Ash, Wood, Star) with sub-races (decisions rows 3, 20, 22). The UI follows the art (row 23). Every character is an adult.
+- Art guideline: WLOP-inspired, elves only: 5 core races (High, Dark, Arcane, Ocean, Nature; names provisional) with sub-races (decisions rows 3, 20, 22). The UI follows the art (row 23). Every character is an adult.

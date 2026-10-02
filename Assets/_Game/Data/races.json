@@ -1,5 +1,5 @@
 {
-  "_schema": "races v2 \u2014 5 core races (combat) with sub-races (looks/theme only); ids are permanent. Decisions rows 3, 20, 22",
+  "_schema": "races v3 \u2014 5 core races (combat) with sub-races (looks/theme only); ids are permanent, display names and loop order provisional. Decisions rows 3, 20, 22",
   "cores": [
     {
       "id": "high",
@@ -11,59 +11,63 @@
         "seraph",
         "sun",
         "dawn",
-        "gilded"
+        "gilded",
+        "phoenix"
       ]
     },
     {
       "id": "dark",
       "name": "Dark Elves",
-      "counters": "ash",
+      "counters": "arcane",
       "accent": "#B3263A",
       "light": "cold crimson night, low-key",
       "subraces": [
         "raven",
         "blood",
         "shadow",
-        "siren"
+        "ash",
+        "ember"
       ]
     },
     {
-      "id": "ash",
-      "name": "Ash Elves",
-      "counters": "wood",
-      "accent": "#E0662F",
-      "light": "ember glow from below, smoke",
+      "id": "arcane",
+      "name": "Arcane Elves",
+      "counters": "ocean",
+      "accent": "#8A7BE0",
+      "light": "indigo starlight, floating runes",
       "subraces": [
-        "ash",
-        "ember",
-        "forge",
+        "star",
+        "moon",
+        "void",
+        "time",
         "dragon"
       ]
     },
     {
-      "id": "wood",
-      "name": "Wood Elves",
-      "counters": "star",
+      "id": "ocean",
+      "name": "Ocean Elves",
+      "counters": "nature",
+      "accent": "#2F8FD0",
+      "light": "deep blue-teal moonlit water",
+      "subraces": [
+        "siren",
+        "mermaid",
+        "storm",
+        "pearl",
+        "abyss"
+      ]
+    },
+    {
+      "id": "nature",
+      "name": "Nature Elves",
+      "counters": "high",
       "accent": "#4FAF77",
-      "light": "dappled emerald through leaves",
+      "light": "dappled emerald forest",
       "subraces": [
         "wood",
         "wild",
         "fae",
         "stag"
-      ]
-    },
-    {
-      "id": "star",
-      "name": "Star Elves",
-      "counters": "high",
-      "accent": "#8A7BE0",
-      "light": "indigo night, starlight particles",
-      "subraces": [
-        "star",
-        "moon",
-        "storm",
-        "void"
       ]
     }
   ],
@@ -72,22 +76,26 @@
     "sun": "Sun",
     "dawn": "Dawn",
     "gilded": "Gilded",
+    "phoenix": "Phoenix",
     "raven": "Raven",
     "blood": "Blood",
     "shadow": "Shadow",
-    "siren": "Siren",
     "ash": "Ash",
     "ember": "Ember",
-    "forge": "Forge",
+    "star": "Star",
+    "moon": "Moon",
+    "void": "Void",
+    "time": "Time",
     "dragon": "Dragon",
+    "siren": "Siren",
+    "mermaid": "Mermaid",
+    "storm": "Storm",
+    "pearl": "Pearl",
+    "abyss": "Abyss",
     "wood": "Wood",
     "wild": "Wild",
     "fae": "Fae",
-    "stag": "Stag",
-    "star": "Star",
-    "moon": "Moon",
-    "storm": "Storm",
-    "void": "Void"
+    "stag": "Stag"
   },
   "counterDamageBonus": 0.1,
   "teamBonus": {
