@@ -299,6 +299,7 @@ namespace Gacha.Core.Battle
 
         void BasicAttack(Unit u, Unit target)
         {
+            if (u.IsOff("basic")) return;
             _ab = "basic";
             if (u.Has("dragonform"))
             {

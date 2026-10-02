@@ -44,7 +44,7 @@ namespace Gacha.Core.Battle
 
         bool TryCast(Unit u, AbilityDef ab)
         {
-            if (ab.Ops.Count == 0) return false;
+            if (ab.Ops.Count == 0 || u.IsOff(ab.Key)) return false;
             if (ab.Requires == "dead_ally" && FindDeadAlly(u) == null) return false;
             var ctx = new OpCtx { Ability = ab.Key, Kind = ab.Key == "ult" ? HitKind.Ult : HitKind.Skill, Primary = EnemyTarget(u), AllyPrimary = AllyTarget(u) };
             var first = ab.Ops[0];
@@ -463,7 +463,7 @@ namespace Gacha.Core.Battle
             double sum = 0;
             foreach (var (owner, m) in list)
             {
-                if (!owner.Alive || !InScope(owner, m.Scope, subject)) continue;
+                if (!owner.Alive || owner.IsOff("passive") || !InScope(owner, m.Scope, subject)) continue;
                 if (m.If != null && !Eval(m.If, new Cond { Self = owner, Src = src, Tgt = tgt, Hit = h })) continue;
                 double v = m.V;
                 if (m.PerStack != null) { int st = 0; if (tgt != null) foreach (var s in tgt.Statuses) if (s.Id == m.PerStack && s.Source == owner.Index) st++; v *= st; }
@@ -493,7 +493,7 @@ namespace Gacha.Core.Battle
         void FireTriggers(Unit u, string ev, Unit evt, double amount)
         {
             if (DisablePassives) return;
-            if (!u.Alive || !u.IsHero) return;
+            if (!u.Alive || !u.IsHero || u.IsOff("passive")) return;
             var trig = u.Def.Passive.Triggers;
             for (int i = 0; i < trig.Count; i++)
             {

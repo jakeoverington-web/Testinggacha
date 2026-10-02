@@ -42,6 +42,9 @@ namespace Gacha.Core.Battle
         public double[] HpHistory;           // ring buffer, one entry per tick
         public int HpHistoryPos;
         public double BonusHpPct, BonusAtkPct, BonusDefPct;   // team bonus
+        /// <summary>Analysis switch: parts of the kit turned off ("ult", "s1", "s2", "passive", "basic").</summary>
+        public HashSet<string> Off;
+        public bool IsOff(string part) => Off != null && Off.Contains(part);
 
         public string Name => IsSummon ? Def.Name + "'s " + Id : Def.Name;
         public bool IsHero => !IsSummon;
