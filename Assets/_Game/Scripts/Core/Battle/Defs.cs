@@ -70,6 +70,8 @@ namespace Gacha.Core.Battle
         public AbilityDef Ult, S1, S2;
         public PassiveDef Passive = new PassiveDef();
         public string EnemyAi = "nearest", AllyAi = "self", Move = "advance";
+        /// <summary>This hero's auto attack as a fraction of ATK; negative = use battle.json basicAttackPct.</summary>
+        public double BasicPct = -1;
         public bool IsMelee => Range == "melee";
 
         public static HeroDef From(Node h)
@@ -89,6 +91,7 @@ namespace Gacha.Core.Battle
             foreach (var t in p.Nodes("triggers"))
                 d.Passive.Triggers.Add(new TriggerDef { On = t.Str("on"), If = t.Str("if"), Icd = t.Num("icd"), Ops = t.Nodes("ops") });
             foreach (var f in p.Strs("flags")) d.Passive.Flags.Add(f);
+            d.BasicPct = h.Num("basicPct", -1);
             var ai = h.Obj("ai");
             if (ai != null) { d.EnemyAi = ai.Str("enemy", "nearest"); d.AllyAi = ai.Str("ally", "self"); d.Move = ai.Str("move", "advance"); }
             return d;

@@ -699,7 +699,8 @@
     "enemy": "densest",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 0.6
   },
   {
    "id": "lucienne",
@@ -874,7 +875,8 @@
     "enemy": "nearest_with:blind",
     "ally": "self",
     "move": "dive"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "ophira",
@@ -1026,7 +1028,8 @@
     "enemy": "highest_atk",
     "ally": "self",
     "move": "dive"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "solenne",
@@ -2487,7 +2490,8 @@
     "enemy": "highest_atk",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 0.6
   },
   {
    "id": "nyx",
@@ -2673,7 +2677,8 @@
     "enemy": "lowest_hp_back",
     "ally": "self",
     "move": "dive"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "ravenna",
@@ -2846,7 +2851,8 @@
     "enemy": "nearest_with:bleed",
     "ally": "self",
     "move": "advance"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "sable",
@@ -3031,7 +3037,8 @@
     "enemy": "lowest_hp",
     "ally": "self",
     "move": "advance"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "mordessa",
@@ -4757,7 +4764,8 @@
     "enemy": "nearest",
     "ally": "self",
     "move": "advance"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "rhiannon",
@@ -4964,7 +4972,8 @@
     "enemy": "nearest",
     "ally": "self",
     "move": "advance"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "sylwen",
@@ -5134,7 +5143,8 @@
     "enemy": "lowest_hp",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "venna",
@@ -6762,7 +6772,8 @@
     "enemy": "random",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 0.6
   },
   {
    "id": "nerissa",
@@ -6949,7 +6960,8 @@
     "enemy": "lowest_hp",
     "ally": "self",
     "move": "dive"
-   }
+   },
+   "basicPct": 1.0
   },
   {
    "id": "ysra",
@@ -7148,7 +7160,8 @@
     "enemy": "with_else_highest_atk:soaked",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 0.6
   },
   {
    "id": "marisol",
@@ -8753,7 +8766,8 @@
     "enemy": "densest",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 0.6
   },
   {
    "id": "caelith",
@@ -8925,7 +8939,8 @@
     "enemy": "highest_atk",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 0.6
   },
   {
    "id": "isaura",
@@ -9080,7 +9095,8 @@
     "enemy": "most_energy",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 0.6
   },
   {
    "id": "zaria",
@@ -9236,7 +9252,8 @@
     "enemy": "densest",
     "ally": "self",
     "move": "kite"
-   }
+   },
+   "basicPct": 0.6
   },
   {
    "id": "lunaith",

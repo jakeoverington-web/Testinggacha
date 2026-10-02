@@ -408,6 +408,14 @@ K["tempra"] = dict(
     s2=[st("stasis", "target", 1.5)],
     p=P(mods=[mod("haste", 10, scope="allies")]))
 
+# Per-hero auto attack strength (fraction of ATK). Heroes not listed use battle.json basicAttackPct.
+AUTO_PCT = {
+    # auto-attack specialists: duelists, marksmen, reapers, beast fighters, divers
+    **{h: 1.0 for h in ["ravenna", "lucienne", "kaida", "sable", "sylwen", "ophira", "nyx", "nerissa", "rhiannon"]},
+    # casters: their power is meant to be their skills
+    **{h: 0.6 for h in ["ilyra", "ysra", "astraea", "zaria", "halcyra", "isaura", "maelis", "caelith"]},
+}
+
 # Requirements: an ability waits (energy stays full / cooldown stays ready) until this is true.
 REQUIRES = {("nimue", "ult"): "dead_ally"}
 
@@ -423,3 +431,4 @@ def apply(hero_json):
         if (hero_json["id"], key) in REQUIRES: sk[name]["requires"] = REQUIRES[(hero_json["id"], key)]
     sk["passive"].update(k["p"])
     hero_json["ai"] = ai_for(hero_json)
+    if hero_json["id"] in AUTO_PCT: hero_json["basicPct"] = AUTO_PCT[hero_json["id"]]

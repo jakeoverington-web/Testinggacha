@@ -9,7 +9,7 @@ namespace Gacha.Tests.Tools
     /// <summary>
     /// What-if check: the same hero with one property changed, in paired battles (same teams, same seed).
     /// Run: tools/csharp/test.sh -Main Gacha.Tests.Tools.Variant solenne ai=nearest [samples=600]
-    /// Changes: ai=&lt;enemy target key&gt;, move=&lt;mode&gt;, range=&lt;m&gt;, atk=&lt;x&gt;, hp=&lt;x&gt;
+    /// Changes: ai=&lt;enemy target key&gt;, move=&lt;mode&gt;, range=&lt;m&gt;, atk=&lt;x&gt;, hp=&lt;x&gt;, basic=&lt;fraction of ATK&gt;
     /// </summary>
     public static class Variant
     {
@@ -26,6 +26,7 @@ namespace Gacha.Tests.Tools
                 case "range": d.Stats.Range = double.Parse(kv[1]); break;
                 case "atk": d.Stats.Atk *= double.Parse(kv[1]); break;
                 case "hp": d.Stats.Hp *= double.Parse(kv[1]); break;
+                case "basic": d.BasicPct = double.Parse(kv[1], System.Globalization.CultureInfo.InvariantCulture); break;
             }
             var rng = new Rng(31337); double sum = 0, sq = 0;
             for (int k = 0; k < n; k++)

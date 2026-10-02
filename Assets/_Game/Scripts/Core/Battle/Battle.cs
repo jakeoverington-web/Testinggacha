@@ -298,6 +298,9 @@ namespace Gacha.Core.Battle
             u.Y = Math.Max(-T.HalfDepth, Math.Min(T.HalfDepth, u.Y));
         }
 
+        /// <summary>Auto attack strength: the hero's own value if set, else the global one. Summons always use the global value.</summary>
+        public double BasicPctOf(Unit u) => u.IsHero && u.Def.BasicPct >= 0 ? u.Def.BasicPct : T.BasicPct;
+
         void BasicAttack(Unit u, Unit target)
         {
             if (u.IsOff("basic")) return;
@@ -306,14 +309,14 @@ namespace Gacha.Core.Battle
             {
                 foreach (var e in Around(target.X, target.Y, T.BreathRadius, EnemiesOf(u, true)))
                 {
-                    Hit(u, e, u.Atk * T.BasicPct, new HitInfo { Kind = HitKind.Basic, Elem = "fire", CanCrit = true, Ability = "basic" });
+                    Hit(u, e, u.Atk * BasicPctOf(u), new HitInfo { Kind = HitKind.Basic, Elem = "fire", CanCrit = true, Ability = "basic" });
                     ApplyStatus(u, e, "burn", T.BreathBurnDur, T.BreathBurnV, null);
                 }
                 GainEnergy(u, 10, true);
                 return;
             }
             var hit = new HitInfo { Kind = HitKind.Basic, CanCrit = true, Ability = "basic", Projectile = u.IsRanged };
-            double dealt = Hit(u, target, u.Atk * T.BasicPct, hit);
+            double dealt = Hit(u, target, u.Atk * BasicPctOf(u), hit);
             if (hit.Landed) GainEnergy(u, 10, true);
         }
 

@@ -8,7 +8,7 @@ Code: `Assets/_Game/Scripts/Core/Battle/` (engine-free). Tuning: `Data/battle.js
 | --- | --- |
 | Timestep | 0.1 s; every unit acts every tick; order alternates teams and flips each tick |
 | Hero HP | Every hero's HP x 1.2 in battle (`hpScale`), for fights of about 30 s |
-| Auto attacks | 75% ATK (`basicAttackPct`), so skills carry more of each kit |
+| Auto attacks | 75% ATK by default (`basicAttackPct`); specialists 100%, casters 60% (`basicPct` per hero) |
 | Time limit | 90 s; a timeout counts as a loss for the attacker (team A) |
 | Field | 16 m × 6 m, allies left, enemies right; formation = grid cells (front col x = 2.5 m, back x = 5 m) |
 | Each tick, per unit | Ultimate at 100 energy → Skill 1 → Skill 2 → basic attack if the target is in range → else move |
