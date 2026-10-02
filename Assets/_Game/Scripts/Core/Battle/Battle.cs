@@ -34,6 +34,9 @@ namespace Gacha.Core.Battle
         ulong _hash = 14695981039346656037UL;
         int _tickCount;
 
+        /// <summary>Optional hook called for every event as it happens (live HP is readable; used by reports).</summary>
+        public Action<BattleEvent> OnEvent;
+
         /// <summary>Optional hook called after every tick (invariant tests).</summary>
         public Action<Battle> AfterTick;
 
@@ -480,7 +483,12 @@ namespace Gacha.Core.Battle
                 if (what != null) foreach (char ch in what) _hash = (_hash ^ ch) * 1099511628211UL;
                 _hash = (_hash ^ (ulong)(long)Math.Round(amount * 10)) * 1099511628211UL;
             }
-            if (KeepLog) Log.Add(new BattleEvent { T = Time, Type = type, Src = src, Dst = dst, What = what, Amount = amount, Crit = crit, Ab = _ab });
+            if (KeepLog || OnEvent != null)
+            {
+                var e = new BattleEvent { T = Time, Type = type, Src = src, Dst = dst, What = what, Amount = amount, Crit = crit, Ab = _ab };
+                if (KeepLog) Log.Add(e);
+                OnEvent?.Invoke(e);
+            }
         }
     }
 }

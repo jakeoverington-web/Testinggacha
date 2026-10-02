@@ -8,7 +8,8 @@ Goal: every rule change is checked in seconds, without opening Unity, and the sa
 | --- | --- | --- |
 | Run everything | `tools/csharp/test.sh` (270 tests) | ~3 s |
 | Run one area | `tools/csharp/test.sh Energy` (name filter) | ~1.5 s |
-| Balance report | `tools/csharp/test.sh -Main Gacha.Tests.Tools.BalanceSweep 1000 1` (2,000 battles) | ~5 s |
+| Quick balance sweep | `tools/csharp/test.sh -Main Gacha.Tests.Tools.BalanceSweep 1000 1` (2,000 random battles) | ~5 s |
+| Niche report | `tools/csharp/test.sh -Main Gacha.Tests.Tools.NicheReport 150 1` (216,000 paired battles) | ~2.5 min |
 | Final check | Unity → Window → General → Test Runner → EditMode → Run All | on a PC |
 
 Setup on a new machine: install PowerShell 7 (any OS; on a fresh cloud workspace, unpack Microsoft's official `powershell-7.x-linux-x64.tar.gz` release into `/opt/pwsh`). Nothing else: no .NET SDK, no NuGet.
@@ -23,7 +24,7 @@ Setup on a new machine: install PowerShell 7 (any OS; on a fresh cloud workspace
 | 2. Kit tests | Every ability of all 60 heroes runs and does what its tags say | **Generated from heroes.json** (TestCaseSource over hero ids): no per-hero code | Halcyra's Static Mark applies Soaked; every ultimate fires within 60 s |
 | 3. Invariant tests | Nothing impossible ever happens | Hundreds of seeded random 5v5 battles, checks after every tick | HP in [0, max]; energy in [0, 100]; shield ≤ 50% max HP; control ≤ 2.5 s; battle ends by the time limit |
 | 4. Golden replays | A rule change didn't silently change outcomes | Fixed teams + seed; event-log hash stored in the test | Changing a formula fails the hash on purpose; update the hash in the same commit |
-| 5. Balance sweep | Nobody is broken (a report, not a pass/fail test) | Thousands of random teams; win rate per hero, race and role | Flags heroes outside 40-60% |
+| 5. Niche report | Every hero is the best pick somewhere and none everywhere (a report, not pass/fail) | Paired battles: the team with her vs the same team with a random same-role replacement, in 12 situations (vs each race, vs tanky/sustain/burst/control, with a synergy partner, own-race team) | Flags DOMINANT and NO NICHE heroes; role yardsticks per role |
 
 ## Rules that keep it fast
 
