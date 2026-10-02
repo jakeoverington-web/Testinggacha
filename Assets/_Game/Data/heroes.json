@@ -1,0 +1,21 @@
+{
+  "_schema": "hero v1 — one entry per hero; ids are permanent",
+  "heroes": [
+    {
+      "id": "seraphine",
+      "name": "Seraphine",
+      "element": "light",
+      "faction": "faction_a",
+      "role": "support",
+      "maxStars": 5,
+      "baseStats": { "hp": 1000, "atk": 100, "def": 80, "spd": 100 },
+      "skills": ["seraphine_basic", "seraphine_ultimate"],
+      "art": {
+        "fullbody": "hero_seraphine_fullbody",
+        "card": "hero_seraphine_card",
+        "icon": "hero_seraphine_icon"
+      },
+      "bond": null
+    }
+  ]
+}
