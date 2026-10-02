@@ -14,6 +14,7 @@ Goal: every rule change is checked in seconds, without opening Unity, and the sa
 | Interaction audit | `tools/csharp/test.sh -Main Gacha.Tests.Tools.InteractionAudit 3000` (pairs, biggest hits, 1 + 4 ceiling) | ~15 s |
 | Ablation (value of each kit part) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.Ablation 300 1` | ~2 min |
 | What-if variant | `tools/csharp/test.sh -Main Gacha.Tests.Tools.Variant caelith ai=nearest` | ~10 s |
+| Synergy report (packages, top teams) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.SynergyReport 300 24` | ~2 min |
 | Niche report | `tools/csharp/test.sh -Main Gacha.Tests.Tools.NicheReport 150 1` (234,000 paired battles) | ~3 min |
 | Final check | Unity → Window → General → Test Runner → EditMode → Run All | on a PC |
 
