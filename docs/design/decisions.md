@@ -24,6 +24,7 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 | 17 | Team presets | 5 saved presets (team + formation), edited in the Team tab with no enemy shown | Presets can be loaded in any game mode | 2026-10-02 |
 | 18 | Pre-battle setup | Campaign, Boss, PvP etc. show the enemy formation; player loads a preset or builds a custom setup | Last-used setup is remembered per game mode and auto-fills the next stage | 2026-10-02 |
 | 19 | Battle movement | Real-time, free-flowing | Formation sets starting positions only; heroes then move, close distance and fight (melee run in, ranged hang back). Needs move speed + attack range per hero; sim runs on a fixed timestep with seeded RNG so it stays replayable. Reference: Mythic Heroes battle | 2026-10-02 |
+| 20 | Art direction | Modern high-detail anime, not Mythic Heroes style | Art references: Azur Lane, Brown Dust 2, Destiny Child, NIKKE. Mythic Heroes is a reference for systems, layout and flow only; its art and home screen are explicitly disliked (dated) | 2026-10-02 |
 
 ## Open questions
 
