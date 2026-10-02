@@ -22,7 +22,7 @@ namespace Gacha.Tests
         // ---------- auto attacks ----------
 
         [TestCaseSource(nameof(HeroIds))]
-        public void AutoAttack_Deals100PercentAtk_AtItsAttackSpeed(string id)
+        public void AutoAttack_DealsBasicPctAtk_AtItsAttackSpeed(string id)
         {
             var b = new Battle(Lab.Data, new TeamSetup(id), new TeamSetup("target_dummy"), 5) { DisablePassives = true, ResistFloor = 0 };
             var hero = b.Units[0]; var dummy = b.Units[1];
@@ -32,7 +32,7 @@ namespace Gacha.Tests
             b.RunFor(10.0);
             var hits = b.Log.Where(e => e.Type == Ev.Damage && e.Src == hero.Index && e.Ab == "basic").ToList();
             Assert.Greater(hits.Count, 0, "no auto attacks");
-            foreach (var h in hits) Assert.AreEqual(hero.Atk, h.Amount, 1e-6, "each auto attack = 100% ATK against DEF 0");
+            foreach (var h in hits) Assert.AreEqual(hero.Atk * b.T.BasicPct, h.Amount, 1e-6, "each auto attack = basicAttackPct x ATK against DEF 0");
             // Ultimate may fire once the bar fills (cast lock pauses attacks), so allow a small shortfall.
             double expected = 10.0 * hero.Base.AtkSpd;
             Assert.LessOrEqual(hits.Count, Math.Ceiling(expected) + 1, "too many attacks for her attack speed");

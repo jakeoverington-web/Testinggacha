@@ -102,7 +102,7 @@ K["cassia"] = dict(
     s2=[dispel("target")],
     p=P(mods=[mod("lifesteal_heal", 0.5)], triggers=[on("dispel_done", shield("self", pct=0.05), )]))
 K["isolde"] = dict(
-    ult=[st("redirect", "allies_except_self", 4, 0.5)],
+    ult=[st("redirect", "allies_except_self", 4, 0.5), st("dr", "self", 4, 0.3)],
     s1=[st("redirect", "weakest_ally_other", 5, 0.25)],
     s2=[dmg(1.5), cleanse("self")],
     p=P(mods=[mod("heal_in", 0.3)]))
@@ -148,7 +148,7 @@ K["amarante"] = dict(
     p=P(triggers=[on("debuff_applied", st("dmg_down", "evt", 4, 0.1))]))
 K["rosalind"] = dict(
     ult=[st("def_up", "allies", 6, 0.3), cleanse("allies", 1)],
-    s1=[st("def_up", "ally", 5, 0.3)],
+    s1=[st("def_up", "most_targeted_ally", 5, 0.3)],
     s2=[dispel("most_buffed_enemy", 1, steal=True)],
     p=P(mods=[mod("dmg_out", 0.03, scope="allies", perBuff=5)]))
 K["seravelle"] = dict(
@@ -169,7 +169,7 @@ K["sangrael"] = dict(
     s2=[dmg(1.0, "enemies_near_self:2.5"), st("bleed", "enemies_near_self:2.5", 4, BLEED)],
     p=P(mods=[mod("dmg_in", -0.25, "self.hp<0.3")]))
 K["maelis"] = dict(
-    ult=[st("burn", "enemies", 6, 0.5)],
+    ult=[st("burn", "enemies", 6, 0.35)],
     s1=[dmg(1.7), st("curse", "target", 5, 0.2)],
     s2=[st("blind", "target", 2, BLIND)],
     p=P(mods=[mod("dmg_out", 0.25, "tgt:burn|curse")]))
@@ -251,9 +251,9 @@ K["sylwen"] = dict(
     s2=[dmg(1.2, "enemies_near_target:2")],
     p=P(mods=[mod("crit_rate", 0.15, "tgt:root|mark")], flags=["see_stealth"]))
 K["venna"] = dict(
-    ult=[st("poison", "enemies", 4, 0.06)],
-    s1=[st("poison", "target", 4, 0.03)],
-    s2=[st("poison", "enemies_near_target:2", 3, 0.03), st("slow", "enemies_near_target:2", 3, SLOW)],
+    ult=[st("poison", "enemies", 4, 0.04)],
+    s1=[st("poison", "target", 4, POISON)],
+    s2=[st("poison", "enemies_near_target:2", 3, POISON), st("slow", "enemies_near_target:2", 3, SLOW)],
     p=P(triggers=[on("enemy_death", st("poison", "evt_nearest_ally", 4, POISON), when="tgt:poison")]))
 K["mireille"] = dict(
     ult=[heal("allies", pct=0.4, over=8), st("regen", "allies", 4, 0.02, delay=8)],
@@ -288,7 +288,7 @@ K["coralie"] = dict(
     s2=[st("taunt", "enemies", 2)],
     p=P(mods=[mod("block", 0.2)]))
 K["thalassa"] = dict(
-    ult=[move("push", "front_row", 2.0), st("slow", "front_row", 3, SLOW), st("soaked", "front_row", 3)],
+    ult=[move("pull_to_caster", "front_row"), st("slow", "front_row", 3, SLOW), st("soaked", "front_row", 3)],
     s1=[st("stun", "target", 1)],
     s2=[move("pull_to_caster", "backrow_enemy")],
     p=P(mods=[mod("reflect_melee", 0.10)]))
@@ -368,7 +368,7 @@ K["astraea"] = dict(
     s2=[st("airborne", "line")],
     p=P(mods=[mod("dmg_out", 0.2, "tgt.grouped"), mod("dmg_out", 1.0, "tgt.summon")]))
 K["caelith"] = dict(
-    ult=[dmg(0, pctMaxHp=0.25, hits=3)],
+    ult=[dmg(0, pctMaxHp=0.15, hits=3)],
     s1=[dmg(1.7)],
     s2=[dispel("target", 1), st("silence", "target", 1)],
     p=P(mods=[mod("dmg_vs_shield", 0.3), mod("dmg_out", 0.15, "tgt:mark|weaken|def_down")]))

@@ -115,7 +115,7 @@ namespace Gacha.Core.Battle
         public double Tick = 0.1, TimeLimit = 90, HalfWidth = 8, HalfDepth = 3, DefK = 300, InitialCooldownPct = 0.5, CastLock = 0.3,
             MeleeRangeMax = 2, HasteEnergyFactor = 0.5, ShieldDuration = 10, ShieldCap = 0.5, DrWindow = 6, DrHalfFor = 4,
             SleepCritBonus = 0.3, BleedMovingMult = 2, SoakFire = -0.15, SoakLightning = 0.25, GroupedR = 2, IsolatedR = 3, DensestR = 2,
-            HealSkillThreshold = 0.95, ResistFloor = 0.15, ControlMax = 2.5, DiveDelay = 3, HpScale = 1, BreathRadius = 1.5, BreathBurnV = 0.2, BreathBurnDur = 3;
+            HealSkillThreshold = 0.95, ResistFloor = 0.15, ControlMax = 2.5, DiveDelay = 3, HpScale = 1, BasicPct = 1, BreathRadius = 1.5, BreathBurnV = 0.2, BreathBurnDur = 3;
         public int DotMaxStacks = 3;
         public List<int[]> Formation = new List<int[]>();
         public double[] ColX = { 2.5, 5.0 }, RowY = { -2.4, -1.2, 0, 1.2, 2.4 };
@@ -130,7 +130,7 @@ namespace Gacha.Core.Battle
                 Tick = n.Num("tick", 0.1), TimeLimit = n.Num("timeLimit", 90), DefK = n.Num("defK", 300),
                 InitialCooldownPct = n.Num("initialCooldownPct", 0.5), CastLock = n.Num("castLock", 0.3), MeleeRangeMax = n.Num("meleeRangeMax", 2),
                 HasteEnergyFactor = n.Num("hasteEnergyFactor", 0.5), ShieldDuration = n.Num("shieldDuration", 10), ShieldCap = n.Num("shieldCapPctMaxHp", 0.5),
-                DotMaxStacks = (int)n.Num("dotMaxStacks", 3), BleedMovingMult = n.Num("bleedMovingMult", 2), HealSkillThreshold = n.Num("healSkillThreshold", 0.95), ResistFloor = n.Num("resistFloor", 0.15), DiveDelay = n.Num("diveDelay", 3), HpScale = n.Num("hpScale", 1)
+                DotMaxStacks = (int)n.Num("dotMaxStacks", 3), BleedMovingMult = n.Num("bleedMovingMult", 2), HealSkillThreshold = n.Num("healSkillThreshold", 0.95), ResistFloor = n.Num("resistFloor", 0.15), DiveDelay = n.Num("diveDelay", 3), HpScale = n.Num("hpScale", 1), BasicPct = n.Num("basicAttackPct", 1)
             };
             var f = n.Obj("field"); t.HalfWidth = f.Num("halfWidth", 8); t.HalfDepth = f.Num("halfDepth", 3);
             var fm = n.Obj("formation");

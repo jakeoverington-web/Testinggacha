@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Gacha.Core.Data;
 
 namespace Gacha.Core.Battle
@@ -28,7 +29,7 @@ namespace Gacha.Core.Battle
         public static readonly HashSet<string> Selectors = new HashSet<string> {
             "self", "target", "ally", "allies", "allies_except_self", "allies_near_self", "self_and_summons", "weakest_ally",
             "weakest_ally_other", "weakest_allies", "nearest_ally", "most_debuffed_ally", "most_debuffed_allies", "dead_ally",
-            "enemies", "enemies_near_self", "enemies_near_target", "nearest_enemy", "nearest_enemies", "weakest_enemy", "weakest_enemies",
+            "most_targeted_ally", "enemies", "enemies_near_self", "enemies_near_target", "nearest_enemy", "nearest_enemies", "weakest_enemy", "weakest_enemies",
             "highest_atk_enemy", "highest_atk_enemies", "most_energy_enemy", "most_buffed_enemy", "backrow_enemy", "back_row", "front_row",
             "target_row", "line", "cone", "random_enemy_near_self", "weakest_with", "zone_enemies", "zone_allies", "evt", "evt_nearest_ally", "hit" };
         static readonly HashSet<string> SingleEnemySelectors = new HashSet<string> {
@@ -49,6 +50,24 @@ namespace Gacha.Core.Battle
             var ctx = new OpCtx { Ability = ab.Key, Kind = ab.Key == "ult" ? HitKind.Ult : HitKind.Skill, Primary = EnemyTarget(u), AllyPrimary = AllyTarget(u) };
             var first = ab.Ops[0];
             string op = first.Str("op");
+            // Aim: plant-yourself skills only when someone is in reach
+            if (ab.Ops.Exists(x => x.Str("op") == "status" && x.Str("s") == "planted") && !EnemiesOf(u, true).Exists(e => Dist(u, e) <= T.MeleeRangeMax)) return false;
+            // Aim: sleep and stasis go on an enemy nobody on our side is hitting (damage would wake or shield the focus target)
+            if (op == "status" && (first.Str("s") == "sleep" || first.Str("s") == "stasis") && first.Str("to", "target") == "target")
+            {
+                var focus = new HashSet<int>(AlliesOf(u, true, true).Select(a => a.LastTarget));
+                var spare = EnemiesOf(u, false).FindAll(e => !focus.Contains(e.Index) && Dist(u, e) <= u.Base.Range + 3);
+                if (spare.Count == 0) return false;
+                ctx.Primary = Pick(spare, e => e.Atk);
+                Emit(Ev.Cast, u.Index, ctx.Primary.Index, ab.Key, 0);
+                _ab = ab.Key;
+                if (ab.Key == "ult") { Emit(Ev.Energy, u.Index, u.Index, "ult", -u.Energy); u.Energy = 0; }
+                RunOps(u, ab.Ops, ctx);
+                _ab = ab.Key;
+                FireTriggers(u, ab.Key == "ult" ? "ult_cast" : "skill_cast", ctx.Primary, 0);
+                u.CastLock = T.CastLock;
+                return true;
+            }
             if (op != "zone" && op != "summon" && op != "spend_hp" && op != "counter" && op != "rewind" && op != "cooldown")
             {
                 string to = first.Str("to", "target");
@@ -357,6 +376,11 @@ namespace Gacha.Core.Battle
                 case "most_debuffed_ally": return One(Pick(AlliesOf(u, false, true), x => DebuffCount(x) * 10 - x.HpPct));
                 case "most_debuffed_allies": return Top(AlliesOf(u, false, true), x => DebuffCount(x) * 10 - x.HpPct, (int)num);
                 case "dead_ally": return One(FindDeadAlly(u));
+                case "most_targeted_ally":
+                    {
+                        var allies = AlliesOf(u, false, true);
+                        return One(Pick(allies, a => Units.Count(e => e.Alive && e.Team != u.Team && e.LastTarget == a.Index) * 10 - a.HpPct));
+                    }
                 case "enemies": return EnemiesOf(u, true);
                 case "enemies_near_self": return Around(u.X, u.Y, num, EnemiesOf(u, true));
                 case "enemies_near_target": return ctx.Primary == null ? r : Around(ctx.Primary.X, ctx.Primary.Y, num, EnemiesOf(u, true));

@@ -7,12 +7,14 @@ Code: `Assets/_Game/Scripts/Core/Battle/` (engine-free). Tuning: `Data/battle.js
 | Rule | Value |
 | --- | --- |
 | Timestep | 0.1 s; every unit acts every tick; order alternates teams and flips each tick |
-| Hero HP | Every hero's HP x 1.5 in battle (`hpScale`), for fights of about 30 s |
+| Hero HP | Every hero's HP x 1.2 in battle (`hpScale`), for fights of about 30 s |
+| Auto attacks | 75% ATK (`basicAttackPct`), so skills carry more of each kit |
 | Time limit | 90 s; a timeout counts as a loss for the attacker (team A) |
 | Field | 16 m × 6 m, allies left, enemies right; formation = grid cells (front col x = 2.5 m, back x = 5 m) |
 | Each tick, per unit | Ultimate at 100 energy → Skill 1 → Skill 2 → basic attack if the target is in range → else move |
-| Skills | Start at 50% cooldown; 0.3 s cast lock after any cast; Haste divides cooldowns |
-| "Worth casting" | An ability waits until its first effect has a target: heals need an ally under 95%, cleanses a debuff, dispels a buff, revives a fallen ally |
+| Skills | Start at 50% cooldown; 0.1 s cast pause after any cast; Haste divides cooldowns |
+| "Worth casting" | An ability waits until its first effect has a target: heals need an ally under 95%, cleanses a debuff, dispels a buff, revives a fallen ally; plant-yourself skills need an enemy in reach |
+| Aim | Sleep and stasis go on the highest-ATK enemy no ally is hitting (damage would wake or shield the focus target); Rosalind's Knighting goes to the ally most enemies are attacking |
 | Energy | Basic hit +10, 0.5 per 1% HP lost, kill +20 (scaled by Energy gain and half of Haste); gifts and drains are flat |
 | End | A side loses when all its heroes are down (summons don't count) |
 

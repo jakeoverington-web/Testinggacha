@@ -197,6 +197,7 @@ namespace Gacha.Core.Battle
             }
 
             var target = EnemyTarget(u);
+            u.LastTarget = target?.Index ?? -1;
             if (target == null) return;
             double reach = u.Base.Range + 0.25;
             if (Dist(u, target) <= reach)
@@ -305,14 +306,14 @@ namespace Gacha.Core.Battle
             {
                 foreach (var e in Around(target.X, target.Y, T.BreathRadius, EnemiesOf(u, true)))
                 {
-                    Hit(u, e, u.Atk, new HitInfo { Kind = HitKind.Basic, Elem = "fire", CanCrit = true, Ability = "basic" });
+                    Hit(u, e, u.Atk * T.BasicPct, new HitInfo { Kind = HitKind.Basic, Elem = "fire", CanCrit = true, Ability = "basic" });
                     ApplyStatus(u, e, "burn", T.BreathBurnDur, T.BreathBurnV, null);
                 }
                 GainEnergy(u, 10, true);
                 return;
             }
             var hit = new HitInfo { Kind = HitKind.Basic, CanCrit = true, Ability = "basic", Projectile = u.IsRanged };
-            double dealt = Hit(u, target, u.Atk, hit);
+            double dealt = Hit(u, target, u.Atk * T.BasicPct, hit);
             if (hit.Landed) GainEnergy(u, 10, true);
         }
 

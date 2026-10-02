@@ -16,21 +16,21 @@ namespace Gacha.Tests
             var lab = Lab.Seed(1).Ally("striker").Enemy("dummy_def300").Run(5);
             var hits = lab.From(lab.A(), Ev.Damage).ToList();
             Assert.Greater(hits.Count, 2, "striker should have reached and hit the dummy");
-            foreach (var h in hits) Assert.AreEqual(50.0, h.Amount, 1e-6, "100 ATK x 300/(300+300)");
+            foreach (var h in hits) Assert.AreEqual(50.0 * lab.Battle.T.BasicPct, h.Amount, 1e-6, "100 ATK x basic % x 300/(300+300)");
         }
 
         [Test]
         public void CounterRace_Adds10Percent()
         {
             var lab = Lab.Seed(1).Ally("striker").Enemy("dummy_dark").Run(5);
-            foreach (var h in lab.From(lab.A(), Ev.Damage)) Assert.AreEqual(110.0, h.Amount, 1e-6, "High beats Dark: +10%");
+            foreach (var h in lab.From(lab.A(), Ev.Damage)) Assert.AreEqual(110.0 * lab.Battle.T.BasicPct, h.Amount, 1e-6, "High beats Dark: +10%");
         }
 
         [Test]
         public void NoCounter_WhenRacesDoNotMatchTheLoop()
         {
             var lab = Lab.Seed(1).Ally("striker").Enemy("dummy").Run(5);
-            foreach (var h in lab.From(lab.A(), Ev.Damage)) Assert.AreEqual(100.0, h.Amount, 1e-6);
+            foreach (var h in lab.From(lab.A(), Ev.Damage)) Assert.AreEqual(100.0 * lab.Battle.T.BasicPct, h.Amount, 1e-6);
         }
 
         [Test]

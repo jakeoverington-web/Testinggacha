@@ -1,5 +1,5 @@
 {
- "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 7).",
+ "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 8).",
  "heroes": [
   {
    "id": "cassia",
@@ -206,7 +206,7 @@
    "skills": {
     "ultimate": {
      "name": "Martyrdom",
-     "text": "For 4s she takes 50% of the damage dealt to allies.",
+     "text": "For 4s she takes 50% of the damage dealt to allies, and takes 30% less damage herself.",
      "tags": [
       "dr"
      ],
@@ -217,6 +217,13 @@
        "to": "allies_except_self",
        "dur": 4,
        "v": 0.5
+      },
+      {
+       "op": "status",
+       "s": "dr",
+       "to": "self",
+       "dur": 4,
+       "v": 0.3
       }
      ]
     },
@@ -1068,7 +1075,7 @@
     },
     "skill1": {
      "name": "Sunshot",
-     "cooldown": 6,
+     "cooldown": 8,
      "text": "Marks the target (takes +15% damage) for 4s.",
      "tags": [
       "mark"
@@ -1725,7 +1732,7 @@
       {
        "op": "status",
        "s": "def_up",
-       "to": "ally",
+       "to": "most_targeted_ally",
        "dur": 5,
        "v": 0.3
       }
@@ -2312,7 +2319,7 @@
    "role": "dps",
    "style": "Warlock",
    "range": "ranged",
-   "targeting": "Highest-HP enemy",
+   "targeting": "Enemy carry (highest ATK)",
    "movement": "Mid range",
    "stats": {
     "moveSpd": 3.0,
@@ -2337,7 +2344,7 @@
    "skills": {
     "ultimate": {
      "name": "Ashfall",
-     "text": "Smouldering ash burns all enemies for 50% ATK per second for 6s.",
+     "text": "Smouldering ash burns all enemies for 35% ATK per second for 6s.",
      "tags": [
       "dot_burn"
      ],
@@ -2347,7 +2354,7 @@
        "s": "burn",
        "to": "enemies",
        "dur": 6,
-       "v": 0.5
+       "v": 0.35
       }
      ]
     },
@@ -2477,7 +2484,7 @@
    "maxStars": 5,
    "bond": null,
    "ai": {
-    "enemy": "highest_hp",
+    "enemy": "highest_atk",
     "ally": "self",
     "move": "kite"
    }
@@ -5137,7 +5144,7 @@
    "role": "dps",
    "style": "Poisoner",
    "range": "ranged",
-   "targeting": "Highest-HP enemy",
+   "targeting": "Lowest-HP enemy",
    "movement": "Mid range",
    "stats": {
     "moveSpd": 3.0,
@@ -5162,7 +5169,7 @@
    "skills": {
     "ultimate": {
      "name": "Nightshade Bloom",
-     "text": "Poisons all enemies (6% max HP/s) for 4s.",
+     "text": "Poisons all enemies (4% max HP/s) for 4s.",
      "tags": [
       "dot_poison"
      ],
@@ -5172,14 +5179,14 @@
        "s": "poison",
        "to": "enemies",
        "dur": 4,
-       "v": 0.06
+       "v": 0.04
       }
      ]
     },
     "skill1": {
      "name": "Toxic Dart",
      "cooldown": 6,
-     "text": "Poisons the target (3%/s) for 4s.",
+     "text": "Poisons the target (2%/s) for 4s.",
      "tags": [
       "dot_poison"
      ],
@@ -5189,7 +5196,7 @@
        "s": "poison",
        "to": "target",
        "dur": 4,
-       "v": 0.03
+       "v": 0.02
       }
      ]
     },
@@ -5207,7 +5214,7 @@
        "s": "poison",
        "to": "enemies_near_target:2",
        "dur": 3,
-       "v": 0.03
+       "v": 0.02
       },
       {
        "op": "status",
@@ -5285,7 +5292,7 @@
    "maxStars": 5,
    "bond": null,
    "ai": {
-    "enemy": "highest_hp",
+    "enemy": "lowest_hp",
     "ally": "self",
     "move": "kite"
    }
@@ -6238,18 +6245,18 @@
    "skills": {
     "ultimate": {
      "name": "Undertow",
-     "text": "Knocks the enemy front row back, slows them and leaves them Soaked for 3s.",
+     "text": "Drags the enemy front row toward her, slows them and leaves them Soaked for 3s.",
      "tags": [
-      "cc_knock",
+      "pull",
       "debuff_slow",
       "soak"
      ],
      "ops": [
       {
        "op": "move",
-       "kind": "push",
+       "kind": "pull_to_caster",
        "to": "front_row",
-       "dist": 2.0
+       "dist": 0.0
       },
       {
        "op": "status",
@@ -8756,7 +8763,7 @@
    "role": "dps",
    "style": "Tank-breaker",
    "range": "ranged",
-   "targeting": "Highest-HP enemy",
+   "targeting": "Enemy carry (highest ATK)",
    "movement": "Holds range",
    "stats": {
     "moveSpd": 3.0,
@@ -8781,7 +8788,7 @@
    "skills": {
     "ultimate": {
      "name": "Unraveling",
-     "text": "Three hits that each deal 25% of the target's max HP.",
+     "text": "Three hits that each deal 15% of the target's max HP.",
      "tags": [
       "dmg_single"
      ],
@@ -8790,7 +8797,7 @@
        "op": "dmg",
        "m": 0,
        "to": "target",
-       "pctMaxHp": 0.25,
+       "pctMaxHp": 0.15,
        "hits": 3
       }
      ]
@@ -8915,7 +8922,7 @@
    "maxStars": 5,
    "bond": null,
    "ai": {
-    "enemy": "highest_hp",
+    "enemy": "highest_atk",
     "ally": "self",
     "move": "kite"
    }

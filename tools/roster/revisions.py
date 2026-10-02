@@ -182,3 +182,18 @@ PASSES[7] = [
  ("vesper","skill1.text","Curses an enemy: whoever hits it heals for 30% of the damage.","No niche (-12): Feeding Curse 15% -> 30%; the amount is now in the text"),
  ("maelis","ultimate.text","Smouldering ash burns all enemies for 50% ATK per second for 6s.","No niche (-11): Ashfall 35% -> 50% ATK/s; the amount is now in the text"),
 ]
+
+# ---------------- PASS 8: from the ablation report (what each kit part is worth) ----------------
+PASSES[8] = [
+ ("caelith","targeting","Enemy carry (highest ATK)","Highest-HP targeting sent her into tanks; carry targeting alone was worth +32 points"),
+ ("caelith","ultimate.text","Three hits that each deal 15% of the target's max HP.","Pass 7 buff pulled back now that she hits carries instead of tanks"),
+ ("maelis","targeting","Enemy carry (highest ATK)","Highest-HP targeting sent her into tanks; carry targeting alone was worth +22 points"),
+ ("maelis","ultimate.text","Smouldering ash burns all enemies for 35% ATK per second for 6s.","Pass 7 buff pulled back with the targeting fix"),
+ ("venna","targeting","Lowest-HP enemy","Highest-HP targeting sent her into tanks; finishing the weak also feeds Contagion (+16 points)"),
+ ("venna","skill1.text","Poisons the target (2%/s) for 4s.","Pass 7 buff pulled back with the targeting fix"),
+ ("venna","ultimate.text","Poisons all enemies (4% max HP/s) for 4s.","Pass 7 buff pulled back with the targeting fix"),
+ ("solenne","skill1.cd",8,"Sunshot's mark makes her whole team focus the enemy carry every 6s; now every 8s"),
+ ("thalassa","ultimate.text","Drags the enemy front row toward her, slows them and leaves them Soaked for 3s.","Knocking enemies away from her own melee team made Undertow worth nothing; an undertow pulls in"),
+ ("thalassa","ultimate.tags",["pull","debuff_slow","soak"],"Undertow now pulls"),
+ ("isolde","ultimate.text","For 4s she takes 50% of the damage dealt to allies, and takes 30% less damage herself.","Martyrdom was worth almost nothing: she absorbed damage she could not survive"),
+]

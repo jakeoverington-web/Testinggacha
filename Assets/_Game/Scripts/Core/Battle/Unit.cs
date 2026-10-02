@@ -44,6 +44,8 @@ namespace Gacha.Core.Battle
         public double BonusHpPct, BonusAtkPct, BonusDefPct;   // team bonus
         /// <summary>Analysis switch: parts of the kit turned off ("ult", "s1", "s2", "passive", "basic").</summary>
         public HashSet<string> Off;
+        /// <summary>Who this unit was attacking last tick (AI uses it to avoid wasting control on the focus target).</summary>
+        public int LastTarget = -1;
         public bool IsOff(string part) => Off != null && Off.Contains(part);
 
         public string Name => IsSummon ? Def.Name + "'s " + Id : Def.Name;

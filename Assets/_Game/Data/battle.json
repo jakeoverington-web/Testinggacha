@@ -1,7 +1,7 @@
 {
   "_schema": "battle v1 - tuning for the real-time battle sim (Core/Battle). Rules: docs/design/battle-rules.md. All values are tuning starting points.",
   "tick": 0.1,
-  "hpScale": 1.5,
+  "hpScale": 1.2,
   "timeLimit": 90,
   "field": { "halfWidth": 8.0, "halfDepth": 3.0 },
   "formation": {
@@ -12,7 +12,8 @@
   },
   "defK": 300,
   "initialCooldownPct": 0.5,
-  "castLock": 0.3,
+  "castLock": 0.1,
+  "basicAttackPct": 0.75,
   "diveDelay": 3.0,
   "meleeRangeMax": 2.0,
   "hasteEnergyFactor": 0.5,
