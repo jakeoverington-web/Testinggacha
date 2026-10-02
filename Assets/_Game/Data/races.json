@@ -18,7 +18,7 @@
     {
       "id": "dark",
       "name": "Dark Elves",
-      "counters": "arcane",
+      "counters": "nature",
       "accent": "#B3263A",
       "light": "cold crimson night, low-key",
       "subraces": [
@@ -30,23 +30,22 @@
       ]
     },
     {
-      "id": "arcane",
-      "name": "Arcane Elves",
+      "id": "nature",
+      "name": "Nature Elves",
       "counters": "ocean",
-      "accent": "#8A7BE0",
-      "light": "indigo starlight, floating runes",
+      "accent": "#4FAF77",
+      "light": "dappled emerald forest",
       "subraces": [
-        "star",
-        "moon",
-        "void",
-        "time",
-        "dragon"
+        "wood",
+        "wild",
+        "fae",
+        "stag"
       ]
     },
     {
       "id": "ocean",
       "name": "Ocean Elves",
-      "counters": "nature",
+      "counters": "arcane",
       "accent": "#2F8FD0",
       "light": "deep blue-teal moonlit water",
       "subraces": [
@@ -58,16 +57,17 @@
       ]
     },
     {
-      "id": "nature",
-      "name": "Nature Elves",
+      "id": "arcane",
+      "name": "Arcane Elves",
       "counters": "high",
-      "accent": "#4FAF77",
-      "light": "dappled emerald forest",
+      "accent": "#8A7BE0",
+      "light": "indigo starlight, floating runes",
       "subraces": [
-        "wood",
-        "wild",
-        "fae",
-        "stag"
+        "star",
+        "moon",
+        "void",
+        "time",
+        "dragon"
       ]
     }
   ],
