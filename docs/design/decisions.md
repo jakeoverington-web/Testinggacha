@@ -7,7 +7,7 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 | --- | --- | --- | --- | --- |
 | 1 | Combat | Idle auto-battle | No input during fights; progress continues offline | 2026-10-02 |
 | 2 | Team | 5 heroes, 11 formations | Two rows: 5, 4-1, 3-2, 2-3, 1-4. Three rows: 3-1-1, 2-2-1, 2-1-2, 1-3-1, 1-2-2, 1-1-3. Columns of 4-5 are drawn as a compact zig-zag. Counters come from enemy skills (row hits, assassins, nukes), not flat formation bonuses | 2026-10-02 |
-| 3 | Team-building | 5 core races are the only combat type: counters + team bonuses | Cores (names provisional): High, Dark, Arcane, Ocean, Nature. Provisional counter loop High > Dark > Arcane > Ocean > Nature > High (dawn banishes shadow, shadow corrupts spells, the moon commands the tides, the flood drowns the forest, vines reclaim the marble temples); a hero deals +10% damage to the core it counters (genre range 10-30%; tune later). Team bonus for 3 of one core + 2 of another, bigger for 5 of one core (Mythic Heroes style). Values live in tuning data. No special races outside the loop (no Light/Dark or Celestial-style premium types) and no wildcard or dual-race heroes. Research: AFK Arena, Mythic Heroes, Idle Heroes, Epic Seven, NIKKE, Omni Heroes | 2026-10-02 |
+| 3 | Team-building | 5 core races are the only combat type: counters + team bonuses | Cores (names provisional): High, Dark, Arcane, Ocean, Nature. Counter loop (confirmed) High > Dark > Arcane > Ocean > Nature > High (dawn banishes shadow, shadow corrupts spells, the moon commands the tides, the flood drowns the forest, vines reclaim the marble temples); a hero deals +10% damage to the core it counters (genre range 10-30%; tune later). Team bonus for 3 of one core + 2 of another, bigger for 5 of one core (Mythic Heroes style). Values live in tuning data. No special races outside the loop (no Light/Dark or Celestial-style premium types) and no wildcard or dual-race heroes. Research: AFK Arena, Mythic Heroes, Idle Heroes, Epic Seven, NIKKE, Omni Heroes | 2026-10-02 |
 | 4 | Progression | Campaign + endless tower | Idle loot scales with furthest campaign stage | 2026-10-02 |
 | 5 | Duplicates | Raise stars, or feed as fodder | Fodder ascends other heroes | 2026-10-02 |
 | 6 | Gear | Per-hero gear slots | Drops from stages; upgradeable | 2026-10-02 |
@@ -37,7 +37,6 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 - Gear slots per hero.
 - Team bonus values for 3+2 and 5 of a core type.
 - Final names for the 5 core races (themes are locked; names are provisional).
-- Counter loop order (row 3 order is provisional).
 - Final sub-race sets per core (draft in row 22; shortlist in Claude Docs). Mermaid would need a floating battle move.
 - Idle-loot cap in hours.
 - ~~Platform plan for adult art~~ Resolved: personal build, installed directly on the owner's phone; no store release, so no store content rules apply.
