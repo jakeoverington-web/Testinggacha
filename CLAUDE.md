@@ -5,7 +5,7 @@ Design source of truth: `docs/design/decisions.md`. If code and that file disagr
 
 ## Current phase
 
-Phase 1 — Core loop greybox, in this order: (a) roster design, the first 20 heroes as data (Hero Roster v1); (b) battle rules built for exactly those kits (real-time, everyone acts at once, race counters + team bonuses); (c) campaign stages and idle loot.
+Phase 1 — Core loop greybox, in this order: (a) roster design: 60 heroes as data (Hero Compendium; heroes.json, combat.json; change heroes via tools/roster passes); (b) battle rules built for exactly those kits (real-time, everyone acts at once, race counters + team bonuses); (c) campaign stages and idle loot.
 Phases: 1 Core loop → 2 Hero progression → 3 Gacha and roster → 4 Modes → 5 Art pass.
 Do not start work from a later phase unless asked.
 

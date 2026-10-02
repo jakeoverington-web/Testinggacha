@@ -1,0 +1,539 @@
+{
+ "_schema": "combat v1 — stat sheet, energy, effect library, control rules, synergy keywords, role templates. Starting values for tuning.",
+ "stats": [
+  {
+   "id": "hp",
+   "name": "Health",
+   "rule": "Hero falls at 0.",
+   "default": null
+  },
+  {
+   "id": "atk",
+   "name": "Attack",
+   "rule": "Scales damage, healing and shields.",
+   "default": null
+  },
+  {
+   "id": "def",
+   "name": "Defence",
+   "rule": "Damage taken x K/(K+DEF), K = 300 at level 1.",
+   "default": null
+  },
+  {
+   "id": "atkSpd",
+   "name": "Attack speed",
+   "rule": "Basic attacks per second.",
+   "default": null
+  },
+  {
+   "id": "moveSpd",
+   "name": "Move speed",
+   "rule": "Metres per second on the field (field is ~10 m wide).",
+   "default": 3.0
+  },
+  {
+   "id": "range",
+   "name": "Range",
+   "rule": "Attack reach in metres. Melee 1, ranged 4-6.",
+   "default": null
+  },
+  {
+   "id": "critRate",
+   "name": "Crit chance",
+   "rule": "Chance a hit crits.",
+   "default": 0.05
+  },
+  {
+   "id": "critDmg",
+   "name": "Crit damage",
+   "rule": "Crit multiplier. Base 150%.",
+   "default": 1.5
+  },
+  {
+   "id": "haste",
+   "name": "Haste",
+   "rule": "Skill cooldowns / (1 + haste/100). Also speeds energy gain.",
+   "default": 0
+  },
+  {
+   "id": "energyRegen",
+   "name": "Energy gain",
+   "rule": "Bonus % to energy gained from hits.",
+   "default": 0
+  },
+  {
+   "id": "accuracy",
+   "name": "Accuracy",
+   "rule": "Cancels the target's dodge.",
+   "default": 0
+  },
+  {
+   "id": "dodge",
+   "name": "Dodge",
+   "rule": "Chance to avoid a basic attack completely (skills can't be dodged).",
+   "default": 0
+  },
+  {
+   "id": "block",
+   "name": "Block",
+   "rule": "Chance to halve a hit's damage.",
+   "default": 0
+  },
+  {
+   "id": "effectHit",
+   "name": "Effect hit",
+   "rule": "Raises the chance debuffs land.",
+   "default": 0
+  },
+  {
+   "id": "effectRes",
+   "name": "Effect resist",
+   "rule": "Chance to resist a debuff = effectRes - effectHit, never below 15% (Summoners War floor) unless the skill says 'cannot be resisted'.",
+   "default": 0.15
+  },
+  {
+   "id": "lifesteal",
+   "name": "Lifesteal",
+   "rule": "Heals for % of damage dealt.",
+   "default": 0
+  },
+  {
+   "id": "healPower",
+   "name": "Healing power",
+   "rule": "Bonus % to heals and shields the hero gives.",
+   "default": 0
+  },
+  {
+   "id": "healRecv",
+   "name": "Healing received",
+   "rule": "Bonus % to heals and shields the hero receives.",
+   "default": 0
+  }
+ ],
+ "energy": {
+  "max": 100,
+  "basicHit": 10,
+  "perPctHpLost": 0.5,
+  "kill": 20,
+  "startEnergy": 0,
+  "note": "Ultimate fires automatically at 100 (manual tap when Auto is off). Energy carries over between waves."
+ },
+ "effects": {
+  "ATK up": "+25% / +50% attack",
+  "DEF up": "+30% / +60% defence",
+  "Haste up": "+30 haste (skills recharge faster)",
+  "Attack speed up": "+20% / +40% attack speed",
+  "Crit up": "+15% / +30% crit chance",
+  "Shield": "Absorbs damage; amount from caster ATK or max HP; shields stack (AFK Arena), capped at 50% of max HP",
+  "Unkillable": "HP can't drop below 1 (max 4s)",
+  "Immunity": "Ignores new debuffs",
+  "Control immunity": "Ignores stun, sleep, root, fear, charm, silence, knock-up",
+  "Untargetable": "Enemies can't select the hero (stealth breaks on attacking unless stated)",
+  "Regen": "Heals % max HP per second",
+  "Lifesteal up": "+15% / +30% lifesteal",
+  "Counter": "Hits back for 75% when struck in melee",
+  "Reflect": "Returns a % of damage taken to the attacker",
+  "Revive": "Returns at 30-40% HP; once per hero per battle",
+  "Skill shield": "Blocks the next skill or ultimate hit completely",
+  "DEF down": "-30% / -60% defence",
+  "ATK down": "-25% / -50% attack",
+  "Weaken": "Takes +15% / +25% damage from everything",
+  "Mark": "Takes +15% damage; marked enemies are preferred targets",
+  "Slow": "-30% move and attack speed",
+  "Blind": "Basic attacks miss 50%",
+  "Heal reduction": "-50% / -100% healing received",
+  "Block buffs": "Can't receive buffs",
+  "Silence": "Can't use Skill 1 / Skill 2 (ultimate still works)",
+  "Burn": "Fire damage over time from caster ATK; stacks up to 3",
+  "Bleed": "Damage over time from caster ATK; doubled while the target moves",
+  "Poison": "2% / 4% of max HP per second",
+  "Curse": "Takes extra damage equal to a % of damage dealt to their allies",
+  "Soaked": "Ocean status: -15% fire damage taken, +25% lightning damage taken; feeds Ocean skills",
+  "Energy drain": "Removes energy",
+  "Stun": "Can't act",
+  "Sleep": "Can't act; breaks when damaged; sleeping targets take +30% crit chance against them",
+  "Root": "Can't move; can still attack in range",
+  "Fear": "Runs away from the caster",
+  "Charm": "Attacks own allies",
+  "Taunt": "Must attack the taunter",
+  "Knock-up": "Airborne for 0.75s; counts as Airborne for payoffs",
+  "Knockback / pull": "Moves the target; pulled targets count as Grouped or Isolated for payoffs"
+ },
+ "control": {
+  "maxDuration": 2.5,
+  "diminishing": "After a hero is hit by hard control, further hard control on them lasts 50% as long for 4s, then 0% (immune) for 2s. Stops endless lock teams.",
+  "priority": "Charm > Fear > Stun > Sleep > Root (AFK Arena style: only the strongest applies).",
+  "cleansable": "Every debuff and control effect can be cleansed unless marked otherwise."
+ },
+ "keywords": {
+  "Burn": "enemy is burning",
+  "Bleed": "enemy is bleeding",
+  "Poison": "enemy is poisoned",
+  "Curse": "enemy is cursed",
+  "Mark": "enemy is marked",
+  "Soaked": "enemy is soaked",
+  "Slow": "enemy is slowed",
+  "Blind": "enemy is blinded",
+  "Rooted": "enemy is rooted",
+  "Asleep": "enemy is asleep",
+  "Stunned": "enemy is stunned",
+  "Feared": "enemy is feared",
+  "Charmed": "enemy is charmed",
+  "Airborne": "enemy is knocked up",
+  "Grouped": "enemies are pulled together",
+  "Isolated": "an enemy is pulled away from its team",
+  "Weakened": "enemy takes more damage or has lower DEF",
+  "Taunted": "enemies are forced onto one ally",
+  "Shielded": "allies have shields",
+  "Stealth": "allies are hidden",
+  "Energy": "allies gain energy",
+  "Cooldown": "allies' skills recharge faster",
+  "Lifesteal": "allies have lifesteal",
+  "Buffed": "allies carry buffs",
+  "Summon": "allied summons are on the field",
+  "Kill": "an enemy falls",
+  "LowHP": "an enemy is below a health threshold",
+  "Dispel": "enemy buffs are removed",
+  "Drained": "enemy has had energy stolen"
+ },
+ "roleTemplates": {
+  "tank/melee": {
+   "hp": 2400,
+   "atk": 120,
+   "def": 180,
+   "atkSpd": 0.8,
+   "range": 1,
+   "critRate": 0.05,
+   "block": 0.1,
+   "effectRes": 0.25
+  },
+  "dps/melee": {
+   "hp": 1550,
+   "atk": 255,
+   "def": 95,
+   "atkSpd": 1.0,
+   "range": 1,
+   "critRate": 0.1
+  },
+  "dps/ranged": {
+   "hp": 1250,
+   "atk": 275,
+   "def": 70,
+   "atkSpd": 0.9,
+   "range": 5,
+   "critRate": 0.1
+  },
+  "healer/ranged": {
+   "hp": 1400,
+   "atk": 170,
+   "def": 90,
+   "atkSpd": 0.8,
+   "range": 4,
+   "healPower": 0.1
+  },
+  "support/ranged": {
+   "hp": 1600,
+   "atk": 175,
+   "def": 110,
+   "atkSpd": 0.85,
+   "range": 4,
+   "effectHit": 0.1
+  },
+  "support/melee": {
+   "hp": 1800,
+   "atk": 175,
+   "def": 130,
+   "atkSpd": 0.85,
+   "range": 1,
+   "effectHit": 0.1
+  }
+ },
+ "styleMods": {
+  "Crusader": {
+   "atk": 40,
+   "lifesteal": 0.08,
+   "def": -40,
+   "block": -0.05
+  },
+  "Tidewall": {
+   "hp": 150,
+   "block": 0.05,
+   "atk": -35,
+   "critRate": -0.05
+  },
+  "Sniper": {
+   "critRate": 0.05,
+   "range": 1,
+   "hp": -115
+  },
+  "Pyromancer": {
+   "atk": 20,
+   "atkSpd": -0.1,
+   "hp": -60
+  },
+  "Inkweaver": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Rainmaker": {
+   "hp": 150,
+   "healPower": -0.1
+  },
+  "Guardian": {
+   "hp": 150,
+   "block": 0.05,
+   "atk": -35,
+   "critRate": -0.05
+  },
+  "Bruiser": {
+   "atk": 40,
+   "lifesteal": 0.08,
+   "def": -40,
+   "block": -0.05
+  },
+  "Gatherer": {
+   "hp": 100,
+   "moveSpd": 0.8,
+   "def": -20,
+   "block": -0.05,
+   "atk": -15
+  },
+  "Disruptor": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Warden": {
+   "effectRes": 0.15,
+   "def": 10,
+   "hp": -140
+  },
+  "Undying": {
+   "hp": 200,
+   "healRecv": 0.15,
+   "atk": -40,
+   "block": -0.05
+  },
+  "Thorns": {
+   "def": 40,
+   "atk": -33
+  },
+  "Shapeshifter": {
+   "atk": 30,
+   "hp": -180
+  },
+  "Martyr": {
+   "healRecv": 0.3,
+   "hp": -240
+  },
+  "Rune golem": {
+   "effectRes": 0.2,
+   "hp": -120
+  },
+  "Heartwood": {
+   "hp": 180,
+   "healRecv": 0.1,
+   "moveSpd": -0.6,
+   "atk": -30,
+   "block": -0.02
+  },
+  "Marksman": {
+   "critRate": 0.05,
+   "range": 1,
+   "hp": -115
+  },
+  "Assassin": {
+   "critDmg": 0.3,
+   "moveSpd": 1.0,
+   "hp": -300
+  },
+  "Nuker": {
+   "atk": 20,
+   "atkSpd": -0.1,
+   "hp": -60
+  },
+  "Chain caster": {
+   "haste": 10,
+   "atk": -20
+  },
+  "Summoner": {
+   "hp": 100,
+   "atk": -17
+  },
+  "Warlock": {
+   "effectHit": 0.15,
+   "atk": -20
+  },
+  "Diver": {
+   "moveSpd": 1.0,
+   "dodge": 0.05,
+   "hp": -220
+  },
+  "Tank-breaker": {
+   "accuracy": 0.2,
+   "atk": -20
+  },
+  "Duelist": {
+   "dodge": 0.08,
+   "critRate": 0.03,
+   "hp": -205
+  },
+  "Lancer": {
+   "moveSpd": 0.8,
+   "atk": 5,
+   "hp": -126
+  },
+  "Bleed duelist": {
+   "atkSpd": 0.15,
+   "atk": -15
+  },
+  "Reaper": {
+   "critDmg": 0.2,
+   "hp": -120
+  },
+  "Beastmaster": {
+   "hp": 100,
+   "atk": -17
+  },
+  "Poisoner": {
+   "effectHit": 0.15,
+   "atk": -20
+  },
+  "Stormcaller": {
+   "haste": 10,
+   "atk": -20
+  },
+  "Lurker": {
+   "lifesteal": 0.05,
+   "hp": -125
+  },
+  "Mana thief": {
+   "energyRegen": 0.1,
+   "atk": -15
+  },
+  "Dragonrider": {
+   "atk": 20,
+   "atkSpd": -0.1,
+   "hp": -60
+  },
+  "Burst": {
+   "healPower": 0.1,
+   "hp": -150
+  },
+  "Drain": {
+   "lifesteal": 0.06,
+   "healPower": -0.1
+  },
+  "Regen": {
+   "hp": 150,
+   "healPower": -0.1
+  },
+  "Shield": {
+   "def": 30,
+   "healPower": -0.1
+  },
+  "Rewind": {
+   "haste": 12,
+   "healPower": -0.1
+  },
+  "Cleanser": {
+   "effectRes": 0.25,
+   "healPower": -0.1
+  },
+  "Veil": {
+   "dodge": 0.075,
+   "healPower": -0.1
+  },
+  "Reviver": {
+   "hp": 150,
+   "healPower": -0.1
+  },
+  "Warder": {
+   "effectRes": 0.25,
+   "healPower": -0.1
+  },
+  "Lifebinder": {
+   "lifesteal": 0.06,
+   "healPower": -0.1
+  },
+  "Songweaver": {
+   "haste": 12,
+   "healPower": -0.1
+  },
+  "Buffer": {
+   "haste": 10,
+   "hp": -120
+  },
+  "Debuffer": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Controller": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Charmer": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Energy battery": {
+   "energyRegen": 0.13,
+   "hp": -120
+  },
+  "Dispeller": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Anti-heal": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Speed buffer": {
+   "moveSpd": 1.0,
+   "hp": -120
+  },
+  "Crit buffer": {
+   "critRate": 0.08,
+   "hp": -120
+  },
+  "Commander": {
+   "def": 24,
+   "hp": -120
+  },
+  "Shadowbinder": {
+   "dodge": 0.06,
+   "hp": -120
+  },
+  "Hexer": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Tidecaller": {
+   "effectHit": 0.15,
+   "hp": -120
+  },
+  "Chronomancer": {
+   "haste": 10,
+   "hp": -120
+  }
+ },
+ "budgetCost": {
+  "hp": 1.0,
+  "atk": 6.0,
+  "def": 5.0,
+  "atkSpd": 600,
+  "critRate": 1500,
+  "critDmg": 600,
+  "block": 2000,
+  "dodge": 2000,
+  "effectHit": 800,
+  "effectRes": 600,
+  "haste": 12,
+  "energyRegen": 900,
+  "lifesteal": 2500,
+  "healPower": 1500,
+  "healRecv": 800,
+  "moveSpd": 120,
+  "accuracy": 600,
+  "range": 40
+ }
+}
