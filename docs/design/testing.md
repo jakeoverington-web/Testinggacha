@@ -6,10 +6,12 @@ Goal: every rule change is checked in seconds, without opening Unity, and the sa
 
 | Step | Command | Time |
 | --- | --- | --- |
-| Run everything | `tools/csharp/test.sh` | ~2 s |
+| Run everything | `tools/csharp/test.sh` (270 tests) | ~3 s |
 | Run one area | `tools/csharp/test.sh Energy` (name filter) | ~1.5 s |
-| Balance report | `tools/csharp/test.sh -Main Gacha.Tests.Tools.BalanceSweep` | ~10 s |
+| Balance report | `tools/csharp/test.sh -Main Gacha.Tests.Tools.BalanceSweep 1000 1` (2,000 battles) | ~5 s |
 | Final check | Unity → Window → General → Test Runner → EditMode → Run All | on a PC |
+
+Setup on a new machine: install PowerShell 7 (any OS; on a fresh cloud workspace, unpack Microsoft's official `powershell-7.x-linux-x64.tar.gz` release into `/opt/pwsh`). Nothing else: no .NET SDK, no NuGet.
 
 `test.sh` compiles `Scripts/Core` + `Tests` with the C# 9 compiler bundled in PowerShell 7 (same language version as Unity) and runs the tests in memory. It needs `pwsh` (set `PWSH=` if it is not on PATH). Tests may only use the NUnit subset in `tools/csharp/NUnitShim.cs`; add to the shim (with the real NUnit signature) rather than to a test.
 

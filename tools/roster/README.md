@@ -9,3 +9,7 @@ Builds `Assets/_Game/Data/heroes.json` and `combat.json` and reviews the roster.
 - `build.py`: writes the JSON data and markdown tables for the Hero Compendium doc.
 
 To change a hero: add an entry to a new pass in `revisions.py`, run `python3 check.py <pass>` until it reports 0 issues, then `python3 build.py`.
+
+## Executable kits
+
+`kits.py` holds what every ability does in the battle sim (ops, passive mods/triggers, AI keys). `build.py` merges it into `heroes.json`. After editing a kit, rebuild and run `tools/csharp/test.sh`; the generated KitTests check each ability against its tags.

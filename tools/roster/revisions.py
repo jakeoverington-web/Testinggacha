@@ -158,3 +158,10 @@ PASSES[5] = [
  ("vaela","skill1.name","Void Barrier","Three 'Rune' skill names across different heroes; Vaela is Void"),
  ("runa","skill1.name","Glyph Ward","Same naming clash; matches her Glyph Mirror passive"),
 ]
+
+# ---------------- PASS 6: tag audit by the executable kits (C# KitTests) ----------------
+# Tags must describe what the ability really does: the battle tests now check every tag against the sim.
+PASSES[6] = [
+ ("isolde","ultimate.tags",["dr"],"Martyrdom takes allies' damage but never taunts; the taunt tag overstated it"),
+ ("nyx","skill2.tags",["buff_crit"],"Shadowstep deals no damage itself: it sets up a guaranteed crit"),
+]

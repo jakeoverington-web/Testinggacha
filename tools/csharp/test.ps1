@@ -1,6 +1,7 @@
 # Compiles Core + Tests (C# 9, same as Unity) with the Roslyn compiler bundled in PowerShell 7,
 # then runs the tests in memory. Usage: tools/csharp/test.sh [name-filter]
-param([string]$Filter = "", [string]$Main = "")
+[CmdletBinding(PositionalBinding = $false)]
+param([string]$Main = "", [Parameter(ValueFromRemainingArguments = $true)][string[]]$Rest = @())
 $ErrorActionPreference = "Stop"
 $repo = (Resolve-Path "$PSScriptRoot/../..").Path
 $pwshDir = Split-Path ([System.Diagnostics.Process]::GetCurrentProcess().MainModule.FileName)
@@ -28,6 +29,7 @@ foreach ($d in $diags) { Write-Host ($d.ToString().Replace("$repo/", "")) }
 if (-not $res.Success) { Write-Host "BUILD FAILED"; exit 2 }
 $asm = [System.Reflection.Assembly]::Load($ms.ToArray())
 Set-Location $repo
-if ($Main) { $t = $asm.GetType($Main); exit ([int]$t.GetMethod("Main").Invoke($null, @(,[string[]]$args))) }
+if ($Main) { $t = $asm.GetType($Main); exit ([int]$t.GetMethod("Main").Invoke($null, @(,[string[]]$Rest))) }
+$Filter = if ($Rest.Count -gt 0) { $Rest[0] } else { "" }
 $code = $asm.GetType("LocalTestRunner").GetMethod("Run").Invoke($null, @($Filter))
 exit $code

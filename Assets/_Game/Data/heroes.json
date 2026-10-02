@@ -1,5 +1,5 @@
 {
- "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 5).",
+ "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 6).",
  "heroes": [
   {
    "id": "cassia",
@@ -37,6 +37,22 @@
      "text": "Holy zone for 5s: enemies inside take 40% ATK per second.",
      "tags": [
       "dmg_aoe"
+     ],
+     "ops": [
+      {
+       "op": "zone",
+       "dur": 5,
+       "r": 2.5,
+       "at": "self",
+       "every": 1,
+       "ops": [
+        {
+         "op": "dmg",
+         "m": 0.4,
+         "to": "zone_enemies"
+        }
+       ]
+      }
      ]
     },
     "skill1": {
@@ -45,6 +61,14 @@
      "text": "Hits for 180% ATK and heals her for half.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.8,
+       "to": "target",
+       "drain": 0.5
+      }
      ]
     },
     "skill2": {
@@ -53,6 +77,13 @@
      "text": "Strips all buffs from her target.",
      "tags": [
       "dispel"
+     ],
+     "ops": [
+      {
+       "op": "dispel",
+       "to": "target",
+       "n": 99
+      }
      ]
     },
     "passive": {
@@ -60,7 +91,27 @@
      "text": "Lifesteal heals her 50% more; each buff she removes shields her for 5% max HP.",
      "tags": [
       "shield_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "lifesteal_heal",
+       "v": 0.5,
+       "scope": "self"
+      }
+     ],
+     "triggers": [
+      {
+       "on": "dispel_done",
+       "ops": [
+        {
+         "op": "shield",
+         "to": "self",
+         "pct": 0.05
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -115,7 +166,12 @@
     "icon": "hero_cassia_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_atk",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "isolde",
@@ -152,8 +208,16 @@
      "name": "Martyrdom",
      "text": "For 4s she takes 50% of the damage dealt to allies.",
      "tags": [
-      "dr",
-      "taunt"
+      "dr"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "redirect",
+       "to": "allies_except_self",
+       "dur": 4,
+       "v": 0.5
+      }
      ]
     },
     "skill1": {
@@ -162,6 +226,15 @@
      "text": "Links to the weakest ally; takes 25% of their damage for 5s.",
      "tags": [
       "dr"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "redirect",
+       "to": "weakest_ally_other",
+       "dur": 5,
+       "v": 0.25
+      }
      ]
     },
     "skill2": {
@@ -171,6 +244,18 @@
      "tags": [
       "dmg_single",
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.5,
+       "to": "target"
+      },
+      {
+       "op": "cleanse",
+       "to": "self",
+       "n": 99
+      }
      ]
     },
     "passive": {
@@ -178,7 +263,16 @@
      "text": "Heals and shields on her are 30% stronger.",
      "tags": [
       "dr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "heal_in",
+       "v": 0.3,
+       "scope": "self"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [],
@@ -242,7 +336,12 @@
     "icon": "hero_isolde_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "guard"
+   }
   },
   {
    "id": "valeria",
@@ -281,6 +380,19 @@
      "tags": [
       "shield_aoe",
       "taunt"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "allies",
+       "pct": 0.2
+      },
+      {
+       "op": "status",
+       "s": "taunt",
+       "to": "enemies",
+       "dur": 3
+      }
      ]
     },
     "skill1": {
@@ -289,6 +401,14 @@
      "text": "Stuns the nearest enemy for 1s.",
      "tags": [
       "cc_stun"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stun",
+       "to": "nearest_enemy",
+       "dur": 1
+      }
      ]
     },
     "skill2": {
@@ -297,6 +417,15 @@
      "text": "Plants a banner: allies near it gain DEF up (30%) for 5s.",
      "tags": [
       "buff_def"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "def_up",
+       "to": "allies_near_self:3",
+       "dur": 5,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -304,7 +433,16 @@
      "text": "Allies behind her take 10% less damage.",
      "tags": [
       "dr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": -0.1,
+       "scope": "allies_behind"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -365,7 +503,12 @@
     "icon": "hero_valeria_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "ilyra",
@@ -404,6 +547,21 @@
      "tags": [
       "dmg_aoe",
       "revive"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 2.4,
+       "to": "enemies",
+       "elem": "fire"
+      },
+      {
+       "op": "status",
+       "s": "revive_ready",
+       "to": "self",
+       "dur": 10,
+       "v": 0.3
+      }
      ]
     },
     "skill1": {
@@ -412,6 +570,24 @@
      "text": "Burning area for 3s.",
      "tags": [
       "dot_burn"
+     ],
+     "ops": [
+      {
+       "op": "zone",
+       "dur": 3,
+       "r": 2.0,
+       "at": "target",
+       "every": 1,
+       "ops": [
+        {
+         "op": "status",
+         "s": "burn",
+         "to": "zone_enemies",
+         "dur": 3,
+         "v": 0.3
+        }
+       ]
+      }
      ]
     },
     "skill2": {
@@ -420,6 +596,14 @@
      "text": "Knocks back nearby enemies.",
      "tags": [
       "cc_knock"
+     ],
+     "ops": [
+      {
+       "op": "move",
+       "kind": "push",
+       "to": "enemies_near_self:2.5",
+       "dist": 2.0
+      }
      ]
     },
     "passive": {
@@ -427,7 +611,17 @@
      "text": "Her burns stack up to three times; each stack on a target raises her damage to it by 5%.",
      "tags": [
       "dot_burn"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.05,
+       "scope": "self",
+       "perStack": "burn"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -493,7 +687,12 @@
     "icon": "hero_ilyra_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "densest",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "lucienne",
@@ -531,6 +730,13 @@
      "text": "Dashes through a line of enemies for 280% ATK.",
      "tags": [
       "dmg_row"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 2.8,
+       "to": "line"
+      }
      ]
     },
     "skill1": {
@@ -540,6 +746,20 @@
      "tags": [
       "counter",
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "counter",
+       "to": "self",
+       "dur": 2,
+       "v": 0.75
+      },
+      {
+       "op": "shield",
+       "to": "self",
+       "pct": 0.1
+      }
      ]
     },
     "skill2": {
@@ -548,6 +768,15 @@
      "text": "Blinds the nearest enemy for 1.5s.",
      "tags": [
       "debuff_blind"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "blind",
+       "to": "nearest_enemy",
+       "dur": 1.5,
+       "v": 0.5
+      }
      ]
     },
     "passive": {
@@ -555,7 +784,17 @@
      "text": "+40% crit damage against blinded or stunned enemies.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "crit_dmg",
+       "v": 0.4,
+       "scope": "self",
+       "if": "tgt:blind|stun"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -623,7 +862,12 @@
     "icon": "hero_lucienne_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest_with:blind",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "ophira",
@@ -662,6 +906,18 @@
      "tags": [
       "dmg_single",
       "cc_knock"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 3.5,
+       "to": "highest_atk_enemy"
+      },
+      {
+       "op": "status",
+       "s": "airborne",
+       "to": "enemies_near_target:2"
+      }
      ]
     },
     "skill1": {
@@ -670,6 +926,13 @@
      "text": "Slashes for 160% ATK.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.6,
+       "to": "target"
+      }
      ]
     },
     "skill2": {
@@ -679,6 +942,19 @@
      "tags": [
       "untargetable",
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "untargetable",
+       "to": "self",
+       "dur": 1
+      },
+      {
+       "op": "shield",
+       "to": "self",
+       "pct": 0.15
+      }
      ]
     },
     "passive": {
@@ -686,7 +962,17 @@
      "text": "+25% damage to airborne enemies.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.25,
+       "scope": "self",
+       "if": "tgt:airborne"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -728,7 +1014,12 @@
     "icon": "hero_ophira_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_atk",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "solenne",
@@ -766,6 +1057,13 @@
      "text": "A beam that pierces the whole row for 320% ATK.",
      "tags": [
       "dmg_row"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 3.2,
+       "to": "target_row"
+      }
      ]
     },
     "skill1": {
@@ -774,6 +1072,15 @@
      "text": "Marks the target (takes +15% damage) for 4s.",
      "tags": [
       "mark"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "mark",
+       "to": "target",
+       "dur": 4,
+       "v": 0.15
+      }
      ]
     },
     "skill2": {
@@ -783,6 +1090,22 @@
      "tags": [
       "debuff_blind",
       "buff_atk"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "blind",
+       "to": "cone",
+       "dur": 2,
+       "v": 0.5
+      },
+      {
+       "op": "status",
+       "s": "atk_up",
+       "to": "allies_near_self:4",
+       "dur": 4,
+       "v": 0.25
+      }
      ]
     },
     "passive": {
@@ -790,7 +1113,24 @@
      "text": "Her crits against marked enemies blind them for 2s.",
      "tags": [
       "debuff_blind"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "crit",
+       "ops": [
+        {
+         "op": "status",
+         "s": "blind",
+         "to": "evt",
+         "dur": 2,
+         "v": 0.5
+        }
+       ],
+       "if": "tgt:mark"
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -843,7 +1183,12 @@
     "icon": "hero_solenne_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_atk",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "aurelle",
@@ -882,6 +1227,20 @@
      "tags": [
       "heal_aoe",
       "revive"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "allies",
+       "pct": 0.3
+      },
+      {
+       "op": "status",
+       "s": "revive_guard",
+       "to": "self",
+       "dur": 8,
+       "v": 0.3
+      }
      ]
     },
     "skill1": {
@@ -890,6 +1249,13 @@
      "text": "Big heal on one ally (250% ATK).",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "ally",
+       "m": 2.5
+      }
      ]
     },
     "skill2": {
@@ -898,6 +1264,14 @@
      "text": "Heals the two weakest allies over 4s.",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "weakest_allies:2",
+       "over": 4,
+       "m": 1.2
+      }
      ]
     },
     "passive": {
@@ -905,7 +1279,21 @@
      "text": "Overhealing becomes a shield.",
      "tags": [
       "shield_single"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "overheal",
+       "ops": [
+        {
+         "op": "shield",
+         "to": "evt",
+         "fromEvent": 1.0
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -939,7 +1327,12 @@
     "icon": "hero_aurelle_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "elara",
@@ -978,6 +1371,19 @@
      "tags": [
       "heal_aoe",
       "immunity"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "allies",
+       "pct": 0.15
+      },
+      {
+       "op": "status",
+       "s": "cc_immunity",
+       "to": "allies",
+       "dur": 4
+      }
      ]
     },
     "skill1": {
@@ -986,6 +1392,14 @@
      "text": "Heals the weakest ally over 4s.",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "weakest_ally",
+       "over": 4,
+       "m": 1.6
+      }
      ]
     },
     "skill2": {
@@ -994,6 +1408,13 @@
      "text": "Removes every debuff from one ally.",
      "tags": [
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "cleanse",
+       "to": "ally",
+       "n": 99
+      }
      ]
     },
     "passive": {
@@ -1001,7 +1422,30 @@
      "text": "Allies with her halo take 5% less damage; her heals are 20% stronger on buffed allies.",
      "tags": [
       "dr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "heal_out",
+       "v": 0.2,
+       "scope": "self",
+       "if": "tgt.buffed"
+      }
+     ],
+     "triggers": [
+      {
+       "on": "heal_given",
+       "ops": [
+        {
+         "op": "status",
+         "s": "halo",
+         "to": "evt",
+         "dur": 6,
+         "v": 0.05
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -1061,7 +1505,12 @@
     "icon": "hero_elara_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "most_debuffed",
+    "move": "kite"
+   }
   },
   {
    "id": "amarante",
@@ -1100,6 +1549,19 @@
      "tags": [
       "dispel",
       "cc_silence"
+     ],
+     "ops": [
+      {
+       "op": "dispel",
+       "to": "enemies",
+       "n": 99
+      },
+      {
+       "op": "status",
+       "s": "silence",
+       "to": "enemies",
+       "dur": 2
+      }
      ]
     },
     "skill1": {
@@ -1108,6 +1570,15 @@
      "text": "Lowers her target's DEF by 30% for 5s.",
      "tags": [
       "debuff_def"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "def_down",
+       "to": "target",
+       "dur": 5,
+       "v": 0.3
+      }
      ]
     },
     "skill2": {
@@ -1116,6 +1587,14 @@
      "text": "Stuns her target for 1s.",
      "tags": [
       "cc_stun"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stun",
+       "to": "target",
+       "dur": 1
+      }
      ]
     },
     "passive": {
@@ -1123,7 +1602,23 @@
      "text": "Enemies she debuffs deal 10% less damage.",
      "tags": [
       "debuff_atk"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "debuff_applied",
+       "ops": [
+        {
+         "op": "status",
+         "s": "dmg_down",
+         "to": "evt",
+         "dur": 4,
+         "v": 0.1
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -1159,7 +1654,12 @@
     "icon": "hero_amarante_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "most_buffed",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "rosalind",
@@ -1198,6 +1698,20 @@
      "tags": [
       "buff_def",
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "def_up",
+       "to": "allies",
+       "dur": 6,
+       "v": 0.3
+      },
+      {
+       "op": "cleanse",
+       "to": "allies",
+       "n": 1
+      }
      ]
     },
     "skill1": {
@@ -1206,6 +1720,15 @@
      "text": "One ally gains DEF up (30%) for 5s.",
      "tags": [
       "buff_def"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "def_up",
+       "to": "ally",
+       "dur": 5,
+       "v": 0.3
+      }
      ]
     },
     "skill2": {
@@ -1214,6 +1737,14 @@
      "text": "Steals one buff from an enemy.",
      "tags": [
       "dispel"
+     ],
+     "ops": [
+      {
+       "op": "dispel",
+       "to": "most_buffed_enemy",
+       "n": 1,
+       "steal": true
+      }
      ]
     },
     "passive": {
@@ -1221,7 +1752,17 @@
      "text": "Allies deal +3% damage per active buff they carry (max 5).",
      "tags": [
       "buff_atk"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.03,
+       "scope": "allies",
+       "perBuff": 5
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -1288,7 +1829,12 @@
     "icon": "hero_rosalind_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "highest_atk",
+    "move": "follow"
+   }
   },
   {
    "id": "seravelle",
@@ -1326,6 +1872,15 @@
      "text": "Team ATK up (25%) for 6s.",
      "tags": [
       "buff_atk"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "atk_up",
+       "to": "allies",
+       "dur": 6,
+       "v": 0.25
+      }
      ]
     },
     "skill1": {
@@ -1334,6 +1889,13 @@
      "text": "Cleanses one ally.",
      "tags": [
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "cleanse",
+       "to": "ally",
+       "n": 99
+      }
      ]
     },
     "skill2": {
@@ -1342,6 +1904,14 @@
      "text": "One ally becomes untargetable for 1.5s.",
      "tags": [
       "untargetable"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "untargetable",
+       "to": "ally",
+       "dur": 1.5
+      }
      ]
     },
     "passive": {
@@ -1349,7 +1919,21 @@
      "text": "Allies gain 10 energy when she casts a skill.",
      "tags": [
       "buff_energy"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "skill_cast",
+       "ops": [
+        {
+         "op": "energy",
+         "v": 10,
+         "to": "allies_except_self"
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -1398,7 +1982,12 @@
     "icon": "hero_seravelle_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "highest_atk",
+    "move": "follow"
+   }
   },
   {
    "id": "corvina",
@@ -1437,6 +2026,20 @@
      "tags": [
       "unkillable",
       "taunt"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "unkillable",
+       "to": "self",
+       "dur": 4
+      },
+      {
+       "op": "status",
+       "s": "taunt",
+       "to": "enemies",
+       "dur": 3
+      }
      ]
     },
     "skill1": {
@@ -1445,6 +2048,13 @@
      "text": "Shields herself for 20% max HP.",
      "tags": [
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "self",
+       "pct": 0.2
+      }
      ]
     },
     "skill2": {
@@ -1453,6 +2063,14 @@
      "text": "Drags the nearest back-row enemy forward.",
      "tags": [
       "pull"
+     ],
+     "ops": [
+      {
+       "op": "move",
+       "kind": "pull_to_caster",
+       "to": "backrow_enemy",
+       "dist": 0.0
+      }
      ]
     },
     "passive": {
@@ -1460,7 +2078,21 @@
      "text": "When an ally falls, she gains a shield worth 20% max HP.",
      "tags": [
       "shield_single"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "ally_death",
+       "ops": [
+        {
+         "op": "shield",
+         "to": "self",
+         "pct": 0.2
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -1489,7 +2121,12 @@
     "icon": "hero_corvina_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "sangrael",
@@ -1527,6 +2164,14 @@
      "text": "Drains 120% ATK from every nearby enemy.",
      "tags": [
       "dmg_aoe"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.2,
+       "to": "enemies_near_self:2.5",
+       "drain": 1.0
+      }
      ]
     },
     "skill1": {
@@ -1536,6 +2181,21 @@
      "tags": [
       "taunt",
       "buff_lifesteal"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "taunt",
+       "to": "enemies_near_self:3",
+       "dur": 2
+      },
+      {
+       "op": "status",
+       "s": "lifesteal_up",
+       "to": "allies_near_self:3",
+       "dur": 4,
+       "v": 0.15
+      }
      ]
     },
     "skill2": {
@@ -1544,6 +2204,20 @@
      "text": "Cleaves nearby enemies and makes them bleed.",
      "tags": [
       "dot_bleed"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.0,
+       "to": "enemies_near_self:2.5"
+      },
+      {
+       "op": "status",
+       "s": "bleed",
+       "to": "enemies_near_self:2.5",
+       "dur": 4,
+       "v": 0.25
+      }
      ]
     },
     "passive": {
@@ -1551,7 +2225,17 @@
      "text": "Below 30% HP she takes 25% less damage.",
      "tags": [
       "dr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": -0.25,
+       "scope": "self",
+       "if": "self.hp<0.3"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -1613,7 +2297,12 @@
     "icon": "hero_sangrael_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "maelis",
@@ -1651,6 +2340,15 @@
      "text": "Smouldering ash burns all enemies for 6s.",
      "tags": [
       "dot_burn"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "burn",
+       "to": "enemies",
+       "dur": 6,
+       "v": 0.35
+      }
      ]
     },
     "skill1": {
@@ -1660,6 +2358,20 @@
      "tags": [
       "dmg_single",
       "curse"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.7,
+       "to": "target"
+      },
+      {
+       "op": "status",
+       "s": "curse",
+       "to": "target",
+       "dur": 5,
+       "v": 0.2
+      }
      ]
     },
     "skill2": {
@@ -1668,6 +2380,15 @@
      "text": "Blinds one enemy for 2s.",
      "tags": [
       "debuff_blind"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "blind",
+       "to": "target",
+       "dur": 2,
+       "v": 0.5
+      }
      ]
     },
     "passive": {
@@ -1675,7 +2396,17 @@
      "text": "+25% damage to burning or cursed enemies.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.25,
+       "scope": "self",
+       "if": "tgt:burn|curse"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -1744,7 +2475,12 @@
     "icon": "hero_maelis_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_hp",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "nyx",
@@ -1782,6 +2518,19 @@
      "text": "Blinks to the weakest enemy and executes them below 20% HP.",
      "tags": [
       "execute"
+     ],
+     "ops": [
+      {
+       "op": "teleport",
+       "to": "weakest_enemy",
+       "where": "behind"
+      },
+      {
+       "op": "dmg",
+       "m": 2.0,
+       "to": "weakest_enemy",
+       "execute": 0.2
+      }
      ]
     },
     "skill1": {
@@ -1790,6 +2539,14 @@
      "text": "Stealth for 2s.",
      "tags": [
       "untargetable"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stealth",
+       "to": "self",
+       "dur": 2
+      }
      ]
     },
     "skill2": {
@@ -1797,7 +2554,20 @@
      "cooldown": 8,
      "text": "Teleports behind her target; her next hit always crits.",
      "tags": [
-      "dmg_single"
+      "buff_crit"
+     ],
+     "ops": [
+      {
+       "op": "teleport",
+       "to": "target",
+       "where": "behind"
+      },
+      {
+       "op": "status",
+       "s": "sure_crit",
+       "to": "self",
+       "dur": 5
+      }
      ]
     },
     "passive": {
@@ -1805,6 +2575,18 @@
      "text": "+40% crit damage from behind, from stealth or against sleeping enemies; marked enemies are her first targets.",
      "tags": [
       "dmg_single"
+     ],
+     "mods": [
+      {
+       "k": "crit_dmg",
+       "v": 0.4,
+       "scope": "self",
+       "if": "src:stealth|sure_crit|tgt:sleep"
+      }
+     ],
+     "triggers": [],
+     "flags": [
+      "prefer_marked"
      ]
     }
    },
@@ -1879,7 +2661,12 @@
     "icon": "hero_nyx_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "lowest_hp_back",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "ravenna",
@@ -1918,6 +2705,24 @@
      "tags": [
       "dmg_aoe",
       "dot_bleed"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 0.6,
+       "to": "random_enemy_near_self:2.5",
+       "hits": 6,
+       "perHitTarget": true,
+       "then": [
+        {
+         "op": "status",
+         "s": "bleed",
+         "to": "hit",
+         "dur": 4,
+         "v": 0.25
+        }
+       ]
+      }
      ]
     },
     "skill1": {
@@ -1926,6 +2731,20 @@
      "text": "Hits for 160% ATK and makes the target bleed.",
      "tags": [
       "dot_bleed"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.6,
+       "to": "target"
+      },
+      {
+       "op": "status",
+       "s": "bleed",
+       "to": "target",
+       "dur": 4,
+       "v": 0.25
+      }
      ]
     },
     "skill2": {
@@ -1934,6 +2753,15 @@
      "text": "Attack speed up (40%) for 4s.",
      "tags": [
       "buff_speed"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "aspd_up",
+       "to": "self",
+       "dur": 4,
+       "v": 0.4
+      }
      ]
     },
     "passive": {
@@ -1941,7 +2769,30 @@
      "text": "+20% damage to bleeding enemies; hitting one heals her 3% max HP.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.2,
+       "scope": "self",
+       "if": "tgt:bleed"
+      }
+     ],
+     "triggers": [
+      {
+       "on": "hit",
+       "ops": [
+        {
+         "op": "heal",
+         "to": "self",
+         "pct": 0.03
+        }
+       ],
+       "if": "tgt:bleed",
+       "icd": 0.5
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -1983,7 +2834,12 @@
     "icon": "hero_ravenna_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest_with:bleed",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "sable",
@@ -2021,6 +2877,19 @@
      "text": "A scythe sweep that executes every enemy below 25% HP; each kill refunds 50 energy.",
      "tags": [
       "execute"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.5,
+       "to": "enemies_near_self:3"
+      },
+      {
+       "op": "execute",
+       "to": "enemies",
+       "below": 0.25,
+       "killEnergy": 50
+      }
      ]
     },
     "skill1": {
@@ -2029,6 +2898,13 @@
      "text": "Cleaves the front row for 150% ATK.",
      "tags": [
       "dmg_row"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.5,
+       "to": "front_row"
+      }
      ]
     },
     "skill2": {
@@ -2037,6 +2913,20 @@
      "text": "Ravens peck the weakest enemy, causing Bleed.",
      "tags": [
       "dot_bleed"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 0.5,
+       "to": "weakest_enemy"
+      },
+      {
+       "op": "status",
+       "s": "bleed",
+       "to": "weakest_enemy",
+       "dur": 4,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -2044,6 +2934,29 @@
      "text": "Gains 10 energy whenever any enemy falls; +15% damage to bleeding enemies; enemies she kills can't be revived.",
      "tags": [
       "buff_energy"
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.15,
+       "scope": "self",
+       "if": "tgt:bleed"
+      }
+     ],
+     "triggers": [
+      {
+       "on": "enemy_death",
+       "ops": [
+        {
+         "op": "energy",
+         "v": 10,
+         "to": "self"
+        }
+       ]
+      }
+     ],
+     "flags": [
+      "no_revive_on_kill"
      ]
     }
    },
@@ -2106,7 +3019,12 @@
     "icon": "hero_sable_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "lowest_hp",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "mordessa",
@@ -2145,6 +3063,20 @@
      "tags": [
       "buff_lifesteal",
       "heal_aoe"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "lifesteal_up",
+       "to": "allies",
+       "dur": 6,
+       "v": 0.3
+      },
+      {
+       "op": "heal",
+       "to": "allies",
+       "pct": 0.1
+      }
      ]
     },
     "skill1": {
@@ -2153,6 +3085,17 @@
      "text": "Spends 10% of her HP to heal an ally for 25%.",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "spend_hp",
+       "pct": 0.1
+      },
+      {
+       "op": "heal",
+       "to": "weakest_ally_other",
+       "pct": 0.25
+      }
      ]
     },
     "skill2": {
@@ -2161,6 +3104,15 @@
      "text": "Links two allies: 20% of damage they take is healed back.",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "bond_heal",
+       "to": "weakest_allies:2",
+       "dur": 6,
+       "v": 0.2
+      }
      ]
     },
     "passive": {
@@ -2168,7 +3120,22 @@
      "text": "Gains energy whenever an ally heals through lifesteal.",
      "tags": [
       "buff_energy"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "ally_lifesteal",
+       "ops": [
+        {
+         "op": "energy",
+         "v": 3,
+         "to": "self"
+        }
+       ],
+       "icd": 0.5
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -2204,7 +3171,12 @@
     "icon": "hero_mordessa_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "thessaly",
@@ -2243,6 +3215,19 @@
      "tags": [
       "heal_aoe",
       "untargetable"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "allies",
+       "pct": 0.2
+      },
+      {
+       "op": "status",
+       "s": "stealth",
+       "to": "allies",
+       "dur": 2
+      }
      ]
     },
     "skill1": {
@@ -2252,6 +3237,20 @@
      "tags": [
       "heal_single",
       "buff_def"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "ally",
+       "m": 2.0
+      },
+      {
+       "op": "status",
+       "s": "def_up",
+       "to": "ally",
+       "dur": 4,
+       "v": 0.3
+      }
      ]
     },
     "skill2": {
@@ -2260,6 +3259,15 @@
      "text": "Links two allies to share damage for 5s.",
      "tags": [
       "dr"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "share",
+       "to": "weakest_allies:2",
+       "dur": 5,
+       "v": 0.5
+      }
      ]
     },
     "passive": {
@@ -2267,7 +3275,21 @@
      "text": "Each heal she gives grants the target 5 energy.",
      "tags": [
       "buff_energy"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "heal_given",
+       "ops": [
+        {
+         "op": "energy",
+         "v": 5,
+         "to": "evt"
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -2308,7 +3330,12 @@
     "icon": "hero_thessaly_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "vesper",
@@ -2347,6 +3374,14 @@
      "tags": [
       "dmg_aoe",
       "heal_aoe"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.2,
+       "to": "enemies",
+       "healTeam": 0.6
+      }
      ]
     },
     "skill1": {
@@ -2355,6 +3390,15 @@
      "text": "Curses an enemy: allies heal whenever it is hit.",
      "tags": [
       "curse"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "feeding_curse",
+       "to": "target",
+       "dur": 5,
+       "v": 0.15
+      }
      ]
     },
     "skill2": {
@@ -2363,6 +3407,14 @@
      "text": "A raven guards the weakest ally and absorbs one hit.",
      "tags": [
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "hit_shield",
+       "to": "weakest_ally",
+       "dur": 8
+      }
      ]
     },
     "passive": {
@@ -2370,7 +3422,17 @@
      "text": "Her heals are 20% stronger while any enemy is bleeding.",
      "tags": [
       "heal_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "heal_out",
+       "v": 0.2,
+       "scope": "self",
+       "if": "any_enemy:bleed"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -2418,7 +3480,12 @@
     "icon": "hero_vesper_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "near_weakest_ally",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "liora",
@@ -2457,6 +3524,22 @@
      "tags": [
       "dot_burn",
       "debuff_def"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "burn",
+       "to": "enemies",
+       "dur": 4,
+       "v": 0.3
+      },
+      {
+       "op": "status",
+       "s": "def_down",
+       "to": "enemies",
+       "dur": 4,
+       "v": 0.2
+      }
      ]
     },
     "skill1": {
@@ -2465,6 +3548,13 @@
      "text": "Drains 30 energy from the highest-ATK enemy.",
      "tags": [
       "energy_drain"
+     ],
+     "ops": [
+      {
+       "op": "energy",
+       "v": -30,
+       "to": "highest_atk_enemy"
+      }
      ]
     },
     "skill2": {
@@ -2473,6 +3563,15 @@
      "text": "Smoke on the enemy back row: enemies inside miss 20% of attacks for 4s.",
      "tags": [
       "debuff_blind"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "blind",
+       "to": "back_row",
+       "dur": 4,
+       "v": 0.2
+      }
      ]
     },
     "passive": {
@@ -2480,7 +3579,17 @@
      "text": "Burning enemies receive 30% less healing.",
      "tags": [
       "debuff_antiheal"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "heal_in",
+       "v": -0.3,
+       "scope": "enemies",
+       "if": "tgt:burn"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -2555,7 +3664,12 @@
     "icon": "hero_liora_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_atk",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "noctelle",
@@ -2594,6 +3708,20 @@
      "tags": [
       "untargetable",
       "buff_crit"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stealth",
+       "to": "allies",
+       "dur": 2
+      },
+      {
+       "op": "status",
+       "s": "sure_crit",
+       "to": "allies",
+       "dur": 4
+      }
      ]
     },
     "skill1": {
@@ -2602,6 +3730,14 @@
      "text": "One ally stealths for 1.5s.",
      "tags": [
       "untargetable"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stealth",
+       "to": "ally",
+       "dur": 1.5
+      }
      ]
     },
     "skill2": {
@@ -2610,6 +3746,14 @@
      "text": "Fears her target for 1.5s.",
      "tags": [
       "cc_fear"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "fear",
+       "to": "target",
+       "dur": 1.5
+      }
      ]
     },
     "passive": {
@@ -2617,7 +3761,17 @@
      "text": "Allies attacking from stealth deal +15% damage.",
      "tags": [
       "buff_atk"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.15,
+       "scope": "allies",
+       "if": "src:stealth"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -2660,7 +3814,12 @@
     "icon": "hero_noctelle_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "assassin",
+    "move": "follow"
+   }
   },
   {
    "id": "velisande",
@@ -2698,6 +3857,14 @@
      "text": "Fears all enemies for 2s.",
      "tags": [
       "cc_fear"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "fear",
+       "to": "enemies",
+       "dur": 2
+      }
      ]
     },
     "skill1": {
@@ -2706,6 +3873,15 @@
      "text": "Team Lifesteal up (15%) for 5s.",
      "tags": [
       "buff_lifesteal"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "lifesteal_up",
+       "to": "allies",
+       "dur": 5,
+       "v": 0.15
+      }
      ]
     },
     "skill2": {
@@ -2714,6 +3890,15 @@
      "text": "Target receives 50% less healing for 5s.",
      "tags": [
       "debuff_antiheal"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "antiheal",
+       "to": "target",
+       "dur": 5,
+       "v": 0.5
+      }
      ]
     },
     "passive": {
@@ -2721,7 +3906,17 @@
      "text": "Feared or burning enemies take 10% more damage.",
      "tags": [
       "debuff_weaken"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": 0.1,
+       "scope": "enemies",
+       "if": "tgt:fear|burn"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -2795,7 +3990,12 @@
     "icon": "hero_velisande_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "healer_first",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "briar",
@@ -2834,6 +4034,22 @@
      "tags": [
       "reflect",
       "dr"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "reflect",
+       "to": "self",
+       "dur": 4,
+       "v": 0.3
+      },
+      {
+       "op": "status",
+       "s": "dr",
+       "to": "self",
+       "dur": 4,
+       "v": 0.15
+      }
      ]
     },
     "skill1": {
@@ -2843,6 +4059,21 @@
      "tags": [
       "taunt",
       "dot_bleed"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "taunt",
+       "to": "target",
+       "dur": 2
+      },
+      {
+       "op": "status",
+       "s": "bleed",
+       "to": "target",
+       "dur": 4,
+       "v": 0.2
+      }
      ]
     },
     "skill2": {
@@ -2851,6 +4082,21 @@
      "text": "Plants herself and gains DEF up (60%) for 3s.",
      "tags": [
       "buff_def"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "planted",
+       "to": "self",
+       "dur": 3
+      },
+      {
+       "op": "status",
+       "s": "def_up",
+       "to": "self",
+       "dur": 3,
+       "v": 0.6
+      }
      ]
     },
     "passive": {
@@ -2858,7 +4104,16 @@
      "text": "Reflects 15% of melee damage.",
      "tags": [
       "reflect"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "reflect_melee",
+       "v": 0.15,
+       "scope": "self"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -2937,7 +4192,12 @@
     "icon": "hero_briar_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "eldrith",
@@ -2976,6 +4236,27 @@
      "tags": [
       "taunt",
       "regen"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "taunt",
+       "to": "enemies",
+       "dur": 5
+      },
+      {
+       "op": "status",
+       "s": "regen",
+       "to": "self",
+       "dur": 5,
+       "v": 0.1
+      },
+      {
+       "op": "status",
+       "s": "planted",
+       "to": "self",
+       "dur": 5
+      }
      ]
     },
     "skill1": {
@@ -2984,6 +4265,15 @@
      "text": "DEF up (30%) for 5s.",
      "tags": [
       "buff_def"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "def_up",
+       "to": "self",
+       "dur": 5,
+       "v": 0.3
+      }
      ]
     },
     "skill2": {
@@ -2992,6 +4282,14 @@
      "text": "Roots the two nearest enemies for 1.5s.",
      "tags": [
       "cc_root"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "root",
+       "to": "nearest_enemies:2",
+       "dur": 1.5
+      }
      ]
     },
     "passive": {
@@ -2999,7 +4297,16 @@
      "text": "Heals she receives are 25% stronger.",
      "tags": [
       "regen"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "heal_in",
+       "v": 0.25,
+       "scope": "self"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -3090,7 +4397,12 @@
     "icon": "hero_eldrith_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "hartwen",
@@ -3129,6 +4441,20 @@
      "tags": [
       "pull",
       "cc_root"
+     ],
+     "ops": [
+      {
+       "op": "move",
+       "kind": "pull_to_center",
+       "to": "enemies",
+       "dist": 0.0
+      },
+      {
+       "op": "status",
+       "s": "root",
+       "to": "enemies",
+       "dur": 2
+      }
      ]
     },
     "skill1": {
@@ -3137,6 +4463,18 @@
      "text": "Knocks up the first enemy hit.",
      "tags": [
       "cc_knock"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.0,
+       "to": "target"
+      },
+      {
+       "op": "status",
+       "s": "airborne",
+       "to": "target"
+      }
      ]
     },
     "skill2": {
@@ -3146,6 +4484,20 @@
      "tags": [
       "cc_root",
       "taunt"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "root",
+       "to": "nearest_enemy",
+       "dur": 1.5
+      },
+      {
+       "op": "status",
+       "s": "taunt",
+       "to": "nearest_enemy",
+       "dur": 1.5
+      }
      ]
     },
     "passive": {
@@ -3153,7 +4505,16 @@
      "text": "Regenerates 2% HP per second.",
      "tags": [
       "regen"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "regen",
+       "v": 0.02,
+       "scope": "self"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -3215,7 +4576,12 @@
     "icon": "hero_hartwen_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "kaida",
@@ -3253,6 +4619,14 @@
      "text": "Summons two wolves for 10s.",
      "tags": [
       "summon"
+     ],
+     "ops": [
+      {
+       "op": "summon",
+       "unit": "wolf",
+       "n": 2,
+       "dur": 10
+      }
      ]
     },
     "skill1": {
@@ -3261,6 +4635,18 @@
      "text": "Leaps onto a back-row enemy.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "teleport",
+       "to": "backrow_enemy",
+       "where": "behind"
+      },
+      {
+       "op": "dmg",
+       "m": 1.5,
+       "to": "backrow_enemy"
+      }
      ]
     },
     "skill2": {
@@ -3269,6 +4655,15 @@
      "text": "She and her wolves attack 20% faster for 5s.",
      "tags": [
       "buff_speed"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "aspd_up",
+       "to": "self_and_summons",
+       "dur": 5,
+       "v": 0.2
+      }
      ]
     },
     "passive": {
@@ -3276,7 +4671,17 @@
      "text": "+15% damage while a beast is out; her wolves deal double damage to rooted or knocked-up enemies.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.15,
+       "scope": "self",
+       "if": "self.beast"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -3340,7 +4745,12 @@
     "icon": "hero_kaida_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "rhiannon",
@@ -3379,6 +4789,18 @@
      "tags": [
       "dmg_row",
       "cc_knock"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 2.6,
+       "to": "line"
+      },
+      {
+       "op": "status",
+       "s": "airborne",
+       "to": "line"
+      }
      ]
     },
     "skill1": {
@@ -3387,6 +4809,13 @@
      "text": "Her stag spirit gores the target for 180% ATK.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.8,
+       "to": "target"
+      }
      ]
     },
     "skill2": {
@@ -3395,6 +4824,15 @@
      "text": "She and all allied summons gain ATK up (25%) for 5s.",
      "tags": [
       "buff_atk"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "atk_up",
+       "to": "self_and_summons",
+       "dur": 5,
+       "v": 0.25
+      }
      ]
     },
     "passive": {
@@ -3402,7 +4840,32 @@
      "text": "A spirit stag fights beside her all battle; whenever an ally gives her energy, the stag's next attack deals double damage.",
      "tags": [
       "summon"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "battle_start",
+       "ops": [
+        {
+         "op": "summon",
+         "unit": "stag",
+         "n": 1
+        }
+       ]
+      },
+      {
+       "on": "energy_from_ally",
+       "ops": [
+        {
+         "op": "dmg",
+         "m": 0.5,
+         "to": "target"
+        }
+       ],
+       "icd": 2
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -3489,7 +4952,12 @@
     "icon": "hero_rhiannon_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "sylwen",
@@ -3528,6 +4996,14 @@
      "tags": [
       "dmg_single",
       "execute"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.6,
+       "to": "weakest_enemies:3",
+       "ignoreDef": 0.3
+      }
      ]
     },
     "skill1": {
@@ -3536,6 +5012,14 @@
      "text": "Roots her target for 1s.",
      "tags": [
       "cc_root"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "root",
+       "to": "target",
+       "dur": 1
+      }
      ]
     },
     "skill2": {
@@ -3544,6 +5028,13 @@
      "text": "Rains arrows on an area.",
      "tags": [
       "dmg_aoe"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.2,
+       "to": "enemies_near_target:2"
+      }
      ]
     },
     "passive": {
@@ -3551,6 +5042,18 @@
      "text": "Sees through stealth; +15% crit chance against rooted or marked enemies.",
      "tags": [
       "dmg_single"
+     ],
+     "mods": [
+      {
+       "k": "crit_rate",
+       "v": 0.15,
+       "scope": "self",
+       "if": "tgt:root|mark"
+      }
+     ],
+     "triggers": [],
+     "flags": [
+      "see_stealth"
      ]
     }
    },
@@ -3619,7 +5122,12 @@
     "icon": "hero_sylwen_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "lowest_hp",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "venna",
@@ -3657,6 +5165,15 @@
      "text": "Poisons all enemies (4% max HP/s) for 4s.",
      "tags": [
       "dot_poison"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "poison",
+       "to": "enemies",
+       "dur": 4,
+       "v": 0.04
+      }
      ]
     },
     "skill1": {
@@ -3665,6 +5182,15 @@
      "text": "Poisons the target (2%/s) for 4s.",
      "tags": [
       "dot_poison"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "poison",
+       "to": "target",
+       "dur": 4,
+       "v": 0.02
+      }
      ]
     },
     "skill2": {
@@ -3674,6 +5200,22 @@
      "tags": [
       "dot_poison",
       "debuff_slow"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "poison",
+       "to": "enemies_near_target:2",
+       "dur": 3,
+       "v": 0.02
+      },
+      {
+       "op": "status",
+       "s": "slow",
+       "to": "enemies_near_target:2",
+       "dur": 3,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -3681,7 +5223,24 @@
      "text": "When a poisoned enemy falls, the poison jumps to a nearby enemy.",
      "tags": [
       "dot_poison"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "enemy_death",
+       "ops": [
+        {
+         "op": "status",
+         "s": "poison",
+         "to": "evt_nearest_ally",
+         "dur": 4,
+         "v": 0.02
+        }
+       ],
+       "if": "tgt:poison"
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -3724,7 +5283,12 @@
     "icon": "hero_venna_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_hp",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "mireille",
@@ -3763,6 +5327,22 @@
      "tags": [
       "heal_aoe",
       "regen"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "allies",
+       "over": 8,
+       "pct": 0.4
+      },
+      {
+       "op": "status",
+       "s": "regen",
+       "to": "allies",
+       "delay": 8,
+       "dur": 4,
+       "v": 0.02
+      }
      ]
     },
     "skill1": {
@@ -3772,6 +5352,20 @@
      "tags": [
       "shield_single",
       "reflect"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "ally",
+       "m": 1.5
+      },
+      {
+       "op": "status",
+       "s": "thorns",
+       "to": "ally",
+       "dur": 8,
+       "v": 0.2
+      }
      ]
     },
     "skill2": {
@@ -3780,6 +5374,15 @@
      "text": "Plants a seed that heals an ally the moment they drop below 30%.",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "seed",
+       "to": "ally",
+       "dur": 12,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -3787,7 +5390,17 @@
      "text": "Heals are 20% stronger on allies below half HP.",
      "tags": [
       "heal_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "heal_out",
+       "v": 0.2,
+       "scope": "self",
+       "if": "tgt.hp<0.5"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -3821,7 +5434,12 @@
     "icon": "hero_mireille_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "nimue",
@@ -3859,7 +5477,15 @@
      "text": "Revives one fallen ally at 40% HP.",
      "tags": [
       "revive"
-     ]
+     ],
+     "ops": [
+      {
+       "op": "revive",
+       "to": "dead_ally",
+       "pct": 0.4
+      }
+     ],
+     "requires": "dead_ally"
     },
     "skill1": {
      "name": "Willow Touch",
@@ -3868,6 +5494,20 @@
      "tags": [
       "heal_single",
       "regen"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "ally",
+       "m": 1.6
+      },
+      {
+       "op": "status",
+       "s": "regen",
+       "to": "ally",
+       "dur": 4,
+       "v": 0.03
+      }
      ]
     },
     "skill2": {
@@ -3876,6 +5516,13 @@
      "text": "Shields one ally.",
      "tags": [
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "ally",
+       "m": 1.8
+      }
      ]
     },
     "passive": {
@@ -3883,7 +5530,17 @@
      "text": "Allies below 20% HP take 20% less damage.",
      "tags": [
       "dr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": -0.2,
+       "scope": "allies",
+       "if": "tgt.hp<0.2"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -3917,7 +5574,12 @@
     "icon": "hero_nimue_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "fenna",
@@ -3955,6 +5617,14 @@
      "text": "Puts all enemies to sleep for 2.5s (damage wakes them).",
      "tags": [
       "cc_sleep"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "sleep",
+       "to": "enemies",
+       "dur": 2.5
+      }
      ]
     },
     "skill1": {
@@ -3963,6 +5633,15 @@
      "text": "Creates a decoy that draws attacks for 3s.",
      "tags": [
       "taunt"
+     ],
+     "ops": [
+      {
+       "op": "summon",
+       "unit": "decoy",
+       "n": 1,
+       "tauntR": 3,
+       "dur": 3
+      }
      ]
     },
     "skill2": {
@@ -3972,6 +5651,22 @@
      "tags": [
       "debuff_slow",
       "dot_poison"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "slow",
+       "to": "enemies_near_target:2",
+       "dur": 3,
+       "v": 0.3
+      },
+      {
+       "op": "status",
+       "s": "poison",
+       "to": "enemies_near_target:2",
+       "dur": 3,
+       "v": 0.02
+      }
      ]
     },
     "passive": {
@@ -3979,7 +5674,16 @@
      "text": "Allies near her dodge 10% of attacks.",
      "tags": [
       "dr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dodge",
+       "v": 0.1,
+       "scope": "allies_near:3"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -4028,7 +5732,12 @@
     "icon": "hero_fenna_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "densest",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "wren",
@@ -4066,6 +5775,15 @@
      "text": "Enemies inside the ring are Weakened (+25% damage taken) for 5s.",
      "tags": [
       "debuff_weaken"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "weaken",
+       "to": "enemies_near_target:3",
+       "dur": 5,
+       "v": 0.25
+      }
      ]
     },
     "skill1": {
@@ -4074,6 +5792,14 @@
      "text": "Roots her target for 1.5s.",
      "tags": [
       "cc_root"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "root",
+       "to": "target",
+       "dur": 1.5
+      }
      ]
     },
     "skill2": {
@@ -4082,6 +5808,13 @@
      "text": "Cleanses one debuff from an ally.",
      "tags": [
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "cleanse",
+       "to": "most_debuffed_ally",
+       "n": 1
+      }
      ]
     },
     "passive": {
@@ -4089,7 +5822,17 @@
      "text": "Rooted enemies take +10% damage.",
      "tags": [
       "debuff_weaken"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": 0.1,
+       "scope": "enemies",
+       "if": "tgt:root"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -4138,7 +5881,12 @@
     "icon": "hero_wren_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest_with:root",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "zephyra",
@@ -4176,6 +5924,15 @@
      "text": "Team Attack speed up (30%) for 5s.",
      "tags": [
       "buff_speed"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "aspd_up",
+       "to": "allies",
+       "dur": 5,
+       "v": 0.3
+      }
      ]
     },
     "skill1": {
@@ -4184,6 +5941,14 @@
      "text": "Puts one enemy to sleep for 2s.",
      "tags": [
       "cc_sleep"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "sleep",
+       "to": "target",
+       "dur": 2
+      }
      ]
     },
     "skill2": {
@@ -4192,6 +5957,13 @@
      "text": "Gives an ally 20 energy.",
      "tags": [
       "buff_energy"
+     ],
+     "ops": [
+      {
+       "op": "energy",
+       "v": 20,
+       "to": "ally"
+      }
      ]
     },
     "passive": {
@@ -4199,7 +5971,16 @@
      "text": "Allies near her gain 5% crit chance.",
      "tags": [
       "buff_crit"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "crit_rate",
+       "v": 0.05,
+       "scope": "allies_near:3"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -4247,7 +6028,12 @@
     "icon": "hero_zephyra_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "fastest",
+    "move": "follow"
+   }
   },
   {
    "id": "coralie",
@@ -4286,6 +6072,20 @@
      "tags": [
       "dr",
       "soak"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "projectile_block",
+       "to": "allies",
+       "dur": 3
+      },
+      {
+       "op": "status",
+       "s": "soaked",
+       "to": "enemies_near_self:4",
+       "dur": 4
+      }
      ]
     },
     "skill1": {
@@ -4294,6 +6094,18 @@
      "text": "Shields herself and the nearest ally.",
      "tags": [
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "self",
+       "pct": 0.12
+      },
+      {
+       "op": "shield",
+       "to": "nearest_ally",
+       "pct": 0.12
+      }
      ]
     },
     "skill2": {
@@ -4302,6 +6114,14 @@
      "text": "Taunts all enemies for 2s.",
      "tags": [
       "taunt"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "taunt",
+       "to": "enemies",
+       "dur": 2
+      }
      ]
     },
     "passive": {
@@ -4309,7 +6129,16 @@
      "text": "20% chance to block an attack.",
      "tags": [
       "dr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "block",
+       "v": 0.2,
+       "scope": "self"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -4369,7 +6198,12 @@
     "icon": "hero_coralie_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "thalassa",
@@ -4409,6 +6243,27 @@
       "cc_knock",
       "debuff_slow",
       "soak"
+     ],
+     "ops": [
+      {
+       "op": "move",
+       "kind": "push",
+       "to": "front_row",
+       "dist": 2.0
+      },
+      {
+       "op": "status",
+       "s": "slow",
+       "to": "front_row",
+       "dur": 3,
+       "v": 0.3
+      },
+      {
+       "op": "status",
+       "s": "soaked",
+       "to": "front_row",
+       "dur": 3
+      }
      ]
     },
     "skill1": {
@@ -4417,6 +6272,14 @@
      "text": "Stuns for 1s.",
      "tags": [
       "cc_stun"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stun",
+       "to": "target",
+       "dur": 1
+      }
      ]
     },
     "skill2": {
@@ -4425,6 +6288,14 @@
      "text": "Drags one back-row enemy to the front.",
      "tags": [
       "pull"
+     ],
+     "ops": [
+      {
+       "op": "move",
+       "kind": "pull_to_caster",
+       "to": "backrow_enemy",
+       "dist": 0.0
+      }
      ]
     },
     "passive": {
@@ -4432,7 +6303,16 @@
      "text": "Reflects 10% of melee damage.",
      "tags": [
       "reflect"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "reflect_melee",
+       "v": 0.1,
+       "scope": "self"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -4487,7 +6367,12 @@
     "icon": "hero_thalassa_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "calypso",
@@ -4526,6 +6411,20 @@
      "tags": [
       "pull",
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "move",
+       "kind": "pull_to_caster",
+       "to": "highest_atk_enemy",
+       "dist": 0.0
+      },
+      {
+       "op": "dmg",
+       "m": 3.4,
+       "to": "highest_atk_enemy",
+       "drain": 0.5
+      }
      ]
     },
     "skill1": {
@@ -4534,6 +6433,13 @@
      "text": "Hits for 170% ATK.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.7,
+       "to": "target"
+      }
      ]
     },
     "skill2": {
@@ -4542,6 +6448,14 @@
      "text": "Charms one enemy for 1.5s.",
      "tags": [
       "cc_charm"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "charm",
+       "to": "target",
+       "dur": 1.5
+      }
      ]
     },
     "passive": {
@@ -4549,7 +6463,35 @@
      "text": "+25% damage to isolated or charmed enemies, and her first hit from stealth crits.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.25,
+       "scope": "self",
+       "if": "tgt.isolated|tgt:charm"
+      },
+      {
+       "k": "crit_rate",
+       "v": 1.0,
+       "scope": "self",
+       "if": "src:stealth"
+      }
+     ],
+     "triggers": [
+      {
+       "on": "battle_start",
+       "ops": [
+        {
+         "op": "status",
+         "s": "stealth",
+         "to": "self",
+         "dur": 3
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -4600,7 +6542,12 @@
     "icon": "hero_calypso_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "isolated_else_carry",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "halcyra",
@@ -4638,6 +6585,17 @@
      "text": "Chain lightning that bounces six times for 140% ATK each.",
      "tags": [
       "dmg_aoe"
+     ],
+     "ops": [
+      {
+       "op": "chain",
+       "m": 1.4,
+       "bounces": 6,
+       "to": "target",
+       "elem": "lightning",
+       "bonusFrom": "tempest",
+       "soakedDouble": true
+      }
      ]
     },
     "skill1": {
@@ -4647,6 +6605,20 @@
      "tags": [
       "dmg_single",
       "soak"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 0.8,
+       "to": "target",
+       "elem": "lightning"
+      },
+      {
+       "op": "status",
+       "s": "soaked",
+       "to": "target",
+       "dur": 4
+      }
      ]
     },
     "skill2": {
@@ -4655,6 +6627,14 @@
      "text": "Stuns enemies around the target for 0.5s.",
      "tags": [
       "cc_stun"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stun",
+       "to": "enemies_near_target:2",
+       "dur": 0.5
+      }
      ]
     },
     "passive": {
@@ -4662,7 +6642,35 @@
      "text": "Crits bounce once. Each skill she casts adds a bounce to her next Tempest; bounces between Soaked enemies hit twice.",
      "tags": [
       "dmg_aoe"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "crit",
+       "ops": [
+        {
+         "op": "chain",
+         "m": 0.5,
+         "bounces": 1,
+         "to": "evt",
+         "elem": "lightning",
+         "skipFirst": true
+        }
+       ],
+       "icd": 0.5
+      },
+      {
+       "on": "skill_cast",
+       "ops": [
+        {
+         "op": "counter",
+         "key": "tempest",
+         "add": 1
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -4742,7 +6750,12 @@
     "icon": "hero_halcyra_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "random",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "nerissa",
@@ -4781,6 +6794,28 @@
      "tags": [
       "pull",
       "dmg_aoe"
+     ],
+     "ops": [
+      {
+       "op": "zone",
+       "dur": 3,
+       "r": 2.5,
+       "at": "target",
+       "every": 0.5,
+       "ops": [
+        {
+         "op": "move",
+         "kind": "pull_to_point",
+         "to": "zone_enemies",
+         "dist": 0.5
+        },
+        {
+         "op": "dmg",
+         "m": 0.35,
+         "to": "zone_enemies"
+        }
+       ]
+      }
      ]
     },
     "skill1": {
@@ -4789,6 +6824,18 @@
      "text": "Dives onto the back row for 200% ATK.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "teleport",
+       "to": "backrow_enemy",
+       "where": "behind"
+      },
+      {
+       "op": "dmg",
+       "m": 2.0,
+       "to": "backrow_enemy"
+      }
      ]
     },
     "skill2": {
@@ -4797,6 +6844,15 @@
      "text": "Slows her target by 30% for 3s.",
      "tags": [
       "debuff_slow"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "slow",
+       "to": "target",
+       "dur": 3,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -4804,7 +6860,17 @@
      "text": "+20% damage to slowed enemies.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.2,
+       "scope": "self",
+       "if": "tgt:slow"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -4871,7 +6937,12 @@
     "icon": "hero_nerissa_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "lowest_hp",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "ysra",
@@ -4910,6 +6981,14 @@
      "tags": [
       "dmg_single",
       "execute"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 4.5,
+       "to": "weakest_with:soaked|mark",
+       "elem": "lightning"
+      }
      ]
     },
     "skill1": {
@@ -4918,6 +6997,14 @@
      "text": "Hits for 170% ATK.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.7,
+       "to": "target",
+       "elem": "lightning"
+      }
      ]
     },
     "skill2": {
@@ -4927,6 +7014,21 @@
      "tags": [
       "soak",
       "debuff_slow"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "soaked",
+       "to": "enemies_near_target:2",
+       "dur": 4
+      },
+      {
+       "op": "status",
+       "s": "slow",
+       "to": "enemies_near_target:2",
+       "dur": 4,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -4934,7 +7036,34 @@
      "text": "Her hits on Soaked or marked enemies deal +25% and chain to one more Soaked enemy.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.25,
+       "scope": "self",
+       "if": "tgt:soaked|mark"
+      }
+     ],
+     "triggers": [
+      {
+       "on": "hit",
+       "ops": [
+        {
+         "op": "chain",
+         "m": 0.3,
+         "bounces": 1,
+         "to": "evt",
+         "elem": "lightning",
+         "skipFirst": true,
+         "onlySoaked": true
+        }
+       ],
+       "if": "tgt:soaked",
+       "icd": 1
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -5007,7 +7136,12 @@
     "icon": "hero_ysra_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "with_else_highest_atk:soaked",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "marisol",
@@ -5047,6 +7181,28 @@
       "heal_aoe",
       "regen",
       "soak"
+     ],
+     "ops": [
+      {
+       "op": "zone",
+       "dur": 6,
+       "r": 99,
+       "at": "self",
+       "every": 1,
+       "ops": [
+        {
+         "op": "heal",
+         "to": "zone_allies",
+         "pct": 0.04
+        },
+        {
+         "op": "status",
+         "s": "soaked",
+         "to": "zone_enemies",
+         "dur": 2
+        }
+       ]
+      }
      ]
     },
     "skill1": {
@@ -5055,6 +7211,13 @@
      "text": "Heals one ally.",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "ally",
+       "m": 2.0
+      }
      ]
     },
     "skill2": {
@@ -5063,6 +7226,13 @@
      "text": "Removes debuffs from two allies.",
      "tags": [
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "cleanse",
+       "to": "most_debuffed_allies:2",
+       "n": 99
+      }
      ]
     },
     "passive": {
@@ -5070,7 +7240,22 @@
      "text": "Overhealing becomes energy.",
      "tags": [
       "buff_energy"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "overheal",
+       "ops": [
+        {
+         "op": "energy",
+         "v": 0,
+         "to": "evt",
+         "fromOverheal": 0.5
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -5111,7 +7296,12 @@
     "icon": "hero_marisol_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "odette",
@@ -5149,6 +7339,13 @@
      "text": "Shields the team for 25% of their max HP.",
      "tags": [
       "shield_aoe"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "allies",
+       "pctTarget": 0.25
+      }
      ]
     },
     "skill1": {
@@ -5158,6 +7355,18 @@
      "tags": [
       "heal_single",
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "ally",
+       "m": 1.2
+      },
+      {
+       "op": "shield",
+       "to": "ally",
+       "m": 1.0
+      }
      ]
     },
     "skill2": {
@@ -5166,6 +7375,13 @@
      "text": "Removes debuffs from all allies.",
      "tags": [
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "cleanse",
+       "to": "allies",
+       "n": 99
+      }
      ]
     },
     "passive": {
@@ -5173,7 +7389,17 @@
      "text": "Shielded allies resist control effects.",
      "tags": [
       "immunity"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "cc_immune",
+       "v": 1,
+       "scope": "allies",
+       "if": "tgt.shielded"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -5245,7 +7471,12 @@
     "icon": "hero_odette_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "siora",
@@ -5284,6 +7515,29 @@
      "tags": [
       "heal_aoe",
       "debuff_slow"
+     ],
+     "ops": [
+      {
+       "op": "zone",
+       "dur": 4,
+       "r": 99,
+       "at": "self",
+       "every": 1,
+       "ops": [
+        {
+         "op": "heal",
+         "to": "zone_allies",
+         "pct": 0.05
+        },
+        {
+         "op": "status",
+         "s": "slow",
+         "to": "zone_enemies",
+         "dur": 1.5,
+         "v": 0.3
+        }
+       ]
+      }
      ]
     },
     "skill1": {
@@ -5292,6 +7546,13 @@
      "text": "Heals one ally.",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "ally",
+       "m": 2.0
+      }
      ]
     },
     "skill2": {
@@ -5301,6 +7562,18 @@
      "tags": [
       "heal_single",
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "weakest_ally_other",
+       "lastHeal": 0.5
+      },
+      {
+       "op": "cleanse",
+       "to": "weakest_ally_other",
+       "n": 1
+      }
      ]
     },
     "passive": {
@@ -5308,7 +7581,23 @@
      "text": "Her heals give the target Attack speed up (15%) for 3s.",
      "tags": [
       "buff_speed"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "heal_given",
+       "ops": [
+        {
+         "op": "status",
+         "s": "aspd_up",
+         "to": "evt",
+         "dur": 3,
+         "v": 0.15
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -5343,7 +7632,12 @@
     "icon": "hero_siora_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "lorelei",
@@ -5381,6 +7675,14 @@
      "text": "Charms two enemies for 2.5s.",
      "tags": [
       "cc_charm"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "charm",
+       "to": "highest_atk_enemies:2",
+       "dur": 2.5
+      }
      ]
     },
     "skill1": {
@@ -5389,6 +7691,13 @@
      "text": "Drains 25 energy from one enemy.",
      "tags": [
       "energy_drain"
+     ],
+     "ops": [
+      {
+       "op": "energy",
+       "v": -25,
+       "to": "target"
+      }
      ]
     },
     "skill2": {
@@ -5397,6 +7706,14 @@
      "text": "Silences the enemy with the most energy for 2s.",
      "tags": [
       "cc_silence"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "silence",
+       "to": "most_energy_enemy",
+       "dur": 2
+      }
      ]
     },
     "passive": {
@@ -5404,7 +7721,33 @@
      "text": "Enemies she hits lose 5 energy; Soaked enemies lose 10.",
      "tags": [
       "energy_drain"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "hit",
+       "ops": [
+        {
+         "op": "energy",
+         "v": -5,
+         "to": "evt"
+        }
+       ],
+       "if": "!tgt:soaked"
+      },
+      {
+       "on": "hit",
+       "ops": [
+        {
+         "op": "energy",
+         "v": -10,
+         "to": "evt"
+        }
+       ],
+       "if": "tgt:soaked"
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -5477,7 +7820,12 @@
     "icon": "hero_lorelei_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_atk",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "ondine",
@@ -5515,6 +7863,15 @@
      "text": "Blinds all enemies (miss 50%) for 3s.",
      "tags": [
       "debuff_blind"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "blind",
+       "to": "enemies",
+       "dur": 3,
+       "v": 0.5
+      }
      ]
     },
     "skill1": {
@@ -5523,6 +7880,14 @@
      "text": "Stuns for 1s.",
      "tags": [
       "cc_stun"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stun",
+       "to": "target",
+       "dur": 1
+      }
      ]
     },
     "skill2": {
@@ -5532,6 +7897,21 @@
      "tags": [
       "debuff_def",
       "soak"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "soaked",
+       "to": "target",
+       "dur": 5
+      },
+      {
+       "op": "status",
+       "s": "def_down",
+       "to": "target",
+       "dur": 5,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -5539,7 +7919,17 @@
      "text": "Blinded enemies take 10% more damage.",
      "tags": [
       "debuff_weaken"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": 0.1,
+       "scope": "enemies",
+       "if": "tgt:blind"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -5609,7 +7999,12 @@
     "icon": "hero_ondine_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_atk",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "pelagia",
@@ -5648,6 +8043,25 @@
      "tags": [
       "cc_knock",
       "buff_energy"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "soaked",
+       "to": "enemies",
+       "dur": 4
+      },
+      {
+       "op": "move",
+       "kind": "push",
+       "to": "enemies",
+       "dist": 2.0
+      },
+      {
+       "op": "energy",
+       "v": 20,
+       "to": "allies"
+      }
      ]
     },
     "skill1": {
@@ -5657,6 +8071,21 @@
      "tags": [
       "debuff_slow",
       "soak"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "soaked",
+       "to": "target",
+       "dur": 3
+      },
+      {
+       "op": "status",
+       "s": "slow",
+       "to": "target",
+       "dur": 3,
+       "v": 0.3
+      }
      ]
     },
     "skill2": {
@@ -5665,6 +8094,13 @@
      "text": "Cleanses one ally.",
      "tags": [
       "cleanse"
+     ],
+     "ops": [
+      {
+       "op": "cleanse",
+       "to": "most_debuffed_ally",
+       "n": 99
+      }
      ]
     },
     "passive": {
@@ -5672,7 +8108,17 @@
      "text": "Slowed enemies attack 15% slower.",
      "tags": [
       "debuff_slow"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "aspd",
+       "v": -0.15,
+       "scope": "enemies",
+       "if": "tgt:slow"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -5720,7 +8166,12 @@
     "icon": "hero_pelagia_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "densest",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "draxa",
@@ -5759,6 +8210,15 @@
      "tags": [
       "buff_def",
       "dot_burn"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "dragonform",
+       "to": "self",
+       "dur": 8,
+       "v": 0.5
+      }
      ]
     },
     "skill1": {
@@ -5767,6 +8227,15 @@
      "text": "DEF up (30%) for 5s.",
      "tags": [
       "buff_def"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "def_up",
+       "to": "self",
+       "dur": 5,
+       "v": 0.3
+      }
      ]
     },
     "skill2": {
@@ -5775,6 +8244,14 @@
      "text": "Knocks back nearby enemies.",
      "tags": [
       "cc_knock"
+     ],
+     "ops": [
+      {
+       "op": "move",
+       "kind": "push",
+       "to": "enemies_near_self:2.5",
+       "dist": 2.0
+      }
      ]
     },
     "passive": {
@@ -5782,6 +8259,11 @@
      "text": "Immune to burns.",
      "tags": [
       "immunity"
+     ],
+     "mods": [],
+     "triggers": [],
+     "flags": [
+      "immune:burn"
      ]
     }
    },
@@ -5822,7 +8304,12 @@
     "icon": "hero_draxa_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "runa",
@@ -5860,6 +8347,14 @@
      "text": "All allies gain a Skill shield (blocks the next skill or ultimate hit).",
      "tags": [
       "shield_aoe"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "skill_shield",
+       "to": "allies",
+       "dur": 10
+      }
      ]
     },
     "skill1": {
@@ -5868,6 +8363,13 @@
      "text": "Shields herself.",
      "tags": [
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "self",
+       "pct": 0.15
+      }
      ]
     },
     "skill2": {
@@ -5876,6 +8378,14 @@
      "text": "Silences the nearest enemy for 1.5s.",
      "tags": [
       "cc_silence"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "silence",
+       "to": "nearest_enemy",
+       "dur": 1.5
+      }
      ]
     },
     "passive": {
@@ -5883,7 +8393,16 @@
      "text": "Reflects 20% of skill damage.",
      "tags": [
       "reflect"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "reflect_skill",
+       "v": 0.2,
+       "scope": "self"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -5917,7 +8436,12 @@
     "icon": "hero_runa_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "vaela",
@@ -5955,6 +8479,14 @@
      "text": "A zone absorbs all enemy projectiles for 3s.",
      "tags": [
       "dr"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "projectile_block",
+       "to": "allies",
+       "dur": 3
+      }
      ]
     },
     "skill1": {
@@ -5964,6 +8496,19 @@
      "tags": [
       "shield_single",
       "cc_silence"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "self",
+       "pct": 0.15
+      },
+      {
+       "op": "status",
+       "s": "silence",
+       "to": "nearest_enemy",
+       "dur": 1
+      }
      ]
     },
     "skill2": {
@@ -5973,6 +8518,20 @@
      "tags": [
       "pull",
       "taunt"
+     ],
+     "ops": [
+      {
+       "op": "move",
+       "kind": "pull_to_caster",
+       "to": "enemies_near_self:4",
+       "dist": 0.0
+      },
+      {
+       "op": "status",
+       "s": "taunt",
+       "to": "enemies_near_self:4",
+       "dur": 2
+      }
      ]
     },
     "passive": {
@@ -5980,7 +8539,17 @@
      "text": "Takes 15% less damage from ultimates.",
      "tags": [
       "dr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": -0.15,
+       "scope": "self",
+       "if": "ult"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -6015,7 +8584,12 @@
     "icon": "hero_vaela_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "self",
+    "move": "advance"
+   }
   },
   {
    "id": "astraea",
@@ -6053,6 +8627,13 @@
      "text": "Huge area blast for 280% ATK.",
      "tags": [
       "dmg_aoe"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 2.8,
+       "to": "enemies_near_target:2.5"
+      }
      ]
     },
     "skill1": {
@@ -6061,6 +8642,13 @@
      "text": "Heavy hit on one target for 200% ATK.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 2.0,
+       "to": "target"
+      }
      ]
     },
     "skill2": {
@@ -6069,6 +8657,13 @@
      "text": "A comet knocks up enemies in a line.",
      "tags": [
       "cc_knock"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "airborne",
+       "to": "line"
+      }
      ]
     },
     "passive": {
@@ -6076,7 +8671,23 @@
      "text": "+20% damage to enemies standing close together; summons take double damage from her.",
      "tags": [
       "dmg_aoe"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.2,
+       "scope": "self",
+       "if": "tgt.grouped"
+      },
+      {
+       "k": "dmg_out",
+       "v": 1.0,
+       "scope": "self",
+       "if": "tgt.summon"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -6130,7 +8741,12 @@
     "icon": "hero_astraea_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "densest",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "caelith",
@@ -6168,6 +8784,15 @@
      "text": "Three hits that each deal 15% of the target's max HP.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 0,
+       "to": "target",
+       "pctMaxHp": 0.15,
+       "hits": 3
+      }
      ]
     },
     "skill1": {
@@ -6176,6 +8801,13 @@
      "text": "A magic bolt for 170% ATK.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.7,
+       "to": "target"
+      }
      ]
     },
     "skill2": {
@@ -6185,6 +8817,19 @@
      "tags": [
       "dispel",
       "cc_silence"
+     ],
+     "ops": [
+      {
+       "op": "dispel",
+       "to": "target",
+       "n": 1
+      },
+      {
+       "op": "status",
+       "s": "silence",
+       "to": "target",
+       "dur": 1
+      }
      ]
     },
     "passive": {
@@ -6192,7 +8837,22 @@
      "text": "+30% damage to shields, and +15% to marked or weakened enemies.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_vs_shield",
+       "v": 0.3,
+       "scope": "self"
+      },
+      {
+       "k": "dmg_out",
+       "v": 0.15,
+       "scope": "self",
+       "if": "tgt:mark|weaken|def_down"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -6253,7 +8913,12 @@
     "icon": "hero_caelith_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "highest_hp",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "isaura",
@@ -6292,6 +8957,14 @@
      "tags": [
       "energy_drain",
       "dmg_aoe"
+     ],
+     "ops": [
+      {
+       "op": "energy",
+       "v": -40,
+       "to": "enemies",
+       "dmgPerEnergy": 0.05
+      }
      ]
     },
     "skill1": {
@@ -6300,6 +8973,14 @@
      "text": "Steals 15 energy from her target.",
      "tags": [
       "energy_drain"
+     ],
+     "ops": [
+      {
+       "op": "energy",
+       "v": -15,
+       "to": "target",
+       "steal": true
+      }
      ]
     },
     "skill2": {
@@ -6308,6 +8989,19 @@
      "text": "Teleports out of danger.",
      "tags": [
       "untargetable"
+     ],
+     "ops": [
+      {
+       "op": "teleport",
+       "to": "self",
+       "where": "away"
+      },
+      {
+       "op": "status",
+       "s": "untargetable",
+       "to": "self",
+       "dur": 0.5
+      }
      ]
     },
     "passive": {
@@ -6315,7 +9009,17 @@
      "text": "+25% damage to enemies with less than 50 energy and to sleeping enemies.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.25,
+       "scope": "self",
+       "if": "tgt.energy<50|tgt:sleep"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -6364,7 +9068,12 @@
     "icon": "hero_isaura_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "most_energy",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "zaria",
@@ -6403,6 +9112,21 @@
      "tags": [
       "dmg_aoe",
       "dot_burn"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 2.6,
+       "to": "cone",
+       "elem": "fire"
+      },
+      {
+       "op": "status",
+       "s": "burn",
+       "to": "cone",
+       "dur": 4,
+       "v": 0.3
+      }
      ]
     },
     "skill1": {
@@ -6411,6 +9135,13 @@
      "text": "Her dragon claws the target for 170% ATK.",
      "tags": [
       "dmg_single"
+     ],
+     "ops": [
+      {
+       "op": "dmg",
+       "m": 1.7,
+       "to": "target"
+      }
      ]
     },
     "skill2": {
@@ -6419,6 +9150,15 @@
      "text": "Burns a row of enemies.",
      "tags": [
       "dot_burn"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "burn",
+       "to": "target_row",
+       "dur": 4,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -6426,7 +9166,17 @@
      "text": "+20% damage to burning enemies.",
      "tags": [
       "dmg_single"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.2,
+       "scope": "self",
+       "if": "tgt:burn"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -6474,7 +9224,12 @@
     "icon": "hero_zaria_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "densest",
+    "ally": "self",
+    "move": "kite"
+   }
   },
   {
    "id": "lunaith",
@@ -6513,6 +9268,23 @@
      "tags": [
       "heal_aoe",
       "immunity"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "allies",
+       "pct": 0.25
+      },
+      {
+       "op": "status",
+       "s": "cc_immunity",
+       "to": "allies",
+       "only": [
+        "sleep",
+        "stun"
+       ],
+       "dur": 4
+      }
      ]
     },
     "skill1": {
@@ -6521,6 +9293,13 @@
      "text": "Heals one ally.",
      "tags": [
       "heal_single"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "ally",
+       "m": 2.0
+      }
      ]
     },
     "skill2": {
@@ -6529,6 +9308,14 @@
      "text": "Puts one enemy to sleep for 2s.",
      "tags": [
       "cc_sleep"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "sleep",
+       "to": "target",
+       "dur": 2
+      }
      ]
     },
     "passive": {
@@ -6536,7 +9323,21 @@
      "text": "Her heals grant 10 energy.",
      "tags": [
       "buff_energy"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "heal_given",
+       "ops": [
+        {
+         "op": "energy",
+         "v": 10,
+         "to": "evt"
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -6571,7 +9372,12 @@
     "icon": "hero_lunaith_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lowest_hp",
+    "move": "kite"
+   }
   },
   {
    "id": "selene",
@@ -6609,6 +9415,13 @@
      "text": "Returns each ally to their HP from 3s earlier.",
      "tags": [
       "heal_aoe"
+     ],
+     "ops": [
+      {
+       "op": "rewind",
+       "to": "allies",
+       "sec": 3
+      }
      ]
     },
     "skill1": {
@@ -6618,6 +9431,18 @@
      "tags": [
       "heal_single",
       "buff_energy"
+     ],
+     "ops": [
+      {
+       "op": "heal",
+       "to": "ally",
+       "m": 1.6
+      },
+      {
+       "op": "energy",
+       "v": 10,
+       "to": "ally"
+      }
      ]
     },
     "skill2": {
@@ -6626,6 +9451,14 @@
      "text": "Shields the weakest ally; heals them when it breaks.",
      "tags": [
       "shield_single"
+     ],
+     "ops": [
+      {
+       "op": "shield",
+       "to": "weakest_ally",
+       "breakHeal": 1.0,
+       "m": 1.8
+      }
      ]
     },
     "passive": {
@@ -6633,7 +9466,21 @@
      "text": "Her heals also cleanse one debuff.",
      "tags": [
       "cleanse"
-     ]
+     ],
+     "mods": [],
+     "triggers": [
+      {
+       "on": "heal_given",
+       "ops": [
+        {
+         "op": "cleanse",
+         "to": "evt",
+         "n": 1
+        }
+       ]
+      }
+     ],
+     "flags": []
     }
    },
    "applies": [
@@ -6674,7 +9521,12 @@
     "icon": "hero_selene_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "lost_most_recent",
+    "move": "kite"
+   }
   },
   {
    "id": "elowen",
@@ -6713,6 +9565,20 @@
      "tags": [
       "buff_energy",
       "buff_speed"
+     ],
+     "ops": [
+      {
+       "op": "energy",
+       "v": 40,
+       "to": "allies_except_self"
+      },
+      {
+       "op": "status",
+       "s": "aspd_up",
+       "to": "allies",
+       "dur": 5,
+       "v": 0.2
+      }
      ]
     },
     "skill1": {
@@ -6721,6 +9587,15 @@
      "text": "Slows one enemy for 3s.",
      "tags": [
       "debuff_slow"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "slow",
+       "to": "target",
+       "dur": 3,
+       "v": 0.3
+      }
      ]
     },
     "skill2": {
@@ -6729,6 +9604,15 @@
      "text": "One ally gains Haste up (+30) for 4s, so their skills recharge faster.",
      "tags": [
       "buff_cdr"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "haste_up",
+       "to": "ally",
+       "dur": 4,
+       "v": 30
+      }
      ]
     },
     "passive": {
@@ -6736,7 +9620,16 @@
      "text": "Allies near her gain energy 10% faster.",
      "tags": [
       "buff_energy"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "energy_gain",
+       "v": 0.1,
+       "scope": "allies_near:4"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -6791,7 +9684,12 @@
     "icon": "hero_elowen_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "closest_to_ult",
+    "move": "follow"
+   }
   },
   {
    "id": "seren",
@@ -6829,6 +9727,15 @@
      "text": "Team Crit up (30%) for 6s.",
      "tags": [
       "buff_crit"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "crit_up",
+       "to": "allies",
+       "dur": 6,
+       "v": 0.3
+      }
      ]
     },
     "skill1": {
@@ -6838,6 +9745,22 @@
      "tags": [
       "mark",
       "buff_energy"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "mark",
+       "to": "target",
+       "dur": 5,
+       "v": 0.15
+      },
+      {
+       "op": "status",
+       "s": "star_mark",
+       "to": "target",
+       "dur": 5,
+       "v": 5
+      }
      ]
     },
     "skill2": {
@@ -6846,6 +9769,15 @@
      "text": "30% of damage an ally takes is copied back to the attacker for 5s.",
      "tags": [
       "reflect"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "thread",
+       "to": "ally",
+       "dur": 5,
+       "v": 0.3
+      }
      ]
     },
     "passive": {
@@ -6853,7 +9785,16 @@
      "text": "Allies near her deal +10% crit damage.",
      "tags": [
       "buff_crit"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "crit_dmg",
+       "v": 0.1,
+       "scope": "allies_near:4"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -6913,7 +9854,12 @@
     "icon": "hero_seren_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "highest_atk",
+    "move": "follow"
+   }
   },
   {
    "id": "tempra",
@@ -6951,6 +9897,13 @@
      "text": "Resets all allies' skill cooldowns.",
      "tags": [
       "buff_cdr"
+     ],
+     "ops": [
+      {
+       "op": "cooldown",
+       "to": "allies",
+       "reset": true
+      }
      ]
     },
     "skill1": {
@@ -6959,6 +9912,13 @@
      "text": "Moves one ally's skill cooldowns forward by 3s.",
      "tags": [
       "buff_cdr"
+     ],
+     "ops": [
+      {
+       "op": "cooldown",
+       "to": "ally",
+       "advance": 3
+      }
      ]
     },
     "skill2": {
@@ -6967,6 +9927,14 @@
      "text": "Freezes an enemy in time for 1.5s (they can't be damaged either).",
      "tags": [
       "cc_stun"
+     ],
+     "ops": [
+      {
+       "op": "status",
+       "s": "stasis",
+       "to": "target",
+       "dur": 1.5
+      }
      ]
     },
     "passive": {
@@ -6974,7 +9942,16 @@
      "text": "Allies' skills recharge 10% faster.",
      "tags": [
       "buff_cdr"
-     ]
+     ],
+     "mods": [
+      {
+       "k": "haste",
+       "v": 10,
+       "scope": "allies"
+      }
+     ],
+     "triggers": [],
+     "flags": []
     }
    },
    "applies": [
@@ -7002,7 +9979,12 @@
     "icon": "hero_tempra_icon"
    },
    "maxStars": 5,
-   "bond": null
+   "bond": null,
+   "ai": {
+    "enemy": "nearest",
+    "ally": "longest_cooldowns",
+    "move": "follow"
+   }
   }
  ]
 }

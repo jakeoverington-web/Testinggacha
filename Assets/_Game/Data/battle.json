@@ -1,0 +1,42 @@
+{
+  "_schema": "battle v1 - tuning for the real-time battle sim (Core/Battle). Rules: docs/design/battle-rules.md. All values are tuning starting points.",
+  "tick": 0.1,
+  "timeLimit": 90,
+  "field": { "halfWidth": 8.0, "halfDepth": 3.0 },
+  "formation": {
+    "_note": "Grid cells (col 0 = front, 1 = back; row 0-4). 2 front + 3 back (decisions row 16). Other formations from row 2 plug in here.",
+    "default": [[0, 1], [0, 3], [1, 0], [1, 2], [1, 4]],
+    "colX": [2.5, 5.0],
+    "rowY": [-2.4, -1.2, 0.0, 1.2, 2.4]
+  },
+  "defK": 300,
+  "initialCooldownPct": 0.5,
+  "castLock": 0.3,
+  "meleeRangeMax": 2.0,
+  "hasteEnergyFactor": 0.5,
+  "shieldDuration": 10,
+  "shieldCapPctMaxHp": 0.5,
+  "statusDefaults": { "taunt": 2, "airborne": 0.75, "stun": 1, "silence": 1.5, "fear": 1.5, "charm": 1.5, "sleep": 2, "root": 1.5, "soaked": 4, "mark": 4 },
+  "control": {
+    "hard": ["stasis", "charm", "fear", "stun", "airborne", "sleep", "root"],
+    "_note": "Order = priority, strongest first (combat.json: Charm > Fear > Stun > Sleep > Root; stasis and airborne slotted in). Only one hard control is active at a time.",
+    "drWindow": 6.0,
+    "drHalfFor": 4.0,
+    "maxDuration": 2.5,
+    "sleepCritBonus": 0.3
+  },
+  "dotMaxStacks": 3,
+  "bleedMovingMult": 2.0,
+  "soaked": { "fire": -0.15, "lightning": 0.25 },
+  "grouped": { "radius": 2.0 },
+  "isolated": { "radius": 3.0 },
+  "densest": { "radius": 2.0 },
+  "healSkillThreshold": 0.95,
+  "resistFloor": 0.15,
+  "summons": {
+    "wolf": { "hpPct": 0.3, "atkPct": 0.4, "def": 60, "atkSpd": 1.0, "range": 1, "moveSpd": 4.0, "mods": [{ "k": "dmg_out", "v": 1.0, "if": "tgt:root|airborne", "scope": "self" }] },
+    "stag": { "hpPct": 1.0, "atkPct": 0.5, "def": 0, "atkSpd": 0.8, "range": 1, "moveSpd": 4.0, "untargetable": true, "permanent": true },
+    "decoy": { "hpPct": 0.2, "atkPct": 0.0, "def": 0, "atkSpd": 0, "range": 0, "moveSpd": 0 }
+  },
+  "dragonform": { "breathRadius": 1.5, "burnV": 0.2, "burnDur": 3 }
+}

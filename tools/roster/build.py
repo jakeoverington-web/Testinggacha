@@ -2,6 +2,7 @@
 import json, collections, os
 from combat_rules import STATS, ENERGY, EFFECTS, CONTROL_RULES, KEYWORDS, TEMPLATES, COST, STYLE_MODS
 from revisions import roster_at, PASSES
+import kits
 from check import stats as hero_stats  # noqa (check.py runs on import; fine for build)
 
 FINAL = max(PASSES)
@@ -58,6 +59,7 @@ for h in sorted(R, key=lambda h: (CORE_ORDER.index(h["core"]), ROLE_ORDER.index(
         "art": {"look": h["look"], "fullbody": f"hero_{h['id']}_fullbody", "card": f"hero_{h['id']}_card", "icon": f"hero_{h['id']}_icon"},
         "maxStars": 5, "bond": None,
     })
+    kits.apply(heroes[-1])
 json.dump({"_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass %d)." % FINAL,
            "heroes": heroes}, open(REPO + "heroes.json", "w"), indent=1, ensure_ascii=False)
 
@@ -105,7 +107,8 @@ rl = ["| Pass | Focus | Edits | Issues found after |", "| --- | --- | --- | --- 
       f"| 1 | Synergy holes, power bands, look-alike kits, race identity, counters | {len(PASSES[1])} | {counts[1]} |",
       f"| 2 | Remaining outliers | {len(PASSES[2])} | {counts[2]} |",
       f"| 3 | Manual read: damage numbers, duplicate buffs, control caps, wording | {len(PASSES[3])} | {counts[3]} |",
-      f"| 4 | Synergy fairness: no must-pick hub | {len(PASSES[4])} | {counts[4]} |", f"| 5 | Final read of the published tables: duplicate effect, naming clashes | {len(PASSES[5])} | {counts[5]} |"]
+      f"| 4 | Synergy fairness: no must-pick hub | {len(PASSES[4])} | {counts[4]} |", f"| 5 | Final read of the published tables: duplicate effect, naming clashes | {len(PASSES[5])} | {counts[5]} |",
+      f"| 6 | Tag audit by the executable kits (battle tests) | {len(PASSES[6])} | {counts[6]} |"]
 open("md/revlog.md", "w").write("\n".join(rl))
 
 # role/race summary

@@ -24,7 +24,7 @@ Do not start work from a later phase unless asked.
 
 - One feature or ticket per chat. Start from the Linear ticket; end with a commit referencing it.
 - Plan before code for anything over ~50 lines; ask before changing a design decision.
-- Core logic changes come with Edit Mode tests (NUnit) in `Assets/_Game/Tests/`.
+- Core logic changes come with Edit Mode tests (NUnit) in `Assets/_Game/Tests/`. Run them with `tools/csharp/test.sh` (about 3 s, no Unity; method in `docs/design/testing.md`). Battle rules: `docs/design/battle-rules.md`.
 - Small commits with clear messages. Never commit secrets, store keys or final art.
 - When a design decision changes, update `docs/design/decisions.md` in the same commit.
 
