@@ -28,6 +28,7 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 | 21 | Campaign auto mode | Auto toggle on the current stage | Plays each battle normally, then starts the next stage after a win; stops on a loss. No batch skipping of many stages at once | 2026-10-02 |
 | 22 | World theme | Elves only: High Elves and Dark Elves | Tone mixes both: sacred and serene vs sly and dangerous | 2026-10-02 |
 | 23 | UI vs art | The UI follows the art | UI colours, backgrounds, shapes and fonts (currently Gold Glass) may be changed wherever they clash with the WLOP guideline | 2026-10-02 |
+| 24 | UI theme | Night Gold | Replaces Gold Glass. Neutral black (#0A0A0B), muted gold hairlines (#CDB582), Cormorant SC display + Barlow body, 1px lines and near-square corners, gothic-arch card tops, element shown as a small glowing gem (no coloured card borders), card art lit by faction, diamond Battle button. Chosen over Ink & Silver and Bone & Gold | 2026-10-02 |
 
 ## Open questions
 
