@@ -18,7 +18,7 @@ Do not start work from a later phase unless asked.
 5. **No hand-editing `.unity` / `.prefab` / `.asset` YAML** beyond trivial fixes. Build UI with UI Toolkit (UXML + USS text files) and wire it in C#.
 6. **Stay in scope.** Deferred features (bonds, dorm, events, free formation, daily dungeons) get hooks only, never implementations, unless the decisions log changes.
 7. **Build hooks, not features, for later.** Formation positions are grid coordinates; the guild boss is a reusable "special encounter"; hero data reserves room for bond fields.
-8. **No unprompted pop-ups.** Never show purchase offers, sale banners, login reward windows or announcements the player did not tap for. Player-opened overlays (skill info, tooltips, confirmations) are fine.
+8. **No unprompted pop-ups.** Never show purchase offers, sale banners, login reward windows, scrolling announcement tickers or announcements the player did not tap for. Player-opened overlays (skill info, tooltips, confirmations) are fine.
 
 ## Workflow
 
