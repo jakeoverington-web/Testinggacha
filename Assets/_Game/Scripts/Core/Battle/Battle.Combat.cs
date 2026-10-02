@@ -15,8 +15,22 @@ namespace Gacha.Core.Battle
         public bool Direct => Kind == HitKind.Basic || Kind == HitKind.Skill || Kind == HitKind.Ult;
     }
 
+    /// <summary>How one hit's damage was built, factor by factor (filled only when Battle.OnHit is set).</summary>
+    public sealed class HitTrace
+    {
+        public int Src, Dst; public string Ability; public HitKind Kind;
+        public double Raw, AtkBuff = 1, Out = 1, Counter = 1, Crit = 1, Def = 1, In = 1, Shield = 1, Block = 1, Final;
+        /// <summary>Everything stacked on top of the ability's nominal value at base ATK.</summary>
+        public double Amplification => AtkBuff * Out * Counter * Crit * In * Shield;
+        public override string ToString() =>
+            $"x{Amplification:0.00} = ATK buffs {AtkBuff:0.00} · passives {Out:0.00} · race {Counter:0.00} · crit {Crit:0.00} · taken {In:0.00} · vs shield {Shield:0.00} (then DEF {Def:0.00}, block {Block:0.00})";
+    }
+
     public sealed partial class Battle
     {
+        /// <summary>Optional hook: receives a factor-by-factor trace of every landed hit (interaction audits).</summary>
+        public Action<HitTrace> OnHit;
+
         // ---------------------------------------------------------------- status vocabulary
 
         public static readonly HashSet<string> Buffs = new HashSet<string> {
@@ -62,23 +76,36 @@ namespace Gacha.Core.Battle
             if (h.Direct && RemoveOne(t, "hit_shield")) { Emit(Ev.Absorb, s.Index, t.Index, "hit_shield", raw); return 0; }
             h.Landed = true;
 
-            double amt = raw * (1 + ModSum("dmg_out", s, s, t, h)) * (1 - s.Max("dmg_down"));
-            if (Data.Counters.TryGetValue(s.Core, out var beats) && beats == t.Core) amt *= 1 + Data.CounterBonus;
+            var tr = OnHit != null ? new HitTrace { Src = s.Index, Dst = t.Index, Ability = h.Ability, Kind = h.Kind, Raw = raw } : null;
+            if (tr != null && s.IsHero) tr.AtkBuff = s.Atk / Math.Max(1e-9, s.Base.Atk);
+            double fOut = (1 + ModSum("dmg_out", s, s, t, h)) * (1 - s.Max("dmg_down"));
+            double amt = raw * fOut;
+            double fCounter = 1;
+            if (Data.Counters.TryGetValue(s.Core, out var beats) && beats == t.Core) { fCounter = 1 + Data.CounterBonus; amt *= fCounter; }
 
+            double fCrit = 1;
             if (h.CanCrit)
             {
                 double cr = s.Base.CritRate + s.Max("crit_up") + ModSum("crit_rate", s, s, t, h) + (t.Has("sleep") ? T.SleepCritBonus : 0);
                 if (s.Has("sure_crit")) { cr = 1; RemoveAll(s, "sure_crit"); }
-                if (Rng.Chance(cr)) { h.Crit = true; amt *= s.Base.CritDmg + ModSum("crit_dmg", s, s, t, h); }
+                if (Rng.Chance(cr)) { h.Crit = true; fCrit = s.Base.CritDmg + ModSum("crit_dmg", s, s, t, h); amt *= fCrit; }
             }
-            if (h.Kind != HitKind.Dot && h.Kind != HitKind.Curse)
-                amt *= T.DefK / (T.DefK + t.DefStat * (1 - h.IgnoreDef));
+            double fDef = 1;
+            if (h.Kind != HitKind.Dot && h.Kind != HitKind.Curse) { fDef = T.DefK / (T.DefK + t.DefStat * (1 - h.IgnoreDef)); amt *= fDef; }
 
             double inc = t.Max("weaken") + t.Max("mark") - t.Max("dr") - t.Max("halo") + ModSum("dmg_in", t, s, t, h);
             if (t.Has("soaked")) { if (h.Elem == "fire") inc += T.SoakFire; else if (h.Elem == "lightning") inc += T.SoakLightning; }
-            amt *= Math.Max(0.1, 1 + inc);
-            if (t.ShieldTotal > 0) amt *= 1 + ModSum("dmg_vs_shield", s, s, t, h);
-            if (h.Direct && Rng.Chance(t.Base.Block + ModSum("block", t, s, t))) amt *= 0.5;
+            double fIn = Math.Max(0.1, 1 + inc);
+            amt *= fIn;
+            double fShield = 1;
+            if (t.ShieldTotal > 0) { fShield = 1 + ModSum("dmg_vs_shield", s, s, t, h); amt *= fShield; }
+            double fBlock = 1;
+            if (h.Direct && Rng.Chance(t.Base.Block + ModSum("block", t, s, t))) { fBlock = 0.5; amt *= 0.5; }
+            if (tr != null)
+            {
+                tr.Out = fOut; tr.Counter = fCounter; tr.Crit = fCrit; tr.Def = fDef; tr.In = fIn; tr.Shield = fShield; tr.Block = fBlock; tr.Final = amt;
+                OnHit(tr);
+            }
 
             // Damage sharing: Isolde's redirect, Thessaly's soul tether.
             if (h.Kind != HitKind.Reflect)

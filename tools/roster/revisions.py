@@ -165,3 +165,20 @@ PASSES[6] = [
  ("isolde","ultimate.tags",["dr"],"Martyrdom takes allies' damage but never taunts; the taunt tag overstated it"),
  ("nyx","skill2.tags",["buff_crit"],"Shadowstep deals no damage itself: it sets up a guaranteed crit"),
 ]
+
+# ---------------- PASS 7: first balance pass from the niche report v3 (battle sim, 234,000 paired battles) ----------------
+# Dominant heroes toned down, clearly no-niche heroes strengthened. Borderline heroes left until the meta settles.
+PASSES[7] = [
+ ("isaura","ultimate.text","Drains 25 energy from all enemies and deals 5% ATK per energy drained.","Dominant (+23): energy denial stopped enemy ultimates; 40 -> 25"),
+ ("isaura","skill1.text","Steals 10 energy from her target.","Dominant: Siphon 15 -> 10"),
+ ("solenne","ultimate.text","A beam that pierces the whole row for 260% ATK.","Dominant (+20): Noon Lance 320% -> 260%"),
+ ("ilyra","ultimate.text","Fire blast on all enemies for 190% ATK; if she falls within 10s she revives at 30% (once).","Dominant (+16): Rebirth Flame 240% -> 190%"),
+ ("cassia","ultimate.text","Holy zone for 5s: enemies inside take 30% ATK per second.","Dominant (+11): Sanctified Ground 40% -> 30%"),
+ ("coralie","ultimate.text","A wall of water blocks enemy projectiles for 2s; enemies who touch it are Soaked.","Dominant (+11): Tidal Bulwark 3s -> 2s"),
+ ("caelith","ultimate.text","Three hits that each deal 25% of the target's max HP.","No niche (-23): heroes have low HP, so 15% max HP was weaker than a basic skill; 15% -> 25%"),
+ ("venna","skill1.text","Poisons the target (3%/s) for 4s.","No niche (-19): poison is % max HP; 2% -> 3%"),
+ ("venna","ultimate.text","Poisons all enemies (6% max HP/s) for 4s.","No niche: Nightshade Bloom 4% -> 6%"),
+ ("nyx","ultimate.text","Blinks to the weakest enemy, strikes for 300% ATK and executes her below 25% HP.","No niche (-17): Night's Edge 200% -> 300%, execute 20% -> 25%; the strike is now in the text"),
+ ("vesper","skill1.text","Curses an enemy: whoever hits it heals for 30% of the damage.","No niche (-12): Feeding Curse 15% -> 30%; the amount is now in the text"),
+ ("maelis","ultimate.text","Smouldering ash burns all enemies for 50% ATK per second for 6s.","No niche (-11): Ashfall 35% -> 50% ATK/s; the amount is now in the text"),
+]

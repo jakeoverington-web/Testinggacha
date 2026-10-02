@@ -1,5 +1,5 @@
 {
- "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 6).",
+ "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 7).",
  "heroes": [
   {
    "id": "cassia",
@@ -34,7 +34,7 @@
    "skills": {
     "ultimate": {
      "name": "Sanctified Ground",
-     "text": "Holy zone for 5s: enemies inside take 40% ATK per second.",
+     "text": "Holy zone for 5s: enemies inside take 30% ATK per second.",
      "tags": [
       "dmg_aoe"
      ],
@@ -48,7 +48,7 @@
        "ops": [
         {
          "op": "dmg",
-         "m": 0.4,
+         "m": 0.3,
          "to": "zone_enemies"
         }
        ]
@@ -543,7 +543,7 @@
    "skills": {
     "ultimate": {
      "name": "Rebirth Flame",
-     "text": "Fire blast on all enemies for 240% ATK; if she falls within 10s she revives at 30% (once).",
+     "text": "Fire blast on all enemies for 190% ATK; if she falls within 10s she revives at 30% (once).",
      "tags": [
       "dmg_aoe",
       "revive"
@@ -551,7 +551,7 @@
      "ops": [
       {
        "op": "dmg",
-       "m": 2.4,
+       "m": 1.9,
        "to": "enemies",
        "elem": "fire"
       },
@@ -1054,14 +1054,14 @@
    "skills": {
     "ultimate": {
      "name": "Noon Lance",
-     "text": "A beam that pierces the whole row for 320% ATK.",
+     "text": "A beam that pierces the whole row for 260% ATK.",
      "tags": [
       "dmg_row"
      ],
      "ops": [
       {
        "op": "dmg",
-       "m": 3.2,
+       "m": 2.6,
        "to": "target_row"
       }
      ]
@@ -2337,7 +2337,7 @@
    "skills": {
     "ultimate": {
      "name": "Ashfall",
-     "text": "Smouldering ash burns all enemies for 6s.",
+     "text": "Smouldering ash burns all enemies for 50% ATK per second for 6s.",
      "tags": [
       "dot_burn"
      ],
@@ -2347,7 +2347,7 @@
        "s": "burn",
        "to": "enemies",
        "dur": 6,
-       "v": 0.35
+       "v": 0.5
       }
      ]
     },
@@ -2515,7 +2515,7 @@
    "skills": {
     "ultimate": {
      "name": "Night's Edge",
-     "text": "Blinks to the weakest enemy and executes them below 20% HP.",
+     "text": "Blinks to the weakest enemy, strikes for 300% ATK and executes her below 25% HP.",
      "tags": [
       "execute"
      ],
@@ -2527,9 +2527,9 @@
       },
       {
        "op": "dmg",
-       "m": 2.0,
+       "m": 3.0,
        "to": "weakest_enemy",
-       "execute": 0.2
+       "execute": 0.25
       }
      ]
     },
@@ -3387,7 +3387,7 @@
     "skill1": {
      "name": "Feeding Curse",
      "cooldown": 7,
-     "text": "Curses an enemy: allies heal whenever it is hit.",
+     "text": "Curses an enemy: whoever hits it heals for 30% of the damage.",
      "tags": [
       "curse"
      ],
@@ -3397,7 +3397,7 @@
        "s": "feeding_curse",
        "to": "target",
        "dur": 5,
-       "v": 0.15
+       "v": 0.3
       }
      ]
     },
@@ -5162,7 +5162,7 @@
    "skills": {
     "ultimate": {
      "name": "Nightshade Bloom",
-     "text": "Poisons all enemies (4% max HP/s) for 4s.",
+     "text": "Poisons all enemies (6% max HP/s) for 4s.",
      "tags": [
       "dot_poison"
      ],
@@ -5172,14 +5172,14 @@
        "s": "poison",
        "to": "enemies",
        "dur": 4,
-       "v": 0.04
+       "v": 0.06
       }
      ]
     },
     "skill1": {
      "name": "Toxic Dart",
      "cooldown": 6,
-     "text": "Poisons the target (2%/s) for 4s.",
+     "text": "Poisons the target (3%/s) for 4s.",
      "tags": [
       "dot_poison"
      ],
@@ -5189,7 +5189,7 @@
        "s": "poison",
        "to": "target",
        "dur": 4,
-       "v": 0.02
+       "v": 0.03
       }
      ]
     },
@@ -5207,7 +5207,7 @@
        "s": "poison",
        "to": "enemies_near_target:2",
        "dur": 3,
-       "v": 0.02
+       "v": 0.03
       },
       {
        "op": "status",
@@ -6068,7 +6068,7 @@
    "skills": {
     "ultimate": {
      "name": "Tidal Bulwark",
-     "text": "A wall of water blocks enemy projectiles for 3s; enemies who touch it are Soaked.",
+     "text": "A wall of water blocks enemy projectiles for 2s; enemies who touch it are Soaked.",
      "tags": [
       "dr",
       "soak"
@@ -6078,7 +6078,7 @@
        "op": "status",
        "s": "projectile_block",
        "to": "allies",
-       "dur": 3
+       "dur": 2
       },
       {
        "op": "status",
@@ -8781,7 +8781,7 @@
    "skills": {
     "ultimate": {
      "name": "Unraveling",
-     "text": "Three hits that each deal 15% of the target's max HP.",
+     "text": "Three hits that each deal 25% of the target's max HP.",
      "tags": [
       "dmg_single"
      ],
@@ -8790,7 +8790,7 @@
        "op": "dmg",
        "m": 0,
        "to": "target",
-       "pctMaxHp": 0.15,
+       "pctMaxHp": 0.25,
        "hits": 3
       }
      ]
@@ -8953,7 +8953,7 @@
    "skills": {
     "ultimate": {
      "name": "Null Field",
-     "text": "Drains 40 energy from all enemies and deals 5% ATK per energy drained.",
+     "text": "Drains 25 energy from all enemies and deals 5% ATK per energy drained.",
      "tags": [
       "energy_drain",
       "dmg_aoe"
@@ -8961,7 +8961,7 @@
      "ops": [
       {
        "op": "energy",
-       "v": -40,
+       "v": -25,
        "to": "enemies",
        "dmgPerEnergy": 0.05
       }
@@ -8970,14 +8970,14 @@
     "skill1": {
      "name": "Siphon",
      "cooldown": 6,
-     "text": "Steals 15 energy from her target.",
+     "text": "Steals 10 energy from her target.",
      "tags": [
       "energy_drain"
      ],
      "ops": [
       {
        "op": "energy",
-       "v": -15,
+       "v": -10,
        "to": "target",
        "steal": true
       }
