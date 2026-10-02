@@ -1,9 +1,11 @@
 {
-  "_schema": "races v4 — 5 core races (combat) with sub-races (looks/theme only); ids are permanent, display names provisional, loop order confirmed. Sub-race lists = exactly the sub-races heroes.json uses. draftLoreName/homeland come from the World Bible draft (not approved). Decisions rows 3, 20, 22, 27",
+  "_schema": "races v5 — 5 core races (combat) with sub-races (looks/theme only); ids are permanent. name = approved lore name, typeLabel = short combat label. Sub-race lists = exactly the sub-races heroes.json uses. Lore: World Bible. Decisions rows 3, 20, 22, 27",
   "cores": [
     {
       "id": "high",
-      "name": "High Elves",
+      "name": "Lumarin",
+      "typeLabel": "High",
+      "homeland": "The Gilded Spire",
       "counters": "dark",
       "accent": "#D9B45A",
       "light": "warm gold dawn, high-key",
@@ -16,13 +18,13 @@
         "dawn",
         "halo",
         "phoenix"
-      ],
-      "draftLoreName": "Lumarin",
-      "homeland": "The Gilded Spire"
+      ]
     },
     {
       "id": "dark",
-      "name": "Dark Elves",
+      "name": "Noctyr",
+      "typeLabel": "Dark",
+      "homeland": "Ashmourne",
       "counters": "nature",
       "accent": "#B3263A",
       "light": "cold crimson night, low-key",
@@ -33,13 +35,13 @@
         "ash",
         "ember",
         "grave"
-      ],
-      "draftLoreName": "Noctyr",
-      "homeland": "Ashmourne"
+      ]
     },
     {
       "id": "nature",
-      "name": "Nature Elves",
+      "name": "Verdani",
+      "typeLabel": "Nature",
+      "homeland": "The Elderwild",
       "counters": "ocean",
       "accent": "#4FAF77",
       "light": "dappled emerald forest",
@@ -52,13 +54,13 @@
         "owl",
         "stag",
         "willow"
-      ],
-      "draftLoreName": "Verdani",
-      "homeland": "The Elderwild"
+      ]
     },
     {
       "id": "ocean",
-      "name": "Ocean Elves",
+      "name": "Thalyri",
+      "typeLabel": "Ocean",
+      "homeland": "The Drowned Reach",
       "counters": "arcane",
       "accent": "#2F8FD0",
       "light": "deep blue-teal moonlit water",
@@ -71,13 +73,13 @@
         "kraken",
         "mermaid",
         "rain"
-      ],
-      "draftLoreName": "Thalyri",
-      "homeland": "The Drowned Reach"
+      ]
     },
     {
       "id": "arcane",
-      "name": "Arcane Elves",
+      "name": "Aethari",
+      "typeLabel": "Arcane",
+      "homeland": "The Unlit Observatory",
       "counters": "high",
       "accent": "#8A7BE0",
       "light": "indigo starlight, floating runes",
@@ -89,9 +91,7 @@
         "void",
         "dream",
         "moon"
-      ],
-      "draftLoreName": "Aethari",
-      "homeland": "The Unlit Observatory"
+      ]
     }
   ],
   "subraces": {
@@ -138,5 +138,6 @@
     "_note": "values to be tuned; null = not set yet",
     "threePlusTwo": null,
     "fiveOfOneCore": null
-  }
+  },
+  "world": "Ilvareth"
 }

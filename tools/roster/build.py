@@ -10,7 +10,7 @@ import pathlib
 REPO = str(pathlib.Path(__file__).resolve().parents[2] / "Assets/_Game/Data") + "/"
 KW = dict(KEYWORDS, Drained="enemy has had energy stolen")
 CORE_ORDER = ["high", "dark", "nature", "ocean", "arcane"]
-CORE_NAME = {"high": "High", "dark": "Dark", "nature": "Nature", "ocean": "Ocean", "arcane": "Arcane"}
+CORE_NAME = {"high": "Lumarin (High)", "dark": "Noctyr (Dark)", "nature": "Verdani (Nature)", "ocean": "Thalyri (Ocean)", "arcane": "Aethari (Arcane)"}
 ROLE_ORDER = ["tank", "dps", "healer", "support"]
 ROLE_NAME = {"tank": "Tank", "dps": "DPS", "healer": "Healer", "support": "Support"}
 
@@ -74,7 +74,7 @@ os.makedirs("md", exist_ok=True)
 def esc(s): return s.replace("|", "/")
 for c in CORE_ORDER:
     rows = [h for h in heroes if h["core"] == c]
-    beats = {"high": "Dark", "dark": "Nature", "nature": "Ocean", "ocean": "Arcane", "arcane": "High"}[c]
+    beats = {"high": "Noctyr", "dark": "Verdani", "nature": "Thalyri", "ocean": "Aethari", "arcane": "Lumarin"}[c]
     lines = [f"### {CORE_NAME[c]} · beats {beats}", "",
              "| Hero | Role and style | Targets and moves | Ultimate | Skill 1 | Skill 2 | Passive | Best partners |",
              "| --- | --- | --- | --- | --- | --- | --- | --- |"]

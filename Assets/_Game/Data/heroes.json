@@ -1292,7 +1292,7 @@
   },
   {
    "id": "seraphine",
-   "name": "Seraphine",
+   "name": "Seravelle",
    "core": "high",
    "subrace": "seraph",
    "role": "support",
@@ -1493,7 +1493,7 @@
   },
   {
    "id": "morwen",
-   "name": "Morwen",
+   "name": "Sangrael",
    "core": "dark",
    "subrace": "blood",
    "role": "tank",
@@ -2559,7 +2559,7 @@
   },
   {
    "id": "nocturne",
-   "name": "Nocturne",
+   "name": "Noctelle",
    "core": "dark",
    "subrace": "shadow",
    "role": "support",
@@ -2798,8 +2798,150 @@
    "bond": null
   },
   {
+   "id": "briar",
+   "name": "Briar",
+   "core": "nature",
+   "subrace": "thorn",
+   "role": "tank",
+   "style": "Thorns",
+   "range": "melee",
+   "targeting": "Nearest",
+   "movement": "Walks to the front",
+   "stats": {
+    "moveSpd": 3.0,
+    "critRate": 0.05,
+    "critDmg": 1.5,
+    "effectRes": 0.25,
+    "haste": 0,
+    "energyRegen": 0,
+    "accuracy": 0,
+    "dodge": 0,
+    "block": 0.1,
+    "effectHit": 0,
+    "lifesteal": 0,
+    "healPower": 0,
+    "healRecv": 0,
+    "hp": 2400,
+    "atk": 87,
+    "def": 220,
+    "atkSpd": 0.8,
+    "range": 1
+   },
+   "skills": {
+    "ultimate": {
+     "name": "Wall of Briars",
+     "text": "Barrier that reflects 30% of damage for 4s.",
+     "tags": [
+      "reflect",
+      "dr"
+     ]
+    },
+    "skill1": {
+     "name": "Thorn Lash",
+     "cooldown": 7,
+     "text": "Taunts and makes the target bleed.",
+     "tags": [
+      "taunt",
+      "dot_bleed"
+     ]
+    },
+    "skill2": {
+     "name": "Root Hold",
+     "cooldown": 12,
+     "text": "Plants herself and gains DEF up (60%) for 3s.",
+     "tags": [
+      "buff_def"
+     ]
+    },
+    "passive": {
+     "name": "Bramble Skin",
+     "text": "Reflects 15% of melee damage.",
+     "tags": [
+      "reflect"
+     ]
+    }
+   },
+   "applies": [
+    "Taunted",
+    "Bleed"
+   ],
+   "payoffs": [
+    "Taunted"
+   ],
+   "synergy": [
+    {
+     "hero": "briallen",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "coralie",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "corvina",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "morwen",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "ravenna",
+     "via": [
+      "Bleed"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Bleed"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Bleed"
+     ]
+    },
+    {
+     "hero": "ysolde",
+     "via": [
+      "Taunted"
+     ]
+    }
+   ],
+   "art": {
+    "look": "Briar-thorn armour, blood-red roses, scratches on pale skin",
+    "fullbody": "hero_briar_fullbody",
+    "card": "hero_briar_card",
+    "icon": "hero_briar_icon"
+   },
+   "maxStars": 5,
+   "bond": null
+  },
+  {
    "id": "briallen",
-   "name": "Briallen",
+   "name": "Eldrith",
    "core": "nature",
    "subrace": "wood",
    "role": "tank",
@@ -2951,150 +3093,8 @@
    "bond": null
   },
   {
-   "id": "briar",
-   "name": "Briar",
-   "core": "nature",
-   "subrace": "thorn",
-   "role": "tank",
-   "style": "Thorns",
-   "range": "melee",
-   "targeting": "Nearest",
-   "movement": "Walks to the front",
-   "stats": {
-    "moveSpd": 3.0,
-    "critRate": 0.05,
-    "critDmg": 1.5,
-    "effectRes": 0.25,
-    "haste": 0,
-    "energyRegen": 0,
-    "accuracy": 0,
-    "dodge": 0,
-    "block": 0.1,
-    "effectHit": 0,
-    "lifesteal": 0,
-    "healPower": 0,
-    "healRecv": 0,
-    "hp": 2400,
-    "atk": 87,
-    "def": 220,
-    "atkSpd": 0.8,
-    "range": 1
-   },
-   "skills": {
-    "ultimate": {
-     "name": "Wall of Briars",
-     "text": "Barrier that reflects 30% of damage for 4s.",
-     "tags": [
-      "reflect",
-      "dr"
-     ]
-    },
-    "skill1": {
-     "name": "Thorn Lash",
-     "cooldown": 7,
-     "text": "Taunts and makes the target bleed.",
-     "tags": [
-      "taunt",
-      "dot_bleed"
-     ]
-    },
-    "skill2": {
-     "name": "Root Hold",
-     "cooldown": 12,
-     "text": "Plants herself and gains DEF up (60%) for 3s.",
-     "tags": [
-      "buff_def"
-     ]
-    },
-    "passive": {
-     "name": "Bramble Skin",
-     "text": "Reflects 15% of melee damage.",
-     "tags": [
-      "reflect"
-     ]
-    }
-   },
-   "applies": [
-    "Taunted",
-    "Bleed"
-   ],
-   "payoffs": [
-    "Taunted"
-   ],
-   "synergy": [
-    {
-     "hero": "briallen",
-     "via": [
-      "Taunted"
-     ]
-    },
-    {
-     "hero": "coralie",
-     "via": [
-      "Taunted"
-     ]
-    },
-    {
-     "hero": "corvina",
-     "via": [
-      "Taunted"
-     ]
-    },
-    {
-     "hero": "morwen",
-     "via": [
-      "Taunted"
-     ]
-    },
-    {
-     "hero": "ravenna",
-     "via": [
-      "Bleed"
-     ]
-    },
-    {
-     "hero": "sable",
-     "via": [
-      "Bleed"
-     ]
-    },
-    {
-     "hero": "vaela",
-     "via": [
-      "Taunted"
-     ]
-    },
-    {
-     "hero": "valeria",
-     "via": [
-      "Taunted"
-     ]
-    },
-    {
-     "hero": "vesper",
-     "via": [
-      "Bleed"
-     ]
-    },
-    {
-     "hero": "ysolde",
-     "via": [
-      "Taunted"
-     ]
-    }
-   ],
-   "art": {
-    "look": "Briar-thorn armour, blood-red roses, scratches on pale skin",
-    "fullbody": "hero_briar_fullbody",
-    "card": "hero_briar_card",
-    "icon": "hero_briar_icon"
-   },
-   "maxStars": 5,
-   "bond": null
-  },
-  {
    "id": "ysolde",
-   "name": "Ysolde",
+   "name": "Hartwen",
    "core": "nature",
    "subrace": "stag",
    "role": "tank",
@@ -4604,7 +4604,7 @@
   },
   {
    "id": "kael",
-   "name": "Kael",
+   "name": "Halcyra",
    "core": "ocean",
    "subrace": "storm",
    "role": "dps",
@@ -5480,117 +5480,6 @@
    "bond": null
   },
   {
-   "id": "nerine",
-   "name": "Nerine",
-   "core": "ocean",
-   "subrace": "pearl",
-   "role": "support",
-   "style": "Tidecaller",
-   "range": "ranged",
-   "targeting": "Densest enemy group",
-   "movement": "Holds range",
-   "stats": {
-    "moveSpd": 3.0,
-    "critRate": 0.05,
-    "critDmg": 1.5,
-    "effectRes": 0.15,
-    "haste": 0,
-    "energyRegen": 0,
-    "accuracy": 0,
-    "dodge": 0,
-    "block": 0,
-    "effectHit": 0.25,
-    "lifesteal": 0,
-    "healPower": 0,
-    "healRecv": 0,
-    "hp": 1480,
-    "atk": 175,
-    "def": 110,
-    "atkSpd": 0.85,
-    "range": 4
-   },
-   "skills": {
-    "ultimate": {
-     "name": "High Tide",
-     "text": "Soaks and pushes back all enemies; allies gain 20 energy.",
-     "tags": [
-      "cc_knock",
-      "buff_energy"
-     ]
-    },
-    "skill1": {
-     "name": "Spray",
-     "cooldown": 8,
-     "text": "Soaks and slows one enemy for 3s.",
-     "tags": [
-      "debuff_slow",
-      "soak"
-     ]
-    },
-    "skill2": {
-     "name": "Clear Water",
-     "cooldown": 10,
-     "text": "Cleanses one ally.",
-     "tags": [
-      "cleanse"
-     ]
-    },
-    "passive": {
-     "name": "Brine Weight",
-     "text": "Slowed enemies attack 15% slower.",
-     "tags": [
-      "debuff_slow"
-     ]
-    }
-   },
-   "applies": [
-    "Slow",
-    "Energy",
-    "Soaked"
-   ],
-   "payoffs": [],
-   "synergy": [
-    {
-     "hero": "kael",
-     "via": [
-      "Soaked"
-     ]
-    },
-    {
-     "hero": "lorelei",
-     "via": [
-      "Soaked"
-     ]
-    },
-    {
-     "hero": "nerissa",
-     "via": [
-      "Slow"
-     ]
-    },
-    {
-     "hero": "rhiannon",
-     "via": [
-      "Energy"
-     ]
-    },
-    {
-     "hero": "ysra",
-     "via": [
-      "Soaked"
-     ]
-    }
-   ],
-   "art": {
-    "look": "Pearl diadem, sea-foam lace train, waves breaking behind her",
-    "fullbody": "hero_nerine_fullbody",
-    "card": "hero_nerine_card",
-    "icon": "hero_nerine_icon"
-   },
-   "maxStars": 5,
-   "bond": null
-  },
-  {
    "id": "ondine",
    "name": "Ondine",
    "core": "ocean",
@@ -5718,6 +5607,117 @@
     "fullbody": "hero_ondine_fullbody",
     "card": "hero_ondine_card",
     "icon": "hero_ondine_icon"
+   },
+   "maxStars": 5,
+   "bond": null
+  },
+  {
+   "id": "nerine",
+   "name": "Pelagia",
+   "core": "ocean",
+   "subrace": "pearl",
+   "role": "support",
+   "style": "Tidecaller",
+   "range": "ranged",
+   "targeting": "Densest enemy group",
+   "movement": "Holds range",
+   "stats": {
+    "moveSpd": 3.0,
+    "critRate": 0.05,
+    "critDmg": 1.5,
+    "effectRes": 0.15,
+    "haste": 0,
+    "energyRegen": 0,
+    "accuracy": 0,
+    "dodge": 0,
+    "block": 0,
+    "effectHit": 0.25,
+    "lifesteal": 0,
+    "healPower": 0,
+    "healRecv": 0,
+    "hp": 1480,
+    "atk": 175,
+    "def": 110,
+    "atkSpd": 0.85,
+    "range": 4
+   },
+   "skills": {
+    "ultimate": {
+     "name": "High Tide",
+     "text": "Soaks and pushes back all enemies; allies gain 20 energy.",
+     "tags": [
+      "cc_knock",
+      "buff_energy"
+     ]
+    },
+    "skill1": {
+     "name": "Spray",
+     "cooldown": 8,
+     "text": "Soaks and slows one enemy for 3s.",
+     "tags": [
+      "debuff_slow",
+      "soak"
+     ]
+    },
+    "skill2": {
+     "name": "Clear Water",
+     "cooldown": 10,
+     "text": "Cleanses one ally.",
+     "tags": [
+      "cleanse"
+     ]
+    },
+    "passive": {
+     "name": "Brine Weight",
+     "text": "Slowed enemies attack 15% slower.",
+     "tags": [
+      "debuff_slow"
+     ]
+    }
+   },
+   "applies": [
+    "Slow",
+    "Energy",
+    "Soaked"
+   ],
+   "payoffs": [],
+   "synergy": [
+    {
+     "hero": "kael",
+     "via": [
+      "Soaked"
+     ]
+    },
+    {
+     "hero": "lorelei",
+     "via": [
+      "Soaked"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "rhiannon",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Soaked"
+     ]
+    }
+   ],
+   "art": {
+    "look": "Pearl diadem, sea-foam lace train, waves breaking behind her",
+    "fullbody": "hero_nerine_fullbody",
+    "card": "hero_nerine_card",
+    "icon": "hero_nerine_icon"
    },
    "maxStars": 5,
    "bond": null
@@ -6478,7 +6478,7 @@
   },
   {
    "id": "lunara",
-   "name": "Lunara",
+   "name": "Lunaith",
    "core": "arcane",
    "subrace": "dream",
    "role": "healer",
