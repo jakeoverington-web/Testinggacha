@@ -24,13 +24,16 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 | 17 | Team presets | 5 saved presets (team + formation), edited in the Team tab with no enemy shown | Presets can be loaded in any game mode | 2026-10-02 |
 | 18 | Pre-battle setup | Campaign, Boss, PvP etc. show the enemy formation; player loads a preset or builds a custom setup | Last-used setup is remembered per game mode and auto-fills the next stage | 2026-10-02 |
 | 19 | Battle movement | Real-time, free-flowing | Formation sets starting positions only; heroes then move, close distance and fight (melee run in, ranged hang back). Needs move speed + attack range per hero; sim runs on a fixed timestep with seeded RNG so it stays replayable. Reference: Mythic Heroes battle | 2026-10-02 |
-| 20 | Art direction | Detailed modern anime, closest to Omni Heroes; adult/NSFW content | Character portraits and full illustrations (cards, hero detail, lobby, gallery): Azur Lane is the main reference. Also references: Azur Lane, Brown Dust 2, Destiny Child, NIKKE. Every character is an adult and drawn as one. Mythic Heroes is a reference for systems, layout and flow only; its art and home screen are explicitly disliked (dated) | 2026-10-02 |
+| 20 | Art direction | WLOP is the art guideline: dark painterly fantasy; adult/NSFW content | Replaces the earlier Omni Heroes / Azur Lane direction. Five habits: sharp face and jewellery with loose edges; one saturated accent colour on a desaturated world; jewellery carries the detail; melancholy over cute; one light source plus drifting particles. High Elves warm high-key light, Dark Elves cool low-key light. Element sets each hero's single accent colour. Inspired, never copied (no redraws of his characters or compositions). Every character is an adult and drawn as one, with adult faces and proportions. Mythic Heroes is a reference for systems only. Full study: WLOP Style Study (Claude Docs) | 2026-10-02 |
 | 21 | Campaign auto mode | Auto toggle on the current stage | Plays each battle normally, then starts the next stage after a win; stops on a loss. No batch skipping of many stages at once | 2026-10-02 |
+| 22 | World theme | Elves only: High Elves and Dark Elves | Tone mixes both: sacred and serene vs sly and dangerous | 2026-10-02 |
+| 23 | UI vs art | The UI follows the art | UI colours, backgrounds, shapes and fonts (currently Gold Glass) may be changed wherever they clash with the WLOP guideline | 2026-10-02 |
 
 ## Open questions
 
 - What the hard pity number and spark threshold should be (row 10).
 - Pity and spark thresholds; max stars and costs per star.
 - Number of elements, factions and gear slots per hero.
+- Are High and Dark Elves the two factions, or are there houses within each?
 - Idle-loot cap in hours.
 - ~~Platform plan for adult art~~ Resolved: personal build, installed directly on the owner's phone; no store release, so no store content rules apply.
