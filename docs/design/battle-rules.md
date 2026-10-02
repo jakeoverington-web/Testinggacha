@@ -39,7 +39,7 @@ Code: `Assets/_Game/Scripts/Core/Battle/` (engine-free). Tuning: `Data/battle.js
 
 Enemy target keys (from each hero's targeting text): nearest, highest_atk, densest, healer_first, near_weakest_ally, most_energy, highest_hp, isolated_else_carry, lowest_hp, lowest_hp_back, most_buffed, nearest_with:status, with_else_highest_atk:status, random (sticky). Taunt overrides; marked enemies are preferred by everyone; charmed units attack their own side.
 
-Movement: advance (melee), kite (stop at range), follow (stand behind the followed ally), guard (Isolde: beside the weakest ally). Units on a team nudge apart; nobody body-blocks.
+Movement: advance (melee), dive (Nyx, Nerissa, Ophira, Lucienne: wait just behind the front line until an ally is in melee, she is hit, or 3 s pass), kite (stop at range), follow (stand behind the followed ally), guard (Isolde: beside the weakest ally). Units on a team nudge apart; nobody body-blocks.
 
 ## Interpretations awaiting review
 
@@ -52,4 +52,4 @@ These fill gaps the kit text leaves open; all are data in `kits.py` or `battle.j
 | Projectiles (Coralie, Vaela walls) | Basic attacks and single-target skills from ranged heroes |
 | Nyx ultimate | Deals 200% ATK, then executes if under 20% HP |
 | Summons | Wolves 30% HP / 40% ATK for 10 s; decoy 20% HP, taunts enemies within 3 m; Rhiannon's stag is untargetable, 50% ATK, leaves with her |
-| Small kit reads | Halcyra's Static Mark hits for 80% lightning; Vesper's curse heals the hitter 15% of damage; Seren's Star Map gives 5 energy per ally hit; Aurelle revives the first ally to fall in 8 s; Mireille's after-regen starts when Bloomfall ends |
+| Small kit reads | Halcyra's Static Mark hits for 80% lightning; Vesper's curse heals the hitter 15% of damage; her ultimate heals each ally for 60% of the damage it dealt; Seren's Star Map gives 5 energy per ally hit; Aurelle revives the first ally to fall in 8 s; Mireille's after-regen starts when Bloomfall ends |

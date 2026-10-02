@@ -12,6 +12,7 @@
   "defK": 300,
   "initialCooldownPct": 0.5,
   "castLock": 0.3,
+  "diveDelay": 3.0,
   "meleeRangeMax": 2.0,
   "hasteEnergyFactor": 0.5,
   "shieldDuration": 10,

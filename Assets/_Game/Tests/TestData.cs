@@ -18,6 +18,9 @@ namespace Gacha.Tests
             g.Heroes["dummy_dark"] = Dummy("dummy_dark", "dark", hp: 1_000_000, atk: 0, def: 0, atkSpd: 0);
             g.Heroes["dummy_def300"] = Dummy("dummy_def300", "high", hp: 1_000_000, atk: 0, def: 300, atkSpd: 0);
             g.Heroes["striker"] = Dummy("striker", "high", hp: 1_000_000, atk: 100, def: 0, atkSpd: 1);
+            // Training ground: no race (no counter bonus), DEF 0, resist 0, never acts.
+            g.Heroes["target_dummy"] = Dummy("target_dummy", "none", hp: 100_000, atk: 0, def: 0, atkSpd: 0);
+            g.Heroes["ally_dummy"] = Dummy("ally_dummy", "none", hp: 10_000, atk: 0, def: 0, atkSpd: 0);
             return g;
         }
 

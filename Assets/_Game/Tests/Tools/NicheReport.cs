@@ -10,7 +10,7 @@ namespace Gacha.Tests.Tools
     /// <summary>
     /// Niche report (balance kind 5): "every hero is the best pick somewhere; no hero is the best pick everywhere".
     /// Uplift = how much a hero raises her team's result versus a random same-role replacement, same opponent, same seed.
-    /// Measured in 12 situations, plus role yardsticks (damage share, clutch healing, damage soaked, effects applied).
+    /// Measured in 13 situations, plus role yardsticks (damage share, clutch healing, damage soaked, effects applied).
     /// Run: tools/csharp/test.sh -Main Gacha.Tests.Tools.NicheReport [samplesPerSituation=100] [seed=1]
     /// </summary>
     public static class NicheReport
@@ -26,7 +26,7 @@ namespace Gacha.Tests.Tools
             ["vs control"] = new[] { "tank", "support", "support", "support", "dps" } };
         static readonly string[] Races = { "high", "dark", "nature", "ocean", "arcane" };
         public static readonly string[] Situations = {
-            "random", "vs high", "vs dark", "vs nature", "vs ocean", "vs arcane", "vs tanky", "vs sustain", "vs burst", "vs control", "with partner", "own race" };
+            "random", "vs high", "vs dark", "vs nature", "vs ocean", "vs arcane", "vs tanky", "vs sustain", "vs burst", "vs control", "with partner", "full package", "own race" };
 
         sealed class Acc
         {
@@ -110,6 +110,17 @@ namespace Gacha.Tests.Tools
                     {
                         var p = partners[rng.Range(0, partners.Count)];
                         own = Fill(rng, PatternWith(rng, def.Role, D.Heroes[p].Role), null, new List<string> { h, p });
+                    }
+                    else if (sit == "full package" && partners.Count > 0)
+                    {
+                        // as many of her synergy partners as fit (up to 3), at least one tank or healer kept if the pattern allows
+                        var pick = new List<string> { h };
+                        foreach (var p in partners.OrderBy(_ => rng.NextULong()))
+                            if (pick.Count < 4 && !pick.Contains(p)) pick.Add(p);
+                        var roles = pick.Select(x => D.Heroes[x].Role).ToArray();
+                        var pattern = Patterns.FirstOrDefault(pt => roles.GroupBy(x => x).All(g => pt.Count(r => r == g.Key) >= g.Count()));
+                        if (pattern == null) pattern = roles.Concat(new[] { "tank" }).Take(5).ToArray().Length == 5 ? roles.Concat(new[] { "tank" }).ToArray() : roles.Concat(Enumerable.Repeat("tank", 5 - roles.Length)).ToArray();
+                        own = Fill(rng, pattern, null, pick);
                     }
                     else if (sit == "own race") own = Fill(rng, PatternWith(rng, def.Role), def.Core, new List<string> { h });
                     else own = Fill(rng, PatternWith(rng, def.Role), null, new List<string> { h });
@@ -204,7 +215,7 @@ namespace Gacha.Tests.Tools
                 double overall = 100 * a.Up.Sum() / Math.Max(1, a.N.Sum());
                 int best = Array.IndexOf(up, up.Max()), worst = Array.IndexOf(up, up.Min());
                 int positive = up.Count(x => x > 2);
-                string verdict = overall >= 10 && positive >= 10 ? "DOMINANT" : up.Max() <= 2 ? "NO NICHE" : "niche";
+                string verdict = overall >= 10 && positive >= 11 ? "DOMINANT" : up.Max() <= 2 ? "NO NICHE" : "niche";
                 rows.Add((h, overall, best, worst, positive, verdict));
             }
 
@@ -215,7 +226,7 @@ namespace Gacha.Tests.Tools
             foreach (var r in flagged.OrderBy(r => r.verdict).ThenByDescending(r => r.overall))
             {
                 var d = D.Heroes[r.id];
-                Console.WriteLine($"- **{d.Name}** ({d.Core} {d.Role}): {r.verdict}. Overall {r.overall:+0;-0} points; above her peers in {r.positive} of 12 situations; best {Situations[r.best]}, worst {Situations[r.worst]}.");
+                Console.WriteLine($"- **{d.Name}** ({d.Core} {d.Role}): {r.verdict}. Overall {r.overall:+0;-0;0} points; above her peers in {r.positive} of 13 situations; best {Situations[r.best]}, worst {Situations[r.worst]}.");
             }
             Console.WriteLine();
 
@@ -234,7 +245,7 @@ namespace Gacha.Tests.Tools
                              : role == "healer" ? $"{a.Heal / a.Battles:0} / {a.Clutch / a.Battles:0}"
                              : role == "tank" ? $"{100 * a.Taken / Math.Max(1, a.TeamTaken):0}% / {100 * a.Alive / a.Battles:0}%"
                              : $"{a.Effects / a.Battles:0.0}";
-                    Console.WriteLine($"| {d.Name} | {d.Core} | {r.overall:+0;-0} | {Situations[r.best]} ({up[r.best]:+0;-0}) | {Situations[r.worst]} ({up[r.worst]:+0;-0}) | {y} | {r.verdict} |");
+                    Console.WriteLine($"| {d.Name} | {d.Core} | {r.overall:+0;-0;0} | {Situations[r.best]} ({up[r.best]:+0;-0;0}) | {Situations[r.worst]} ({up[r.worst]:+0;-0;0}) | {y} | {r.verdict} |");
                 }
                 Console.WriteLine();
             }
@@ -246,7 +257,7 @@ namespace Gacha.Tests.Tools
             foreach (var h in Roster.OrderBy(h => D.Heroes[h].Core).ThenBy(h => D.Heroes[h].Role))
             {
                 var a = acc[h];
-                Console.WriteLine($"| {D.Heroes[h].Name} | " + string.Join(" | ", Enumerable.Range(0, Situations.Length).Select(i => $"{100 * a.Up[i] / Math.Max(1, a.N[i]):+0;-0}")) + " |");
+                Console.WriteLine($"| {D.Heroes[h].Name} | " + string.Join(" | ", Enumerable.Range(0, Situations.Length).Select(i => $"{100 * a.Up[i] / Math.Max(1, a.N[i]):+0;-0;0}")) + " |");
             }
             Console.WriteLine();
 
@@ -258,8 +269,8 @@ namespace Gacha.Tests.Tools
             {
                 var hs = Roster.Where(h => D.Heroes[h].Core == race).ToList();
                 int own = Array.IndexOf(Situations, "own race");
-                string vs = string.Join(" / ", Races.Select(r2 => { int si = Array.IndexOf(Situations, "vs " + r2); return $"{hs.Average(h => 100 * acc[h].Up[si] / Math.Max(1, acc[h].N[si])):+0;-0}"; }));
-                Console.WriteLine($"| {race} | {hs.Average(h => 100 * acc[h].Up[own] / Math.Max(1, acc[h].N[own])):+0;-0} uplift | {vs} |");
+                string vs = string.Join(" / ", Races.Select(r2 => { int si = Array.IndexOf(Situations, "vs " + r2); return $"{hs.Average(h => 100 * acc[h].Up[si] / Math.Max(1, acc[h].N[si])):+0;-0;0}"; }));
+                Console.WriteLine($"| {race} | {hs.Average(h => 100 * acc[h].Up[own] / Math.Max(1, acc[h].N[own])):+0;-0;0} uplift | {vs} |");
             }
         }
     }

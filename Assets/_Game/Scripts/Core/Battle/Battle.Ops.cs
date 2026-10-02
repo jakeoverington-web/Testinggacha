@@ -120,7 +120,7 @@ namespace Gacha.Core.Battle
                             if (n.Has("over"))
                             {
                                 double over = n.Num("over");
-                                if (ApplyStatus(u, t, "hot", over, 0, null)) { var hot = t.Get("hot"); hot.Amount = Math.Max(hot.Amount, raw / over); }
+                                if (ApplyStatus(u, t, "hot", over, raw / Math.Max(1, t.MaxHp), null)) { var hot = t.Get("hot"); hot.Amount = Math.Max(hot.Amount, raw / over); }
                                 FireTriggers(u, "heal_given", t, raw);
                             }
                             else Heal(u, t, raw, true);
@@ -171,13 +171,13 @@ namespace Gacha.Core.Battle
                         {
                             int back = (t.HpHistoryPos + 1) % t.HpHistory.Length;
                             double past = Math.Min(t.HpHistory[back], t.MaxHp);
-                            if (past > t.Hp) { Emit(Ev.Heal, u.Index, t.Index, "rewind", past - t.Hp); t.Hp = past; }
+                            if (past > t.Hp) { Emit(Ev.Heal, u.Index, t.Index, "rewind", past - t.Hp, false, n.Num("sec", 3)); t.Hp = past; }
                             break;
                         }
                     case "execute":
                         if (t.Alive && t.HpPct < n.Num("below"))
                         {
-                            Emit(Ev.Damage, u.Index, t.Index, "execute", t.Hp);
+                            Emit(Ev.Damage, u.Index, t.Index, "execute", t.Hp, false, n.Num("below"));
                             Kill(t, u);
                             if (!t.Alive && n.Has("killEnergy")) GainEnergy(u, n.Num("killEnergy"), false, u);
                         }
@@ -206,7 +206,7 @@ namespace Gacha.Core.Battle
                     double dealt = Hit(u, t, raw, h);
                     total += dealt;
                     if (n.Has("drain") && dealt > 0) Heal(u, u, dealt * n.Num("drain"), false);
-                    if (n.Has("execute") && t.Alive && t.HpPct < n.Num("execute")) { Emit(Ev.Damage, u.Index, t.Index, "execute", t.Hp); Kill(t, u); }
+                    if (n.Has("execute") && t.Alive && t.HpPct < n.Num("execute")) { Emit(Ev.Damage, u.Index, t.Index, "execute", t.Hp, false, n.Num("execute")); Kill(t, u); }
                     if (n.Has("then")) { var sub = new OpCtx { Ability = ctx.Ability, Kind = ctx.Kind, Primary = ctx.Primary, AllyPrimary = ctx.AllyPrimary, HitUnit = t, Zone = ctx.Zone }; RunOps(u, n.Nodes("then"), sub); }
                     if (Over) return;
                 }
@@ -214,7 +214,7 @@ namespace Gacha.Core.Battle
             if (n.Has("healTeam") && total > 0)
             {
                 var team = AlliesOf(u, false, true);
-                foreach (var a in team) Heal(u, a, total * n.Num("healTeam") / team.Count, false);
+                foreach (var a in team) Heal(u, a, total * n.Num("healTeam"), false);
             }
         }
 
@@ -248,6 +248,7 @@ namespace Gacha.Core.Battle
             double x = u.X, y = u.Y;
             if (n.Str("at") == "target" && ctx.Primary != null) { x = ctx.Primary.X; y = ctx.Primary.Y; }
             _zones.Add(new Zone { Caster = u, X = x, Y = y, R = n.Num("r", 2), Remaining = n.Num("dur", 3), Every = n.Num("every", 1), Timer = 0, Ops = n.Nodes("ops"), Ability = ctx.Ability });
+            Emit(Ev.Zone, u.Index, -1, ctx.Ability, n.Num("dur", 3), false, n.Num("r", 2));
         }
 
         void OpSummon(Unit u, Node n)
@@ -271,7 +272,7 @@ namespace Gacha.Core.Battle
                 for (int k = 0; k < s.HpHistory.Length; k++) s.HpHistory[k] = s.Hp;
                 Units.Add(s);
                 foreach (var m in sd.Mods) AddMod(s, m);
-                Emit(Ev.Summon, u.Index, s.Index, sd.Id, s.Hp);
+                Emit(Ev.Summon, u.Index, s.Index, sd.Id, s.Hp, false, sd.Permanent ? 0 : n.Num("dur", 10));
                 if (n.Has("tauntR"))
                     foreach (var e in Around(s.X, s.Y, n.Num("tauntR"), EnemiesOf(u, true)))
                         ApplyStatus(s, e, "taunt", n.Num("dur", 3), 0, null);
@@ -457,6 +458,7 @@ namespace Gacha.Core.Battle
         /// <summary>Sum of passive modifiers of one kind that apply to `subject` (src/tgt feed the conditions).</summary>
         public double ModSum(string kind, Unit subject, Unit src, Unit tgt, HitInfo h = null)
         {
+            if (DisablePassives) return 0;
             if (!_mods.TryGetValue(kind, out var list)) return 0;
             double sum = 0;
             foreach (var (owner, m) in list)
@@ -490,6 +492,7 @@ namespace Gacha.Core.Battle
 
         void FireTriggers(Unit u, string ev, Unit evt, double amount)
         {
+            if (DisablePassives) return;
             if (!u.Alive || !u.IsHero) return;
             var trig = u.Def.Passive.Triggers;
             for (int i = 0; i < trig.Count; i++)

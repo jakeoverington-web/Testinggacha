@@ -66,7 +66,7 @@ namespace Gacha.Core.Battle
         public override string ToString() => $"{Name}#{Index}(T{Team} {Hp:0}/{MaxHp:0} e{Energy:0})";
     }
 
-    public enum Ev { Start, Cast, Damage, Miss, Absorb, Heal, ShieldGain, StatusOn, Resist, StatusOff, Energy, Death, Revive, Summon, Cleanse, Dispel, Move, Cooldown, End }
+    public enum Ev { Start, Cast, Damage, Miss, Absorb, Heal, ShieldGain, StatusOn, Resist, StatusOff, Energy, Death, Revive, Summon, Cleanse, Dispel, Move, Cooldown, Zone, End }
 
     public struct BattleEvent
     {
@@ -76,6 +76,7 @@ namespace Gacha.Core.Battle
         public string What;      // ability key, status id, damage kind
         public string Ab;        // which ability caused it: ult, s1, s2, basic, passive, dot
         public double Amount;
+        public double V;         // extra value: status magnitude, zone/summon duration
         public bool Crit;
         public override string ToString() => $"{T:0.0} [{Ab}] {Type} {Src}->{Dst} {What} {Amount:0.#}{(Crit ? " CRIT" : "")}";
     }

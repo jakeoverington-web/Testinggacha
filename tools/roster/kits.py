@@ -80,6 +80,8 @@ MOVE = {
     "Holds range": "kite", "Holds long range": "kite", "Mid range": "kite", "Stays back": "kite", "Stays mid-field": "follow",
     "Stays out of sight": "follow", "Stays behind the carry": "follow", "Flits around": "follow", "Rides above the back line": "kite",
     "Stands beside the weakest ally": "guard",
+    # divers wait for their front line to engage, then go for the back line
+    "Dives": "dive", "Flies over the front line": "dive", "Glides above the field": "dive", "Dashes in and duels": "dive",
 }
 
 def ai_for(h):

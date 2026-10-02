@@ -129,7 +129,7 @@ namespace Gacha.Core.Battle
             t.Hp -= left;
             if (t.Hp < 1 && t.Has("unkillable")) t.Hp = 1;
             double lost = Math.Max(0, before - Math.Max(0, t.Hp));
-            Emit(Ev.Damage, s.Index, t.Index, h.Ability ?? h.Kind.ToString(), amt, crit);
+            Emit(Ev.Damage, s.Index, t.Index, h.Ability ?? h.Kind.ToString(), amt, crit, h.IgnoreDef);
             if (lost > 0 && t.IsHero) GainEnergy(t, ENERGY_PER_PCT * lost / t.MaxHp * 100, true);
             var seed = t.Get("seed");
             if (seed != null && t.Hp > 0 && t.HpPct < 0.3) using (Credit(seed)) { t.Statuses.Remove(seed); Heal(Units[seed.Source], t, seed.V * t.MaxHp, false); }
@@ -289,7 +289,7 @@ namespace Gacha.Core.Battle
                 else t.Statuses.Add(st);
                 if (id == "dragonform" && old == null) t.Hp += t.Base.Hp * (1 + t.BonusHpPct) * v;
             }
-            Emit(Ev.StatusOn, src.Index, t.Index, id, dur);
+            Emit(Ev.StatusOn, src.Index, t.Index, id, dur, false, v);
             if (hostile) FireTriggers(src, "debuff_applied", t, 0);
             return true;
         }
@@ -397,7 +397,7 @@ namespace Gacha.Core.Battle
                 for (int i = 0; i < u.Statuses.Count; i++)
                 {
                     var s = u.Statuses[i];
-                    if (s.Delay > 0) { s.Delay -= dt; if (s.Delay <= 0) Emit(Ev.StatusOn, s.Source, u.Index, s.Id, s.Remaining); continue; }
+                    if (s.Delay > 0) { s.Delay -= dt; if (s.Delay <= 0) Emit(Ev.StatusOn, s.Source, u.Index, s.Id, s.Remaining, false, s.V); continue; }
                     var src = Units[s.Source];
                     _ab = s.Ab ?? "dot";
                     switch (s.Id)

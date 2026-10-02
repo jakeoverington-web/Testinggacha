@@ -27,6 +27,8 @@ namespace Gacha.Core.Battle
         public bool KeepLog = true;
         /// <summary>Minimum chance any debuff is resisted (combat.json: 15%). Tests may set 0 for deterministic checks.</summary>
         public double ResistFloor;
+        /// <summary>Test switch: passives off (no mods, no triggers) so ability numbers can be measured cleanly.</summary>
+        public bool DisablePassives;
         string _ab;
         public double Time { get; private set; }
         public bool Over { get; private set; }
@@ -219,6 +221,14 @@ namespace Gacha.Core.Battle
         {
             if (!CanMove(u)) return;
             string mode = u.IsSummon ? "advance" : u.Def.Move;
+            if (mode == "dive" && !DiveOpen(u))
+            {
+                // hold just behind our own front line until it engages
+                double fwd = u.Team == 0 ? 1 : -1, front = double.NegativeInfinity;
+                foreach (var a in AlliesOf(u, false, false)) front = Math.Max(front, Forward(a));
+                if (front > double.NegativeInfinity && Forward(u) < front - 1.0) MoveToward(u, (front - 1.0) * fwd, u.Y, dt);
+                return;
+            }
             if (mode == "follow" || mode == "guard")
             {
                 var ally = mode == "guard" ? Pick(AlliesOf(u, false, true), x => -x.HpPct) : AllyTarget(u);
@@ -232,6 +242,16 @@ namespace Gacha.Core.Battle
                 }
             }
             MoveToward(u, target.X, target.Y, dt);
+        }
+
+        /// <summary>A diver goes in once any ally is in melee with an enemy, she has been hit, or after the opening seconds.</summary>
+        bool DiveOpen(Unit u)
+        {
+            if (Time >= T.DiveDelay || u.Hp < u.MaxHp) return true;
+            foreach (var a in AlliesOf(u, false, false))
+                foreach (var e in EnemiesOf(u, true))
+                    if (Dist(a, e) <= T.MeleeRangeMax) return true;
+            return false;
         }
 
         bool CanMove(Unit u) => !u.Has("root") && !u.Has("planted") && u.Base.MoveSpd > 0;
@@ -473,7 +493,7 @@ namespace Gacha.Core.Battle
 
         // ---------------------------------------------------------------- events
 
-        internal void Emit(Ev type, int src, int dst, string what, double amount, bool crit = false)
+        internal void Emit(Ev type, int src, int dst, string what, double amount, bool crit = false, double v = 0)
         {
             unchecked
             {
@@ -485,7 +505,7 @@ namespace Gacha.Core.Battle
             }
             if (KeepLog || OnEvent != null)
             {
-                var e = new BattleEvent { T = Time, Type = type, Src = src, Dst = dst, What = what, Amount = amount, Crit = crit, Ab = _ab };
+                var e = new BattleEvent { T = Time, Type = type, Src = src, Dst = dst, What = what, Amount = amount, Crit = crit, Ab = _ab, V = v };
                 if (KeepLog) Log.Add(e);
                 OnEvent?.Invoke(e);
             }

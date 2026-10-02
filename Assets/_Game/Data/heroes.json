@@ -866,7 +866,7 @@
    "ai": {
     "enemy": "nearest_with:blind",
     "ally": "self",
-    "move": "advance"
+    "move": "dive"
    }
   },
   {
@@ -1018,7 +1018,7 @@
    "ai": {
     "enemy": "highest_atk",
     "ally": "self",
-    "move": "advance"
+    "move": "dive"
    }
   },
   {
@@ -2665,7 +2665,7 @@
    "ai": {
     "enemy": "lowest_hp_back",
     "ally": "self",
-    "move": "advance"
+    "move": "dive"
    }
   },
   {
@@ -6941,7 +6941,7 @@
    "ai": {
     "enemy": "lowest_hp",
     "ally": "self",
-    "move": "advance"
+    "move": "dive"
    }
   },
   {
