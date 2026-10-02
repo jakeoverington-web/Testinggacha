@@ -20,6 +20,7 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 | 13 | Engine | Unity, C# | Chosen for official Live2D/Spine support and mobile SDKs | 2026-10-02 |
 | 14 | Build order | Systems first, art last | Placeholders until phase 5 | 2026-10-02 |
 | 15 | Pop-ups | None unprompted | Banned: purchase offers, sale banners, login reward windows, event announcements, anything that appears without a tap. Allowed: anything the player taps to open (skill info, tooltips, panels, confirmations) | 2026-10-02 |
+| 16 | Battle layout | Side view: allies left, enemies right | 2 front (nearest centre) + 3 back per side; Team screen uses the same stage. Chosen over top-vs-bottom and diagonal for proven idle feel and one-sprite-per-hero art cost | 2026-10-02 |
 
 ## Open questions
 
