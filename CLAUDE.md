@@ -51,7 +51,7 @@ docs/design/        decisions log and design notes
 ## Conventions
 
 - C# namespaces: `Gacha.Core.*`, `Gacha.Game.*`, `Gacha.UI.*`.
-- IDs are lowercase snake_case and stable forever (`seraphine`, `ch01_s08`); display names live in data.
+- IDs are lowercase snake_case and stable forever (`seravelle`, `ch01_s08`); display names live in data.
 - Placeholder and art files are named by slot: `hero_<id>_fullbody`, `hero_<id>_card`, `hero_<id>_icon`, `banner_<id>_splash`.
 - Art slot sizes: full-body 1:2, card 3:4, icon 1:1, banner splash 9:16. Do not change without updating the decisions log.
 - Reference resolution: 1080 × 2340 portrait; keep UI inside safe areas.

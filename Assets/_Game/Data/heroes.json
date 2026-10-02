@@ -90,15 +90,15 @@
      ]
     },
     {
-     "hero": "morwen",
-     "via": [
-      "Lifesteal"
-     ]
-    },
-    {
      "hero": "rosalind",
      "via": [
       "Dispel"
+     ]
+    },
+    {
+     "hero": "sangrael",
+     "via": [
+      "Lifesteal"
      ]
     },
     {
@@ -316,12 +316,6 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "briallen",
-     "via": [
-      "Shielded"
-     ]
-    },
-    {
      "hero": "briar",
      "via": [
       "Taunted"
@@ -331,6 +325,12 @@
      "hero": "elara",
      "via": [
       "Buffed"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Shielded"
      ]
     },
     {
@@ -444,6 +444,12 @@
      ]
     },
     {
+     "hero": "hartwen",
+     "via": [
+      "Grouped"
+     ]
+    },
+    {
      "hero": "liora",
      "via": [
       "Burn"
@@ -471,12 +477,6 @@
      "hero": "velisande",
      "via": [
       "Burn"
-     ]
-    },
-    {
-     "hero": "ysolde",
-     "via": [
-      "Grouped"
      ]
     },
     {
@@ -573,7 +573,7 @@
      ]
     },
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Stunned"
      ]
@@ -703,6 +703,12 @@
      ]
     },
     {
+     "hero": "hartwen",
+     "via": [
+      "Airborne"
+     ]
+    },
+    {
      "hero": "kaida",
      "via": [
       "Airborne"
@@ -710,12 +716,6 @@
     },
     {
      "hero": "rhiannon",
-     "via": [
-      "Airborne"
-     ]
-    },
-    {
-     "hero": "ysolde",
      "via": [
       "Airborne"
      ]
@@ -914,7 +914,7 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "briallen",
+     "hero": "eldrith",
      "via": [
       "Shielded"
      ]
@@ -1024,7 +1024,7 @@
      ]
     },
     {
-     "hero": "seraphine",
+     "hero": "seravelle",
      "via": [
       "Buffed"
      ]
@@ -1251,7 +1251,7 @@
      ]
     },
     {
-     "hero": "seraphine",
+     "hero": "seravelle",
      "via": [
       "Buffed"
      ]
@@ -1291,7 +1291,7 @@
    "bond": null
   },
   {
-   "id": "seraphine",
+   "id": "seravelle",
    "name": "Seravelle",
    "core": "high",
    "subrace": "seraph",
@@ -1393,9 +1393,9 @@
    ],
    "art": {
     "look": "White feathered wings, choir halo of floating gold rings",
-    "fullbody": "hero_seraphine_fullbody",
-    "card": "hero_seraphine_card",
-    "icon": "hero_seraphine_icon"
+    "fullbody": "hero_seravelle_fullbody",
+    "card": "hero_seravelle_card",
+    "icon": "hero_seravelle_icon"
    },
    "maxStars": 5,
    "bond": null
@@ -1492,7 +1492,7 @@
    "bond": null
   },
   {
-   "id": "morwen",
+   "id": "sangrael",
    "name": "Sangrael",
    "core": "dark",
    "subrace": "blood",
@@ -1608,9 +1608,9 @@
    ],
    "art": {
     "look": "Crimson lace over black plate, red lips, blood-red rose in her hair",
-    "fullbody": "hero_morwen_fullbody",
-    "card": "hero_morwen_card",
-    "icon": "hero_morwen_icon"
+    "fullbody": "hero_sangrael_fullbody",
+    "card": "hero_sangrael_card",
+    "icon": "hero_sangrael_icon"
    },
    "maxStars": 5,
    "bond": null
@@ -1824,13 +1824,13 @@
      ]
     },
     {
-     "hero": "lunara",
+     "hero": "lunaith",
      "via": [
       "Asleep"
      ]
     },
     {
-     "hero": "nocturne",
+     "hero": "noctelle",
      "via": [
       "Stealth"
      ]
@@ -1958,13 +1958,13 @@
      ]
     },
     {
-     "hero": "morwen",
+     "hero": "sable",
      "via": [
       "Bleed"
      ]
     },
     {
-     "hero": "sable",
+     "hero": "sangrael",
      "via": [
       "Bleed"
      ]
@@ -2063,12 +2063,6 @@
      ]
     },
     {
-     "hero": "morwen",
-     "via": [
-      "Bleed"
-     ]
-    },
-    {
      "hero": "nyx",
      "via": [
       "Kill"
@@ -2076,6 +2070,12 @@
     },
     {
      "hero": "ravenna",
+     "via": [
+      "Bleed"
+     ]
+    },
+    {
+     "hero": "sangrael",
      "via": [
       "Bleed"
      ]
@@ -2185,7 +2185,7 @@
      ]
     },
     {
-     "hero": "morwen",
+     "hero": "sangrael",
      "via": [
       "Lifesteal"
      ]
@@ -2283,7 +2283,7 @@
      ]
     },
     {
-     "hero": "nocturne",
+     "hero": "noctelle",
      "via": [
       "Stealth"
      ]
@@ -2393,12 +2393,6 @@
      ]
     },
     {
-     "hero": "morwen",
-     "via": [
-      "Bleed"
-     ]
-    },
-    {
      "hero": "ravenna",
      "via": [
       "Bleed"
@@ -2406,6 +2400,12 @@
     },
     {
      "hero": "sable",
+     "via": [
+      "Bleed"
+     ]
+    },
+    {
+     "hero": "sangrael",
      "via": [
       "Bleed"
      ]
@@ -2558,7 +2558,7 @@
    "bond": null
   },
   {
-   "id": "nocturne",
+   "id": "noctelle",
    "name": "Noctelle",
    "core": "dark",
    "subrace": "shadow",
@@ -2655,9 +2655,9 @@
    ],
    "art": {
     "look": "Indigo-black veil, moth-wing hairpins, a single candle",
-    "fullbody": "hero_nocturne_fullbody",
-    "card": "hero_nocturne_card",
-    "icon": "hero_nocturne_icon"
+    "fullbody": "hero_noctelle_fullbody",
+    "card": "hero_noctelle_card",
+    "icon": "hero_noctelle_icon"
    },
    "maxStars": 5,
    "bond": null
@@ -2770,15 +2770,15 @@
      ]
     },
     {
-     "hero": "morwen",
+     "hero": "noctelle",
      "via": [
-      "Lifesteal"
+      "Feared"
      ]
     },
     {
-     "hero": "nocturne",
+     "hero": "sangrael",
      "via": [
-      "Feared"
+      "Lifesteal"
      ]
     },
     {
@@ -2870,12 +2870,6 @@
    ],
    "synergy": [
     {
-     "hero": "briallen",
-     "via": [
-      "Taunted"
-     ]
-    },
-    {
      "hero": "coralie",
      "via": [
       "Taunted"
@@ -2888,7 +2882,13 @@
      ]
     },
     {
-     "hero": "morwen",
+     "hero": "eldrith",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "hartwen",
      "via": [
       "Taunted"
      ]
@@ -2903,6 +2903,12 @@
      "hero": "sable",
      "via": [
       "Bleed"
+     ]
+    },
+    {
+     "hero": "sangrael",
+     "via": [
+      "Taunted"
      ]
     },
     {
@@ -2922,12 +2928,6 @@
      "via": [
       "Bleed"
      ]
-    },
-    {
-     "hero": "ysolde",
-     "via": [
-      "Taunted"
-     ]
     }
    ],
    "art": {
@@ -2940,7 +2940,7 @@
    "bond": null
   },
   {
-   "id": "briallen",
+   "id": "eldrith",
    "name": "Eldrith",
    "core": "nature",
    "subrace": "wood",
@@ -3085,15 +3085,15 @@
    ],
    "art": {
     "look": "Bark-like skin patterns, ancient oak crown, moss and gold leaf",
-    "fullbody": "hero_briallen_fullbody",
-    "card": "hero_briallen_card",
-    "icon": "hero_briallen_icon"
+    "fullbody": "hero_eldrith_fullbody",
+    "card": "hero_eldrith_card",
+    "icon": "hero_eldrith_icon"
    },
    "maxStars": 5,
    "bond": null
   },
   {
-   "id": "ysolde",
+   "id": "hartwen",
    "name": "Hartwen",
    "core": "nature",
    "subrace": "stag",
@@ -3210,9 +3210,9 @@
    ],
    "art": {
     "look": "Antler crown woven with gold leaf, moss cloak, dappled forest light",
-    "fullbody": "hero_ysolde_fullbody",
-    "card": "hero_ysolde_card",
-    "icon": "hero_ysolde_icon"
+    "fullbody": "hero_hartwen_fullbody",
+    "card": "hero_hartwen_card",
+    "icon": "hero_hartwen_icon"
    },
    "maxStars": 5,
    "bond": null
@@ -3295,8 +3295,15 @@
      ]
     },
     {
-     "hero": "briallen",
+     "hero": "eldrith",
      "via": [
+      "Rooted"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Airborne",
       "Rooted"
      ]
     },
@@ -3322,13 +3329,6 @@
     {
      "hero": "wren",
      "via": [
-      "Rooted"
-     ]
-    },
-    {
-     "hero": "ysolde",
-     "via": [
-      "Airborne",
       "Rooted"
      ]
     }
@@ -3428,7 +3428,7 @@
      ]
     },
     {
-     "hero": "lunara",
+     "hero": "lunaith",
      "via": [
       "Energy"
      ]
@@ -3440,15 +3440,15 @@
      ]
     },
     {
-     "hero": "nerine",
-     "via": [
-      "Energy"
-     ]
-    },
-    {
      "hero": "ophira",
      "via": [
       "Airborne"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Energy"
      ]
     },
     {
@@ -3458,7 +3458,7 @@
      ]
     },
     {
-     "hero": "seraphine",
+     "hero": "seravelle",
      "via": [
       "Energy"
      ]
@@ -3564,7 +3564,13 @@
    ],
    "synergy": [
     {
-     "hero": "briallen",
+     "hero": "eldrith",
+     "via": [
+      "Rooted"
+     ]
+    },
+    {
+     "hero": "hartwen",
      "via": [
       "Rooted"
      ]
@@ -3601,12 +3607,6 @@
     },
     {
      "hero": "wren",
-     "via": [
-      "Rooted"
-     ]
-    },
-    {
-     "hero": "ysolde",
      "via": [
       "Rooted"
      ]
@@ -3796,7 +3796,7 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "briallen",
+     "hero": "eldrith",
      "via": [
       "Shielded"
      ]
@@ -3892,7 +3892,7 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "briallen",
+     "hero": "eldrith",
      "via": [
       "Shielded"
      ]
@@ -4101,15 +4101,21 @@
    ],
    "synergy": [
     {
-     "hero": "briallen",
+     "hero": "caelith",
+     "via": [
+      "Weakened"
+     ]
+    },
+    {
+     "hero": "eldrith",
      "via": [
       "Rooted"
      ]
     },
     {
-     "hero": "caelith",
+     "hero": "hartwen",
      "via": [
-      "Weakened"
+      "Rooted"
      ]
     },
     {
@@ -4120,12 +4126,6 @@
     },
     {
      "hero": "sylwen",
-     "via": [
-      "Rooted"
-     ]
-    },
-    {
-     "hero": "ysolde",
      "via": [
       "Rooted"
      ]
@@ -4320,27 +4320,27 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "briallen",
-     "via": [
-      "Shielded"
-     ]
-    },
-    {
      "hero": "briar",
      "via": [
       "Taunted"
      ]
     },
     {
-     "hero": "isolde",
+     "hero": "eldrith",
      "via": [
       "Shielded"
      ]
     },
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Soaked"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Shielded"
      ]
     },
     {
@@ -4450,7 +4450,7 @@
      ]
     },
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Soaked"
      ]
@@ -4575,7 +4575,7 @@
      ]
     },
     {
-     "hero": "nocturne",
+     "hero": "noctelle",
      "via": [
       "Stealth"
      ]
@@ -4603,7 +4603,7 @@
    "bond": null
   },
   {
-   "id": "kael",
+   "id": "halcyra",
    "name": "Halcyra",
    "core": "ocean",
    "subrace": "storm",
@@ -4705,13 +4705,13 @@
      ]
     },
     {
-     "hero": "nerine",
+     "hero": "ondine",
      "via": [
       "Soaked"
      ]
     },
     {
-     "hero": "ondine",
+     "hero": "pelagia",
      "via": [
       "Soaked"
      ]
@@ -4737,9 +4737,9 @@
    ],
    "art": {
     "look": "Storm-grey hair whipping, lightning in her palms, torn sea-silk",
-    "fullbody": "hero_kael_fullbody",
-    "card": "hero_kael_card",
-    "icon": "hero_kael_icon"
+    "fullbody": "hero_halcyra_fullbody",
+    "card": "hero_halcyra_card",
+    "icon": "hero_halcyra_icon"
    },
    "maxStars": 5,
    "bond": null
@@ -4840,7 +4840,7 @@
      ]
     },
     {
-     "hero": "nerine",
+     "hero": "pelagia",
      "via": [
       "Slow"
      ]
@@ -4952,7 +4952,7 @@
      ]
     },
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Soaked"
      ]
@@ -4970,13 +4970,13 @@
      ]
     },
     {
-     "hero": "nerine",
+     "hero": "ondine",
      "via": [
       "Soaked"
      ]
     },
     {
-     "hero": "ondine",
+     "hero": "pelagia",
      "via": [
       "Soaked"
      ]
@@ -5080,7 +5080,7 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Soaked"
      ]
@@ -5190,13 +5190,13 @@
      ]
     },
     {
-     "hero": "briallen",
+     "hero": "coralie",
      "via": [
       "Shielded"
      ]
     },
     {
-     "hero": "coralie",
+     "hero": "eldrith",
      "via": [
       "Shielded"
      ]
@@ -5428,15 +5428,15 @@
      ]
     },
     {
-     "hero": "isaura",
+     "hero": "halcyra",
      "via": [
-      "Drained"
+      "Soaked"
      ]
     },
     {
-     "hero": "kael",
+     "hero": "isaura",
      "via": [
-      "Soaked"
+      "Drained"
      ]
     },
     {
@@ -5446,13 +5446,13 @@
      ]
     },
     {
-     "hero": "nerine",
+     "hero": "ondine",
      "via": [
       "Soaked"
      ]
     },
     {
-     "hero": "ondine",
+     "hero": "pelagia",
      "via": [
       "Soaked"
      ]
@@ -5559,7 +5559,7 @@
      ]
     },
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Soaked"
      ]
@@ -5612,7 +5612,7 @@
    "bond": null
   },
   {
-   "id": "nerine",
+   "id": "pelagia",
    "name": "Pelagia",
    "core": "ocean",
    "subrace": "pearl",
@@ -5683,7 +5683,7 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Soaked"
      ]
@@ -5715,9 +5715,9 @@
    ],
    "art": {
     "look": "Pearl diadem, sea-foam lace train, waves breaking behind her",
-    "fullbody": "hero_nerine_fullbody",
-    "card": "hero_nerine_card",
-    "icon": "hero_nerine_icon"
+    "fullbody": "hero_pelagia_fullbody",
+    "card": "hero_pelagia_card",
+    "icon": "hero_pelagia_icon"
    },
    "maxStars": 5,
    "bond": null
@@ -5892,7 +5892,7 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "briallen",
+     "hero": "eldrith",
      "via": [
       "Shielded"
      ]
@@ -6093,6 +6093,12 @@
      ]
     },
     {
+     "hero": "hartwen",
+     "via": [
+      "Grouped"
+     ]
+    },
+    {
      "hero": "kaida",
      "via": [
       "Airborne"
@@ -6112,12 +6118,6 @@
     },
     {
      "hero": "vaela",
-     "via": [
-      "Grouped"
-     ]
-    },
-    {
-     "hero": "ysolde",
      "via": [
       "Grouped"
      ]
@@ -6345,7 +6345,7 @@
      ]
     },
     {
-     "hero": "lunara",
+     "hero": "lunaith",
      "via": [
       "Asleep"
      ]
@@ -6477,7 +6477,7 @@
    "bond": null
   },
   {
-   "id": "lunara",
+   "id": "lunaith",
    "name": "Lunaith",
    "core": "arcane",
    "subrace": "dream",
@@ -6566,9 +6566,9 @@
    ],
    "art": {
     "look": "Dream-haze pastel smoke, silver eyelashes, sleeping moth on her finger",
-    "fullbody": "hero_lunara_fullbody",
-    "card": "hero_lunara_card",
-    "icon": "hero_lunara_icon"
+    "fullbody": "hero_lunaith_fullbody",
+    "card": "hero_lunaith_card",
+    "icon": "hero_lunaith_icon"
    },
    "maxStars": 5,
    "bond": null
@@ -6643,7 +6643,7 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "briallen",
+     "hero": "eldrith",
      "via": [
       "Shielded"
      ]
@@ -6754,7 +6754,7 @@
      ]
     },
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Cooldown"
      ]
@@ -6778,7 +6778,7 @@
      ]
     },
     {
-     "hero": "seraphine",
+     "hero": "seravelle",
      "via": [
       "Cooldown"
      ]
@@ -6983,13 +6983,13 @@
    "payoffs": [],
    "synergy": [
     {
-     "hero": "kael",
+     "hero": "halcyra",
      "via": [
       "Cooldown"
      ]
     },
     {
-     "hero": "seraphine",
+     "hero": "seravelle",
      "via": [
       "Cooldown"
      ]
