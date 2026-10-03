@@ -27,6 +27,7 @@ References: Idle RPG UI Reference Notes (Claude Docs), Omniheroes Lost City.
 ## Boss mode (row 37)
 
 - 5 bosses, always open, no attempt limit. 90 s fight: your team against the boss and its adds; the boss fights back and a wipe ends the fight early. Score = total damage dealt.
+- **Main gear source (owner, 2026-10-03):** Boss mode is where gear mainly comes from (rarities and sets as in the phase 2 spec). Whether it drops per fight, per damage mark, or both is decided when phase 4 is designed in detail; it must stay farmable since there is no attempt limit.
 - Each difficulty has 10 damage marks about 1.6x apart; rewards pay the first time a mark is passed (gold and Starlight each mark, Fallen Stars every 5th, an Hourglass every 10th); passing the 10th raises the boss one difficulty, endlessly.
 - **Each boss rewards a different synergy package** (each package has 11-21 carriers, so no boss needs specific heroes). Drafts from the World Bible; names and looks are open to change before phase 4:
 
