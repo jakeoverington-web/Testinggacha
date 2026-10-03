@@ -17,7 +17,7 @@ Goal: every rule change is checked in seconds, without opening Unity, and the sa
 | Synergy report (packages, top teams, round robin) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.SynergyReport 300 32` | ~2-3 min |
 | Package probe (why a package wins: uptime, payoff vs base; `null` = fake packages) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.PackageProbe 200` | ~3 min |
 | Niche report | `tools/csharp/test.sh -Main Gacha.Tests.Tools.NicheReport 150 1` (234,000 paired battles) | ~3 min |
-| Final check | Unity → Window → General → Test Runner → EditMode → Run All | on a PC |
+| Final check | Unity → Window → General → Test Runner → EditMode → Run All (verified 2026-10-03: 633 passed in 2.7 s on Unity 6000.6.4f1, golden replay hash identical) | on a PC |
 
 Setup on a new machine: install PowerShell 7 (any OS; on a fresh cloud workspace, unpack Microsoft's official `powershell-7.x-linux-x64.tar.gz` release into `/opt/pwsh`). Nothing else: no .NET SDK, no NuGet.
 
