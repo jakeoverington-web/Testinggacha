@@ -17,7 +17,7 @@ Full plan: Gacha Game Design Plan v0.1 (Claude Docs, 2 Oct 2026).
 | 10 | Pity | Hard pity that carries over + spark points | Spark lets players pick the featured hero | 2026-10-02 |
 | 11 | Launch modes | Arena PvP, Guild + guild boss | Events later via reusable special encounter | 2026-10-02 |
 | 12 | Rarity | No rarity tiers; stars only | Confirmed by owner. Every hero can reach max stars; no mythic, EX or premium-only heroes, no paywalled top tier | 2026-10-02 |
-| 13 | Engine | Unity, C# | Chosen for official Live2D/Spine support and mobile SDKs | 2026-10-02 |
+| 13 | Engine | Unity 6.6, C#; Android build target | Chosen for official Live2D/Spine support and mobile SDKs. Version: Unity 6.6 update release (owner's pick, 2026-10-03; Unity recommends update releases for new projects); update releases are supported until the next one, so move up or switch to the next LTS before locking production. Unity CLI (beta) is available for agents running on the owner's PC | 2026-10-03 |
 | 14 | Build order | Systems first, art last | Placeholders until phase 5 | 2026-10-02 |
 | 15 | Pop-ups | None unprompted | Banned: purchase offers, sale banners, login reward windows, event announcements, scrolling announcement tickers, anything that appears without a tap. Allowed: anything the player taps to open (skill info, tooltips, panels, confirmations) | 2026-10-02 |
 | 16 | Battle layout | Side view: allies left, enemies right | 2 front (nearest centre) + 3 back per side; Team screen uses the same stage. Chosen over top-vs-bottom and diagonal for proven idle feel and one-sprite-per-hero art cost | 2026-10-02 |
