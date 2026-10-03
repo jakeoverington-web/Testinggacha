@@ -37,6 +37,8 @@ Code: `Assets/_Game/Scripts/Core/Battle/` (engine-free). Tuning: `Data/battle.js
 | Stacking | Burn, bleed, poison stack to 3; other statuses refresh to the stronger value and longer time |
 | Shields | Stack, capped at 50% max HP (trimmed if max HP shrinks), last 10 s, not dispellable |
 | Revive | Once per hero per battle |
+| Payoff window | A condition written `stun+3` is true while the status is on and for 3 s after it ends; used for control and stealth payoffs (control lasts 1-2.5 s and sleep breaks on the first hit) |
+| Race team bonus | 3 of one race + 2 of another: +12% ATK and HP; 5 of one race: +20% (races.json `teamBonus`) |
 
 ## AI
 
@@ -53,6 +55,5 @@ These fill gaps the kit text leaves open; all are data in `kits.py` or `battle.j
 | Unnamed numbers | Heal 200% ATK, self shield 15% max HP, burn 30% ATK/s, bleed 25% ATK/s, poison 2% max HP/s, slow 30%, blind 50% |
 | Untargetable vs stealth | Untargetable dodges everything; stealth only stops being picked (area effects still hit) |
 | Projectiles (Coralie, Vaela walls) | Basic attacks and single-target skills from ranged heroes |
-| Nyx ultimate | Deals 200% ATK, then executes if under 20% HP |
-| Summons | Wolves 30% HP / 40% ATK for 10 s; decoy 20% HP, taunts enemies within 3 m; Rhiannon's stag is untargetable, 50% ATK, leaves with her |
-| Small kit reads | Halcyra's Static Mark hits for 80% lightning; Vesper's curse heals the hitter 15% of damage; her ultimate heals each ally for 60% of the damage it dealt; Seren's Star Map gives 5 energy per ally hit; Aurelle revives the first ally to fall in 8 s; Mireille's after-regen starts when Bloomfall ends |
+| Summons | Wolves 30% HP / 40% ATK for 10 s, double damage to enemies rooted or knocked up (or in the last 3 s); decoy 20% HP, taunts enemies within 3 m; Rhiannon's stag is untargetable, 50% ATK, leaves with her |
+| Small kit reads | Halcyra's Static Mark hits for 80% lightning; Vesper's ultimate heals each ally (not split) by the % of damage in its text; Seren's Star Map gives 5 energy per ally hit; Aurelle revives the first ally to fall in 8 s; Mireille's after-regen starts when Bloomfall ends |
