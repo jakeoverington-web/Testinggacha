@@ -19,13 +19,20 @@ namespace Gacha.Core.Campaign
         public static int Stars(int chapter) => 1 + (Math.Max(1, chapter) - 1) / 4;
     }
 
-    /// <summary>Recommended power: Σ (HP × 0.1 + ATK + DEF) × level/star multiplier, rounded.</summary>
+    /// <summary>
+    /// Power (owner, 2026-10-03): sqrt(effective HP × damage output) on level/star-scaled stats, summed and rounded.
+    /// EHP = HP × (1 + DEF / defK), matching the battle's k/(k+DEF) damage reduction; damage = ATK × attack speed ×
+    /// (1 + crit rate × (crit damage − 1)). Skills are not counted, so damage dealers score highest.
+    /// </summary>
     public static class TeamPower
     {
         public static double Hero(GameData g, string hero, int level, int stars)
         {
             var s = g.Heroes[hero].Stats;
-            return (s.Hp * 0.1 + s.Atk + s.Def) * g.Progression.Mult(level, stars);
+            double m = g.Progression.Mult(level, stars);
+            double ehp = s.Hp * m * (1 + s.Def * m / g.Tuning.DefK);
+            double dps = s.Atk * m * s.AtkSpd * (1 + s.CritRate * (s.CritDmg - 1));
+            return System.Math.Sqrt(System.Math.Max(0, ehp * dps));
         }
 
         public static long Of(GameData g, IList<string> heroes, int level, int stars)

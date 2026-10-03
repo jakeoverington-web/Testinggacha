@@ -17,7 +17,7 @@ Goal: every rule change is checked in seconds, without opening Unity, and the sa
 | Synergy report (packages, top teams, round robin) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.SynergyReport 300 32` | ~2-3 min |
 | Package probe (why a package wins: uptime, payoff vs base; `null` = fake packages) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.PackageProbe 200` | ~3 min |
 | Niche report | `tools/csharp/test.sh -Main Gacha.Tests.Tools.NicheReport 150 1` (234,000 paired battles) | ~3 min |
-| Campaign stages (writes Data/stages.json; sim-checks every stage's enemy level) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.StageGen 1 80` (seed, battles per check) | ~9 min |
+| Campaign stages (writes Data/stages.json; sim-checks every stage's enemy level) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.StageGen 1 80` (seed, battles per check); after a power-formula change only: `StageGen repower` (keeps levels) | ~9 min / 2 s |
 | Campaign gate (reference teams play chapters 1-5 in order) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.CampaignGate 5 15` (chapters, tries per team per stage); report: campaign-gate-v1.md | ~10 s |
 | Final check | Unity → Window → General → Test Runner → EditMode → Run All (verified 2026-10-03: 633 passed in 2.7 s on Unity 6000.6.4f1, golden replay hash identical) | on a PC |
 | Final check from a terminal (Editor open, `com.unity.pipeline` installed) | `unity command run_tests --mode editor --timeout 300 --result-only` (verified 2026-10-03: 633 passed, CLI 1.0.0-beta.12, Pipeline 0.8.0-exp.1) | on the owner's PC |

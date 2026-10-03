@@ -68,11 +68,15 @@ namespace Gacha.Tests
         }
 
         [Test]
-        public void TeamPower_SumsScaledStats()
+        public void TeamPower_IsEffectiveHpTimesDamage()
         {
-            // cassia: HP 2400, ATK 160, DEF 140 -> 240 + 160 + 140 = 540 at level 1, 1 star.
-            Assert.AreEqual(540, TeamPower.Of(G, Team, 1, 1));
-            Assert.AreEqual(Math.Round(540 * 8.96 * 1.7), TeamPower.Of(G, Team, 200, 10));
+            // Power = sqrt(EHP x DPS) on level/star-scaled stats (owner, 2026-10-03).
+            // cassia: HP 2400, DEF 140, ATK 160, atkSpd 0.8, crit 5% x 1.5.
+            // EHP = 2400 x (1 + 140/300) = 3520; DPS = 160 x 0.8 x 1.025 = 131.2; sqrt(3520 x 131.2) = 679.6.
+            Assert.AreEqual(680, TeamPower.Of(G, Team, 1, 1));
+            double m = 8.96 * 1.7;
+            double ehp = 2400 * m * (1 + 140 * m / 300), dps = 160 * m * 0.8 * 1.025;
+            Assert.AreEqual(Math.Round(Math.Sqrt(ehp * dps)), TeamPower.Of(G, Team, 200, 10));
         }
 
         [Test]
