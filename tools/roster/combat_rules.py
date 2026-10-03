@@ -97,6 +97,16 @@ KEYWORDS = {
     "Energy": "allies gain energy", "Cooldown": "allies' skills recharge faster", "Lifesteal": "allies have lifesteal",
     "Buffed": "allies carry buffs", "Summon": "allied summons are on the field", "Kill": "an enemy falls",
     "LowHP": "an enemy is below a health threshold", "Dispel": "enemy buffs are removed",
+    # Pass 10 packages (merged keywords)
+    "Hindered": "enemy is slowed, rooted, stunned or knocked up (control counts for 3s after it ends)",
+    "Dread": "enemy is asleep, feared or charmed (counts for 3s after it ends)",
+    "Exposed": "enemy is marked, weakened, DEF-lowered or cursed; finishers execute exposed enemies",
+    "Wounds": "enemy is bleeding or poisoned; allies have lifesteal",
+    "Disrupted": "enemy is blinded or silenced, or drained of energy",
+    "Gathered": "enemies are pulled together or taunted",
+    "Ambush": "allies strike from stealth or within 3s of leaving it, or an enemy is cut off from its team",
+    "Tempo": "allies gain energy or their skills recharge faster",
+    "Guarded": "allies carry shields or buffs; enemy buffs are removed",
 }
 
 # ---------- Role stat templates (level 1) ----------

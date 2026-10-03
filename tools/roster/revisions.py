@@ -295,3 +295,64 @@ PASSES[9] = [
  ("lucienne","skill1.text","Counter stance for 3s and shields herself for 20% max HP.","Lucienne -9: 2s -> 3s, shield 10% -> 20%"),
  ("venna","skill2.text","Poisons (3%/s) and slows enemies in an area for 3s.","Venna -9: 2% -> 3%; the amount is now in the text"),
 ]
+
+# ---------------- PASS 10 (PROTOTYPE, awaiting owner approval): 27 keywords -> 11 deeper packages ----------------
+# Synergy report v2: thin keywords lost to random teams because their few enablers were modest tanks and supports.
+# Merged keywords give every package several appliers, payers and an amplifier across races and roles.
+MERGE = {"Airborne": "Hindered", "Rooted": "Hindered", "Stunned": "Hindered", "Slow": "Hindered",
+         "Asleep": "Dread", "Feared": "Dread", "Charmed": "Dread",
+         "Mark": "Exposed", "Weakened": "Exposed", "Curse": "Exposed", "Kill": "Exposed",
+         "Bleed": "Wounds", "Poison": "Wounds", "Lifesteal": "Wounds",
+         "Blind": "Disrupted", "Drained": "Disrupted",
+         "Grouped": "Gathered", "Taunted": "Gathered",
+         "Stealth": "Ambush", "Isolated": "Ambush",
+         "Energy": "Tempo", "Cooldown": "Tempo",
+         "Shielded": "Guarded", "Buffed": "Guarded", "Dispel": "Guarded",
+         "Soaked": "Soaked", "Burn": "Burn", "Summon": "Summon"}
+SILENCERS = ["amarante", "runa", "vaela", "caelith", "lorelei"]   # silence now counts as Disrupted
+
+def _merged(lst):
+    out = []
+    for k in lst:
+        m = MERGE.get(k, k)
+        if m not in out: out.append(m)
+    return out
+
+_R9 = roster_at(9)
+PASSES[10] = []
+for _h in _R9:
+    _a = _merged(_h["applies"]) + (["Disrupted"] if _h["id"] in SILENCERS and "Disrupted" not in _merged(_h["applies"]) else [])
+    _p = [k for k in _merged(_h["payoffs"]) if k != "Summon"]
+    if _h["id"] == "thalassa": _p = ["Ambush"]          # her amplifier now covers isolated enemies only
+    if _a != _h["applies"]: PASSES[10].append((_h["id"], "applies", _a, "keywords merged into packages"))
+    if _p != _h["payoffs"]: PASSES[10].append((_h["id"], "payoffs", _p, "keywords merged into packages"))
+
+PASSES[10] += [
+ ("ophira","passive.text","+30% damage to Hindered enemies.","Package payoff: slowed, rooted, stunned or knocked up; broader condition, so +40% -> +30%"),
+ ("kaida","passive.text","+15% damage while a beast is out; against Hindered enemies she deals +30% damage and her wolves deal double.","Package payoff: Hindered"),
+ ("nerissa","passive.text","+30% damage to Hindered enemies.","Package payoff: Hindered"),
+ ("sylwen","passive.text","Sees through stealth; +25% crit chance against Hindered or Exposed enemies.","Package payoff: Hindered and Exposed"),
+ ("lucienne","passive.text","+60% crit damage against Disrupted or Hindered enemies.","Package payoff: Disrupted and Hindered"),
+ ("nyx","passive.text","+60% crit damage from Shadowstep, from stealth or within 3s of leaving it, and against enemies in Dread; marked enemies are her first targets.","Package payoff: Ambush and Dread"),
+ ("isaura","passive.text","+30% damage to enemies with less than 50 energy and to enemies in Dread.","Package payoff: Disrupted and Dread"),
+ ("calypso","passive.text","+35% damage to isolated enemies and to enemies in Dread; her first hit from stealth crits.","Package payoff: Ambush and Dread"),
+ ("ravenna","passive.text","+35% damage to Wounded (bleeding or poisoned) enemies; hitting one heals her 3% max HP.","Package payoff: Wounds"),
+ ("sable","passive.text","Gains 15 energy whenever any enemy falls; +35% damage to Wounded (bleeding or poisoned) enemies; enemies she kills can't be revived.","Package payoff: Wounds"),
+ ("vesper","passive.text","Her heals are 40% stronger while any enemy is bleeding or poisoned.","Package payoff: Wounds"),
+ ("solenne","passive.text","+25% damage to Exposed enemies; her crits against marked enemies blind them for 2s.","Package payoff: Exposed"),
+ ("astraea","passive.text","+30% damage to Gathered enemies (standing close together or taunted); summons take double damage from her.","Package payoff: Gathered"),
+ ("hartwen","passive.text","Hindered enemies take 15% more damage.","Hindered amplifier"),
+ ("wren","passive.text","Hindered enemies take 10% more damage.","Hindered amplifier"),
+ ("pelagia","passive.text","Hindered enemies attack 15% slower and take 10% more damage.","Hindered amplifier"),
+ ("thalassa","passive.text","Isolated enemies take 20% more damage.","Ambush amplifier (stun moved to Hindered)"),
+ ("velisande","passive.text","Enemies in Dread take 15% more damage.","Dread amplifier"),
+ ("zephyra","passive.text","Enemies in Dread take 15% more damage.","Dread amplifier"),
+ ("liora","passive.text","Burning enemies receive 30% less healing; Disrupted enemies take 15% more damage.","Disrupted amplifier"),
+ ("amarante","passive.text","Enemies she debuffs deal 10% less damage; Exposed enemies take 10% more damage.","Exposed amplifier (prototype round 2: Exposed -13)"),
+ ("amarante","+payoffs",["Exposed"],"Exposed amplifier"),
+ ("ondine","passive.text","Soaked or Disrupted enemies take 20% more damage.","Soaked and Disrupted amplifier (silence added)"),
+ ("tempra","passive.text","Allies' skills recharge 15% faster.","Tempo amplifier: 10% -> 15% (Tempo -14)"),
+ ("elowen","passive.text","Allies gain energy 15% faster.","Tempo amplifier: 10% -> 15% (Tempo -14)"),
+ ("cassia","ultimate.text","Holy zone for 5s: enemies inside take 25% ATK per second.","Cassia was in 5 of the 10 best teams: 30% -> 25%"),
+ ("briar","passive.text","Reflects 15% of melee damage; Wounded (bleeding or poisoned) enemies take 20% more damage.","Wounds amplifier"),
+]

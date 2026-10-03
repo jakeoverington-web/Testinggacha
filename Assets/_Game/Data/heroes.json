@@ -1,5 +1,5 @@
 {
- "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 9).",
+ "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 10).",
  "heroes": [
   {
    "id": "cassia",
@@ -34,7 +34,7 @@
    "skills": {
     "ultimate": {
      "name": "Sanctified Ground",
-     "text": "Holy zone for 5s: enemies inside take 30% ATK per second.",
+     "text": "Holy zone for 5s: enemies inside take 25% ATK per second.",
      "tags": [
       "dmg_aoe"
      ],
@@ -48,7 +48,7 @@
        "ops": [
         {
          "op": "dmg",
-         "m": 0.3,
+         "m": 0.25,
          "to": "zone_enemies"
         }
        ]
@@ -115,47 +115,173 @@
     }
    },
    "applies": [
-    "Dispel"
+    "Guarded"
    ],
    "payoffs": [
-    "Dispel",
-    "Lifesteal"
+    "Guarded",
+    "Wounds"
    ],
    "synergy": [
     {
      "hero": "amarante",
      "via": [
-      "Dispel"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "aurelle",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "briar",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "caelith",
      "via": [
-      "Dispel"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "coralie",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "mireille",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "mordessa",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "nimue",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "ravenna",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "rosalind",
      "via": [
-      "Dispel"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "runa",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "sangrael",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "selene",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "velisande",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Guarded"
      ]
     }
    ],
@@ -284,55 +410,115 @@
    },
    "applies": [],
    "payoffs": [
-    "Shielded"
+    "Guarded"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "aurelle",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "coralie",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "mireille",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "nimue",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "runa",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "selene",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Guarded"
      ]
     }
    ],
@@ -453,71 +639,118 @@
     }
    },
    "applies": [
-    "Shielded",
-    "Taunted",
-    "Stunned",
-    "Buffed"
+    "Guarded",
+    "Gathered",
+    "Hindered"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "astraea",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
      "hero": "briar",
      "via": [
-      "Taunted"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "elara",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ilyra",
+     "via": [
+      "Gathered"
      ]
     },
     {
      "hero": "isolde",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "lucienne",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "ophira",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "rosalind",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
-     "hero": "thalassa",
+     "hero": "sylwen",
      "via": [
-      "Stunned"
+      "Hindered"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Taunted"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     }
    ],
@@ -653,9 +886,27 @@
     "Burn"
    ],
    "payoffs": [
-    "Grouped"
+    "Gathered"
    ],
    "synergy": [
+    {
+     "hero": "briar",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "coralie",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "corvina",
+     "via": [
+      "Gathered"
+     ]
+    },
     {
      "hero": "draxa",
      "via": [
@@ -663,15 +914,21 @@
      ]
     },
     {
+     "hero": "eldrith",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
      "hero": "fenna",
      "via": [
-      "Grouped"
+      "Gathered"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Grouped"
+      "Gathered"
      ]
     },
     {
@@ -689,13 +946,25 @@
     {
      "hero": "nerissa",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "sangrael",
+     "via": [
+      "Gathered"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Gathered"
      ]
     },
     {
@@ -807,7 +1076,7 @@
     },
     "passive": {
      "name": "Blinding Edge",
-     "text": "+60% crit damage against blinded enemies, and enemies who are stunned or were in the last 3s.",
+     "text": "+60% crit damage against Disrupted or Hindered enemies.",
      "tags": [
       "dmg_single"
      ],
@@ -816,7 +1085,7 @@
        "k": "crit_dmg",
        "v": 0.6,
        "scope": "self",
-       "if": "tgt:blind|stun+3"
+       "if": "tgt:blind|silence|slow|root+3|stun+3|airborne+3"
       }
      ],
      "triggers": [],
@@ -824,60 +1093,169 @@
     }
    },
    "applies": [
-    "Blind"
+    "Disrupted"
    ],
    "payoffs": [
-    "Blind",
-    "Stunned"
+    "Disrupted",
+    "Hindered"
    ],
    "synergy": [
     {
      "hero": "amarante",
      "via": [
-      "Stunned"
+      "Disrupted",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "astraea",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "halcyra",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "liora",
      "via": [
-      "Blind"
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "lorelei",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "maelis",
      "via": [
-      "Blind"
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ondine",
      "via": [
-      "Blind",
-      "Stunned"
+      "Disrupted",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "rhiannon",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "runa",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Blind"
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     }
    ],
@@ -986,16 +1364,16 @@
     },
     "passive": {
      "name": "Skyfall",
-     "text": "+40% damage to enemies who are knocked up or stunned, or were in the last 3s.",
+     "text": "+30% damage to Hindered enemies.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.4,
+       "v": 0.3,
        "scope": "self",
-       "if": "tgt:airborne+3|stun+3"
+       "if": "tgt:slow|root+3|stun+3|airborne+3"
       }
      ],
      "triggers": [],
@@ -1003,65 +1381,124 @@
     }
    },
    "applies": [
-    "Airborne"
+    "Hindered"
    ],
    "payoffs": [
-    "Airborne",
-    "Stunned"
+    "Hindered"
    ],
    "synergy": [
     {
      "hero": "amarante",
      "via": [
-      "Stunned"
+      "Hindered"
      ]
     },
     {
      "hero": "astraea",
      "via": [
-      "Airborne"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "halcyra",
      "via": [
-      "Stunned"
+      "Hindered"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Airborne"
+      "Hindered"
      ]
     },
     {
      "hero": "kaida",
      "via": [
-      "Airborne"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ondine",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Airborne"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Stunned"
+      "Hindered"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     }
    ],
@@ -1169,16 +1606,16 @@
     },
     "passive": {
      "name": "Sunlit",
-     "text": "+30% damage to weakened or DEF-lowered enemies; her crits against marked enemies blind them for 2s.",
+     "text": "+25% damage to Exposed enemies; her crits against marked enemies blind them for 2s.",
      "tags": [
       "debuff_blind"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.3,
+       "v": 0.25,
        "scope": "self",
-       "if": "tgt:weaken|def_down"
+       "if": "tgt:mark|weaken|def_down|curse"
       }
      ],
      "triggers": [
@@ -1200,66 +1637,103 @@
     }
    },
    "applies": [
-    "Mark",
-    "Blind"
+    "Exposed",
+    "Disrupted"
    ],
    "payoffs": [
-    "Weakened"
+    "Exposed"
    ],
    "synergy": [
     {
      "hero": "amarante",
      "via": [
-      "Weakened"
+      "Exposed"
      ]
     },
     {
      "hero": "caelith",
      "via": [
-      "Mark"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "liora",
      "via": [
-      "Weakened"
+      "Disrupted",
+      "Exposed"
      ]
     },
     {
      "hero": "lucienne",
      "via": [
-      "Blind"
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Mark"
+      "Exposed"
      ]
     },
     {
      "hero": "ondine",
      "via": [
-      "Blind",
-      "Weakened"
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Mark"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "wren",
      "via": [
-      "Weakened"
+      "Exposed"
      ]
     },
     {
      "hero": "ysra",
      "via": [
-      "Mark"
+      "Exposed"
      ]
     }
    ],
@@ -1384,26 +1858,44 @@
     }
    },
    "applies": [
-    "Shielded"
+    "Guarded"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "eldrith",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "isolde",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
      ]
     }
    ],
@@ -1536,52 +2028,124 @@
     }
    },
    "applies": [
-    "Buffed"
+    "Guarded"
    ],
    "payoffs": [
-    "Buffed"
+    "Guarded"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "aurelle",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "coralie",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "elowen",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "mireille",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "nimue",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "rosalind",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "runa",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "selene",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "seravelle",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "seren",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "siora",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "zephyra",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     }
    ],
@@ -1686,11 +2250,18 @@
     },
     "passive": {
      "name": "Sentence",
-     "text": "Enemies she debuffs deal 10% less damage.",
+     "text": "Enemies she debuffs deal 10% less damage; Exposed enemies take 10% more damage.",
      "tags": [
       "debuff_atk"
      ],
-     "mods": [],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": 0.1,
+       "scope": "enemies",
+       "if": "tgt:mark|weaken|def_down|curse"
+      }
+     ],
      "triggers": [
       {
        "on": "debuff_applied",
@@ -1709,46 +2280,174 @@
     }
    },
    "applies": [
-    "Dispel",
-    "Weakened",
-    "Stunned"
+    "Guarded",
+    "Exposed",
+    "Hindered",
+    "Disrupted"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Exposed"
+   ],
    "synergy": [
     {
      "hero": "caelith",
      "via": [
-      "Weakened"
+      "Exposed"
      ]
     },
     {
      "hero": "cassia",
      "via": [
-      "Dispel"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "liora",
+     "via": [
+      "Disrupted",
+      "Exposed"
      ]
     },
     {
      "hero": "lucienne",
      "via": [
-      "Stunned"
+      "Disrupted",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Disrupted",
+      "Exposed"
      ]
     },
     {
      "hero": "ophira",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Weakened"
+      "Exposed"
      ]
     },
     {
-     "hero": "thalassa",
+     "hero": "sylwen",
      "via": [
-      "Stunned"
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Exposed"
      ]
     }
    ],
@@ -1871,59 +2570,124 @@
     }
    },
    "applies": [
-    "Buffed",
-    "Dispel"
+    "Guarded"
    ],
    "payoffs": [
-    "Buffed"
+    "Guarded"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "aurelle",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "cassia",
      "via": [
-      "Dispel"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "coralie",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "elara",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "elowen",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "mireille",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "nimue",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "runa",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "selene",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "seravelle",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "seren",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "siora",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "zephyra",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     }
    ],
@@ -2042,42 +2806,113 @@
     }
    },
    "applies": [
-    "Buffed",
-    "Energy"
+    "Guarded",
+    "Tempo"
    ],
    "payoffs": [
-    "Cooldown"
+    "Tempo"
    ],
    "synergy": [
     {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "elara",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "elowen",
      "via": [
-      "Cooldown",
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "lunaith",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "marisol",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "rosalind",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "selene",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "tempra",
      "via": [
-      "Cooldown"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "thessaly",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Tempo"
      ]
     }
    ],
@@ -2202,33 +3037,57 @@
     }
    },
    "applies": [
-    "Taunted",
-    "Isolated"
+    "Gathered",
+    "Ambush"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "astraea",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
      "hero": "briar",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "calypso",
      "via": [
-      "Isolated"
+      "Ambush"
+     ]
+    },
+    {
+     "hero": "ilyra",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "noctelle",
+     "via": [
+      "Ambush"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Ambush"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Isolated"
+      "Ambush"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     }
    ],
@@ -2357,61 +3216,84 @@
     }
    },
    "applies": [
-    "Taunted",
-    "Bleed",
-    "Lifesteal"
+    "Gathered",
+    "Wounds"
    ],
    "payoffs": [
-    "Lifesteal"
+    "Wounds"
    ],
    "synergy": [
     {
+     "hero": "astraea",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
      "hero": "briar",
      "via": [
-      "Bleed",
-      "Taunted"
+      "Gathered",
+      "Wounds"
      ]
     },
     {
      "hero": "cassia",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "ilyra",
+     "via": [
+      "Gathered"
      ]
     },
     {
      "hero": "mordessa",
      "via": [
-      "Lifesteal"
+      "Wounds"
      ]
     },
     {
      "hero": "ravenna",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     },
     {
      "hero": "sable",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "velisande",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "vesper",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     }
    ],
@@ -2536,18 +3418,24 @@
    },
    "applies": [
     "Burn",
-    "Curse",
-    "Blind"
+    "Exposed",
+    "Disrupted"
    ],
    "payoffs": [
     "Burn",
-    "Curse"
+    "Exposed"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "caelith",
      "via": [
-      "Curse"
+      "Exposed"
      ]
     },
     {
@@ -2563,27 +3451,84 @@
      ]
     },
     {
+     "hero": "isaura",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
      "hero": "liora",
      "via": [
-      "Burn"
+      "Burn",
+      "Disrupted",
+      "Exposed"
      ]
     },
     {
      "hero": "lucienne",
      "via": [
-      "Blind"
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "ondine",
      "via": [
-      "Blind"
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "solenne",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "vesper",
      "via": [
-      "Curse"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Exposed"
      ]
     },
     {
@@ -2711,7 +3656,7 @@
     },
     "passive": {
      "name": "Backstab",
-     "text": "+60% crit damage from Shadowstep, from stealth or within 3s of leaving it, and against enemies who are asleep or feared or were in the last 3s; marked enemies are her first targets.",
+     "text": "+60% crit damage from Shadowstep, from stealth or within 3s of leaving it, and against enemies in Dread; marked enemies are her first targets.",
      "tags": [
       "dmg_single"
      ],
@@ -2720,7 +3665,7 @@
        "k": "crit_dmg",
        "v": 0.6,
        "scope": "self",
-       "if": "src:stealth+3|sure_crit|tgt:sleep+3|fear+3"
+       "if": "src:stealth+3|sure_crit|tgt:sleep+3|fear+3|charm+3"
       }
      ],
      "triggers": [],
@@ -2730,74 +3675,152 @@
     }
    },
    "applies": [
-    "Kill"
+    "Exposed"
    ],
    "payoffs": [
-    "Stealth",
-    "Mark",
-    "Asleep",
-    "Feared"
+    "Ambush",
+    "Exposed",
+    "Dread"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "calypso",
+     "via": [
+      "Ambush",
+      "Dread"
+     ]
+    },
+    {
+     "hero": "corvina",
+     "via": [
+      "Ambush"
+     ]
+    },
+    {
      "hero": "fenna",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "liora",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "lorelei",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "lunaith",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "noctelle",
      "via": [
-      "Feared",
-      "Stealth"
+      "Ambush",
+      "Dread"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "sable",
      "via": [
-      "Kill"
+      "Exposed"
      ]
     },
     {
      "hero": "seren",
      "via": [
-      "Mark"
+      "Exposed"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Mark"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Ambush"
      ]
     },
     {
      "hero": "thessaly",
      "via": [
-      "Stealth"
+      "Ambush"
      ]
     },
     {
      "hero": "velisande",
      "via": [
-      "Feared"
+      "Dread"
      ]
     },
     {
      "hero": "venna",
      "via": [
-      "Kill"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "zephyra",
      "via": [
-      "Asleep"
+      "Dread"
      ]
     }
    ],
@@ -2914,7 +3937,7 @@
     },
     "passive": {
      "name": "Sanguine Edge",
-     "text": "+35% damage to bleeding enemies; hitting one heals her 3% max HP.",
+     "text": "+35% damage to Wounded (bleeding or poisoned) enemies; hitting one heals her 3% max HP.",
      "tags": [
       "dmg_single"
      ],
@@ -2923,7 +3946,7 @@
        "k": "dmg_out",
        "v": 0.35,
        "scope": "self",
-       "if": "tgt:bleed"
+       "if": "tgt:bleed|poison"
       }
      ],
      "triggers": [
@@ -2936,7 +3959,7 @@
          "pct": 0.03
         }
        ],
-       "if": "tgt:bleed",
+       "if": "tgt:bleed|poison",
        "icd": 0.5
       }
      ],
@@ -2944,34 +3967,64 @@
     }
    },
    "applies": [
-    "Bleed"
+    "Wounds"
    ],
    "payoffs": [
-    "Bleed"
+    "Wounds"
    ],
    "synergy": [
     {
      "hero": "briar",
      "via": [
-      "Bleed"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "mordessa",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "sable",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     },
     {
      "hero": "sangrael",
      "via": [
-      "Bleed"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "vesper",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     }
    ],
@@ -3080,7 +4133,7 @@
     },
     "passive": {
      "name": "Death's Due",
-     "text": "Gains 15 energy whenever any enemy falls; +35% damage to bleeding enemies; enemies she kills can't be revived.",
+     "text": "Gains 15 energy whenever any enemy falls; +35% damage to Wounded (bleeding or poisoned) enemies; enemies she kills can't be revived.",
      "tags": [
       "buff_energy"
      ],
@@ -3089,7 +4142,7 @@
        "k": "dmg_out",
        "v": 0.35,
        "scope": "self",
-       "if": "tgt:bleed"
+       "if": "tgt:bleed|poison"
       }
      ],
      "triggers": [
@@ -3110,54 +4163,134 @@
     }
    },
    "applies": [
-    "Bleed",
-    "Kill"
+    "Wounds",
+    "Exposed"
    ],
    "payoffs": [
-    "Kill",
-    "Bleed"
+    "Exposed",
+    "Wounds"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "briar",
      "via": [
-      "Bleed"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "liora",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "mordessa",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Kill"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "ravenna",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     },
     {
      "hero": "sangrael",
      "via": [
-      "Bleed"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "solenne",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Kill"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "venna",
      "via": [
-      "Kill"
+      "Exposed",
+      "Wounds"
      ]
     },
     {
      "hero": "vesper",
      "via": [
-      "Bleed"
+      "Exposed",
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Exposed"
      ]
     }
    ],
@@ -3289,28 +4422,64 @@
     }
    },
    "applies": [
-    "Lifesteal"
+    "Wounds"
    ],
    "payoffs": [
-    "Lifesteal"
+    "Wounds"
    ],
    "synergy": [
     {
+     "hero": "briar",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
      "hero": "cassia",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "ravenna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "sangrael",
      "via": [
-      "Lifesteal"
+      "Wounds"
      ]
     },
     {
      "hero": "velisande",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Wounds"
      ]
     }
    ],
@@ -3443,39 +4612,57 @@
     }
    },
    "applies": [
-    "Stealth",
-    "Energy"
+    "Ambush",
+    "Tempo"
    ],
    "payoffs": [],
    "synergy": [
     {
      "hero": "calypso",
      "via": [
-      "Stealth"
+      "Ambush"
      ]
     },
     {
      "hero": "elowen",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "noctelle",
      "via": [
-      "Stealth"
+      "Ambush"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Stealth"
+      "Ambush"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Ambush"
      ]
     }
    ],
@@ -3575,7 +4762,7 @@
     },
     "passive": {
      "name": "Carrion",
-     "text": "Her heals are 40% stronger while any enemy is bleeding.",
+     "text": "Her heals are 40% stronger while any enemy is bleeding or poisoned.",
      "tags": [
       "heal_single"
      ],
@@ -3584,7 +4771,7 @@
        "k": "heal_out",
        "v": 0.4,
        "scope": "self",
-       "if": "any_enemy:bleed"
+       "if": "any_enemy:bleed|poison"
       }
      ],
      "triggers": [],
@@ -3592,46 +4779,102 @@
     }
    },
    "applies": [
-    "Curse"
+    "Exposed"
    ],
    "payoffs": [
-    "Bleed"
+    "Wounds"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "briar",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     },
     {
      "hero": "caelith",
      "via": [
-      "Curse"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "maelis",
      "via": [
-      "Curse"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "mordessa",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "ravenna",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     },
     {
      "hero": "sable",
      "via": [
-      "Bleed"
+      "Exposed",
+      "Wounds"
      ]
     },
     {
      "hero": "sangrael",
      "via": [
-      "Bleed"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "solenne",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Exposed",
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Exposed"
      ]
     }
    ],
@@ -3738,7 +4981,7 @@
     },
     "passive": {
      "name": "Ashen Wound",
-     "text": "Burning enemies receive 30% less healing; enemies with less than 50 energy take 10% more damage.",
+     "text": "Burning enemies receive 30% less healing; Disrupted enemies take 15% more damage.",
      "tags": [
       "debuff_antiheal",
       "debuff_weaken"
@@ -3752,9 +4995,9 @@
       },
       {
        "k": "dmg_in",
-       "v": 0.1,
+       "v": 0.15,
        "scope": "enemies",
-       "if": "tgt.energy<50"
+       "if": "tgt:blind|silence|tgt.energy<50"
       }
      ],
      "triggers": [],
@@ -3763,19 +5006,26 @@
    },
    "applies": [
     "Burn",
-    "Weakened",
-    "Blind",
-    "Drained"
+    "Exposed",
+    "Disrupted"
    ],
    "payoffs": [
     "Burn",
-    "Drained"
+    "Disrupted"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
      "hero": "caelith",
      "via": [
-      "Weakened"
+      "Disrupted",
+      "Exposed"
      ]
     },
     {
@@ -3793,37 +5043,82 @@
     {
      "hero": "isaura",
      "via": [
-      "Drained"
+      "Disrupted"
      ]
     },
     {
      "hero": "lorelei",
      "via": [
-      "Drained"
+      "Disrupted"
      ]
     },
     {
      "hero": "lucienne",
      "via": [
-      "Blind"
+      "Disrupted"
      ]
     },
     {
      "hero": "maelis",
      "via": [
-      "Burn"
+      "Burn",
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "ondine",
      "via": [
-      "Blind"
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "runa",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Weakened"
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Exposed"
      ]
     },
     {
@@ -3951,36 +5246,61 @@
     }
    },
    "applies": [
-    "Stealth",
-    "Feared"
+    "Ambush",
+    "Dread"
    ],
    "payoffs": [
-    "Stealth"
+    "Ambush"
    ],
    "synergy": [
     {
      "hero": "calypso",
      "via": [
-      "Stealth"
+      "Ambush",
+      "Dread"
+     ]
+    },
+    {
+     "hero": "corvina",
+     "via": [
+      "Ambush"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Feared",
-      "Stealth"
+      "Ambush",
+      "Dread"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Ambush"
      ]
     },
     {
      "hero": "thessaly",
      "via": [
-      "Stealth"
+      "Ambush"
      ]
     },
     {
      "hero": "velisande",
      "via": [
-      "Feared"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Dread"
      ]
     }
    ],
@@ -4080,16 +5400,16 @@
     },
     "passive": {
      "name": "Terror",
-     "text": "Enemies who are feared or charmed, or were in the last 3s, take 20% more damage.",
+     "text": "Enemies in Dread take 15% more damage.",
      "tags": [
       "debuff_weaken"
      ],
      "mods": [
       {
        "k": "dmg_in",
-       "v": 0.2,
+       "v": 0.15,
        "scope": "enemies",
-       "if": "tgt:fear+3|charm+3"
+       "if": "tgt:sleep+3|fear+3|charm+3"
       }
      ],
      "triggers": [],
@@ -4097,54 +5417,101 @@
     }
    },
    "applies": [
-    "Feared",
-    "Lifesteal"
+    "Dread",
+    "Wounds"
    ],
    "payoffs": [
-    "Feared",
-    "Charmed"
+    "Dread"
    ],
    "synergy": [
     {
+     "hero": "briar",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
      "hero": "calypso",
      "via": [
-      "Charmed"
+      "Dread"
      ]
     },
     {
      "hero": "cassia",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "lorelei",
      "via": [
-      "Charmed"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "lunaith",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "mordessa",
      "via": [
-      "Lifesteal"
+      "Wounds"
      ]
     },
     {
      "hero": "noctelle",
      "via": [
-      "Feared"
+      "Dread"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Feared"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "ravenna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "sangrael",
      "via": [
-      "Lifesteal"
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Dread"
      ]
     }
    ],
@@ -4266,7 +5633,7 @@
     },
     "passive": {
      "name": "Bramble Skin",
-     "text": "Reflects 15% of melee damage; bleeding enemies take 20% more damage.",
+     "text": "Reflects 15% of melee damage; Wounded (bleeding or poisoned) enemies take 20% more damage.",
      "tags": [
       "reflect",
       "debuff_weaken"
@@ -4281,7 +5648,7 @@
        "k": "dmg_in",
        "v": 0.2,
        "scope": "enemies",
-       "if": "tgt:bleed"
+       "if": "tgt:bleed|poison"
       }
      ],
      "triggers": [],
@@ -4289,73 +5656,122 @@
     }
    },
    "applies": [
-    "Taunted",
-    "Bleed"
+    "Gathered",
+    "Wounds"
    ],
    "payoffs": [
-    "Taunted",
-    "Bleed"
+    "Gathered",
+    "Wounds"
    ],
    "synergy": [
     {
+     "hero": "astraea",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
      "hero": "coralie",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "corvina",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Taunted"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Gathered",
+      "Wounds"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Taunted"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "ilyra",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "mordessa",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Gathered"
      ]
     },
     {
      "hero": "ravenna",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     },
     {
      "hero": "sable",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     },
     {
      "hero": "sangrael",
      "via": [
-      "Bleed",
-      "Taunted"
+      "Gathered",
+      "Wounds"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Taunted"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "vesper",
      "via": [
-      "Bleed"
+      "Wounds"
      ]
     }
    ],
@@ -4484,101 +5900,191 @@
     }
    },
    "applies": [
-    "Taunted",
-    "Rooted"
+    "Gathered",
+    "Hindered"
    ],
    "payoffs": [
-    "Shielded"
+    "Guarded"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "astraea",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
      "hero": "aurelle",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "briar",
      "via": [
-      "Taunted"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "coralie",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ilyra",
+     "via": [
+      "Gathered"
      ]
     },
     {
      "hero": "kaida",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "mireille",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     },
     {
      "hero": "nimue",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "runa",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "selene",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "wren",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Guarded"
      ]
     }
    ],
@@ -4694,16 +6200,16 @@
     },
     "passive": {
      "name": "Evergreen",
-     "text": "Enemies who are knocked up or rooted, or were in the last 3s, take 20% more damage.",
+     "text": "Hindered enemies take 15% more damage.",
      "tags": [
       "debuff_weaken"
      ],
      "mods": [
       {
        "k": "dmg_in",
-       "v": 0.2,
+       "v": 0.15,
        "scope": "enemies",
-       "if": "tgt:airborne+3|root+3"
+       "if": "tgt:slow|root+3|stun+3|airborne+3"
       }
      ],
      "triggers": [],
@@ -4711,83 +6217,144 @@
     }
    },
    "applies": [
-    "Grouped",
-    "Rooted",
-    "Airborne",
-    "Taunted"
+    "Gathered",
+    "Hindered"
    ],
    "payoffs": [
-    "Airborne",
-    "Rooted"
+    "Hindered"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
      "hero": "astraea",
      "via": [
-      "Airborne",
-      "Grouped"
+      "Gathered",
+      "Hindered"
      ]
     },
     {
      "hero": "briar",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ilyra",
      "via": [
-      "Grouped"
+      "Gathered"
      ]
     },
     {
      "hero": "kaida",
      "via": [
-      "Airborne",
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ophira",
      "via": [
-      "Airborne"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Airborne"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Grouped",
-      "Taunted"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "wren",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     }
    ],
@@ -4890,7 +6457,7 @@
     },
     "passive": {
      "name": "Pack Leader",
-     "text": "+15% damage while a beast is out; against enemies who are rooted or knocked up, or were in the last 3s, she deals +40% damage and her wolves deal double.",
+     "text": "+15% damage while a beast is out; against Hindered enemies she deals +30% damage and her wolves deal double.",
      "tags": [
       "dmg_single"
      ],
@@ -4903,9 +6470,9 @@
       },
       {
        "k": "dmg_out",
-       "v": 0.4,
+       "v": 0.3,
        "scope": "self",
-       "if": "tgt:root+3|airborne+3"
+       "if": "tgt:slow|root+3|stun+3|airborne+3"
       }
      ],
      "triggers": [],
@@ -4916,53 +6483,115 @@
     "Summon"
    ],
    "payoffs": [
-    "Summon",
-    "Rooted",
-    "Airborne"
+    "Hindered"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
      "hero": "astraea",
      "via": [
-      "Airborne"
+      "Hindered"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Airborne",
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ophira",
      "via": [
-      "Airborne"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Airborne",
-      "Summon"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "wren",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     }
    ],
@@ -5099,84 +6728,113 @@
    },
    "applies": [
     "Summon",
-    "Airborne"
+    "Hindered"
    ],
    "payoffs": [
-    "Summon",
-    "Energy"
+    "Tempo"
    ],
    "synergy": [
     {
      "hero": "elowen",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Airborne"
+      "Hindered"
      ]
     },
     {
      "hero": "kaida",
      "via": [
-      "Airborne",
-      "Summon"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "lunaith",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "marisol",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ophira",
      "via": [
-      "Airborne"
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Energy"
+      "Hindered",
+      "Tempo"
      ]
     },
     {
      "hero": "selene",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "seravelle",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "seren",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "tempra",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "thessaly",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "zephyra",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     }
    ],
@@ -5275,16 +6933,16 @@
     },
     "passive": {
      "name": "Night Sight",
-     "text": "Sees through stealth; +30% crit chance against slowed or marked enemies, and enemies who are rooted or were in the last 3s.",
+     "text": "Sees through stealth; +25% crit chance against Hindered or Exposed enemies.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "crit_rate",
-       "v": 0.3,
+       "v": 0.25,
        "scope": "self",
-       "if": "tgt:root+3|slow|mark"
+       "if": "tgt:slow|root+3|stun+3|airborne+3|mark|weaken|def_down|curse"
       }
      ],
      "triggers": [],
@@ -5294,99 +6952,184 @@
     }
    },
    "applies": [
-    "Rooted",
-    "Kill"
+    "Hindered",
+    "Exposed"
    ],
    "payoffs": [
-    "Rooted",
-    "Mark",
-    "Slow"
+    "Hindered",
+    "Exposed"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "astraea",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "eldrith",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     },
     {
      "hero": "elowen",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "fenna",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     },
     {
      "hero": "kaida",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "liora",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Rooted",
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "rhiannon",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "sable",
      "via": [
-      "Kill"
+      "Exposed"
      ]
     },
     {
      "hero": "seren",
      "via": [
-      "Mark"
+      "Exposed"
      ]
     },
     {
      "hero": "siora",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Mark"
+      "Exposed"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "venna",
      "via": [
-      "Kill",
-      "Slow"
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "wren",
      "via": [
-      "Rooted"
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Exposed"
      ]
     }
    ],
@@ -5520,42 +7263,147 @@
     }
    },
    "applies": [
-    "Poison",
-    "Slow"
+    "Wounds",
+    "Hindered"
    ],
    "payoffs": [
-    "Kill"
+    "Exposed"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "briar",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "liora",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "mordessa",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
      "hero": "nerissa",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Kill"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ravenna",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "sable",
      "via": [
-      "Kill"
+      "Exposed",
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "sangrael",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "solenne",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Kill",
-      "Slow"
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Exposed",
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Exposed",
+      "Hindered"
      ]
     }
    ],
@@ -5687,26 +7535,44 @@
     }
    },
    "applies": [
-    "Shielded"
+    "Guarded"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "eldrith",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "isolde",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
      ]
     }
    ],
@@ -5827,26 +7693,44 @@
     }
    },
    "applies": [
-    "Shielded"
+    "Guarded"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "eldrith",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "isolde",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
      ]
     }
    ],
@@ -5970,65 +7854,150 @@
     }
    },
    "applies": [
-    "Asleep",
-    "Slow",
-    "Grouped",
-    "Poison"
+    "Dread",
+    "Hindered",
+    "Gathered",
+    "Wounds"
    ],
    "payoffs": [],
    "synergy": [
     {
      "hero": "astraea",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "briar",
+     "via": [
+      "Gathered",
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "calypso",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ilyra",
      "via": [
-      "Grouped"
+      "Gathered"
      ]
     },
     {
      "hero": "isaura",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "mordessa",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ravenna",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "sangrael",
+     "via": [
+      "Wounds"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Wounds"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "zephyra",
      "via": [
-      "Asleep"
+      "Dread"
      ]
     }
    ],
@@ -6126,16 +8095,16 @@
     },
     "passive": {
      "name": "Snared Prey",
-     "text": "Enemies who are rooted, or were in the last 3s, take +20% damage.",
+     "text": "Hindered enemies take 10% more damage.",
      "tags": [
       "debuff_weaken"
      ],
      "mods": [
       {
        "k": "dmg_in",
-       "v": 0.2,
+       "v": 0.1,
        "scope": "enemies",
-       "if": "tgt:root+3"
+       "if": "tgt:slow|root+3|stun+3|airborne+3"
       }
      ],
      "triggers": [],
@@ -6143,53 +8112,164 @@
     }
    },
    "applies": [
-    "Weakened",
-    "Rooted"
+    "Exposed",
+    "Hindered"
    ],
    "payoffs": [
-    "Rooted"
+    "Hindered"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "astraea",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
      "hero": "caelith",
      "via": [
-      "Weakened"
+      "Exposed"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     },
     {
      "hero": "kaida",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Rooted"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "rhiannon",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Weakened"
+      "Exposed"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Rooted"
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Exposed",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ysra",
+     "via": [
+      "Exposed"
      ]
     }
    ],
@@ -6287,16 +8367,16 @@
     },
     "passive": {
      "name": "Moth Light",
-     "text": "Enemies who are asleep, or were in the last 3s, take 30% more damage.",
+     "text": "Enemies in Dread take 15% more damage.",
      "tags": [
       "debuff_weaken"
      ],
      "mods": [
       {
        "k": "dmg_in",
-       "v": 0.3,
+       "v": 0.15,
        "scope": "enemies",
-       "if": "tgt:sleep+3"
+       "if": "tgt:sleep+3|fear+3|charm+3"
       }
      ],
      "triggers": [],
@@ -6304,60 +8384,120 @@
     }
    },
    "applies": [
-    "Buffed",
-    "Energy",
-    "Asleep"
+    "Guarded",
+    "Tempo",
+    "Dread"
    ],
    "payoffs": [
-    "Asleep"
+    "Dread"
    ],
    "synergy": [
     {
+     "hero": "calypso",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "elara",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "elowen",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "fenna",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "isaura",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "lorelei",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "lunaith",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "noctelle",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "rosalind",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Dread"
      ]
     }
    ],
@@ -6482,22 +8622,40 @@
     }
    },
    "applies": [
-    "Shielded",
-    "Taunted",
+    "Guarded",
+    "Gathered",
     "Soaked"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "astraea",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
      "hero": "briar",
      "via": [
-      "Taunted"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
@@ -6507,9 +8665,15 @@
      ]
     },
     {
+     "hero": "ilyra",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
      "hero": "isolde",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
@@ -6521,7 +8685,7 @@
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
@@ -6531,9 +8695,15 @@
      ]
     },
     {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "vaela",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
@@ -6652,7 +8822,7 @@
     },
     "passive": {
      "name": "Barnacle",
-     "text": "Isolated enemies, and enemies who are stunned or were in the last 3s, take 20% more damage.",
+     "text": "Isolated enemies take 20% more damage.",
      "tags": [
       "debuff_weaken"
      ],
@@ -6661,7 +8831,7 @@
        "k": "dmg_in",
        "v": 0.2,
        "scope": "enemies",
-       "if": "tgt:stun+3|tgt.isolated"
+       "if": "tgt.isolated"
       }
      ],
      "triggers": [],
@@ -6669,39 +8839,42 @@
     }
    },
    "applies": [
-    "Slow",
-    "Stunned",
-    "Isolated",
+    "Hindered",
+    "Ambush",
     "Soaked"
    ],
    "payoffs": [
-    "Stunned",
-    "Isolated"
+    "Ambush"
    ],
    "synergy": [
     {
-     "hero": "amarante",
-     "via": [
-      "Stunned"
-     ]
-    },
-    {
      "hero": "calypso",
      "via": [
-      "Isolated"
+      "Ambush"
      ]
     },
     {
      "hero": "corvina",
      "via": [
-      "Isolated"
+      "Ambush"
      ]
     },
     {
      "hero": "halcyra",
      "via": [
-      "Soaked",
-      "Stunned"
+      "Soaked"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
      ]
     },
     {
@@ -6713,44 +8886,61 @@
     {
      "hero": "lucienne",
      "via": [
-      "Stunned"
+      "Hindered"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "noctelle",
+     "via": [
+      "Ambush"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Ambush"
      ]
     },
     {
      "hero": "ondine",
      "via": [
-      "Soaked",
-      "Stunned"
+      "Soaked"
      ]
     },
     {
      "hero": "ophira",
      "via": [
-      "Stunned"
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
-     "hero": "valeria",
+     "hero": "thessaly",
      "via": [
-      "Stunned"
+      "Ambush"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     },
     {
@@ -6860,16 +9050,16 @@
     },
     "passive": {
      "name": "Deep Hunger",
-     "text": "+40% damage to isolated enemies and to enemies who are charmed or were in the last 3s; her first hit from stealth crits.",
+     "text": "+35% damage to isolated enemies and to enemies in Dread; her first hit from stealth crits.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.4,
+       "v": 0.35,
        "scope": "self",
-       "if": "tgt.isolated|tgt:charm+3"
+       "if": "tgt.isolated|tgt:sleep+3|fear+3|charm+3"
       },
       {
        "k": "crit_rate",
@@ -6895,49 +9085,80 @@
     }
    },
    "applies": [
-    "Isolated",
-    "Charmed"
+    "Ambush",
+    "Dread"
    ],
    "payoffs": [
-    "Isolated",
-    "Charmed",
-    "Stealth"
+    "Ambush",
+    "Dread"
    ],
    "synergy": [
     {
      "hero": "corvina",
      "via": [
-      "Isolated"
+      "Ambush"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "lorelei",
      "via": [
-      "Charmed"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "lunaith",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "noctelle",
      "via": [
-      "Stealth"
+      "Ambush",
+      "Dread"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Ambush",
+      "Dread"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Isolated"
+      "Ambush"
      ]
     },
     {
      "hero": "thessaly",
      "via": [
-      "Stealth"
+      "Ambush"
      ]
     },
     {
      "hero": "velisande",
      "via": [
-      "Charmed"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Dread"
      ]
     }
    ],
@@ -7080,12 +9301,12 @@
     }
    },
    "applies": [
-    "Stunned",
+    "Hindered",
     "Soaked"
    ],
    "payoffs": [
     "Soaked",
-    "Cooldown"
+    "Tempo"
    ],
    "synergy": [
     {
@@ -7097,7 +9318,19 @@
     {
      "hero": "elowen",
      "via": [
-      "Cooldown"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
      ]
     },
     {
@@ -7109,13 +9342,26 @@
     {
      "hero": "lucienne",
      "via": [
-      "Stunned"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lunaith",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "marisol",
      "via": [
-      "Soaked"
+      "Soaked",
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Hindered"
      ]
     },
     {
@@ -7127,32 +9373,75 @@
     {
      "hero": "ophira",
      "via": [
-      "Stunned"
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Soaked"
+      "Hindered",
+      "Soaked",
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "selene",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "tempra",
      "via": [
-      "Cooldown"
+      "Tempo"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Soaked",
-      "Stunned"
+      "Soaked"
+     ]
+    },
+    {
+     "hero": "thessaly",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ysra",
      "via": [
       "Soaked"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Tempo"
      ]
     }
    ],
@@ -7271,16 +9560,16 @@
     },
     "passive": {
      "name": "Hunting Waters",
-     "text": "+40% damage to slowed enemies, and to enemies who are rooted or were in the last 3s.",
+     "text": "+30% damage to Hindered enemies.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.4,
+       "v": 0.3,
        "scope": "self",
-       "if": "tgt:slow|root+3"
+       "if": "tgt:slow|root+3|stun+3|airborne+3"
       }
      ],
      "triggers": [],
@@ -7288,91 +9577,144 @@
     }
    },
    "applies": [
-    "Grouped",
-    "Slow"
+    "Gathered",
+    "Hindered"
    ],
    "payoffs": [
-    "Slow",
-    "Rooted"
+    "Hindered"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
      "hero": "astraea",
      "via": [
-      "Grouped"
+      "Gathered",
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "briar",
+     "via": [
+      "Gathered"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     },
     {
      "hero": "elowen",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "fenna",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     },
     {
      "hero": "ilyra",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "rhiannon",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "siora",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Rooted",
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "venna",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "wren",
      "via": [
-      "Rooted"
+      "Hindered"
      ]
     }
    ],
@@ -7518,9 +9860,15 @@
    ],
    "payoffs": [
     "Soaked",
-    "Mark"
+    "Exposed"
    ],
    "synergy": [
+    {
+     "hero": "amarante",
+     "via": [
+      "Exposed"
+     ]
+    },
     {
      "hero": "coralie",
      "via": [
@@ -7534,9 +9882,21 @@
      ]
     },
     {
+     "hero": "liora",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "lorelei",
      "via": [
       "Soaked"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
      ]
     },
     {
@@ -7546,8 +9906,15 @@
      ]
     },
     {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "ondine",
      "via": [
+      "Exposed",
       "Soaked"
      ]
     },
@@ -7558,21 +9925,45 @@
      ]
     },
     {
+     "hero": "sable",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "seren",
      "via": [
-      "Mark"
+      "Exposed"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Mark"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
       "Soaked"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Exposed"
      ]
     }
    ],
@@ -7707,7 +10098,7 @@
     }
    },
    "applies": [
-    "Energy",
+    "Tempo",
     "Soaked"
    ],
    "payoffs": [],
@@ -7715,13 +10106,14 @@
     {
      "hero": "elowen",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "halcyra",
      "via": [
-      "Soaked"
+      "Soaked",
+      "Tempo"
      ]
     },
     {
@@ -7739,7 +10131,13 @@
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Tempo"
      ]
     },
     {
@@ -7863,64 +10261,124 @@
     }
    },
    "applies": [
-    "Shielded"
+    "Guarded"
    ],
    "payoffs": [
-    "Shielded"
+    "Guarded"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "aurelle",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "coralie",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "isolde",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "mireille",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "nimue",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "runa",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "selene",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Guarded"
      ]
     }
    ],
@@ -8061,39 +10519,93 @@
     }
    },
    "applies": [
-    "Buffed",
-    "Slow"
+    "Guarded",
+    "Hindered"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "elara",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "rosalind",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     }
    ],
@@ -8223,8 +10735,8 @@
     }
    },
    "applies": [
-    "Charmed",
-    "Drained"
+    "Dread",
+    "Disrupted"
    ],
    "payoffs": [
     "Soaked"
@@ -8233,7 +10745,7 @@
     {
      "hero": "calypso",
      "via": [
-      "Charmed"
+      "Dread"
      ]
     },
     {
@@ -8251,13 +10763,20 @@
     {
      "hero": "isaura",
      "via": [
-      "Drained"
+      "Disrupted",
+      "Dread"
      ]
     },
     {
      "hero": "liora",
      "via": [
-      "Drained"
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Disrupted"
      ]
     },
     {
@@ -8267,8 +10786,15 @@
      ]
     },
     {
+     "hero": "nyx",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
      "hero": "ondine",
      "via": [
+      "Disrupted",
       "Soaked"
      ]
     },
@@ -8287,13 +10813,19 @@
     {
      "hero": "velisande",
      "via": [
-      "Charmed"
+      "Dread"
      ]
     },
     {
      "hero": "ysra",
      "via": [
       "Soaked"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Dread"
      ]
     }
    ],
@@ -8400,7 +10932,7 @@
     },
     "passive": {
      "name": "Ink Bitten",
-     "text": "Soaked or blinded enemies take 20% more damage.",
+     "text": "Soaked or Disrupted enemies take 20% more damage.",
      "tags": [
       "debuff_weaken"
      ],
@@ -8409,7 +10941,7 @@
        "k": "dmg_in",
        "v": 0.2,
        "scope": "enemies",
-       "if": "tgt:soaked|blind"
+       "if": "tgt:soaked|blind|silence"
       }
      ],
      "triggers": [],
@@ -8417,20 +10949,28 @@
     }
    },
    "applies": [
-    "Blind",
-    "Weakened",
-    "Stunned",
+    "Disrupted",
+    "Exposed",
+    "Hindered",
     "Soaked"
    ],
    "payoffs": [
-    "Blind",
+    "Disrupted",
     "Soaked"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
      "hero": "caelith",
      "via": [
-      "Weakened"
+      "Disrupted",
+      "Exposed"
      ]
     },
     {
@@ -8446,28 +10986,48 @@
      ]
     },
     {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
      "hero": "liora",
      "via": [
-      "Blind"
+      "Disrupted"
      ]
     },
     {
      "hero": "lorelei",
      "via": [
+      "Disrupted",
       "Soaked"
      ]
     },
     {
      "hero": "lucienne",
      "via": [
-      "Blind",
-      "Stunned"
+      "Disrupted",
+      "Hindered"
      ]
     },
     {
      "hero": "maelis",
      "via": [
-      "Blind"
+      "Disrupted",
+      "Exposed"
      ]
     },
     {
@@ -8477,34 +11037,84 @@
      ]
     },
     {
+     "hero": "nerissa",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "ophira",
      "via": [
-      "Stunned"
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
+      "Hindered",
       "Soaked"
+     ]
+    },
+    {
+     "hero": "runa",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Blind",
-      "Weakened"
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Exposed",
+      "Hindered"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Soaked",
-      "Stunned"
+      "Soaked"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "ysra",
      "via": [
+      "Exposed",
       "Soaked"
      ]
     }
@@ -8622,7 +11232,7 @@
     },
     "passive": {
      "name": "Brine Weight",
-     "text": "Slowed enemies attack 15% slower and take 15% more damage.",
+     "text": "Hindered enemies attack 15% slower and take 10% more damage.",
      "tags": [
       "debuff_slow",
       "debuff_weaken"
@@ -8632,13 +11242,13 @@
        "k": "aspd",
        "v": -0.15,
        "scope": "enemies",
-       "if": "tgt:slow"
+       "if": "tgt:slow|root+3|stun+3|airborne+3"
       },
       {
        "k": "dmg_in",
-       "v": 0.15,
+       "v": 0.1,
        "scope": "enemies",
-       "if": "tgt:slow"
+       "if": "tgt:slow|root+3|stun+3|airborne+3"
       }
      ],
      "triggers": [],
@@ -8646,31 +11256,63 @@
     }
    },
    "applies": [
-    "Slow",
-    "Energy",
+    "Hindered",
+    "Tempo",
     "Soaked"
    ],
    "payoffs": [
-    "Slow"
+    "Hindered"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "astraea",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
      "hero": "elowen",
      "via": [
-      "Energy",
-      "Slow"
+      "Hindered",
+      "Tempo"
      ]
     },
     {
      "hero": "fenna",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "halcyra",
      "via": [
-      "Soaked"
+      "Hindered",
+      "Soaked",
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
      ]
     },
     {
@@ -8680,45 +11322,77 @@
      ]
     },
     {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
      "hero": "nerissa",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "ondine",
      "via": [
+      "Hindered",
       "Soaked"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Hindered",
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "siora",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Slow"
+      "Hindered"
      ]
     },
     {
      "hero": "thalassa",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "venna",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     },
     {
@@ -8985,26 +11659,69 @@
     }
    },
    "applies": [
-    "Shielded"
+    "Guarded",
+    "Disrupted"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "eldrith",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "isolde",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "liora",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
      ]
     }
    ],
@@ -9132,79 +11849,101 @@
     }
    },
    "applies": [
-    "Grouped",
-    "Taunted"
+    "Gathered",
+    "Disrupted"
    ],
    "payoffs": [
-    "Grouped",
-    "Taunted"
+    "Gathered"
    ],
    "synergy": [
     {
      "hero": "astraea",
      "via": [
-      "Grouped"
+      "Gathered"
      ]
     },
     {
      "hero": "briar",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "coralie",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "corvina",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "eldrith",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "fenna",
      "via": [
-      "Grouped"
+      "Gathered"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Grouped",
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "ilyra",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "liora",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "sangrael",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     },
     {
      "hero": "valeria",
      "via": [
-      "Taunted"
+      "Gathered"
      ]
     }
    ],
@@ -9299,16 +12038,16 @@
     },
     "passive": {
      "name": "Gravity Lens",
-     "text": "+35% damage to enemies standing close together; summons take double damage from her.",
+     "text": "+30% damage to Gathered enemies (standing close together or taunted); summons take double damage from her.",
      "tags": [
       "dmg_aoe"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.35,
+       "v": 0.3,
        "scope": "self",
-       "if": "tgt.grouped"
+       "if": "tgt.grouped|tgt:taunt"
       },
       {
        "k": "dmg_out",
@@ -9322,47 +12061,108 @@
     }
    },
    "applies": [
-    "Airborne"
+    "Hindered"
    ],
    "payoffs": [
-    "Grouped"
+    "Gathered"
    ],
    "synergy": [
     {
+     "hero": "briar",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "coralie",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "corvina",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
      "hero": "fenna",
      "via": [
-      "Grouped"
+      "Gathered"
      ]
     },
     {
      "hero": "hartwen",
      "via": [
-      "Airborne",
-      "Grouped"
+      "Gathered",
+      "Hindered"
      ]
     },
     {
      "hero": "kaida",
      "via": [
-      "Airborne"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Grouped"
+      "Gathered",
+      "Hindered"
      ]
     },
     {
      "hero": "ophira",
      "via": [
-      "Airborne"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "sangrael",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "vaela",
      "via": [
-      "Grouped"
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Gathered"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     }
    ],
@@ -9489,66 +12289,127 @@
     }
    },
    "applies": [
-    "Dispel"
+    "Guarded",
+    "Disrupted"
    ],
    "payoffs": [
-    "Mark",
-    "Weakened",
-    "Curse"
+    "Exposed"
    ],
    "synergy": [
     {
      "hero": "amarante",
      "via": [
-      "Weakened"
+      "Exposed"
      ]
     },
     {
      "hero": "cassia",
      "via": [
-      "Dispel"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "isaura",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "liora",
      "via": [
-      "Weakened"
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "maelis",
      "via": [
-      "Curse"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "nyx",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "ondine",
      "via": [
-      "Weakened"
+      "Disrupted",
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "seren",
      "via": [
-      "Mark"
+      "Exposed"
      ]
     },
     {
      "hero": "solenne",
      "via": [
-      "Mark"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "vesper",
      "via": [
-      "Curse"
+      "Exposed"
      ]
     },
     {
      "hero": "wren",
      "via": [
-      "Weakened"
+      "Exposed"
      ]
     }
    ],
@@ -9653,7 +12514,7 @@
     },
     "passive": {
      "name": "Hunger of the Void",
-     "text": "+30% damage to enemies with less than 50 energy, and to enemies who are asleep or were in the last 3s.",
+     "text": "+30% damage to enemies with less than 50 energy and to enemies in Dread.",
      "tags": [
       "dmg_single"
      ],
@@ -9662,7 +12523,7 @@
        "k": "dmg_out",
        "v": 0.3,
        "scope": "self",
-       "if": "tgt.energy<50|tgt:sleep+3"
+       "if": "tgt.energy<50|tgt:sleep+3|fear+3|charm+3"
       }
      ],
      "triggers": [],
@@ -9670,41 +12531,108 @@
     }
    },
    "applies": [
-    "Drained"
+    "Disrupted"
    ],
    "payoffs": [
-    "Drained",
-    "Asleep"
+    "Disrupted",
+    "Dread"
    ],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "calypso",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
      "hero": "fenna",
      "via": [
-      "Asleep"
+      "Dread"
      ]
     },
     {
      "hero": "liora",
      "via": [
-      "Drained"
+      "Disrupted"
      ]
     },
     {
      "hero": "lorelei",
      "via": [
-      "Drained"
+      "Disrupted",
+      "Dread"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Disrupted"
      ]
     },
     {
      "hero": "lunaith",
      "via": [
-      "Asleep"
+      "Dread"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "noctelle",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "runa",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "solenne",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Disrupted"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "zephyra",
      "via": [
-      "Asleep"
+      "Dread"
      ]
     }
    ],
@@ -9984,39 +12912,63 @@
     }
    },
    "applies": [
-    "Asleep",
-    "Energy"
+    "Dread",
+    "Tempo"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "calypso",
+     "via": [
+      "Dread"
+     ]
+    },
+    {
      "hero": "elowen",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "isaura",
      "via": [
-      "Asleep"
+      "Dread"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Asleep"
+      "Dread"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Dread"
      ]
     },
     {
      "hero": "zephyra",
      "via": [
-      "Asleep"
+      "Dread"
      ]
     }
    ],
@@ -10139,39 +13091,69 @@
     }
    },
    "applies": [
-    "Shielded",
-    "Energy"
+    "Guarded",
+    "Tempo"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "elara",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "eldrith",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "elowen",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "isolde",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "odette",
      "via": [
-      "Shielded"
+      "Guarded"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "rosalind",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Tempo"
      ]
     }
    ],
@@ -10278,14 +13260,14 @@
     },
     "passive": {
      "name": "Chronoflow",
-     "text": "Allies gain energy 10% faster.",
+     "text": "Allies gain energy 15% faster.",
      "tags": [
       "buff_energy"
      ],
      "mods": [
       {
        "k": "energy_gain",
-       "v": 0.1,
+       "v": 0.15,
        "scope": "allies"
       }
      ],
@@ -10294,99 +13276,157 @@
     }
    },
    "applies": [
-    "Energy",
-    "Slow",
-    "Buffed",
-    "Cooldown"
+    "Tempo",
+    "Hindered",
+    "Guarded"
    ],
    "payoffs": [
-    "Energy"
+    "Tempo"
    ],
    "synergy": [
     {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
      "hero": "elara",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "halcyra",
      "via": [
-      "Cooldown"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "kaida",
+     "via": [
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "lucienne",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "lunaith",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "marisol",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "nerissa",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "pelagia",
      "via": [
-      "Energy",
-      "Slow"
+      "Hindered",
+      "Tempo"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "rosalind",
      "via": [
-      "Buffed"
+      "Guarded"
      ]
     },
     {
      "hero": "selene",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "seravelle",
      "via": [
-      "Cooldown",
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "seren",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Slow"
+      "Hindered"
+     ]
+    },
+    {
+     "hero": "tempra",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "thessaly",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Hindered"
      ]
     },
     {
      "hero": "zephyra",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     }
    ],
@@ -10511,58 +13551,124 @@
     }
    },
    "applies": [
-    "Mark",
-    "Buffed",
-    "Energy"
+    "Exposed",
+    "Guarded",
+    "Tempo"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "amarante",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
      "hero": "caelith",
      "via": [
-      "Mark"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "cassia",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "elara",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "elowen",
      "via": [
-      "Energy"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "isolde",
+     "via": [
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "maelis",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "nyx",
      "via": [
-      "Mark"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "odette",
+     "via": [
+      "Guarded"
      ]
     },
     {
      "hero": "rhiannon",
      "via": [
-      "Energy"
+      "Tempo"
      ]
     },
     {
      "hero": "rosalind",
      "via": [
-      "Buffed"
+      "Guarded"
+     ]
+    },
+    {
+     "hero": "sable",
+     "via": [
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "seravelle",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "solenne",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
-      "Mark"
+      "Exposed"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Exposed"
      ]
     },
     {
      "hero": "ysra",
      "via": [
-      "Mark"
+      "Exposed"
      ]
     }
    ],
@@ -10658,14 +13764,14 @@
     },
     "passive": {
      "name": "Timekeeper",
-     "text": "Allies' skills recharge 10% faster.",
+     "text": "Allies' skills recharge 15% faster.",
      "tags": [
       "buff_cdr"
      ],
      "mods": [
       {
        "k": "haste",
-       "v": 10,
+       "v": 15,
        "scope": "allies"
       }
      ],
@@ -10674,20 +13780,32 @@
     }
    },
    "applies": [
-    "Cooldown"
+    "Tempo"
    ],
    "payoffs": [],
    "synergy": [
     {
+     "hero": "elowen",
+     "via": [
+      "Tempo"
+     ]
+    },
+    {
      "hero": "halcyra",
      "via": [
-      "Cooldown"
+      "Tempo"
+     ]
+    },
+    {
+     "hero": "rhiannon",
+     "via": [
+      "Tempo"
      ]
     },
     {
      "hero": "seravelle",
      "via": [
-      "Cooldown"
+      "Tempo"
      ]
     }
    ],
