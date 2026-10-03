@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Gacha.Core.Campaign;
 using Gacha.Core.Data;
 using Gacha.Core.Economy;
 using Gacha.Core.Progression;
@@ -181,6 +182,8 @@ namespace Gacha.Core.Battle
         public StatScaling Progression;
         /// <summary>Idle loot rates (economy.json); null when the file is absent.</summary>
         public IdleRates Idle;
+        /// <summary>Campaign stages in order (stages.json); index = stage index − 1. Empty when the file is absent.</summary>
+        public List<StageDef> Stages = new List<StageDef>();
 
         public static GameData Load(string dataDir)
         {

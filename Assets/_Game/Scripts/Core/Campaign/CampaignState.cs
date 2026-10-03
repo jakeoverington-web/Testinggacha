@@ -1,0 +1,124 @@
+using System;
+using System.Collections.Generic;
+using Gacha.Core.Battle;
+using Gacha.Core.Economy;
+
+namespace Gacha.Core.Campaign
+{
+    /// <summary>What the campaign expects at a stage (Game Modes and Progression Plan, Campaign: Difficulty).</summary>
+    public static class Expected
+    {
+        public const int StagesPerChapter = 30;
+
+        public static int Chapter(int stageIndex) => (stageIndex - 1) / StagesPerChapter + 1;
+
+        /// <summary>About stage ÷ 3 (stage 300 is level 100), clamped to 1-200.</summary>
+        public static int Level(int stageIndex) => Math.Clamp((int)Math.Round(stageIndex / 3.0), 1, 200);
+
+        /// <summary>One more star every 4 chapters: 1★ in ch 1-4 … 5★ in ch 17-20.</summary>
+        public static int Stars(int chapter) => 1 + (Math.Max(1, chapter) - 1) / 4;
+    }
+
+    /// <summary>Recommended power: Σ (HP × 0.1 + ATK + DEF) × level/star multiplier, rounded.</summary>
+    public static class TeamPower
+    {
+        public static double Hero(GameData g, string hero, int level, int stars)
+        {
+            var s = g.Heroes[hero].Stats;
+            return (s.Hp * 0.1 + s.Atk + s.Def) * g.Progression.Mult(level, stars);
+        }
+
+        public static long Of(GameData g, IList<string> heroes, int level, int stars)
+        {
+            double sum = 0;
+            foreach (var h in heroes) sum += Hero(g, h, level, stars);
+            return (long)Math.Round(sum);
+        }
+
+        public static long Of(GameData g, StageDef stage)
+        {
+            double sum = 0;
+            foreach (var e in stage.Enemies) sum += Hero(g, e.Hero, e.Level, e.Stars);
+            return (long)Math.Round(sum);
+        }
+    }
+
+    public sealed class FightResult
+    {
+        public BattleResult Battle;
+        public int StageIndex;
+        public bool Won, FirstClear;
+        /// <summary>Seed and setups, so the screen can replay the exact battle.</summary>
+        public ulong Seed;
+        public TeamSetup Player, Enemy;
+    }
+
+    /// <summary>
+    /// The player's campaign progress: highest stage, wallet, idle chest, auto mode, last-used team (row 18).
+    /// Phase 1: the player's team fights at the expected level and stars of the stage (owner, 2026-10-03).
+    /// </summary>
+    public sealed class CampaignState
+    {
+        public const string Mode = "campaign";
+        public const int MaxTeam = 5;
+
+        public int HighestCleared;
+        public Wallet Wallet = new Wallet();
+        public IdleChest Chest = new IdleChest();
+        public bool Auto;
+        public Dictionary<string, List<string>> LastSetup = new Dictionary<string, List<string>>();
+        public ulong Seed;
+        public int Attempts;
+
+        public static CampaignState New(ulong seed, long now) => new CampaignState { Seed = seed, Chest = IdleChest.StartAt(now) };
+
+        public TeamSetup PlayerSetup(GameData g, int stageIndex, IList<string> heroes)
+        {
+            int level = Expected.Level(stageIndex), stars = Expected.Stars(Expected.Chapter(stageIndex));
+            var t = new TeamSetup(ToArray(heroes)) { Scales = new List<double>() };
+            foreach (var _ in heroes) t.Scales.Add(g.Progression.Mult(level, stars));
+            return t;
+        }
+
+        public TeamSetup EnemySetup(GameData g, int stageIndex)
+        {
+            var stage = g.Stages[stageIndex - 1];
+            var t = new TeamSetup { Scales = new List<double>() };
+            foreach (var e in stage.Enemies) { t.Heroes.Add(e.Hero); t.Scales.Add(g.Progression.Mult(e.Level, e.Stars)); }
+            return t;
+        }
+
+        /// <summary>Plays a stage. Only cleared stages and the next one can be fought; a first win pays first-clear rewards once.</summary>
+        public FightResult Fight(GameData g, int stageIndex, IList<string> heroes, long now)
+        {
+            int max = Math.Min(HighestCleared + 1, g.Stages.Count);
+            if (stageIndex < 1 || stageIndex > max) throw new InvalidOperationException($"Stage {stageIndex} is locked (next is {HighestCleared + 1})");
+            if (heroes == null || heroes.Count < 1 || heroes.Count > MaxTeam) throw new ArgumentException("A team has 1 to 5 heroes");
+            if (new HashSet<string>(heroes).Count != heroes.Count) throw new ArgumentException("A hero can only appear once in a team");
+            foreach (var h in heroes) if (!g.Heroes.ContainsKey(h)) throw new ArgumentException("Unknown hero " + h);
+
+            ulong seed = new Rng(Seed ^ (ulong)Attempts).NextULong();
+            Attempts++;
+            LastSetup[Mode] = new List<string>(heroes);
+            var player = PlayerSetup(g, stageIndex, heroes);
+            var enemy = EnemySetup(g, stageIndex);
+            var battle = new Battle.Battle(g, player, enemy, seed).Run();
+            var r = new FightResult { Battle = battle, StageIndex = stageIndex, Won = battle.Winner == 0, Seed = seed, Player = player, Enemy = enemy };
+            if (r.Won && stageIndex == HighestCleared + 1)
+            {
+                Chest.Settle(now, HighestCleared, g.Idle);   // loot so far keeps the old rate
+                HighestCleared = stageIndex;
+                foreach (var kv in g.Stages[stageIndex - 1].FirstClear) Wallet.Add(kv.Key, kv.Value);
+                r.FirstClear = true;
+            }
+            return r;
+        }
+
+        /// <summary>Auto mode (row 21): keep going after a win, stop on a loss or after the last stage.</summary>
+        public bool AutoContinues(GameData g, FightResult r) => Auto && r.Won && r.StageIndex < g.Stages.Count;
+
+        public void Collect(GameData g, long now) => Chest.Collect(now, HighestCleared, g.Idle, Wallet);
+
+        static string[] ToArray(IList<string> l) { var a = new string[l.Count]; l.CopyTo(a, 0); return a; }
+    }
+}
