@@ -332,6 +332,7 @@ namespace Gacha.Core.Battle
         {
             int i = u.Statuses.FindIndex(s => s.Id == id && s.Delay <= 0);
             if (i < 0) return false;
+            u.LastHad[id] = Time;
             u.Statuses.RemoveAt(i);
             Emit(Ev.StatusOff, -1, u.Index, id, 0);
             return true;
@@ -444,6 +445,7 @@ namespace Gacha.Core.Battle
                 {
                     var s = u.Statuses[i];
                     if (s.Delay > 0) continue;
+                    u.LastHad[s.Id] = Time;
                     s.Remaining -= dt;
                     if (s.Remaining <= 1e-9)
                     {

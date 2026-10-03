@@ -110,7 +110,8 @@ rl = ["| Pass | Focus | Edits | Issues found after |", "| --- | --- | --- | --- 
       f"| 4 | Synergy fairness: no must-pick hub | {len(PASSES[4])} | {counts[4]} |", f"| 5 | Final read of the published tables: duplicate effect, naming clashes | {len(PASSES[5])} | {counts[5]} |",
       f"| 6 | Tag audit by the executable kits (battle tests) | {len(PASSES[6])} | {counts[6]} |",
       f"| 7 | First balance pass from the niche report (battle sim) | {len(PASSES[7])} | {counts.get(7)} |",
-      f"| 8 | Ablation pass: targeting, aim and pulled-back buffs | {len(PASSES[8])} | {counts.get(8)} |"]
+      f"| 8 | Ablation pass: targeting, aim and pulled-back buffs | {len(PASSES[8])} | {counts.get(8)} |",
+      f"| 9 | Synergy pass: stronger payoffs, amplifiers, debuff tiers, carry trims | {len(PASSES[9])} | {counts.get(9)} |"]
 open("md/revlog.md", "w").write("\n".join(rl))
 
 # role/race summary

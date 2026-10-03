@@ -137,6 +137,25 @@ namespace Gacha.Tests
         }
 
         [Test]
+        public void Condition_StatusWindow_CountsForNSecondsAfterItEnds()
+        {
+            var b = Lab.Seed(1).Ally("striker").Enemy("dummy").Build();
+            b.ResistFloor = 0;
+            var s = b.Units[0]; var t = b.Units[1];
+            var c = new Cond { Self = s, Src = s, Tgt = t };
+            Assert.IsFalse(b.Eval("tgt:stun+3", c), "never stunned");
+            Assert.IsTrue(b.ApplyStatus(s, t, "stun", 1, 0, null));
+            Assert.IsTrue(b.Eval("tgt:stun+3", c) && b.Eval("tgt:stun", c), "stunned now");
+            b.RunFor(2.5);
+            Assert.IsFalse(b.Eval("tgt:stun", c), "stun is over");
+            Assert.IsTrue(b.Eval("tgt:stun+3", c), "1.5 s after the stun ended: still in the window");
+            Assert.IsTrue(b.Eval("tgt:airborne+3|stun+3", c), "the window carries to the inherited atom");
+            b.RunFor(2.0);
+            Assert.IsFalse(b.Eval("tgt:stun+3", c), "3.5 s after: window over");
+            Assert.IsNull(Battle.CheckCondition("tgt:sleep+3|fear+3"));
+        }
+
+        [Test]
         public void HardControl_PriorityKeepsTheStronger()
         {
             var b = Lab.Seed(1).Ally("striker").Enemy("dummy").Build();

@@ -37,7 +37,7 @@
   "healSkillThreshold": 0.95,
   "resistFloor": 0.15,
   "summons": {
-    "wolf": { "hpPct": 0.3, "atkPct": 0.4, "def": 60, "atkSpd": 1.0, "range": 1, "moveSpd": 4.0, "mods": [{ "k": "dmg_out", "v": 1.0, "if": "tgt:root|airborne", "scope": "self" }] },
+    "wolf": { "hpPct": 0.3, "atkPct": 0.4, "def": 60, "atkSpd": 1.0, "range": 1, "moveSpd": 4.0, "mods": [{ "k": "dmg_out", "v": 1.0, "if": "tgt:root+3|airborne+3", "scope": "self" }] },
     "stag": { "hpPct": 1.0, "atkPct": 0.5, "def": 0, "atkSpd": 0.8, "range": 1, "moveSpd": 4.0, "untargetable": true, "permanent": true },
     "decoy": { "hpPct": 0.2, "atkPct": 0.0, "def": 0, "atkSpd": 0, "range": 0, "moveSpd": 0 }
   },

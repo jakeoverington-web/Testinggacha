@@ -1,5 +1,5 @@
 {
- "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 8).",
+ "_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass 9).",
  "heroes": [
   {
    "id": "cassia",
@@ -58,14 +58,14 @@
     "skill1": {
      "name": "Holy Strike",
      "cooldown": 6,
-     "text": "Hits for 180% ATK and heals her for half.",
+     "text": "Hits for 160% ATK and heals her for half.",
      "tags": [
       "dmg_single"
      ],
      "ops": [
       {
        "op": "dmg",
-       "m": 1.8,
+       "m": 1.6,
        "to": "target",
        "drain": 0.5
       }
@@ -88,14 +88,14 @@
     },
     "passive": {
      "name": "Absolution",
-     "text": "Lifesteal heals her 50% more; each buff she removes shields her for 5% max HP.",
+     "text": "Lifesteal heals her 30% more; each buff she removes shields her for 5% max HP.",
      "tags": [
       "shield_single"
      ],
      "mods": [
       {
        "k": "lifesteal_heal",
-       "v": 0.5,
+       "v": 0.3,
        "scope": "self"
       }
      ],
@@ -267,14 +267,14 @@
     },
     "passive": {
      "name": "Devotion",
-     "text": "Heals and shields on her are 30% stronger.",
+     "text": "Heals and shields on her are 50% stronger.",
      "tags": [
       "dr"
      ],
      "mods": [
       {
        "k": "heal_in",
-       "v": 0.3,
+       "v": 0.5,
        "scope": "self"
       }
      ],
@@ -497,9 +497,27 @@
      ]
     },
     {
+     "hero": "ophira",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
      "hero": "rosalind",
      "via": [
       "Buffed"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Taunted"
      ]
     }
    ],
@@ -550,7 +568,7 @@
    "skills": {
     "ultimate": {
      "name": "Rebirth Flame",
-     "text": "Fire blast on all enemies for 190% ATK; if she falls within 10s she revives at 30% (once).",
+     "text": "Fire blast on all enemies for 170% ATK; if she falls within 10s she revives at 30% (once).",
      "tags": [
       "dmg_aoe",
       "revive"
@@ -558,7 +576,7 @@
      "ops": [
       {
        "op": "dmg",
-       "m": 1.9,
+       "m": 1.7,
        "to": "enemies",
        "elem": "fire"
       },
@@ -639,6 +657,12 @@
    ],
    "synergy": [
     {
+     "hero": "draxa",
+     "via": [
+      "Burn"
+     ]
+    },
+    {
      "hero": "fenna",
      "via": [
       "Grouped"
@@ -672,12 +696,6 @@
      "hero": "vaela",
      "via": [
       "Grouped"
-     ]
-    },
-    {
-     "hero": "velisande",
-     "via": [
-      "Burn"
      ]
     },
     {
@@ -735,14 +753,14 @@
    "skills": {
     "ultimate": {
      "name": "Sunder Dawn",
-     "text": "Dashes through a line of enemies for 280% ATK.",
+     "text": "Dashes through a line of enemies for 320% ATK.",
      "tags": [
       "dmg_row"
      ],
      "ops": [
       {
        "op": "dmg",
-       "m": 2.8,
+       "m": 3.2,
        "to": "line"
       }
      ]
@@ -750,7 +768,7 @@
     "skill1": {
      "name": "Riposte",
      "cooldown": 8,
-     "text": "Counter stance for 2s and shields herself for 10% max HP.",
+     "text": "Counter stance for 3s and shields herself for 20% max HP.",
      "tags": [
       "counter",
       "shield_single"
@@ -760,13 +778,13 @@
        "op": "status",
        "s": "counter",
        "to": "self",
-       "dur": 2,
+       "dur": 3,
        "v": 0.75
       },
       {
        "op": "shield",
        "to": "self",
-       "pct": 0.1
+       "pct": 0.2
       }
      ]
     },
@@ -789,16 +807,16 @@
     },
     "passive": {
      "name": "Blinding Edge",
-     "text": "+40% crit damage against blinded or stunned enemies.",
+     "text": "+60% crit damage against blinded enemies, and enemies who are stunned or were in the last 3s.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "crit_dmg",
-       "v": 0.4,
+       "v": 0.6,
        "scope": "self",
-       "if": "tgt:blind|stun"
+       "if": "tgt:blind|stun+3"
       }
      ],
      "triggers": [],
@@ -911,7 +929,7 @@
    "skills": {
     "ultimate": {
      "name": "Judgement Spear",
-     "text": "Falls from the sky on the enemy carry for 350% ATK and knocks up nearby enemies.",
+     "text": "Falls from the sky on the enemy carry for 270% ATK and knocks up nearby enemies.",
      "tags": [
       "dmg_single",
       "cc_knock"
@@ -919,7 +937,7 @@
      "ops": [
       {
        "op": "dmg",
-       "m": 3.5,
+       "m": 2.7,
        "to": "highest_atk_enemy"
       },
       {
@@ -968,16 +986,16 @@
     },
     "passive": {
      "name": "Skyfall",
-     "text": "+25% damage to airborne enemies.",
+     "text": "+40% damage to enemies who are knocked up or stunned, or were in the last 3s.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.25,
+       "v": 0.4,
        "scope": "self",
-       "if": "tgt:airborne"
+       "if": "tgt:airborne+3|stun+3"
       }
      ],
      "triggers": [],
@@ -988,13 +1006,26 @@
     "Airborne"
    ],
    "payoffs": [
-    "Airborne"
+    "Airborne",
+    "Stunned"
    ],
    "synergy": [
+    {
+     "hero": "amarante",
+     "via": [
+      "Stunned"
+     ]
+    },
     {
      "hero": "astraea",
      "via": [
       "Airborne"
+     ]
+    },
+    {
+     "hero": "halcyra",
+     "via": [
+      "Stunned"
      ]
     },
     {
@@ -1010,9 +1041,27 @@
      ]
     },
     {
+     "hero": "ondine",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
      "hero": "rhiannon",
      "via": [
       "Airborne"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Stunned"
      ]
     }
    ],
@@ -1064,14 +1113,14 @@
    "skills": {
     "ultimate": {
      "name": "Noon Lance",
-     "text": "A beam that pierces the whole row for 260% ATK.",
+     "text": "A beam that pierces the whole row for 240% ATK.",
      "tags": [
       "dmg_row"
      ],
      "ops": [
       {
        "op": "dmg",
-       "m": 2.6,
+       "m": 2.4,
        "to": "target_row"
       }
      ]
@@ -1079,7 +1128,7 @@
     "skill1": {
      "name": "Sunshot",
      "cooldown": 8,
-     "text": "Marks the target (takes +15% damage) for 4s.",
+     "text": "Marks the target (takes +15% damage) for 6s.",
      "tags": [
       "mark"
      ],
@@ -1088,7 +1137,7 @@
        "op": "status",
        "s": "mark",
        "to": "target",
-       "dur": 4,
+       "dur": 6,
        "v": 0.15
       }
      ]
@@ -1120,11 +1169,18 @@
     },
     "passive": {
      "name": "Sunlit",
-     "text": "Her crits against marked enemies blind them for 2s.",
+     "text": "+30% damage to weakened or DEF-lowered enemies; her crits against marked enemies blind them for 2s.",
      "tags": [
       "debuff_blind"
      ],
-     "mods": [],
+     "mods": [
+      {
+       "k": "dmg_out",
+       "v": 0.3,
+       "scope": "self",
+       "if": "tgt:weaken|def_down"
+      }
+     ],
      "triggers": [
       {
        "on": "crit",
@@ -1147,12 +1203,26 @@
     "Mark",
     "Blind"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Weakened"
+   ],
    "synergy": [
+    {
+     "hero": "amarante",
+     "via": [
+      "Weakened"
+     ]
+    },
     {
      "hero": "caelith",
      "via": [
       "Mark"
+     ]
+    },
+    {
+     "hero": "liora",
+     "via": [
+      "Weakened"
      ]
     },
     {
@@ -1170,13 +1240,20 @@
     {
      "hero": "ondine",
      "via": [
-      "Blind"
+      "Blind",
+      "Weakened"
      ]
     },
     {
      "hero": "sylwen",
      "via": [
       "Mark"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Weakened"
      ]
     },
     {
@@ -1256,7 +1333,7 @@
     "skill1": {
      "name": "Radiance",
      "cooldown": 6,
-     "text": "Big heal on one ally (250% ATK).",
+     "text": "Big heal on one ally (220% ATK).",
      "tags": [
       "heal_single"
      ],
@@ -1264,7 +1341,7 @@
       {
        "op": "heal",
        "to": "ally",
-       "m": 2.5
+       "m": 2.2
       }
      ]
     },
@@ -1377,7 +1454,7 @@
    "skills": {
     "ultimate": {
      "name": "Halo of Grace",
-     "text": "Heals all for 15% and grants control immunity for 4s.",
+     "text": "Heals all for 25% and grants control immunity for 4s.",
      "tags": [
       "heal_aoe",
       "immunity"
@@ -1386,7 +1463,7 @@
       {
        "op": "heal",
        "to": "allies",
-       "pct": 0.15
+       "pct": 0.25
       },
       {
        "op": "status",
@@ -1429,14 +1506,14 @@
     },
     "passive": {
      "name": "Haloed",
-     "text": "Allies with her halo take 5% less damage; her heals are 20% stronger on buffed allies.",
+     "text": "Allies with her halo take 5% less damage; her heals are 40% stronger on buffed allies.",
      "tags": [
       "dr"
      ],
      "mods": [
       {
        "k": "heal_out",
-       "v": 0.2,
+       "v": 0.4,
        "scope": "self",
        "if": "tgt.buffed"
       }
@@ -1577,7 +1654,7 @@
     "skill1": {
      "name": "Verdict",
      "cooldown": 7,
-     "text": "Lowers her target's DEF by 30% for 5s.",
+     "text": "Lowers her target's DEF by 50% for 5s.",
      "tags": [
       "debuff_def"
      ],
@@ -1587,7 +1664,7 @@
        "s": "def_down",
        "to": "target",
        "dur": 5,
-       "v": 0.3
+       "v": 0.5
       }
      ]
     },
@@ -1652,6 +1729,24 @@
     },
     {
      "hero": "lucienne",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
+     "hero": "solenne",
+     "via": [
+      "Weakened"
+     ]
+    },
+    {
+     "hero": "thalassa",
      "via": [
       "Stunned"
      ]
@@ -1759,14 +1854,14 @@
     },
     "passive": {
      "name": "Court of Dawn",
-     "text": "Allies deal +3% damage per active buff they carry (max 5).",
+     "text": "Allies deal +5% damage per active buff they carry (max 5).",
      "tags": [
       "buff_atk"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.03,
+       "v": 0.05,
        "scope": "allies",
        "perBuff": 5
       }
@@ -1926,7 +2021,7 @@
     },
     "passive": {
      "name": "Hymn",
-     "text": "Allies gain 10 energy when she casts a skill.",
+     "text": "Allies gain 8 energy when she casts a skill.",
      "tags": [
       "buff_energy"
      ],
@@ -1937,7 +2032,7 @@
        "ops": [
         {
          "op": "energy",
-         "v": 10,
+         "v": 8,
          "to": "allies_except_self"
         }
        ]
@@ -1963,7 +2058,8 @@
     {
      "hero": "elowen",
      "via": [
-      "Cooldown"
+      "Cooldown",
+      "Energy"
      ]
     },
     {
@@ -2122,6 +2218,18 @@
      "via": [
       "Isolated"
      ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Isolated"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Taunted"
+     ]
     }
    ],
    "art": {
@@ -2260,6 +2368,7 @@
     {
      "hero": "briar",
      "via": [
+      "Bleed",
       "Taunted"
      ]
     },
@@ -2285,6 +2394,12 @@
      "hero": "sable",
      "via": [
       "Bleed"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Taunted"
      ]
     },
     {
@@ -2403,14 +2518,14 @@
     },
     "passive": {
      "name": "Smoulder",
-     "text": "+25% damage to burning or cursed enemies.",
+     "text": "+35% damage to burning or cursed enemies.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.25,
+       "v": 0.35,
        "scope": "self",
        "if": "tgt:burn|curse"
       }
@@ -2429,6 +2544,12 @@
     "Curse"
    ],
    "synergy": [
+    {
+     "hero": "caelith",
+     "via": [
+      "Curse"
+     ]
+    },
     {
      "hero": "draxa",
      "via": [
@@ -2457,12 +2578,6 @@
      "hero": "ondine",
      "via": [
       "Blind"
-     ]
-    },
-    {
-     "hero": "velisande",
-     "via": [
-      "Burn"
      ]
     },
     {
@@ -2526,9 +2641,10 @@
    "skills": {
     "ultimate": {
      "name": "Night's Edge",
-     "text": "Blinks to the weakest enemy, strikes for 300% ATK and executes her below 25% HP.",
+     "text": "Blinks to the weakest enemy, strikes for 300% ATK, executes her below 25% HP, then stealths for 2s.",
      "tags": [
-      "execute"
+      "execute",
+      "untargetable"
      ],
      "ops": [
       {
@@ -2541,22 +2657,34 @@
        "m": 3.0,
        "to": "weakest_enemy",
        "execute": 0.25
+      },
+      {
+       "op": "status",
+       "s": "stealth",
+       "to": "self",
+       "dur": 2
       }
      ]
     },
     "skill1": {
      "name": "Fade",
      "cooldown": 9,
-     "text": "Stealth for 2s.",
+     "text": "Stealth for 3s and heals 15% max HP.",
      "tags": [
-      "untargetable"
+      "untargetable",
+      "heal_single"
      ],
      "ops": [
       {
        "op": "status",
        "s": "stealth",
        "to": "self",
-       "dur": 2
+       "dur": 3
+      },
+      {
+       "op": "heal",
+       "to": "self",
+       "pct": 0.15
       }
      ]
     },
@@ -2583,16 +2711,16 @@
     },
     "passive": {
      "name": "Backstab",
-     "text": "+40% crit damage from behind, from stealth or against sleeping enemies; marked enemies are her first targets.",
+     "text": "+60% crit damage from Shadowstep, from stealth or within 3s of leaving it, and against enemies who are asleep or feared or were in the last 3s; marked enemies are her first targets.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "crit_dmg",
-       "v": 0.4,
+       "v": 0.6,
        "scope": "self",
-       "if": "src:stealth|sure_crit|tgt:sleep"
+       "if": "src:stealth+3|sure_crit|tgt:sleep+3|fear+3"
       }
      ],
      "triggers": [],
@@ -2607,7 +2735,8 @@
    "payoffs": [
     "Stealth",
     "Mark",
-    "Asleep"
+    "Asleep",
+    "Feared"
    ],
    "synergy": [
     {
@@ -2625,6 +2754,7 @@
     {
      "hero": "noctelle",
      "via": [
+      "Feared",
       "Stealth"
      ]
     },
@@ -2650,6 +2780,12 @@
      "hero": "thessaly",
      "via": [
       "Stealth"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Feared"
      ]
     },
     {
@@ -2740,14 +2876,14 @@
     "skill1": {
      "name": "Lacerate",
      "cooldown": 6,
-     "text": "Hits for 160% ATK and makes the target bleed.",
+     "text": "Hits for 140% ATK and makes the target bleed.",
      "tags": [
       "dot_bleed"
      ],
      "ops": [
       {
        "op": "dmg",
-       "m": 1.6,
+       "m": 1.4,
        "to": "target"
       },
       {
@@ -2762,7 +2898,7 @@
     "skill2": {
      "name": "Blood Rush",
      "cooldown": 11,
-     "text": "Attack speed up (40%) for 4s.",
+     "text": "Attack speed up (30%) for 4s.",
      "tags": [
       "buff_speed"
      ],
@@ -2772,20 +2908,20 @@
        "s": "aspd_up",
        "to": "self",
        "dur": 4,
-       "v": 0.4
+       "v": 0.3
       }
      ]
     },
     "passive": {
      "name": "Sanguine Edge",
-     "text": "+20% damage to bleeding enemies; hitting one heals her 3% max HP.",
+     "text": "+35% damage to bleeding enemies; hitting one heals her 3% max HP.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.2,
+       "v": 0.35,
        "scope": "self",
        "if": "tgt:bleed"
       }
@@ -2944,14 +3080,14 @@
     },
     "passive": {
      "name": "Death's Due",
-     "text": "Gains 10 energy whenever any enemy falls; +15% damage to bleeding enemies; enemies she kills can't be revived.",
+     "text": "Gains 15 energy whenever any enemy falls; +35% damage to bleeding enemies; enemies she kills can't be revived.",
      "tags": [
       "buff_energy"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.15,
+       "v": 0.35,
        "scope": "self",
        "if": "tgt:bleed"
       }
@@ -2962,7 +3098,7 @@
        "ops": [
         {
          "op": "energy",
-         "v": 10,
+         "v": 15,
          "to": "self"
         }
        ]
@@ -3319,6 +3455,12 @@
      ]
     },
     {
+     "hero": "elowen",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
      "hero": "noctelle",
      "via": [
       "Stealth"
@@ -3384,7 +3526,7 @@
    "skills": {
     "ultimate": {
      "name": "Murder of Crows",
-     "text": "Ravens hit all enemies and heal the team for 60% of the damage.",
+     "text": "Ravens hit all enemies for 140% ATK and heal the team for 80% of the damage.",
      "tags": [
       "dmg_aoe",
       "heal_aoe"
@@ -3392,9 +3534,9 @@
      "ops": [
       {
        "op": "dmg",
-       "m": 1.2,
+       "m": 1.4,
        "to": "enemies",
-       "healTeam": 0.6
+       "healTeam": 0.8
       }
      ]
     },
@@ -3433,14 +3575,14 @@
     },
     "passive": {
      "name": "Carrion",
-     "text": "Her heals are 20% stronger while any enemy is bleeding.",
+     "text": "Her heals are 40% stronger while any enemy is bleeding.",
      "tags": [
       "heal_single"
      ],
      "mods": [
       {
        "k": "heal_out",
-       "v": 0.2,
+       "v": 0.4,
        "scope": "self",
        "if": "any_enemy:bleed"
       }
@@ -3460,6 +3602,12 @@
      "hero": "briar",
      "via": [
       "Bleed"
+     ]
+    },
+    {
+     "hero": "caelith",
+     "via": [
+      "Curse"
      ]
     },
     {
@@ -3559,14 +3707,14 @@
     "skill1": {
      "name": "Ember Sigil",
      "cooldown": 8,
-     "text": "Drains 30 energy from the highest-ATK enemy.",
+     "text": "Drains 20 energy from the highest-ATK enemy.",
      "tags": [
       "energy_drain"
      ],
      "ops": [
       {
        "op": "energy",
-       "v": -30,
+       "v": -20,
        "to": "highest_atk_enemy"
       }
      ]
@@ -3590,9 +3738,10 @@
     },
     "passive": {
      "name": "Ashen Wound",
-     "text": "Burning enemies receive 30% less healing.",
+     "text": "Burning enemies receive 30% less healing; enemies with less than 50 energy take 10% more damage.",
      "tags": [
-      "debuff_antiheal"
+      "debuff_antiheal",
+      "debuff_weaken"
      ],
      "mods": [
       {
@@ -3600,6 +3749,12 @@
        "v": -0.3,
        "scope": "enemies",
        "if": "tgt:burn"
+      },
+      {
+       "k": "dmg_in",
+       "v": 0.1,
+       "scope": "enemies",
+       "if": "tgt.energy<50"
       }
      ],
      "triggers": [],
@@ -3613,7 +3768,8 @@
     "Drained"
    ],
    "payoffs": [
-    "Burn"
+    "Burn",
+    "Drained"
    ],
    "synergy": [
     {
@@ -3641,6 +3797,12 @@
      ]
     },
     {
+     "hero": "lorelei",
+     "via": [
+      "Drained"
+     ]
+    },
+    {
      "hero": "lucienne",
      "via": [
       "Blind"
@@ -3659,9 +3821,9 @@
      ]
     },
     {
-     "hero": "velisande",
+     "hero": "solenne",
      "via": [
-      "Burn"
+      "Weakened"
      ]
     },
     {
@@ -3772,16 +3934,16 @@
     },
     "passive": {
      "name": "From the Dark",
-     "text": "Allies attacking from stealth deal +15% damage.",
+     "text": "Allies deal +30% damage while stealthed and for 3s after leaving stealth.",
      "tags": [
       "buff_atk"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.15,
+       "v": 0.3,
        "scope": "allies",
-       "if": "src:stealth"
+       "if": "src:stealth+3"
       }
      ],
      "triggers": [],
@@ -3805,6 +3967,7 @@
     {
      "hero": "nyx",
      "via": [
+      "Feared",
       "Stealth"
      ]
     },
@@ -3917,16 +4080,16 @@
     },
     "passive": {
      "name": "Terror",
-     "text": "Feared or burning enemies take 10% more damage.",
+     "text": "Enemies who are feared or charmed, or were in the last 3s, take 20% more damage.",
      "tags": [
       "debuff_weaken"
      ],
      "mods": [
       {
        "k": "dmg_in",
-       "v": 0.1,
+       "v": 0.2,
        "scope": "enemies",
-       "if": "tgt:fear|burn"
+       "if": "tgt:fear+3|charm+3"
       }
      ],
      "triggers": [],
@@ -3939,9 +4102,15 @@
    ],
    "payoffs": [
     "Feared",
-    "Burn"
+    "Charmed"
    ],
    "synergy": [
+    {
+     "hero": "calypso",
+     "via": [
+      "Charmed"
+     ]
+    },
     {
      "hero": "cassia",
      "via": [
@@ -3949,27 +4118,9 @@
      ]
     },
     {
-     "hero": "draxa",
+     "hero": "lorelei",
      "via": [
-      "Burn"
-     ]
-    },
-    {
-     "hero": "ilyra",
-     "via": [
-      "Burn"
-     ]
-    },
-    {
-     "hero": "liora",
-     "via": [
-      "Burn"
-     ]
-    },
-    {
-     "hero": "maelis",
-     "via": [
-      "Burn"
+      "Charmed"
      ]
     },
     {
@@ -3985,15 +4136,15 @@
      ]
     },
     {
-     "hero": "sangrael",
+     "hero": "nyx",
      "via": [
-      "Lifesteal"
+      "Feared"
      ]
     },
     {
-     "hero": "zaria",
+     "hero": "sangrael",
      "via": [
-      "Burn"
+      "Lifesteal"
      ]
     }
    ],
@@ -4044,7 +4195,7 @@
    "skills": {
     "ultimate": {
      "name": "Wall of Briars",
-     "text": "Barrier that reflects 30% of damage for 4s.",
+     "text": "Barrier for 4s: reflects 30% of damage and she takes 30% less damage.",
      "tags": [
       "reflect",
       "dr"
@@ -4062,7 +4213,7 @@
        "s": "dr",
        "to": "self",
        "dur": 4,
-       "v": 0.15
+       "v": 0.3
       }
      ]
     },
@@ -4115,15 +4266,22 @@
     },
     "passive": {
      "name": "Bramble Skin",
-     "text": "Reflects 15% of melee damage.",
+     "text": "Reflects 15% of melee damage; bleeding enemies take 20% more damage.",
      "tags": [
-      "reflect"
+      "reflect",
+      "debuff_weaken"
      ],
      "mods": [
       {
        "k": "reflect_melee",
        "v": 0.15,
        "scope": "self"
+      },
+      {
+       "k": "dmg_in",
+       "v": 0.2,
+       "scope": "enemies",
+       "if": "tgt:bleed"
       }
      ],
      "triggers": [],
@@ -4135,7 +4293,8 @@
     "Bleed"
    ],
    "payoffs": [
-    "Taunted"
+    "Taunted",
+    "Bleed"
    ],
    "synergy": [
     {
@@ -4177,6 +4336,7 @@
     {
      "hero": "sangrael",
      "via": [
+      "Bleed",
       "Taunted"
      ]
     },
@@ -4350,6 +4510,12 @@
      ]
     },
     {
+     "hero": "hartwen",
+     "via": [
+      "Rooted"
+     ]
+    },
+    {
      "hero": "kaida",
      "via": [
       "Rooted"
@@ -4359,6 +4525,12 @@
      "hero": "mireille",
      "via": [
       "Shielded"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Rooted"
      ]
     },
     {
@@ -4389,6 +4561,12 @@
      "hero": "sylwen",
      "via": [
       "Rooted"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Taunted"
      ]
     },
     {
@@ -4516,15 +4694,16 @@
     },
     "passive": {
      "name": "Evergreen",
-     "text": "Regenerates 2% HP per second.",
+     "text": "Enemies who are knocked up or rooted, or were in the last 3s, take 20% more damage.",
      "tags": [
-      "regen"
+      "debuff_weaken"
      ],
      "mods": [
       {
-       "k": "regen",
-       "v": 0.02,
-       "scope": "self"
+       "k": "dmg_in",
+       "v": 0.2,
+       "scope": "enemies",
+       "if": "tgt:airborne+3|root+3"
       }
      ],
      "triggers": [],
@@ -4537,11 +4716,15 @@
     "Airborne",
     "Taunted"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Airborne",
+    "Rooted"
+   ],
    "synergy": [
     {
      "hero": "astraea",
      "via": [
+      "Airborne",
       "Grouped"
      ]
     },
@@ -4549,6 +4732,12 @@
      "hero": "briar",
      "via": [
       "Taunted"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Rooted"
      ]
     },
     {
@@ -4565,7 +4754,19 @@
      ]
     },
     {
+     "hero": "nerissa",
+     "via": [
+      "Rooted"
+     ]
+    },
+    {
      "hero": "ophira",
+     "via": [
+      "Airborne"
+     ]
+    },
+    {
+     "hero": "rhiannon",
      "via": [
       "Airborne"
      ]
@@ -4574,6 +4775,13 @@
      "hero": "sylwen",
      "via": [
       "Rooted"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Grouped",
+      "Taunted"
      ]
     },
     {
@@ -4646,7 +4854,7 @@
     "skill1": {
      "name": "Pounce",
      "cooldown": 8,
-     "text": "Leaps onto a back-row enemy.",
+     "text": "Leaps onto a back-row enemy for 180% ATK.",
      "tags": [
       "dmg_single"
      ],
@@ -4658,7 +4866,7 @@
       },
       {
        "op": "dmg",
-       "m": 1.5,
+       "m": 1.8,
        "to": "backrow_enemy"
       }
      ]
@@ -4682,7 +4890,7 @@
     },
     "passive": {
      "name": "Pack Leader",
-     "text": "+15% damage while a beast is out; her wolves deal double damage to rooted or knocked-up enemies.",
+     "text": "+15% damage while a beast is out; against enemies who are rooted or knocked up, or were in the last 3s, she deals +40% damage and her wolves deal double.",
      "tags": [
       "dmg_single"
      ],
@@ -4692,6 +4900,12 @@
        "v": 0.15,
        "scope": "self",
        "if": "self.beast"
+      },
+      {
+       "k": "dmg_out",
+       "v": 0.4,
+       "scope": "self",
+       "if": "tgt:root+3|airborne+3"
       }
      ],
      "triggers": [],
@@ -4899,6 +5113,12 @@
      ]
     },
     {
+     "hero": "hartwen",
+     "via": [
+      "Airborne"
+     ]
+    },
+    {
      "hero": "kaida",
      "via": [
       "Airborne",
@@ -5055,16 +5275,16 @@
     },
     "passive": {
      "name": "Night Sight",
-     "text": "Sees through stealth; +15% crit chance against rooted or marked enemies.",
+     "text": "Sees through stealth; +30% crit chance against slowed or marked enemies, and enemies who are rooted or were in the last 3s.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "crit_rate",
-       "v": 0.15,
+       "v": 0.3,
        "scope": "self",
-       "if": "tgt:root|mark"
+       "if": "tgt:root+3|slow|mark"
       }
      ],
      "triggers": [],
@@ -5079,13 +5299,26 @@
    ],
    "payoffs": [
     "Rooted",
-    "Mark"
+    "Mark",
+    "Slow"
    ],
    "synergy": [
     {
      "hero": "eldrith",
      "via": [
       "Rooted"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Slow"
      ]
     },
     {
@@ -5101,6 +5334,19 @@
      ]
     },
     {
+     "hero": "nerissa",
+     "via": [
+      "Rooted",
+      "Slow"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
      "hero": "sable",
      "via": [
       "Kill"
@@ -5113,15 +5359,28 @@
      ]
     },
     {
+     "hero": "siora",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
      "hero": "solenne",
      "via": [
       "Mark"
      ]
     },
     {
+     "hero": "thalassa",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
      "hero": "venna",
      "via": [
-      "Kill"
+      "Kill",
+      "Slow"
      ]
     },
     {
@@ -5179,7 +5438,7 @@
    "skills": {
     "ultimate": {
      "name": "Nightshade Bloom",
-     "text": "Poisons all enemies (4% max HP/s) for 4s.",
+     "text": "Poisons all enemies (6% max HP/s) for 4s.",
      "tags": [
       "dot_poison"
      ],
@@ -5189,14 +5448,14 @@
        "s": "poison",
        "to": "enemies",
        "dur": 4,
-       "v": 0.04
+       "v": 0.06
       }
      ]
     },
     "skill1": {
      "name": "Toxic Dart",
      "cooldown": 6,
-     "text": "Poisons the target (2%/s) for 4s.",
+     "text": "Poisons the target (3%/s) for 4s.",
      "tags": [
       "dot_poison"
      ],
@@ -5206,14 +5465,14 @@
        "s": "poison",
        "to": "target",
        "dur": 4,
-       "v": 0.02
+       "v": 0.03
       }
      ]
     },
     "skill2": {
      "name": "Spore Burst",
      "cooldown": 11,
-     "text": "Area poison and slow for 3s.",
+     "text": "Poisons (3%/s) and slows enemies in an area for 3s.",
      "tags": [
       "dot_poison",
       "debuff_slow"
@@ -5224,7 +5483,7 @@
        "s": "poison",
        "to": "enemies_near_target:2",
        "dur": 3,
-       "v": 0.02
+       "v": 0.03
       },
       {
        "op": "status",
@@ -5281,6 +5540,12 @@
      ]
     },
     {
+     "hero": "pelagia",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
      "hero": "sable",
      "via": [
       "Kill"
@@ -5289,7 +5554,8 @@
     {
      "hero": "sylwen",
      "via": [
-      "Kill"
+      "Kill",
+      "Slow"
      ]
     }
    ],
@@ -5740,6 +6006,30 @@
      "via": [
       "Asleep"
      ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Grouped"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Asleep"
+     ]
     }
    ],
    "art": {
@@ -5789,7 +6079,7 @@
    "skills": {
     "ultimate": {
      "name": "Faerie Ring",
-     "text": "Enemies inside the ring are Weakened (+25% damage taken) for 5s.",
+     "text": "Enemies inside the ring are Weakened (+40% damage taken) for 5s.",
      "tags": [
       "debuff_weaken"
      ],
@@ -5799,14 +6089,14 @@
        "s": "weaken",
        "to": "enemies_near_target:3",
        "dur": 5,
-       "v": 0.25
+       "v": 0.4
       }
      ]
     },
     "skill1": {
      "name": "Snare",
      "cooldown": 8,
-     "text": "Roots her target for 1.5s.",
+     "text": "Roots her target for 2s.",
      "tags": [
       "cc_root"
      ],
@@ -5815,7 +6105,7 @@
        "op": "status",
        "s": "root",
        "to": "target",
-       "dur": 1.5
+       "dur": 2
       }
      ]
     },
@@ -5836,16 +6126,16 @@
     },
     "passive": {
      "name": "Snared Prey",
-     "text": "Rooted enemies take +10% damage.",
+     "text": "Enemies who are rooted, or were in the last 3s, take +20% damage.",
      "tags": [
       "debuff_weaken"
      ],
      "mods": [
       {
        "k": "dmg_in",
-       "v": 0.1,
+       "v": 0.2,
        "scope": "enemies",
-       "if": "tgt:root"
+       "if": "tgt:root+3"
       }
      ],
      "triggers": [],
@@ -5882,6 +6172,18 @@
      "hero": "kaida",
      "via": [
       "Rooted"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Rooted"
+     ]
+    },
+    {
+     "hero": "solenne",
+     "via": [
+      "Weakened"
      ]
     },
     {
@@ -5985,15 +6287,16 @@
     },
     "passive": {
      "name": "Moth Light",
-     "text": "Allies near her gain 5% crit chance.",
+     "text": "Enemies who are asleep, or were in the last 3s, take 30% more damage.",
      "tags": [
-      "buff_crit"
+      "debuff_weaken"
      ],
      "mods": [
       {
-       "k": "crit_rate",
-       "v": 0.05,
-       "scope": "allies_near:3"
+       "k": "dmg_in",
+       "v": 0.3,
+       "scope": "enemies",
+       "if": "tgt:sleep+3"
       }
      ],
      "triggers": [],
@@ -6005,7 +6308,9 @@
     "Energy",
     "Asleep"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Asleep"
+   ],
    "synergy": [
     {
      "hero": "elara",
@@ -6014,7 +6319,25 @@
      ]
     },
     {
+     "hero": "elowen",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Asleep"
+     ]
+    },
+    {
      "hero": "isaura",
+     "via": [
+      "Asleep"
+     ]
+    },
+    {
+     "hero": "lunaith",
      "via": [
       "Asleep"
      ]
@@ -6202,6 +6525,18 @@
      ]
     },
     {
+     "hero": "ondine",
+     "via": [
+      "Soaked"
+     ]
+    },
+    {
+     "hero": "vaela",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
      "hero": "ysra",
      "via": [
       "Soaked"
@@ -6317,15 +6652,16 @@
     },
     "passive": {
      "name": "Barnacle",
-     "text": "Reflects 10% of melee damage.",
+     "text": "Isolated enemies, and enemies who are stunned or were in the last 3s, take 20% more damage.",
      "tags": [
-      "reflect"
+      "debuff_weaken"
      ],
      "mods": [
       {
-       "k": "reflect_melee",
-       "v": 0.1,
-       "scope": "self"
+       "k": "dmg_in",
+       "v": 0.2,
+       "scope": "enemies",
+       "if": "tgt:stun+3|tgt.isolated"
       }
      ],
      "triggers": [],
@@ -6338,8 +6674,17 @@
     "Isolated",
     "Soaked"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Stunned",
+    "Isolated"
+   ],
    "synergy": [
+    {
+     "hero": "amarante",
+     "via": [
+      "Stunned"
+     ]
+    },
     {
      "hero": "calypso",
      "via": [
@@ -6347,9 +6692,16 @@
      ]
     },
     {
+     "hero": "corvina",
+     "via": [
+      "Isolated"
+     ]
+    },
+    {
      "hero": "halcyra",
      "via": [
-      "Soaked"
+      "Soaked",
+      "Stunned"
      ]
     },
     {
@@ -6368,6 +6720,37 @@
      "hero": "nerissa",
      "via": [
       "Slow"
+     ]
+    },
+    {
+     "hero": "ondine",
+     "via": [
+      "Soaked",
+      "Stunned"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Stunned"
      ]
     },
     {
@@ -6424,7 +6807,7 @@
    "skills": {
     "ultimate": {
      "name": "Lure of the Deep",
-     "text": "Pulls the enemy carry to her and devours them for 340% ATK, healing for half.",
+     "text": "Pulls the enemy carry to her and devours them for 300% ATK, healing for half.",
      "tags": [
       "pull",
       "dmg_single"
@@ -6438,7 +6821,7 @@
       },
       {
        "op": "dmg",
-       "m": 3.4,
+       "m": 3.0,
        "to": "highest_atk_enemy",
        "drain": 0.5
       }
@@ -6447,14 +6830,14 @@
     "skill1": {
      "name": "Bite",
      "cooldown": 6,
-     "text": "Hits for 170% ATK.",
+     "text": "Hits for 150% ATK.",
      "tags": [
       "dmg_single"
      ],
      "ops": [
       {
        "op": "dmg",
-       "m": 1.7,
+       "m": 1.5,
        "to": "target"
       }
      ]
@@ -6477,16 +6860,16 @@
     },
     "passive": {
      "name": "Deep Hunger",
-     "text": "+25% damage to isolated or charmed enemies, and her first hit from stealth crits.",
+     "text": "+40% damage to isolated enemies and to enemies who are charmed or were in the last 3s; her first hit from stealth crits.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.25,
+       "v": 0.4,
        "scope": "self",
-       "if": "tgt.isolated|tgt:charm"
+       "if": "tgt.isolated|tgt:charm+3"
       },
       {
        "k": "crit_rate",
@@ -6549,6 +6932,12 @@
      "hero": "thessaly",
      "via": [
       "Stealth"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Charmed"
      ]
     }
    ],
@@ -6736,6 +7125,12 @@
      ]
     },
     {
+     "hero": "ophira",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
      "hero": "pelagia",
      "via": [
       "Soaked"
@@ -6750,7 +7145,8 @@
     {
      "hero": "thalassa",
      "via": [
-      "Soaked"
+      "Soaked",
+      "Stunned"
      ]
     },
     {
@@ -6839,7 +7235,7 @@
     "skill1": {
      "name": "Trident Dive",
      "cooldown": 7,
-     "text": "Dives onto the back row for 200% ATK.",
+     "text": "Dives onto the back row for 240% ATK.",
      "tags": [
       "dmg_single"
      ],
@@ -6851,7 +7247,7 @@
       },
       {
        "op": "dmg",
-       "m": 2.0,
+       "m": 2.4,
        "to": "backrow_enemy"
       }
      ]
@@ -6875,16 +7271,16 @@
     },
     "passive": {
      "name": "Hunting Waters",
-     "text": "+20% damage to slowed enemies.",
+     "text": "+40% damage to slowed enemies, and to enemies who are rooted or were in the last 3s.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.2,
+       "v": 0.4,
        "scope": "self",
-       "if": "tgt:slow"
+       "if": "tgt:slow|root+3"
       }
      ],
      "triggers": [],
@@ -6896,13 +7292,20 @@
     "Slow"
    ],
    "payoffs": [
-    "Slow"
+    "Slow",
+    "Rooted"
    ],
    "synergy": [
     {
      "hero": "astraea",
      "via": [
       "Grouped"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Rooted"
      ]
     },
     {
@@ -6915,6 +7318,12 @@
      "hero": "fenna",
      "via": [
       "Slow"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Rooted"
      ]
     },
     {
@@ -6936,15 +7345,34 @@
      ]
     },
     {
+     "hero": "sylwen",
+     "via": [
+      "Rooted",
+      "Slow"
+     ]
+    },
+    {
      "hero": "thalassa",
      "via": [
       "Slow"
      ]
     },
     {
+     "hero": "vaela",
+     "via": [
+      "Grouped"
+     ]
+    },
+    {
      "hero": "venna",
      "via": [
       "Slow"
+     ]
+    },
+    {
+     "hero": "wren",
+     "via": [
+      "Rooted"
      ]
     }
    ],
@@ -7052,14 +7480,14 @@
     },
     "passive": {
      "name": "Conductor",
-     "text": "Her hits on Soaked or marked enemies deal +25% and chain to one more Soaked enemy.",
+     "text": "Her hits on Soaked or marked enemies deal +40% and chain to one more Soaked enemy.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.25,
+       "v": 0.4,
        "scope": "self",
        "if": "tgt:soaked|mark"
       }
@@ -7285,6 +7713,12 @@
    "payoffs": [],
    "synergy": [
     {
+     "hero": "elowen",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
      "hero": "halcyra",
      "via": [
       "Soaked"
@@ -7292,6 +7726,12 @@
     },
     {
      "hero": "lorelei",
+     "via": [
+      "Soaked"
+     ]
+    },
+    {
+     "hero": "ondine",
      "via": [
       "Soaked"
      ]
@@ -7639,9 +8079,21 @@
      ]
     },
     {
+     "hero": "pelagia",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
      "hero": "rosalind",
      "via": [
       "Buffed"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Slow"
      ]
     }
    ],
@@ -7803,6 +8255,12 @@
      ]
     },
     {
+     "hero": "liora",
+     "via": [
+      "Drained"
+     ]
+    },
+    {
      "hero": "marisol",
      "via": [
       "Soaked"
@@ -7824,6 +8282,12 @@
      "hero": "thalassa",
      "via": [
       "Soaked"
+     ]
+    },
+    {
+     "hero": "velisande",
+     "via": [
+      "Charmed"
      ]
     },
     {
@@ -7936,16 +8400,16 @@
     },
     "passive": {
      "name": "Ink Bitten",
-     "text": "Blinded enemies take 10% more damage.",
+     "text": "Soaked or blinded enemies take 20% more damage.",
      "tags": [
       "debuff_weaken"
      ],
      "mods": [
       {
        "k": "dmg_in",
-       "v": 0.1,
+       "v": 0.2,
        "scope": "enemies",
-       "if": "tgt:blind"
+       "if": "tgt:soaked|blind"
       }
      ],
      "triggers": [],
@@ -7959,13 +8423,20 @@
     "Soaked"
    ],
    "payoffs": [
-    "Blind"
+    "Blind",
+    "Soaked"
    ],
    "synergy": [
     {
      "hero": "caelith",
      "via": [
       "Weakened"
+     ]
+    },
+    {
+     "hero": "coralie",
+     "via": [
+      "Soaked"
      ]
     },
     {
@@ -8000,9 +8471,35 @@
      ]
     },
     {
+     "hero": "marisol",
+     "via": [
+      "Soaked"
+     ]
+    },
+    {
+     "hero": "ophira",
+     "via": [
+      "Stunned"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Soaked"
+     ]
+    },
+    {
      "hero": "solenne",
      "via": [
-      "Blind"
+      "Blind",
+      "Weakened"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Soaked",
+      "Stunned"
      ]
     },
     {
@@ -8125,14 +8622,21 @@
     },
     "passive": {
      "name": "Brine Weight",
-     "text": "Slowed enemies attack 15% slower.",
+     "text": "Slowed enemies attack 15% slower and take 15% more damage.",
      "tags": [
-      "debuff_slow"
+      "debuff_slow",
+      "debuff_weaken"
      ],
      "mods": [
       {
        "k": "aspd",
        "v": -0.15,
+       "scope": "enemies",
+       "if": "tgt:slow"
+      },
+      {
+       "k": "dmg_in",
+       "v": 0.15,
        "scope": "enemies",
        "if": "tgt:slow"
       }
@@ -8146,8 +8650,23 @@
     "Energy",
     "Soaked"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Slow"
+   ],
    "synergy": [
+    {
+     "hero": "elowen",
+     "via": [
+      "Energy",
+      "Slow"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Slow"
+     ]
+    },
     {
      "hero": "halcyra",
      "via": [
@@ -8167,9 +8686,39 @@
      ]
     },
     {
+     "hero": "ondine",
+     "via": [
+      "Soaked"
+     ]
+    },
+    {
      "hero": "rhiannon",
      "via": [
       "Energy"
+     ]
+    },
+    {
+     "hero": "siora",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "thalassa",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "venna",
+     "via": [
+      "Slow"
      ]
     },
     {
@@ -8276,11 +8825,19 @@
     },
     "passive": {
      "name": "Dragonblood",
-     "text": "Immune to burns.",
+     "text": "Immune to burns; burning enemies take 20% more damage.",
      "tags": [
-      "immunity"
+      "immunity",
+      "debuff_weaken"
      ],
-     "mods": [],
+     "mods": [
+      {
+       "k": "dmg_in",
+       "v": 0.2,
+       "scope": "enemies",
+       "if": "tgt:burn"
+      }
+     ],
      "triggers": [],
      "flags": [
       "immune:burn"
@@ -8290,8 +8847,16 @@
    "applies": [
     "Burn"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Burn"
+   ],
    "synergy": [
+    {
+     "hero": "ilyra",
+     "via": [
+      "Burn"
+     ]
+    },
     {
      "hero": "liora",
      "via": [
@@ -8300,12 +8865,6 @@
     },
     {
      "hero": "maelis",
-     "via": [
-      "Burn"
-     ]
-    },
-    {
-     "hero": "velisande",
      "via": [
       "Burn"
      ]
@@ -8556,16 +9115,16 @@
     },
     "passive": {
      "name": "Null",
-     "text": "Takes 15% less damage from ultimates.",
+     "text": "Grouped or taunted enemies take 10% more damage.",
      "tags": [
-      "dr"
+      "debuff_weaken"
      ],
      "mods": [
       {
        "k": "dmg_in",
-       "v": -0.15,
-       "scope": "self",
-       "if": "ult"
+       "v": 0.1,
+       "scope": "enemies",
+       "if": "tgt.grouped|tgt:taunt"
       }
      ],
      "triggers": [],
@@ -8576,7 +9135,10 @@
     "Grouped",
     "Taunted"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Grouped",
+    "Taunted"
+   ],
    "synergy": [
     {
      "hero": "astraea",
@@ -8591,9 +9153,58 @@
      ]
     },
     {
+     "hero": "coralie",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "corvina",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "eldrith",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "fenna",
+     "via": [
+      "Grouped"
+     ]
+    },
+    {
+     "hero": "hartwen",
+     "via": [
+      "Grouped",
+      "Taunted"
+     ]
+    },
+    {
      "hero": "ilyra",
      "via": [
       "Grouped"
+     ]
+    },
+    {
+     "hero": "nerissa",
+     "via": [
+      "Grouped"
+     ]
+    },
+    {
+     "hero": "sangrael",
+     "via": [
+      "Taunted"
+     ]
+    },
+    {
+     "hero": "valeria",
+     "via": [
+      "Taunted"
      ]
     }
    ],
@@ -8688,14 +9299,14 @@
     },
     "passive": {
      "name": "Gravity Lens",
-     "text": "+20% damage to enemies standing close together; summons take double damage from her.",
+     "text": "+35% damage to enemies standing close together; summons take double damage from her.",
      "tags": [
       "dmg_aoe"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.2,
+       "v": 0.35,
        "scope": "self",
        "if": "tgt.grouped"
       },
@@ -8726,6 +9337,7 @@
     {
      "hero": "hartwen",
      "via": [
+      "Airborne",
       "Grouped"
      ]
     },
@@ -8855,7 +9467,7 @@
     },
     "passive": {
      "name": "Unbind",
-     "text": "+30% damage to shields, and +15% to marked or weakened enemies.",
+     "text": "+30% damage to shields, and +30% to marked, weakened or cursed enemies.",
      "tags": [
       "dmg_single"
      ],
@@ -8867,9 +9479,9 @@
       },
       {
        "k": "dmg_out",
-       "v": 0.15,
+       "v": 0.3,
        "scope": "self",
-       "if": "tgt:mark|weaken|def_down"
+       "if": "tgt:mark|weaken|def_down|curse"
       }
      ],
      "triggers": [],
@@ -8881,7 +9493,8 @@
    ],
    "payoffs": [
     "Mark",
-    "Weakened"
+    "Weakened",
+    "Curse"
    ],
    "synergy": [
     {
@@ -8903,6 +9516,12 @@
      ]
     },
     {
+     "hero": "maelis",
+     "via": [
+      "Curse"
+     ]
+    },
+    {
      "hero": "ondine",
      "via": [
       "Weakened"
@@ -8918,6 +9537,12 @@
      "hero": "solenne",
      "via": [
       "Mark"
+     ]
+    },
+    {
+     "hero": "vesper",
+     "via": [
+      "Curse"
      ]
     },
     {
@@ -9028,16 +9653,16 @@
     },
     "passive": {
      "name": "Hunger of the Void",
-     "text": "+25% damage to enemies with less than 50 energy and to sleeping enemies.",
+     "text": "+30% damage to enemies with less than 50 energy, and to enemies who are asleep or were in the last 3s.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.25,
+       "v": 0.3,
        "scope": "self",
-       "if": "tgt.energy<50|tgt:sleep"
+       "if": "tgt.energy<50|tgt:sleep+3"
       }
      ],
      "triggers": [],
@@ -9186,14 +9811,14 @@
     },
     "passive": {
      "name": "Kindled",
-     "text": "+20% damage to burning enemies.",
+     "text": "+40% damage to burning enemies.",
      "tags": [
       "dmg_single"
      ],
      "mods": [
       {
        "k": "dmg_out",
-       "v": 0.2,
+       "v": 0.4,
        "scope": "self",
        "if": "tgt:burn"
       }
@@ -9229,12 +9854,6 @@
     },
     {
      "hero": "maelis",
-     "via": [
-      "Burn"
-     ]
-    },
-    {
-     "hero": "velisande",
      "via": [
       "Burn"
      ]
@@ -9371,6 +9990,12 @@
    "payoffs": [],
    "synergy": [
     {
+     "hero": "elowen",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
      "hero": "isaura",
      "via": [
       "Asleep"
@@ -9386,6 +10011,12 @@
      "hero": "rhiannon",
      "via": [
       "Energy"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Asleep"
      ]
     }
    ],
@@ -9520,6 +10151,12 @@
      ]
     },
     {
+     "hero": "elowen",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
      "hero": "isolde",
      "via": [
       "Shielded"
@@ -9585,7 +10222,7 @@
    "skills": {
     "ultimate": {
      "name": "Quickening",
-     "text": "Allies gain 40 energy and Attack speed up (20%) for 5s.",
+     "text": "Allies gain 30 energy and Attack speed up (20%) for 5s.",
      "tags": [
       "buff_energy",
       "buff_speed"
@@ -9593,7 +10230,7 @@
      "ops": [
       {
        "op": "energy",
-       "v": 40,
+       "v": 30,
        "to": "allies_except_self"
       },
       {
@@ -9641,7 +10278,7 @@
     },
     "passive": {
      "name": "Chronoflow",
-     "text": "Allies near her gain energy 10% faster.",
+     "text": "Allies gain energy 10% faster.",
      "tags": [
       "buff_energy"
      ],
@@ -9649,7 +10286,7 @@
       {
        "k": "energy_gain",
        "v": 0.1,
-       "scope": "allies_near:4"
+       "scope": "allies"
       }
      ],
      "triggers": [],
@@ -9662,7 +10299,9 @@
     "Buffed",
     "Cooldown"
    ],
-   "payoffs": [],
+   "payoffs": [
+    "Energy"
+   ],
    "synergy": [
     {
      "hero": "elara",
@@ -9677,8 +10316,27 @@
      ]
     },
     {
+     "hero": "lunaith",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
+     "hero": "marisol",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
      "hero": "nerissa",
      "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "pelagia",
+     "via": [
+      "Energy",
       "Slow"
      ]
     },
@@ -9695,9 +10353,40 @@
      ]
     },
     {
+     "hero": "selene",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
      "hero": "seravelle",
      "via": [
-      "Cooldown"
+      "Cooldown",
+      "Energy"
+     ]
+    },
+    {
+     "hero": "seren",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
+     "hero": "sylwen",
+     "via": [
+      "Slow"
+     ]
+    },
+    {
+     "hero": "thessaly",
+     "via": [
+      "Energy"
+     ]
+    },
+    {
+     "hero": "zephyra",
+     "via": [
+      "Energy"
      ]
     }
    ],
@@ -9765,7 +10454,7 @@
     "skill1": {
      "name": "Star Map",
      "cooldown": 8,
-     "text": "Marks a target (+15% damage taken) for 5s; allies who hit it gain 5 energy.",
+     "text": "Marks a target (+15% damage taken) for 6s; allies who hit it gain 5 energy.",
      "tags": [
       "mark",
       "buff_energy"
@@ -9775,14 +10464,14 @@
        "op": "status",
        "s": "mark",
        "to": "target",
-       "dur": 5,
+       "dur": 6,
        "v": 0.15
       },
       {
        "op": "status",
        "s": "star_mark",
        "to": "target",
-       "dur": 5,
+       "dur": 6,
        "v": 5
       }
      ]
@@ -9806,15 +10495,15 @@
     },
     "passive": {
      "name": "Fortune",
-     "text": "Allies near her deal +10% crit damage.",
+     "text": "Allies deal +15% crit damage.",
      "tags": [
       "buff_crit"
      ],
      "mods": [
       {
        "k": "crit_dmg",
-       "v": 0.1,
-       "scope": "allies_near:4"
+       "v": 0.15,
+       "scope": "allies"
       }
      ],
      "triggers": [],
@@ -9838,6 +10527,12 @@
      "hero": "elara",
      "via": [
       "Buffed"
+     ]
+    },
+    {
+     "hero": "elowen",
+     "via": [
+      "Energy"
      ]
     },
     {

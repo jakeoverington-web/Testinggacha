@@ -135,9 +135,15 @@
   },
   "counterDamageBonus": 0.1,
   "teamBonus": {
-    "_note": "values to be tuned; null = not set yet",
-    "threePlusTwo": null,
-    "fiveOfOneCore": null
+    "_note": "AFK Arena / Mythic Heroes style faction bonus (decisions row 29)",
+    "threePlusTwo": {
+      "atk": 0.12,
+      "hp": 0.12
+    },
+    "fiveOfOneCore": {
+      "atk": 0.2,
+      "hp": 0.2
+    }
   },
   "world": "Ilvareth"
 }

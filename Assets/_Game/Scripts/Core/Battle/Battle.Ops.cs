@@ -534,9 +534,10 @@ namespace Gacha.Core.Battle
 
         // ---------------------------------------------------------------- conditions
         // Grammar: alternatives joined by '|'. Atom = [!]subject:status | [!]subject.prop[<|>value] | ult | melee.
+        // subject:status+N also counts N seconds after the status ended ("reeling" after control).
         // An atom with no subject inherits the previous atom's subject ("tgt:blind|stun").
 
-        internal sealed class Atom { public bool Neg; public string Subj, Status, Prop; public char Cmp; public double Val; }
+        internal sealed class Atom { public bool Neg; public string Subj, Status, Prop; public char Cmp; public double Val, Window; }
         readonly Dictionary<string, Atom[]> _condCache = new Dictionary<string, Atom[]>();
 
         internal static Atom[] ParseCondition(string text)
@@ -555,6 +556,12 @@ namespace Gacha.Core.Battle
                 else if (dot > 0) { a.Subj = p.Substring(0, dot); ParseProp(a, p.Substring(dot + 1)); lastIsStatus = false; }
                 else if (lastSubj != null) { a.Subj = lastSubj; if (lastIsStatus) a.Status = p; else ParseProp(a, p); }
                 else throw new FormatException("Bad condition atom: " + parts[i]);
+                if (a.Status != null && a.Status.IndexOf('+') > 0)   // "stun+3": on now, or ended within the last 3 s
+                {
+                    int plus = a.Status.IndexOf('+');
+                    a.Window = double.Parse(a.Status.Substring(plus + 1), CultureInfo.InvariantCulture);
+                    a.Status = a.Status.Substring(0, plus);
+                }
                 lastSubj = a.Subj;
                 atoms[i] = a;
             }
@@ -595,18 +602,21 @@ namespace Gacha.Core.Battle
             return false;
         }
 
+        bool HadRecently(Unit x, string status, double window) =>
+            x.Has(status) || (window > 0 && x.LastHad.TryGetValue(status, out var t) && Time - t <= window + 1e-9);
+
         bool EvalAtom(Atom a, Cond c)
         {
             if (a.Prop == "ult" && a.Subj == null) return c.Hit != null && c.Hit.Kind == HitKind.Ult;
             if (a.Prop == "melee" && a.Subj == null) return c.Src != null && c.Src.IsHero && c.Src.Def.IsMelee;
             if (a.Subj == "any_enemy")
             {
-                foreach (var e in Units) if (e.Alive && e.Team != c.Self.Team && e.Has(a.Status)) return true;
+                foreach (var e in Units) if (e.Alive && e.Team != c.Self.Team && HadRecently(e, a.Status, a.Window)) return true;
                 return false;
             }
             var x = a.Subj == "tgt" ? c.Tgt : a.Subj == "src" ? c.Src : c.Self;
             if (x == null) return false;
-            if (a.Status != null) return x.Has(a.Status);
+            if (a.Status != null) return HadRecently(x, a.Status, a.Window);
             switch (a.Prop)
             {
                 case "hp": return a.Cmp == '<' ? x.HpPct < a.Val : x.HpPct > a.Val;

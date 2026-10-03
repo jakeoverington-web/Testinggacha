@@ -210,8 +210,9 @@ namespace Gacha.Tests
                 nums.Add(Math.Round(Math.Abs(m.V), 3)); nums.Add(Math.Round(Math.Abs(m.V * m.PerBuff), 3));
                 if (m.K == "haste") nums.Add(Math.Round(m.V / 100, 3));
             }
+            // condition numbers: thresholds (<50) and status windows (stun+3)
             foreach (var cond in p.Mods.Select(m => m.If).Concat(p.Triggers.Select(x => x.If)).Where(x => x != null))
-                foreach (Match mm in Regex.Matches(cond, @"[<>](\d+(?:\.\d+)?)")) nums.Add(double.Parse(mm.Groups[1].Value, CultureInfo.InvariantCulture));
+                foreach (Match mm in Regex.Matches(cond, @"[<>+](\d+(?:\.\d+)?)")) nums.Add(double.Parse(mm.Groups[1].Value, CultureInfo.InvariantCulture));
             void Walk(List<Gacha.Core.Data.Node> ops)
             {
                 foreach (var n in ops)

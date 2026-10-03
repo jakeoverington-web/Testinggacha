@@ -17,14 +17,26 @@ namespace Gacha.Tests.Tools
     /// </summary>
     public static class SynergyReport
     {
-        static GameData D; static List<string> R;
-        static Dictionary<string, List<string>> Applies = new Dictionary<string, List<string>>(), Payoffs = new Dictionary<string, List<string>>();
+        internal static GameData D; internal static List<string> R;
+        internal static Dictionary<string, List<string>> Applies = new Dictionary<string, List<string>>(), Payoffs = new Dictionary<string, List<string>>();
+
+        /// <summary>Loads the roster and the keyword lists (applies / payoffs) from heroes.json.</summary>
+        internal static List<string> Init()
+        {
+            D = TestData.Game; R = InvariantTests.Roster; Applies.Clear(); Payoffs.Clear();
+            foreach (var h in Node.Of(Json.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(TestData.Dir, "heroes.json")))).Nodes("heroes"))
+            {
+                foreach (var k in h.Strs("applies")) { if (!Applies.ContainsKey(k)) Applies[k] = new List<string>(); Applies[k].Add(h.Str("id")); }
+                foreach (var k in h.Strs("payoffs")) { if (!Payoffs.ContainsKey(k)) Payoffs[k] = new List<string>(); Payoffs[k].Add(h.Str("id")); }
+            }
+            return Applies.Keys.Where(k => Payoffs.ContainsKey(k) && Payoffs[k].Count > 0).OrderBy(k => k).ToList();
+        }
         static readonly string[][] Patterns = {
             new[] { "tank", "healer", "support", "dps", "dps" }, new[] { "tank", "tank", "healer", "dps", "dps" },
             new[] { "tank", "healer", "dps", "dps", "dps" }, new[] { "tank", "healer", "support", "support", "dps" },
             new[] { "tank", "tank", "healer", "support", "dps" } };
 
-        static void Par(int n, Action<int> body)
+        internal static void Par(int n, Action<int> body)
         {
             int next = -1; var ts = new List<Thread>();
             for (int w = 0; w < Environment.ProcessorCount; w++) { var t = new Thread(() => { int i; while ((i = Interlocked.Increment(ref next)) < n) body(i); }, 64 << 20); t.Start(); ts.Add(t); }
@@ -37,7 +49,7 @@ namespace Gacha.Tests.Tools
             return r.Winner == 0 ? 1 : r.Winner < 0 ? 0.5 : 0;
         }
 
-        static List<string> RandomTeam(Rng rng, string[] pattern = null, ICollection<string> fixedHeroes = null)
+        internal static List<string> RandomTeam(Rng rng, string[] pattern = null, ICollection<string> fixedHeroes = null)
         {
             pattern ??= Patterns[rng.Range(0, Patterns.Length)];
             var team = new List<string>(fixedHeroes ?? new string[0]);
@@ -48,7 +60,7 @@ namespace Gacha.Tests.Tools
         }
 
         /// <summary>A balanced team with as many package heroes as the roles allow (at least one applier and one payer).</summary>
-        static List<string> PackageTeam(Rng rng, string kw)
+        internal static List<string> PackageTeam(Rng rng, string kw)
         {
             var members = Applies[kw].Union(Payoffs[kw]).Distinct().OrderBy(_ => rng.NextULong()).ToList();
             for (int tries = 0; tries < 20; tries++)
@@ -75,13 +87,7 @@ namespace Gacha.Tests.Tools
         {
             int n = args.Length > 0 ? int.Parse(args[0]) : 300;
             int starts = args.Length > 1 ? int.Parse(args[1]) : 24;
-            D = TestData.Game; R = InvariantTests.Roster;
-            foreach (var h in Node.Of(Json.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(TestData.Dir, "heroes.json")))).Nodes("heroes"))
-            {
-                foreach (var k in h.Strs("applies")) { if (!Applies.ContainsKey(k)) Applies[k] = new List<string>(); Applies[k].Add(h.Str("id")); }
-                foreach (var k in h.Strs("payoffs")) { if (!Payoffs.ContainsKey(k)) Payoffs[k] = new List<string>(); Payoffs[k].Add(h.Str("id")); }
-            }
-            var kws = Applies.Keys.Where(k => Payoffs.ContainsKey(k) && Payoffs[k].Count > 0).OrderBy(k => k).ToList();
+            var kws = Init();
             var sw = System.Diagnostics.Stopwatch.StartNew();
 
             // ---------- A: packages ----------
@@ -140,9 +146,34 @@ namespace Gacha.Tests.Tools
             Console.WriteLine();
             var top10 = top.Take(10).ToList();
             var usage = top10.SelectMany(t => t.team).GroupBy(x => x).OrderByDescending(g => g.Count()).ToList();
+            Console.WriteLine($"Gauntlet top 10: synergies per team {string.Join("/", top10.Select(t => Keywords(t.team).Count))}; {top10.SelectMany(t => Keywords(t.team)).Distinct().Count()} different packages.");
             Console.WriteLine($"Diversity of the top 10: {usage.Count} different heroes; most used: {string.Join(", ", usage.Take(6).Select(g => $"{D.Heroes[g.Key].Name} {g.Count()}/10"))}.");
             var randomWr = gauntlet.Take(40).Select((g, i) => eval(RandomTeam(new Rng(77UL + (ulong)i)))).Average();
             Console.WriteLine($"A random balanced team wins {100 * randomWr:0}% against the same gauntlet.");
+            Console.WriteLine();
+            // Round robin among the teams found: strong teams against each other (the random gauntlet saturates near 100%)
+            var pool = top.Take(24).Select(t => t.team).ToList(); var rr = new double[pool.Count]; var games = new int[pool.Count];
+            var pairs = new List<(int a, int b, ulong seed)>(); var prng = new Rng(777);
+            for (int x = 0; x < pool.Count; x++) for (int y = x + 1; y < pool.Count; y++) for (int k = 0; k < 4; k++) pairs.Add((x, y, prng.NextULong()));
+            var res2 = new double[pairs.Count * 2];
+            Par(pairs.Count, i => { var p = pairs[i]; res2[2 * i] = Score(pool[p.a], pool[p.b], p.seed); res2[2 * i + 1] = 1 - Score(pool[p.b], pool[p.a], p.seed); });
+            for (int i = 0; i < pairs.Count; i++) { var p = pairs[i]; double v = (res2[2 * i] + res2[2 * i + 1]) / 2; rr[p.a] += v; rr[p.b] += 1 - v; games[p.a]++; games[p.b]++; }
+            var ranked = Enumerable.Range(0, pool.Count).OrderByDescending(i => rr[i] / games[i]).ToList();
+            Console.WriteLine($"## C. Round robin among the {pool.Count} strongest teams found (each pair: 4 seeds, both sides)");
+            Console.WriteLine();
+            Console.WriteLine("| Rank | Round-robin win % | Team | Races | Active synergy keywords |");
+            Console.WriteLine("| --- | --- | --- | --- | --- |");
+            for (int r = 0; r < ranked.Count; r++)
+            {
+                var t = pool[ranked[r]];
+                Console.WriteLine($"| {r + 1} | {100 * rr[ranked[r]] / games[ranked[r]]:0} | {string.Join(", ", t.OrderBy(x => D.Heroes[x].Role).Select(x => D.Heroes[x].Name))} | {string.Join(" ", t.GroupBy(x => D.Heroes[x].Core).OrderByDescending(g => g.Count()).Select(g => g.Count() + " " + g.Key))} | {string.Join(", ", Keywords(t))} |");
+            }
+            Console.WriteLine();
+            var rrTop = ranked.Take(10).Select(i => pool[i]).ToList();
+            var rrUse = rrTop.SelectMany(t => t).GroupBy(x => x).OrderByDescending(g => g.Count()).ToList();
+            var rrKw = rrTop.SelectMany(Keywords).Distinct().Count();
+            Console.WriteLine($"Round-robin top 10: synergies per team {string.Join("/", rrTop.Select(t => Keywords(t).Count))}; {rrKw} different packages; {rrUse.Count} different heroes; most used: {string.Join(", ", rrUse.Take(6).Select(g => $"{D.Heroes[g.Key].Name} {g.Count()}/10"))}.");
+            Console.WriteLine();
             Console.Error.WriteLine($"done in {sw.Elapsed.TotalSeconds:0}s");
             return 0;
         }

@@ -36,6 +36,8 @@ namespace Gacha.Core.Battle
         public readonly List<Status> Statuses = new List<Status>();
         public readonly List<Shield> Shields = new List<Shield>();
         public readonly Dictionary<string, int> Counters = new Dictionary<string, int>();
+        /// <summary>Last time each status was on this unit (conditions like "tgt:stun+3" read it).</summary>
+        public readonly Dictionary<string, double> LastHad = new Dictionary<string, double>();
         public readonly Dictionary<int, double> TriggerReadyAt = new Dictionary<int, double>();
         public double LastHeal;
         public double DrStart = -99; public int DrCount;
