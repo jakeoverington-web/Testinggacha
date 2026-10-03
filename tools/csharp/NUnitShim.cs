@@ -70,6 +70,15 @@ namespace NUnit.Framework
 
     public static class CollectionAssert
     {
+        public static void AreEquivalent(IEnumerable expected, IEnumerable actual, string message = null)
+        {
+            var e = new List<object>(); foreach (var o in expected) e.Add(o);
+            var a = new List<object>(); foreach (var o in actual) a.Add(o);
+            bool eq = e.Count == a.Count;
+            foreach (var o in e) { if (!eq) break; int i = a.FindIndex(x => Equals(x, o)); if (i < 0) eq = false; else a.RemoveAt(i); }
+            if (!eq) throw new AssertionException($"Expected the same items as [{string.Join(", ", e)}] in any order" + (string.IsNullOrEmpty(message) ? "" : " — " + message));
+        }
+
         public static void AreEqual(IEnumerable expected, IEnumerable actual, string message = null)
         {
             var e = new List<object>(); foreach (var o in expected) e.Add(o);
