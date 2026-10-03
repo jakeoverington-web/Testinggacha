@@ -166,6 +166,7 @@ namespace Gacha.Core.Battle
                             {
                                 double drained = Math.Min(t.Energy, -v);
                                 GainEnergy(t, -drained, false, u);
+                                if (t.Team != u.Team) ApplyStatus(u, t, "drained", T.DefaultDur("drained", 4), 0, null);   // Disrupted package
                                 if (n.Bool("steal")) GainEnergy(u, drained, false, u);
                                 if (n.Has("dmgPerEnergy") && drained > 0)
                                     Hit(u, t, drained * n.Num("dmgPerEnergy") * u.Atk, new HitInfo { Kind = ctx.Kind, Ability = ctx.Ability, CanCrit = ctx.Kind != HitKind.Proc });

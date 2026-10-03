@@ -20,9 +20,9 @@ namespace Gacha.Tests.Tools
             ["Charmed"] = "tgt:charm+3", ["Curse"] = "tgt:curse", ["Drained"] = "tgt.energy<50", ["Feared"] = "tgt:fear+3", ["Grouped"] = "tgt.grouped",
             ["Isolated"] = "tgt.isolated", ["Mark"] = "tgt:mark", ["Rooted"] = "tgt:root+3", ["Slow"] = "tgt:slow", ["Soaked"] = "tgt:soaked",
             ["Stunned"] = "tgt:stun+3", ["Taunted"] = "tgt:taunt", ["Weakened"] = "tgt:weaken|def_down|dmg_down", ["Poison"] = "tgt:poison",
-            // merged packages (roster pass 10)
-            ["Hindered"] = "tgt:slow|root+3|stun+3|airborne+3", ["Dread"] = "tgt:sleep+3|fear+3|charm+3", ["Exposed"] = "tgt:mark|weaken|def_down|curse",
-            ["Wounds"] = "tgt:bleed|poison", ["Disrupted"] = "tgt:blind|silence|tgt.energy<50", ["Gathered"] = "tgt.grouped|tgt:taunt", ["Ambush"] = "tgt.isolated" };
+            // merged packages (roster pass 10; team-side packages Stealth, Lifesteal, Tempo, Guarded have no target condition)
+            ["Hindered"] = "tgt:slow|root+3|stun+3|airborne+3", ["Dread"] = "tgt:sleep+3|fear+3|charm+3", ["Exposed"] = "tgt:mark|weaken|def_down|curse|feeding_curse",
+            ["Wounds"] = "tgt:bleed|poison", ["Disrupted"] = "tgt:blind|silence|drained", ["Gathered"] = "tgt.grouped|tgt:taunt" };
 
         public static int Main(string[] args)
         {

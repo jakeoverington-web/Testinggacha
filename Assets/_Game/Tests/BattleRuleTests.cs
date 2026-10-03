@@ -156,6 +156,23 @@ namespace Gacha.Tests
         }
 
         [Test]
+        public void EnergyDrain_LeavesTheEnemyDrainedFor4s()
+        {
+            var b = Lab.Seed(1).Ally("striker").Enemy("dummy").Build();
+            b.ResistFloor = 0;
+            var s = b.Units[0]; var t = b.Units[1];
+            t.Energy = 40;
+            var op = Gacha.Core.Data.Node.Of(Gacha.Core.Data.Json.Parse("{\"op\":\"energy\",\"v\":-10,\"to\":\"target\"}"));
+            b.RunOps(s, new System.Collections.Generic.List<Gacha.Core.Data.Node> { op }, new OpCtx { Ability = "test", Primary = t });
+            Assert.AreEqual(30, t.Energy, 1e-9);
+            Assert.IsTrue(t.Has("drained"), "an enemy who loses energy to an effect is Drained");
+            Assert.AreEqual(4.0, t.Get("drained").Remaining, 1e-9, "battle.json statusDefaults.drained");
+            var ally = Gacha.Core.Data.Node.Of(Gacha.Core.Data.Json.Parse("{\"op\":\"energy\",\"v\":-10,\"to\":\"self\"}"));
+            b.RunOps(s, new System.Collections.Generic.List<Gacha.Core.Data.Node> { ally }, new OpCtx { Ability = "test", Primary = t });
+            Assert.IsFalse(s.Has("drained"), "only enemies are drained");
+        }
+
+        [Test]
         public void HardControl_PriorityKeepsTheStronger()
         {
             var b = Lab.Seed(1).Ally("striker").Enemy("dummy").Build();

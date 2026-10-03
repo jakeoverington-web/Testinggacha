@@ -19,7 +19,7 @@
   "hasteEnergyFactor": 0.5,
   "shieldDuration": 10,
   "shieldCapPctMaxHp": 0.5,
-  "statusDefaults": { "taunt": 2, "airborne": 0.75, "stun": 1, "silence": 1.5, "fear": 1.5, "charm": 1.5, "sleep": 2, "root": 1.5, "soaked": 4, "mark": 4 },
+  "statusDefaults": { "taunt": 2, "airborne": 0.75, "stun": 1, "silence": 1.5, "fear": 1.5, "charm": 1.5, "sleep": 2, "root": 1.5, "soaked": 4, "mark": 4, "drained": 4 },
   "control": {
     "hard": ["stasis", "charm", "fear", "stun", "airborne", "sleep", "root"],
     "_note": "Order = priority, strongest first (combat.json: Charm > Fear > Stun > Sleep > Root; stasis and airborne slotted in). Only one hard control is active at a time.",

@@ -39,7 +39,7 @@ namespace Gacha.Core.Battle
             "share", "bond_heal", "thread", "revive_ready", "revive_guard", "seed", "sure_crit", "dragonform", "halo", "planted", "thorns" };
         public static readonly HashSet<string> Debuffs = new HashSet<string> {
             "def_down", "atk_down", "dmg_down", "weaken", "mark", "star_mark", "slow", "blind", "antiheal", "silence", "burn", "bleed", "poison",
-            "curse", "feeding_curse", "soaked", "stun", "sleep", "root", "fear", "charm", "taunt", "airborne", "stasis" };
+            "curse", "feeding_curse", "soaked", "stun", "sleep", "root", "fear", "charm", "taunt", "airborne", "stasis", "drained" };
         static readonly HashSet<string> Dots = new HashSet<string> { "burn", "bleed", "poison" };
         /// <summary>Control effects that control immunity blocks (combat.json effects "Control immunity").</summary>
         static readonly HashSet<string> ControlSet = new HashSet<string> { "stun", "sleep", "root", "fear", "charm", "silence", "airborne", "stasis" };

@@ -296,18 +296,20 @@ PASSES[9] = [
  ("venna","skill2.text","Poisons (3%/s) and slows enemies in an area for 3s.","Venna -9: 2% -> 3%; the amount is now in the text"),
 ]
 
-# ---------------- PASS 10 (PROTOTYPE, awaiting owner approval): 27 keywords -> 11 deeper packages ----------------
+# ---------------- PASS 10 (PROTOTYPE, awaiting owner approval): 27 keywords -> 12 deeper packages ----------------
+# Owner rule (2026-10-03): a package names ONE kind of condition, either on the enemy or on your own team, never both.
+# Kill (an event), Dispel (enemy buffs removed) and Isolated (opposite of Gathered) stop being packages and stay as hero traits.
 # Synergy report v2: thin keywords lost to random teams because their few enablers were modest tanks and supports.
 # Merged keywords give every package several appliers, payers and an amplifier across races and roles.
 MERGE = {"Airborne": "Hindered", "Rooted": "Hindered", "Stunned": "Hindered", "Slow": "Hindered",
          "Asleep": "Dread", "Feared": "Dread", "Charmed": "Dread",
-         "Mark": "Exposed", "Weakened": "Exposed", "Curse": "Exposed", "Kill": "Exposed",
-         "Bleed": "Wounds", "Poison": "Wounds", "Lifesteal": "Wounds",
+         "Mark": "Exposed", "Weakened": "Exposed", "Curse": "Exposed", "Kill": None,
+         "Bleed": "Wounds", "Poison": "Wounds", "Lifesteal": "Lifesteal",
          "Blind": "Disrupted", "Drained": "Disrupted",
          "Grouped": "Gathered", "Taunted": "Gathered",
-         "Stealth": "Ambush", "Isolated": "Ambush",
+         "Stealth": "Stealth", "Isolated": None,
          "Energy": "Tempo", "Cooldown": "Tempo",
-         "Shielded": "Guarded", "Buffed": "Guarded", "Dispel": "Guarded",
+         "Shielded": "Guarded", "Buffed": "Guarded", "Dispel": None,
          "Soaked": "Soaked", "Burn": "Burn", "Summon": "Summon"}
 SILENCERS = ["amarante", "runa", "vaela", "caelith", "lorelei"]   # silence now counts as Disrupted
 
@@ -315,7 +317,7 @@ def _merged(lst):
     out = []
     for k in lst:
         m = MERGE.get(k, k)
-        if m not in out: out.append(m)
+        if m is not None and m not in out: out.append(m)
     return out
 
 _R9 = roster_at(9)
@@ -323,31 +325,43 @@ PASSES[10] = []
 for _h in _R9:
     _a = _merged(_h["applies"]) + (["Disrupted"] if _h["id"] in SILENCERS and "Disrupted" not in _merged(_h["applies"]) else [])
     _p = [k for k in _merged(_h["payoffs"]) if k != "Summon"]
-    if _h["id"] == "thalassa": _p = ["Ambush"]          # her amplifier now covers isolated enemies only
+    if _h["id"] == "thalassa": _p = []                  # her isolated bonus is a trait now (Isolated is not a package)
+    if _h["id"] == "cassia": _p = ["Lifesteal"]          # her dispel shield is a trait (Dispel is not a package)
+    if _h["id"] == "nyx": _p = ["Stealth", "Dread"]      # "marked enemies are her first targets" is aiming, not a payoff
+    # conflict audit fixes (tools: pkg audit vs the executable kits)
+    if _h["id"] in ("briar", "ilyra"): _p = [k for k in _p if k != "Gathered"]   # nothing in their kits rewards grouped or taunted enemies
+    if _h["id"] == "venna" and "Wounds" not in _p: _p = _p + ["Wounds"]          # Contagion spreads poison from poisoned enemies
+    if _h["id"] == "sangrael": _p = [k for k in _p if k != "Lifesteal"]          # her passive is damage reduction at low HP, not a lifesteal payoff
+    if _h["id"] == "eldrith": _p = [k for k in _p if k != "Guarded"]             # her passive boosts heals received, not shields or buffs
+    if _h["id"] == "ilyra": _p = ["Tempo"]                                         # energy from allies powers her up (balance round)
+    if _h["id"] == "thalassa" and "Gathered" not in _a: _a = _a + ["Gathered"]   # Undertow drags the front row together
+    if _h["id"] == "ysra" and "Hindered" not in _a: _a = _a + ["Hindered"]       # Rising Tide slows
     if _a != _h["applies"]: PASSES[10].append((_h["id"], "applies", _a, "keywords merged into packages"))
     if _p != _h["payoffs"]: PASSES[10].append((_h["id"], "payoffs", _p, "keywords merged into packages"))
 
 PASSES[10] += [
  ("ophira","passive.text","+30% damage to Hindered enemies.","Package payoff: slowed, rooted, stunned or knocked up; broader condition, so +40% -> +30%"),
  ("kaida","passive.text","+15% damage while a beast is out; against Hindered enemies she deals +30% damage and her wolves deal double.","Package payoff: Hindered"),
- ("nerissa","passive.text","+30% damage to Hindered enemies.","Package payoff: Hindered"),
+ ("nerissa","passive.text","Her hits on Hindered enemies give her 5 extra energy (at most every 0.5s).","Package payoff: Hindered (a different reward from Ophira's, so the two passives are not identical)"),
  ("sylwen","passive.text","Sees through stealth; +25% crit chance against Hindered or Exposed enemies.","Package payoff: Hindered and Exposed"),
  ("lucienne","passive.text","+60% crit damage against Disrupted or Hindered enemies.","Package payoff: Disrupted and Hindered"),
  ("nyx","passive.text","+60% crit damage from Shadowstep, from stealth or within 3s of leaving it, and against enemies in Dread; marked enemies are her first targets.","Package payoff: Ambush and Dread"),
- ("isaura","passive.text","+30% damage to enemies with less than 50 energy and to enemies in Dread.","Package payoff: Disrupted and Dread"),
- ("calypso","passive.text","+35% damage to isolated enemies and to enemies in Dread; her first hit from stealth crits.","Package payoff: Ambush and Dread"),
+ ("isaura","passive.text","+30% damage to Disrupted enemies and to enemies in Dread.","Package payoff: Disrupted and Dread. 'Less than 50 energy' was true of every enemy at the start of a battle; Drained is now a 4s status"),
+ ("calypso","passive.text","+30% damage to isolated enemies and to enemies in Dread; her first hit from stealth crits.","Package payoff: Ambush and Dread"),
  ("ravenna","passive.text","+35% damage to Wounded (bleeding or poisoned) enemies; hitting one heals her 3% max HP.","Package payoff: Wounds"),
  ("sable","passive.text","Gains 15 energy whenever any enemy falls; +35% damage to Wounded (bleeding or poisoned) enemies; enemies she kills can't be revived.","Package payoff: Wounds"),
  ("vesper","passive.text","Her heals are 40% stronger while any enemy is bleeding or poisoned.","Package payoff: Wounds"),
  ("solenne","passive.text","+25% damage to Exposed enemies; her crits against marked enemies blind them for 2s.","Package payoff: Exposed"),
  ("astraea","passive.text","+30% damage to Gathered enemies (standing close together or taunted); summons take double damage from her.","Package payoff: Gathered"),
  ("hartwen","passive.text","Hindered enemies take 15% more damage.","Hindered amplifier"),
- ("wren","passive.text","Hindered enemies take 10% more damage.","Hindered amplifier"),
+ ("wren","passive.text","Hindered enemies deal 15% less damage and take 10% more.","Hindered amplifier, defensive (Hartwen's is the damage one)"),
  ("pelagia","passive.text","Hindered enemies attack 15% slower and take 10% more damage.","Hindered amplifier"),
- ("thalassa","passive.text","Isolated enemies take 20% more damage.","Ambush amplifier (stun moved to Hindered)"),
+ ("thalassa","passive.text","Isolated enemies take 20% more damage.","Trait: Isolated is no longer a package (it is the opposite of Gathered); stun moved to Hindered"),
  ("velisande","passive.text","Enemies in Dread take 15% more damage.","Dread amplifier"),
- ("zephyra","passive.text","Enemies in Dread take 15% more damage.","Dread amplifier"),
+ ("zephyra","passive.text","Allies have +25% crit chance against enemies in Dread.","Dread amplifier, crits (Velisande's is damage taken)"),
  ("liora","passive.text","Burning enemies receive 30% less healing; Disrupted enemies take 15% more damage.","Disrupted amplifier"),
+ ("elara","passive.text","Allies with her halo take 5% less damage; her heals are 40% stronger on Guarded allies (buffed or shielded).","Package payoff: Guarded covers shields as well as buffs"),
+ ("maelis","passive.text","+35% damage to burning or cursed enemies (Vesper's Feeding Curse counts).","Both curses are Curse; only Maelis's own counted before"),
  ("amarante","passive.text","Enemies she debuffs deal 10% less damage; Exposed enemies take 10% more damage.","Exposed amplifier (prototype round 2: Exposed -13)"),
  ("amarante","+payoffs",["Exposed"],"Exposed amplifier"),
  ("ondine","passive.text","Soaked or Disrupted enemies take 20% more damage.","Soaked and Disrupted amplifier (silence added)"),
@@ -355,4 +369,12 @@ PASSES[10] += [
  ("elowen","passive.text","Allies gain energy 15% faster.","Tempo amplifier: 10% -> 15% (Tempo -14)"),
  ("cassia","ultimate.text","Holy zone for 5s: enemies inside take 25% ATK per second.","Cassia was in 5 of the 10 best teams: 30% -> 25%"),
  ("briar","passive.text","Reflects 15% of melee damage; Wounded (bleeding or poisoned) enemies take 20% more damage.","Wounds amplifier"),
+ ("rhiannon","passive.text","A spirit stag fights beside her all battle; whenever an ally gives her energy, the stag strikes her target for 80% ATK (at most once every 2s).","Text said 'next attack deals double'; the kit has always been a 50% ATK strike, at most every 2s"),
+ # Pass 10 balance round (niche report on the 12 packages): lift Wren -9, Rosalind -7, Zephyra -7 and the Tempo payer Rhiannon; trim Cassia, Calypso, Elowen, Fenna, Vaela (+8; Cassia in 6 of the 10 best teams)
+ ("rosalind","passive.text","Allies deal +6% damage per active buff they carry (max 5).","Rosalind -7: 5% -> 6% per buff"),
+ ("cassia","skill1.text","Hits for 140% ATK and heals her for half.","Cassia +8, in 6 of the 10 best teams: 160% -> 140%"),
+ ("elowen","ultimate.text","Allies gain 25 energy and Attack speed up (20%) for 5s.","Elowen +8: 30 -> 25 energy"),
+ ("fenna","ultimate.text","Puts all enemies to sleep for 2s (damage wakes them).","Fenna +8: 2.5s -> 2s"),
+ ("vaela","ultimate.text","A zone absorbs all enemy projectiles for 2s.","Vaela +8: 3s -> 2s"),
+ ("ilyra","passive.text","Her burns stack up to three times; each stack on a target raises her damage to it by 5%. When an ally gives her energy, she gains ATK up (20%) for 4s (at most every 4s).","Tempo had only two damage payers (-25 vs a random team); Ilyra paid off nothing after Gathered was corrected"),
 ]

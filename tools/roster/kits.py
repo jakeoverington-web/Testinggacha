@@ -53,9 +53,9 @@ def P(mods=(), triggers=(), flags=()):
 # Pass 10 package conditions (merged keywords; see combat_rules.KEYWORDS)
 HINDERED = "tgt:slow|root+3|stun+3|airborne+3"
 DREAD = "tgt:sleep+3|fear+3|charm+3"
-EXPOSED = "tgt:mark|weaken|def_down|curse"
+EXPOSED = "tgt:mark|weaken|def_down|curse|feeding_curse"
 WOUNDS = "tgt:bleed|poison"
-DISRUPTED = "tgt:blind|silence"
+DISRUPTED = "tgt:blind|silence|drained"
 
 # Defaults for numbers the kit text leaves open
 HEAL = 2.0          # single-target heal, x ATK
@@ -105,7 +105,7 @@ K = {}
 # Lumarin (High)
 K["cassia"] = dict(
     ult=[zone(5, 2.5, "self", 1, [dmg(0.25, "zone_enemies")])],
-    s1=[dmg(1.6, drain=0.5)],
+    s1=[dmg(1.4, drain=0.5)],
     s2=[dispel("target")],
     p=P(mods=[mod("lifesteal_heal", 0.3)], triggers=[on("dispel_done", shield("self", pct=0.05), )]))
 K["isolde"] = dict(
@@ -122,7 +122,7 @@ K["ilyra"] = dict(
     ult=[dmg(1.7, "enemies", elem="fire"), st("revive_ready", "self", 10, 0.3)],
     s1=[zone(3, 2.0, "target", 1, [st("burn", "zone_enemies", 3, BURN)])],
     s2=[move("push", "enemies_near_self:2.5", 2.0)],
-    p=P(mods=[mod("dmg_out", 0.05, perStack="burn")]))
+    p=P(mods=[mod("dmg_out", 0.05, perStack="burn")], triggers=[on("energy_from_ally", st("atk_up", "self", 4, 0.2), icd=4)]))
 K["lucienne"] = dict(
     ult=[dmg(3.2, "line")],
     s1=[st("counter", "self", 3, 0.75), shield("self", pct=0.20)],
@@ -147,7 +147,7 @@ K["elara"] = dict(
     ult=[heal("allies", pct=0.25), st("cc_immunity", "allies", 4)],
     s1=[heal("weakest_ally", m=1.6, over=4)],
     s2=[cleanse("ally")],
-    p=P(mods=[mod("heal_out", 0.4, "tgt.buffed")], triggers=[on("heal_given", st("halo", "evt", 6, 0.05))]))
+    p=P(mods=[mod("heal_out", 0.4, "tgt.buffed|tgt.shielded")], triggers=[on("heal_given", st("halo", "evt", 6, 0.05))]))
 K["amarante"] = dict(
     ult=[dispel("enemies"), st("silence", "enemies", 2)],
     s1=[st("def_down", "target", 5, 0.5)],
@@ -157,7 +157,7 @@ K["rosalind"] = dict(
     ult=[st("def_up", "allies", 6, 0.3), cleanse("allies", 1)],
     s1=[st("def_up", "most_targeted_ally", 5, 0.3)],
     s2=[dispel("most_buffed_enemy", 1, steal=True)],
-    p=P(mods=[mod("dmg_out", 0.05, scope="allies", perBuff=5)]))
+    p=P(mods=[mod("dmg_out", 0.06, scope="allies", perBuff=5)]))
 K["seravelle"] = dict(
     ult=[st("atk_up", "allies", 6, 0.25)],
     s1=[cleanse("ally")],
@@ -179,7 +179,7 @@ K["maelis"] = dict(
     ult=[st("burn", "enemies", 6, 0.35)],
     s1=[dmg(1.7), st("curse", "target", 5, 0.2)],
     s2=[st("blind", "target", 2, BLIND)],
-    p=P(mods=[mod("dmg_out", 0.35, "tgt:burn|curse")]))
+    p=P(mods=[mod("dmg_out", 0.35, "tgt:burn|curse|feeding_curse")]))
 K["nyx"] = dict(
     ult=[teleport("weakest_enemy"), dmg(3.0, "weakest_enemy", execute=0.25), st("stealth", "self", 2)],
     s1=[st("stealth", "self", 3), heal("self", pct=0.15)],
@@ -214,7 +214,7 @@ K["liora"] = dict(
     ult=[st("burn", "enemies", 4, BURN), st("def_down", "enemies", 4, 0.2)],
     s1=[energy(-20, "highest_atk_enemy")],
     s2=[st("blind", "back_row", 4, 0.2)],
-    p=P(mods=[mod("heal_in", -0.3, "tgt:burn", scope="enemies"), mod("dmg_in", 0.15, DISRUPTED + "|tgt.energy<50", scope="enemies")]))
+    p=P(mods=[mod("heal_in", -0.3, "tgt:burn", scope="enemies"), mod("dmg_in", 0.15, DISRUPTED, scope="enemies")]))
 K["noctelle"] = dict(
     ult=[st("stealth", "allies", 2), st("sure_crit", "allies", 4)],
     s1=[st("stealth", "ally", 1.5)],
@@ -251,12 +251,12 @@ K["rhiannon"] = dict(
     ult=[dmg(2.6, "line"), st("airborne", "line")],
     s1=[dmg(1.8)],
     s2=[st("atk_up", "self_and_summons", 5, 0.25)],
-    p=P(triggers=[on("battle_start", summon("stag", 1)), on("energy_from_ally", dmg(0.5, "target"), icd=2)]))
+    p=P(triggers=[on("battle_start", summon("stag", 1)), on("energy_from_ally", dmg(0.8, "target"), icd=2)]))
 K["sylwen"] = dict(
     ult=[dmg(1.6, "weakest_enemies:3", ignoreDef=0.3)],
     s1=[st("root", "target", 1)],
     s2=[dmg(1.2, "enemies_near_target:2")],
-    p=P(mods=[mod("crit_rate", 0.25, HINDERED + "|mark|weaken|def_down|curse")], flags=["see_stealth"]))
+    p=P(mods=[mod("crit_rate", 0.25, HINDERED + "|mark|weaken|def_down|curse|feeding_curse")], flags=["see_stealth"]))
 K["venna"] = dict(
     ult=[st("poison", "enemies", 4, 0.06)],
     s1=[st("poison", "target", 4, 0.03)],
@@ -273,7 +273,7 @@ K["nimue"] = dict(
     s2=[shield("ally", m=1.8)],
     p=P(mods=[mod("dmg_in", -0.2, "tgt.hp<0.2", scope="allies")]))
 K["fenna"] = dict(
-    ult=[st("sleep", "enemies", 2.5)],
+    ult=[st("sleep", "enemies", 2)],
     s1=[summon("decoy", 1, 3, tauntR=3)],
     s2=[st("slow", "enemies_near_target:2", 3, SLOW), st("poison", "enemies_near_target:2", 3, POISON)],
     p=P(mods=[mod("dodge", 0.1, scope="allies_near:3")]))
@@ -281,12 +281,12 @@ K["wren"] = dict(
     ult=[st("weaken", "enemies_near_target:3", 5, 0.4)],
     s1=[st("root", "target", 2)],
     s2=[cleanse("most_debuffed_ally", 1)],
-    p=P(mods=[mod("dmg_in", 0.1, HINDERED, scope="enemies")]))
+    p=P(mods=[mod("dmg_out", -0.15, "src:slow|root+3|stun+3|airborne+3", scope="enemies"), mod("dmg_in", 0.1, HINDERED, scope="enemies")]))
 K["zephyra"] = dict(
     ult=[st("aspd_up", "allies", 5, 0.3)],
     s1=[st("sleep", "target", 2)],
     s2=[energy(20, "ally")],
-    p=P(mods=[mod("dmg_in", 0.15, DREAD, scope="enemies")]))
+    p=P(mods=[mod("crit_rate", 0.25, DREAD, scope="allies")]))
 
 # Thalyri (Ocean)
 K["coralie"] = dict(
@@ -303,7 +303,7 @@ K["calypso"] = dict(
     ult=[move("pull_to_caster", "highest_atk_enemy"), dmg(3.0, "highest_atk_enemy", drain=0.5)],
     s1=[dmg(1.5)],
     s2=[st("charm", "target", 1.5)],
-    p=P(mods=[mod("dmg_out", 0.35, "tgt.isolated|" + DREAD), mod("crit_rate", 1.0, "src:stealth")],
+    p=P(mods=[mod("dmg_out", 0.3, "tgt.isolated|" + DREAD), mod("crit_rate", 1.0, "src:stealth")],
         triggers=[on("battle_start", st("stealth", "self", 3))]))
 K["halcyra"] = dict(
     ult=[op("chain", m=1.4, bounces=6, to="target", elem="lightning", bonusFrom="tempest", soakedDouble=True)],
@@ -315,7 +315,7 @@ K["nerissa"] = dict(
     ult=[zone(3, 2.5, "target", 0.5, [move("pull_to_point", "zone_enemies", 0.5), dmg(0.35, "zone_enemies")])],
     s1=[teleport("backrow_enemy"), dmg(2.4, "backrow_enemy")],
     s2=[st("slow", "target", 3, SLOW)],
-    p=P(mods=[mod("dmg_out", 0.3, HINDERED)]))
+    p=P(triggers=[on("hit", energy(5), when=HINDERED, icd=0.5)]))
 K["ysra"] = dict(
     ult=[dmg(4.5, "weakest_with:soaked|mark", elem="lightning")],
     s1=[dmg(1.7, elem="lightning")],
@@ -346,7 +346,7 @@ K["ondine"] = dict(
     ult=[st("blind", "enemies", 3, BLIND)],
     s1=[st("stun", "target", 1)],
     s2=[st("soaked", "target", 5), st("def_down", "target", 5, 0.3)],
-    p=P(mods=[mod("dmg_in", 0.2, "tgt:soaked|blind|silence", scope="enemies")]))
+    p=P(mods=[mod("dmg_in", 0.2, "tgt:soaked|blind|silence|drained", scope="enemies")]))
 K["pelagia"] = dict(
     ult=[st("soaked", "enemies", 4), move("push", "enemies", 2.0), energy(20, "allies")],
     s1=[st("soaked", "target", 3), st("slow", "target", 3, SLOW)],
@@ -365,7 +365,7 @@ K["runa"] = dict(
     s2=[st("silence", "nearest_enemy", 1.5)],
     p=P(mods=[mod("reflect_skill", 0.2)]))
 K["vaela"] = dict(
-    ult=[st("projectile_block", "allies", 3)],
+    ult=[st("projectile_block", "allies", 2)],
     s1=[shield("self", pct=SHIELD_PCT), st("silence", "nearest_enemy", 1)],
     s2=[move("pull_to_caster", "enemies_near_self:4"), st("taunt", "enemies_near_self:4", 2)],
     p=P(mods=[mod("dmg_in", 0.1, "tgt.grouped|tgt:taunt", scope="enemies")]))
@@ -383,7 +383,7 @@ K["isaura"] = dict(
     ult=[energy(-25, "enemies", dmgPerEnergy=0.05)],
     s1=[energy(-10, "target", steal=True)],
     s2=[teleport("self", "away"), st("untargetable", "self", 0.5)],
-    p=P(mods=[mod("dmg_out", 0.3, "tgt.energy<50|" + DREAD)]))
+    p=P(mods=[mod("dmg_out", 0.3, DISRUPTED + "|sleep+3|fear+3|charm+3")]))
 K["zaria"] = dict(
     ult=[dmg(2.6, "cone", elem="fire"), st("burn", "cone", 4, BURN)],
     s1=[dmg(1.7)],
@@ -400,7 +400,7 @@ K["selene"] = dict(
     s2=[shield("weakest_ally", m=1.8, breakHeal=1.0)],
     p=P(triggers=[on("heal_given", cleanse("evt", 1))]))
 K["elowen"] = dict(
-    ult=[energy(30, "allies_except_self"), st("aspd_up", "allies", 5, 0.2)],
+    ult=[energy(25, "allies_except_self"), st("aspd_up", "allies", 5, 0.2)],
     s1=[st("slow", "target", 3, SLOW)],
     s2=[st("haste_up", "ally", 4, 30)],
     p=P(mods=[mod("energy_gain", 0.15, scope="allies")]))

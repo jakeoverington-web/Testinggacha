@@ -221,7 +221,7 @@ namespace Gacha.Tests
                     Walk(n.Nodes("ops"));
                 }
             }
-            foreach (var t in p.Triggers) Walk(t.Ops);
+            foreach (var t in p.Triggers) { Walk(t.Ops); if (t.Icd > 0) nums.Add(Math.Round(t.Icd, 3)); }   // "at most once every 2s"
             var missing = new List<string>();
             foreach (var c in ParseClaims(node.Str("text")))
             {
