@@ -1,19 +1,19 @@
 {
-  "_schema": "Hero growth (decisions rows 7, 31, 34; phase 2 spec). HP, ATK and DEF grow levelGrowth x their level-1 value per level; stars multiply on top (index 0 = 1 star). levelCaps: top-five (Contract slot) cap per star. levelCost: XP and gold to reach that level from the one below, at breakpoints (plan doc Leveling table); between breakpoints the cost is interpolated log-linearly. starlight: Starlight spent to reach those levels. starCosts: what reaching each star costs (plan doc 10-rank table; first draft, tuned by the economy sim).",
+  "_schema": "Hero growth (decisions rows 7, 31, 34; phase 2 spec). HP, ATK and DEF grow levelGrowth x their level-1 value per level; stars multiply on top (index 0 = 1 star). levelCaps: top-five (Contract slot) cap per star. levelCost: XP and gold to reach that level from the one below, at breakpoints (plan doc Leveling table, XP x1.4 after the phase 2 economy gate, owner 2026-10-03); between breakpoints the cost is interpolated log-linearly. starlight: Starlight spent to reach those levels. starCosts: what reaching each star costs (plan doc 10-rank table; first draft, tuned by the economy sim).",
   "levelGrowth": 0.04,
   "maxLevel": 200,
   "starMult": [1.0, 1.05, 1.10, 1.15, 1.20, 1.30, 1.40, 1.50, 1.60, 1.70],
   "levelCaps": [60, 70, 80, 90, 100, 120, 140, 160, 180, 200],
   "levelCost": {
-    "2": [40, 60],
-    "20": [98, 150],
-    "40": [350, 520],
-    "60": [1200, 1800],
-    "80": [3600, 5400],
-    "100": [9600, 14000],
-    "130": [36000, 53000],
-    "160": [120000, 170000],
-    "200": [500000, 740000]
+    "2": [56, 60],
+    "20": [137, 150],
+    "40": [490, 520],
+    "60": [1680, 1800],
+    "80": [5040, 5400],
+    "100": [13440, 14000],
+    "130": [50400, 53000],
+    "160": [168000, 170000],
+    "200": [700000, 740000]
   },
   "starlight": { "20": 10, "40": 30, "60": 100, "80": 270, "100": 640, "120": 1400, "140": 3000, "160": 6000, "180": 11000 },
   "starCosts": [

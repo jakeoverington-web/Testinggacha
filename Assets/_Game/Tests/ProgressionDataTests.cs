@@ -20,9 +20,9 @@ namespace Gacha.Tests
         [Test]
         public void LevelCosts_MatchPlanTableAtBreakpoints()
         {
-            Assert.AreEqual(98, G.Levels.Xp(20), 0.5); Assert.AreEqual(150, G.Levels.Gold(20), 0.5);
-            Assert.AreEqual(9600, G.Levels.Xp(100), 0.5); Assert.AreEqual(14000, G.Levels.Gold(100), 0.5);
-            Assert.AreEqual(500000, G.Levels.Xp(200), 0.5); Assert.AreEqual(740000, G.Levels.Gold(200), 0.5);
+            Assert.AreEqual(137, G.Levels.Xp(20), 0.5); Assert.AreEqual(150, G.Levels.Gold(20), 0.5);
+            Assert.AreEqual(13440, G.Levels.Xp(100), 0.5); Assert.AreEqual(14000, G.Levels.Gold(100), 0.5);
+            Assert.AreEqual(700000, G.Levels.Xp(200), 0.5); Assert.AreEqual(740000, G.Levels.Gold(200), 0.5);
             Assert.AreEqual(0, G.Levels.Xp(1));
         }
 
@@ -34,7 +34,7 @@ namespace Gacha.Tests
             {
                 double cx = 0, cg = 0;
                 for (int l = 2; l <= level; l++) { cx += G.Levels.Xp(l); cg += G.Levels.Gold(l); }
-                Assert.AreEqual(xp, cx, xp * 0.06, "XP to " + level);
+                Assert.AreEqual(xp * 1.4, cx, xp * 1.4 * 0.06, "XP to " + level + " (plan x1.4, economy gate)");
                 Assert.AreEqual(gold, cg, gold * 0.06, "gold to " + level);
             }
         }
