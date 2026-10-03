@@ -34,11 +34,11 @@ namespace Gacha.Game
             Instance = this;
             Data = GameData.Load(DataDir);
             string text = File.Exists(SavePath) ? File.ReadAllText(SavePath) : null;
-            try { State = SaveGame.Read(text, Now); }
+            try { State = SaveGame.Read(text, Now, Data); }
             catch (InvalidDataException e)
             {
                 Debug.LogError("Save not loaded: " + e.Message + ". Playing a fresh game without saving.");
-                State = CampaignState.New((ulong)Now, Now);
+                State = CampaignState.NewGame(Data, (ulong)Now, Now);
                 CanSave = false;
             }
         }
