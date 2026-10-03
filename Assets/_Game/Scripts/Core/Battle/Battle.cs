@@ -10,6 +10,7 @@ namespace Gacha.Core.Battle
         public List<string> Heroes = new List<string>();
         public List<int[]> Cells;          // null = battle.json default formation
         public double StatScale = 1.0;     // hook for level sync / stage difficulty
+        public List<double> Scales;        // per-hero HP/ATK/DEF multiplier (level x stars); null = 1 for everyone
         public TeamSetup(params string[] heroes) { Heroes.AddRange(heroes); }
     }
 
@@ -59,7 +60,8 @@ namespace Gacha.Core.Battle
             {
                 if (!Data.Heroes.TryGetValue(setup.Heroes[i], out var def)) throw new ArgumentException("Unknown hero " + setup.Heroes[i]);
                 var s = def.Stats.Clone();
-                s.Hp *= setup.StatScale * T.HpScale; s.Atk *= setup.StatScale; s.Def *= setup.StatScale;
+                double scale = setup.StatScale * (setup.Scales != null && i < setup.Scales.Count ? setup.Scales[i] : 1.0);
+                s.Hp *= scale * T.HpScale; s.Atk *= scale; s.Def *= scale;
                 var u = new Unit { Index = Units.Count, Team = team, Def = def, Id = def.Id, Base = s };
                 var cell = cells[i % cells.Count];
                 double side = team == 0 ? -1 : 1;

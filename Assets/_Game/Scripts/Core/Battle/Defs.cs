@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Gacha.Core.Data;
+using Gacha.Core.Progression;
 
 namespace Gacha.Core.Battle
 {
@@ -175,10 +176,19 @@ namespace Gacha.Core.Battle
         /// <summary>Team bonus: stat -> fraction. Null until tuned (races.json teamBonus is null = no bonus).</summary>
         public Dictionary<string, double> BonusThreePlusTwo, BonusFiveOfOne;
 
-        public static GameData Load(string dataDir) => FromJson(
-            File.ReadAllText(Path.Combine(dataDir, "heroes.json")),
-            File.ReadAllText(Path.Combine(dataDir, "battle.json")),
-            File.ReadAllText(Path.Combine(dataDir, "races.json")));
+        /// <summary>Level and star scaling (progression.json); null when the file is absent.</summary>
+        public StatScaling Progression;
+
+        public static GameData Load(string dataDir)
+        {
+            var g = FromJson(
+                File.ReadAllText(Path.Combine(dataDir, "heroes.json")),
+                File.ReadAllText(Path.Combine(dataDir, "battle.json")),
+                File.ReadAllText(Path.Combine(dataDir, "races.json")));
+            var prog = Path.Combine(dataDir, "progression.json");
+            if (File.Exists(prog)) g.Progression = StatScaling.FromJson(File.ReadAllText(prog));
+            return g;
+        }
 
         public static GameData FromJson(string heroesJson, string battleJson, string racesJson)
         {
