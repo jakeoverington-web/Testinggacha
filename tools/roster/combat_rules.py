@@ -105,7 +105,7 @@ KEYWORDS = {
     "Disrupted": "enemy is blinded, silenced or drained (had energy taken in the last 4s)",
     "Gathered": "enemies are pulled together or taunted",
     "Tempo": "allies gain energy or their skills recharge faster",
-    "Guarded": "allies carry shields or buffs; enemy buffs are removed",
+    "Guarded": "allies carry shields or buffs",
 }
 
 # ---------- Role stat templates (level 1) ----------

@@ -4687,7 +4687,7 @@
    },
    "skills": {
     "ultimate": {
-     "name": "Dread",
+     "name": "Pall of Fear",
      "text": "Fears all enemies for 2s.",
      "tags": [
       "cc_fear"

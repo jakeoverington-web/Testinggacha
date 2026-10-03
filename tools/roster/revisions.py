@@ -377,4 +377,5 @@ PASSES[10] += [
  ("fenna","ultimate.text","Puts all enemies to sleep for 2s (damage wakes them).","Fenna +8: 2.5s -> 2s"),
  ("vaela","ultimate.text","A zone absorbs all enemy projectiles for 2s.","Vaela +8: 3s -> 2s"),
  ("ilyra","passive.text","Her burns stack up to three times; each stack on a target raises her damage to it by 5%. When an ally gives her energy, she gains ATK up (20%) for 4s (at most every 4s).","Tempo had only two damage payers (-25 vs a random team); Ilyra paid off nothing after Gathered was corrected"),
+ ("velisande","ultimate.name","Pall of Fear","Her ultimate was named Dread, the same as a synergy package"),
 ]
