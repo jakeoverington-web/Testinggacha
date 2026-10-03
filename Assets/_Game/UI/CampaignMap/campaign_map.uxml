@@ -11,6 +11,14 @@
         </ui:VisualElement>
         <ui:VisualElement name="badges" class="badges" />
         <ui:ScrollView name="banners" class="banners" />
+        <ui:VisualElement name="stage-panel" class="stage-panel">
+            <ui:VisualElement class="bar">
+                <ui:Label name="stage-title" class="stage-panel__title" />
+                <ui:Label name="stage-power" class="stage-panel__power" />
+            </ui:VisualElement>
+            <ui:VisualElement name="stage-enemies" class="row" />
+            <ui:Button name="stage-fight" text="Fight" class="btn btn--primary" />
+        </ui:VisualElement>
         <ui:VisualElement class="chest">
             <ui:Label text="Idle chest" class="chest__title" />
             <ui:Label name="chest-rates" class="chest__text" />

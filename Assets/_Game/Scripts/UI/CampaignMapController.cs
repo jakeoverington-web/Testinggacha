@@ -16,7 +16,7 @@ namespace Gacha.UI
 
         ScreenRouter _r;
         VisualElement _root;
-        int _chapter;
+        int _chapter, _selected;
         float _refresh;
 
         int NextStage => System.Math.Min(_r.State.HighestCleared + 1, _r.Data.Stages.Count);
@@ -26,6 +26,8 @@ namespace Gacha.UI
         {
             _r = router; _root = root;
             _chapter = arg is int c ? c : Expected.Chapter(NextStage);
+            _selected = NextStage;
+            root.Q<Button>("stage-fight").clicked += () => { if (_selected >= 1 && _selected <= NextStage) _r.Show("prebattle", _selected); };
             root.Q<Button>("prev").clicked += () => { if (_chapter > 1) { _chapter--; Fill(); } };
             root.Q<Button>("next").clicked += () => { if (_chapter < System.Math.Min(LastChapter, Expected.Chapter(NextStage))) { _chapter++; Fill(); } };
             root.Q<Button>("collect").clicked += () => { _r.State.Collect(_r.Data, _r.Game.Now); _r.Game.Save(); FillChest(); };
@@ -48,7 +50,24 @@ namespace Gacha.UI
             _root.Q<Label>("chapter-title").text = $"Chapter {_chapter}";
             FillBadges();
             FillBanners();
+            FillPanel();
             FillChest();
+        }
+
+        /// <summary>Stage panel (redesign spec): the selected stage's enemy lineup and Fight, shown on the map.</summary>
+        void FillPanel()
+        {
+            var panel = _root.Q("stage-panel");
+            bool show = _selected >= 1 && _selected <= _r.Data.Stages.Count && Expected.Chapter(_selected) == _chapter;
+            panel.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+            if (!show) return;
+            var s = _r.Data.Stages[_selected - 1];
+            _root.Q<Label>("stage-title").text = $"Stage {s.Chapter}-{s.Stage}{(s.Boss ? "  Boss" : s.Gate ? "  Gate" : "")}";
+            _root.Q<Label>("stage-power").text = $"Power {Placeholder.Short(s.Power)}";
+            var row = _root.Q("stage-enemies");
+            row.Clear();
+            foreach (var e in s.Enemies)
+                row.Add(Placeholder.HeroTile(_r.Data.Heroes[e.Hero], $"Lv {e.Level} {Placeholder.Stars(e.Stars)}", hollow: true));
         }
 
         void FillBadges()
@@ -76,7 +95,7 @@ namespace Gacha.UI
                 if (i > _r.Data.Stages.Count) continue;
                 var s = _r.Data.Stages[i - 1];
                 int index = i;
-                var b = new Button(() => { if (index <= NextStage) _r.Show("prebattle", index); })
+                var b = new Button(() => { if (index <= NextStage) { _selected = index; FillBanners(); FillPanel(); } })
                 {
                     text = $"{s.Chapter}-{s.Stage}{(s.Boss ? "  Boss" : s.Gate ? "  Gate" : "")}\nPower {Placeholder.Short(s.Power)}"
                 };
@@ -84,8 +103,9 @@ namespace Gacha.UI
                 b.AddToClassList((s.Stage % 4) switch { 0 => "banner--mid", 1 => "banner--left", 2 => "banner--mid", _ => "banner--right" });
                 if (s.Gate) b.AddToClassList("banner--gate");
                 if (s.Boss) b.AddToClassList("banner--boss");
+                if (i == _selected) { b.AddToClassList("banner--selected"); current = b; }
                 if (i <= _r.State.HighestCleared) b.AddToClassList("banner--cleared");
-                else if (i == NextStage) { b.AddToClassList("banner--current"); b.text = "▲ " + b.text; current = b; }
+                else if (i == NextStage) { b.AddToClassList("banner--current"); b.text = "▲ " + b.text; current ??= b; }
                 else { b.AddToClassList("banner--locked"); b.SetEnabled(false); }
                 scroll.Add(b);
             }

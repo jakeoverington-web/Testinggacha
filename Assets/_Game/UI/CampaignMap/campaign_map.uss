@@ -12,6 +12,11 @@
 .banner--locked { opacity: 0.3; }
 .banner--gate { background-color: #2A2418; }
 .banner--boss { background-color: #3A1418; }
+.banner--selected { border-color: var(--text); border-width: 4px; }
+.stage-panel { border-color: var(--gold); border-top-width: 2px; padding: 12px 8px; background-color: var(--panel); }
+.stage-panel__title { font-size: 40px; color: var(--gold); -unity-font-style: bold; }
+.stage-panel__power { font-size: 30px; color: var(--muted); }
+.stage-panel .tile { width: 170px; height: 170px; }
 .chest { border-color: var(--line); border-top-width: 1px; padding: 20px 8px; }
 .chest__title { font-size: 34px; color: var(--gold); -unity-font-style: bold; }
 .chest__text { font-size: 30px; color: var(--text); white-space: normal; margin: 4px 0; }
