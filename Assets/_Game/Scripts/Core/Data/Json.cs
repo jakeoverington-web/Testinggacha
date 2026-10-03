@@ -20,6 +20,85 @@ namespace Gacha.Core.Data
             return v;
         }
 
+        /// <summary>
+        /// Writes the same shapes Parse reads (plus int/long). Keys keep insertion order; numbers use the invariant
+        /// culture and round-trip exactly. Pretty output indents 2 spaces and keeps short arrays of numbers on one line.
+        /// </summary>
+        public static string Write(object value, bool pretty = false)
+        {
+            var sb = new StringBuilder();
+            WriteValue(sb, value, pretty, 0);
+            return sb.ToString();
+        }
+
+        static void WriteValue(StringBuilder sb, object v, bool pretty, int depth)
+        {
+            switch (v)
+            {
+                case null: sb.Append("null"); break;
+                case string s: WriteString(sb, s); break;
+                case bool b: sb.Append(b ? "true" : "false"); break;
+                case int n: sb.Append(n.ToString(CultureInfo.InvariantCulture)); break;
+                case long n: sb.Append(n.ToString(CultureInfo.InvariantCulture)); break;
+                case double d:
+                    if (double.IsNaN(d) || double.IsInfinity(d)) throw new ArgumentException("JSON cannot hold " + d);
+                    sb.Append(d.ToString("R", CultureInfo.InvariantCulture)); break;
+                case Dictionary<string, object> obj:
+                    sb.Append('{');
+                    int i = 0;
+                    foreach (var kv in obj)
+                    {
+                        if (i++ > 0) sb.Append(',');
+                        Newline(sb, pretty, depth + 1);
+                        WriteString(sb, kv.Key); sb.Append(pretty ? ": " : ":");
+                        WriteValue(sb, kv.Value, pretty, depth + 1);
+                    }
+                    if (obj.Count > 0) Newline(sb, pretty, depth);
+                    sb.Append('}');
+                    break;
+                case List<object> list:
+                    bool flat = !pretty || list.TrueForAll(o => !(o is Dictionary<string, object> || o is List<object>));
+                    sb.Append('[');
+                    for (int k = 0; k < list.Count; k++)
+                    {
+                        if (k > 0) sb.Append(flat && pretty ? ", " : ",");
+                        if (!flat) Newline(sb, pretty, depth + 1);
+                        WriteValue(sb, list[k], pretty, depth + 1);
+                    }
+                    if (!flat && list.Count > 0) Newline(sb, pretty, depth);
+                    sb.Append(']');
+                    break;
+                default: throw new ArgumentException("JSON cannot write " + v.GetType().Name);
+            }
+        }
+
+        static void Newline(StringBuilder sb, bool pretty, int depth)
+        {
+            if (!pretty) return;
+            sb.Append('\n').Append(' ', depth * 2);
+        }
+
+        static void WriteString(StringBuilder sb, string s)
+        {
+            sb.Append('"');
+            foreach (char c in s)
+            {
+                switch (c)
+                {
+                    case '"': sb.Append("\\\""); break;
+                    case '\\': sb.Append("\\\\"); break;
+                    case '\n': sb.Append("\\n"); break;
+                    case '\r': sb.Append("\\r"); break;
+                    case '\t': sb.Append("\\t"); break;
+                    default:
+                        if (c < 0x20) sb.Append("\\u").Append(((int)c).ToString("x4"));
+                        else sb.Append(c);
+                        break;
+                }
+            }
+            sb.Append('"');
+        }
+
         static Exception Err(string s, int i, string what)
         {
             int line = 1; for (int k = 0; k < i && k < s.Length; k++) if (s[k] == '\n') line++;
