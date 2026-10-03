@@ -5,7 +5,7 @@ Builds on: decisions rows 5-7, 12, 31-34; Game Modes and Progression Plan (Claud
 
 ## Brief (the 7 points)
 
-1. Level sync from the top 5, no cooldown. 2. Visible tiers (gold → diamond stars) and free resets. 3. Few copies to max (8, not 27). 4. Same-race fodder plus Race Sigils so stars do not depend only on pulls. 5. Stars unlock ability ranks. 6. No layer stacking: phase 2 is levels, stars and gear only (no talents, runes, accessories). 7. Gear kept small: 4 slots, plain upgrades, no substats or rerolling.
+1. Level sync from the top 5, no cooldown. 2. Visible tiers (gold → diamond stars) and free resets. 3. Few copies to max (8, not 27). 4. Same-race fodder plus Race Sigils so stars do not depend only on pulls. 5. Stars unlock ability ranks. 6. No layer stacking: phase 2 is levels, stars and gear only (no talents, runes, accessories). 7. Gear kept small: 4 slots, plain upgrades, no substats or rerolling; one fixed extra stat per named piece type (owner, 2026-10-03).
 
 ## Owned heroes and start
 
@@ -47,8 +47,17 @@ Free, any time, full refund: stars back to 1★ returns copies, gold, and the fo
 
 ## Gear (row 6; owner 2026-10-03)
 
-- **4 slots, one fixed main stat each, no substats or rerolling:** Weapon (ATK), Helm (HP), Armor (DEF), Boots (HP and ATK at half each).
-- **Tiers T1-T10 by chapter** (T1 from ch 1-2 ... T10 from ch 19-20). Main stat = tier x 4% of the hero's stat (T10 = 40%), times (1 + 5% x upgrade level); upgrades +0 to +20 with gold (cost first draft: 400 x tier x level gold per step). First drafts, tuned by the sims.
+- **4 slots, one fixed main stat each; every piece is a named type with one fixed extra stat (owner, 2026-10-03). No substats, no random rolls.**
+
+| Slot | Main stat | Types and their fixed extra stat (value at T10; scales linearly with tier) |
+|---|---|---|
+| Weapon | ATK | Keen: +15% crit rate · Brutal: +30% crit damage · Hexing: +20% effect hit · Radiant: +20% healing done |
+| Helm | HP | Warded: +20% effect resist · Blessed: +20% healing received · Sighted: +15% accuracy |
+| Armor | DEF | Guarding: +15% block · Evasive: +12% dodge · Leeching: +12% lifesteal |
+| Boots | Haste (faster skill cooldowns) | Quick: +15% attack speed · Charged: +20% energy gain · Striding: +20% move speed |
+
+- **Tiers T1-T10 by chapter** (T1 from ch 1-2 ... T10 from ch 19-20). Main stat = tier x 4% of the hero's stat (T10 = 40%; Boots: tier x 4 haste), times (1 + 5% x upgrade level); upgrades +0 to +20 with gold (first draft: 400 x tier x level gold per step) raise the main stat only. Extra stat = T10 value x tier / 10. All first drafts, tuned by the sims.
+- **Drops are fixed, not random:** each stage's first-clear piece (slot, type, set, tier) is set in stages.json and shown on the stage panel, so a wanted piece has a known source; the idle chest hands out pieces in a fixed rotation of slots, types and sets.
 - **5 sets** (owner: stat themes), 2-piece and 4-piece bonuses (first drafts):
 
 | Set | 2-piece | 4-piece |
@@ -59,7 +68,7 @@ Free, any time, full refund: stars back to 1★ returns copies, gold, and the fo
 | Vigor | +10% energy regen | start each battle with 30 energy |
 | Renewal | +10% healing done | +15% healing received |
 
-- **Drops:** first clears and the idle chest (the plan doc's idle table "Also drops: Gear"). **Equip Best** fills the 4 slots by main-stat value. Gear is not hero-locked. Unwanted pieces salvage into gold.
+- **Equip Best** fills the 4 slots by main-stat value (ties: completing a 2- or 4-piece set). Gear is not hero-locked. Unwanted pieces salvage into gold.
 - Gear and set bonuses count in battle and in power (power uses the final stats).
 
 ## Screens (placeholders; Omniheroes references)
@@ -82,4 +91,4 @@ Summoning and duplicates from pulls (phase 3), talents/runes/accessories (point 
 
 ## Decisions log changes (when built)
 
-Row 6 gains: 4 slots (Weapon ATK, Helm HP, Armor DEF, Boots HP+ATK), tiers by chapter, +20 upgrades, no substats/rerolling, 5 stat-theme sets. Row 7/31 gain: Contract slots own the level; sync to the lowest slot. New row: starter team (random, 1 tank + 1 healer) and dev panel. Open question "Gear slots per hero" closes.
+Row 6 gains: 4 slots (Weapon ATK, Helm HP, Armor DEF, Boots haste), each piece a named type with one fixed extra stat (13 types), tiers by chapter, +20 upgrades, no substats/rerolling, fixed drop sources, 5 stat-theme sets. Row 7/31 gain: Contract slots own the level; sync to the lowest slot. New row: starter team (random, 1 tank + 1 healer) and dev panel. Open question "Gear slots per hero" closes.
