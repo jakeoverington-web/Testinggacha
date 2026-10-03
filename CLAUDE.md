@@ -5,7 +5,7 @@ Design source of truth: `docs/design/decisions.md`. If code and that file disagr
 
 ## Current phase
 
-Phase 1 — Core loop greybox: (a) roster ✓ (60 heroes as data; change heroes via tools/roster passes) (b) battle rules ✓ (roster pass 10, 12 synergy packages, decisions rows 28-30) (c) next: campaign + idle loot per the Game Modes and Progression Plan (Claude Docs); its 13 decisions are settled (decisions rows 31-38, rows 4 and 11 updated).
+Phase 1 — Core loop greybox: (a) roster ✓ (60 heroes as data; change heroes via tools/roster passes) (b) battle rules ✓ (roster pass 10, 12 synergy packages, decisions rows 28-30) (c) campaign + idle loot ✓ greybox (600 generated stages, idle chest, map/pre-battle/battle/result screens, auto mode; gate passed: docs/design/campaign-gate-v1.md). Next: Phase 2 hero progression, when the owner says so.
 Phases: 1 Core loop → 2 Hero progression → 3 Gacha and roster → 4 Modes → 5 Art pass.
 Do not start work from a later phase unless asked.
 
@@ -38,7 +38,7 @@ Do not start work from a later phase unless asked.
 ## Commands
 
 - `pwsh -File tools/csharp/test.ps1 [filter]` - all tests (~3 s, no Unity); needs PowerShell 7 (Windows PowerShell 5.1 lacks Roslyn). `tools/csharp/test.sh` on Linux/macOS.
-- `pwsh -File tools/csharp/test.ps1 -Main Gacha.Tests.Tools.<Tool> [args]` - balance tools: NicheReport, SynergyReport, PackageProbe, InteractionAudit, HeroProbe, Variant, Ablation (table in docs/design/testing.md).
+- `pwsh -File tools/csharp/test.ps1 -Main Gacha.Tests.Tools.<Tool> [args]` - balance tools: NicheReport, SynergyReport, PackageProbe, InteractionAudit, HeroProbe, Variant, Ablation; campaign tools: StageGen (writes Data/stages.json, ~9 min), CampaignGate (table in docs/design/testing.md).
 - `cd tools/roster; python check.py <pass>; python build.py` - after editing kits.py or adding a PASSES entry in revisions.py (every edit records why).
 - `unity command run_tests --mode editor --timeout 300 --result-only` - same tests inside the open Unity Editor (owner's PC only; Unity CLI ships with Hub, Pipeline package installed). Args are `--name value`, not `name=value`.
 - `python tools/roster/package_audit.py` - every hero's package claims must match her kit (decision row 30); expect 0 findings.
@@ -46,6 +46,8 @@ Do not start work from a later phase unless asked.
 ## Gotchas
 
 - Golden replay hash changes on purpose with any rule or kit change: run tests, paste the printed "new hash" into InvariantTests.GoldenHash with a comment.
+- Stage levels in stages.json are sim-tuned against the current kits: after any kit, rule or progression change, re-run StageGen and CampaignGate and commit the new stages.json with the change.
+- Play mode via the Unity CLI: the Editor freezes at frame 1 when unfocused; eval `UnityEngine.Application.runInBackground = true` first (runtime only). Tap UI with a NavigationSubmitEvent via eval; `capture_game_view` returns the image inline (save_path lands under Assets/, so avoid it). After editing USS/UXML, eval `UnityEditor.AssetDatabase.Refresh()`.
 - Passive texts must contain every number in their data (training-ground test), including condition windows (`stun+3`) and trigger cooldowns.
 - A synergy package names one condition, on the enemy OR your team (row 30); a skill name must never equal a package name.
 - New report versions replace old ones in docs/design (git rm the old file).
