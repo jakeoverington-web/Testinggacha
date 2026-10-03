@@ -1,0 +1,12 @@
+{
+  "_schema": "Idle loot (decisions row 33; Game Modes and Progression Plan, Idle rewards). Rate per hour at highest cleared stage s >= 1 grows by the same factor every stage, through at30 (stage 30) and at600 (stage 600): at30 x (at600 / at30)^((s - 30) / 570); nothing cleared = 0. The chest stops after capHours until you collect. An Hourglass pays hourglassHours at the current rate, outside the cap.",
+  "idle": {
+    "capHours": 24,
+    "hourglassHours": 2,
+    "rates": {
+      "gold": { "at30": 7000, "at600": 490000 },
+      "heroXp": { "at30": 3000, "at600": 210000 },
+      "starlight": { "at30": 24, "at600": 720 }
+    }
+  }
+}

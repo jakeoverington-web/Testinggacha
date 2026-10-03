@@ -64,6 +64,15 @@ namespace NUnit.Framework
 
     public static class CollectionAssert
     {
+        public static void AreEqual(IEnumerable expected, IEnumerable actual, string message = null)
+        {
+            var e = new List<object>(); foreach (var o in expected) e.Add(o);
+            var a = new List<object>(); foreach (var o in actual) a.Add(o);
+            bool eq = e.Count == a.Count;
+            for (int i = 0; eq && i < e.Count; i++) eq = Equals(e[i], a[i]);
+            if (!eq) throw new AssertionException($"Expected [{string.Join(", ", e)}] but was [{string.Join(", ", a)}]" + (string.IsNullOrEmpty(message) ? "" : " — " + message));
+        }
+
         public static void Contains(IEnumerable collection, object item, string message = null)
         {
             foreach (var x in collection) if (Equals(x, item)) return;

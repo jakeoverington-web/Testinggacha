@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Gacha.Core.Data;
+using Gacha.Core.Economy;
 using Gacha.Core.Progression;
 
 namespace Gacha.Core.Battle
@@ -178,6 +179,8 @@ namespace Gacha.Core.Battle
 
         /// <summary>Level and star scaling (progression.json); null when the file is absent.</summary>
         public StatScaling Progression;
+        /// <summary>Idle loot rates (economy.json); null when the file is absent.</summary>
+        public IdleRates Idle;
 
         public static GameData Load(string dataDir)
         {
@@ -187,6 +190,8 @@ namespace Gacha.Core.Battle
                 File.ReadAllText(Path.Combine(dataDir, "races.json")));
             var prog = Path.Combine(dataDir, "progression.json");
             if (File.Exists(prog)) g.Progression = StatScaling.FromJson(File.ReadAllText(prog));
+            var eco = Path.Combine(dataDir, "economy.json");
+            if (File.Exists(eco)) g.Idle = IdleRates.FromJson(File.ReadAllText(eco));
             return g;
         }
 
