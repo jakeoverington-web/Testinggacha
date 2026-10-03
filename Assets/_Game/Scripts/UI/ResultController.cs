@@ -89,7 +89,9 @@ namespace Gacha.UI
                 var row = new VisualElement(); row.AddToClassList("stat-hero");
                 if (!l.Alive) row.AddToClassList("stat-hero--fallen");
                 var icon = new VisualElement(); icon.AddToClassList("stat-hero__icon");
-                icon.style.backgroundColor = Placeholder.RaceColour(h.Core);
+                var colour = Placeholder.RaceColour(h.Core);
+                // A fallen hero: grey the colour behind her, keep her name and "Died" bright.
+                icon.style.backgroundColor = l.Alive ? colour : UnityEngine.Color.Lerp(colour, new UnityEngine.Color(0.22f, 0.22f, 0.24f), 0.7f);
                 icon.Add(Placeholder.Label((team == 1 ? "Hollow " : "") + h.Name, "stat-hero__name"));
                 icon.Add(Placeholder.Label("Died", "stat-hero__died"));
                 row.Add(icon);
