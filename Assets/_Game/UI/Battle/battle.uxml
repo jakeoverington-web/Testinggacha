@@ -6,7 +6,9 @@
             <ui:Label name="clock" class="subtitle" />
         </ui:VisualElement>
         <ui:VisualElement name="field" class="field" />
+        <ui:VisualElement name="portraits" class="portraits" />
         <ui:VisualElement class="bar">
+            <ui:Button name="auto" class="btn" />
             <ui:Button name="speed" text="Speed 1×" class="btn" />
             <ui:Button name="skip" text="Skip" class="btn" />
         </ui:VisualElement>

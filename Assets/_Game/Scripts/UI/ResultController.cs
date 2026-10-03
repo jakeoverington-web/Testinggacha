@@ -60,7 +60,7 @@ namespace Gacha.UI
         void ShowAuto()
         {
             bool running = _autoIn >= 0;
-            _root.Q<Label>("auto").text = running ? $"Auto: next stage in {_autoIn:0.0} s" : _r.State.Auto && !_result.Won ? "Auto stopped after a defeat." : "";
+            _root.Q<Label>("auto").text = running ? $"Auto: next stage in {_autoIn:0.0} s" : _r.State.Auto && !_result.Won && !_result.Manual ? "Auto stopped after a defeat." : "";
             _root.Q<Button>("stop-auto").style.display = running ? DisplayStyle.Flex : DisplayStyle.None;
         }
 

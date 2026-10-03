@@ -46,12 +46,20 @@ namespace Gacha.UI
 
         public void Tick(float dt) => _current?.Tick(dt);
 
-        /// <summary>Plays the stage in the sim, saves, then shows the replay. (Task 6 makes this a live session for manual fights.)</summary>
+        /// <summary>Starts a live fight (manual = tap-to-cast ultimates), saves, and shows the battle; it finishes itself.</summary>
         public void Fight(int stageIndex, IList<string> slots, bool manual)
         {
-            var r = State.Fight(Data, stageIndex, slots, Game.Now);
+            var session = State.StartFight(Data, stageIndex, slots, manual);
             Game.Save();
-            Show("battle", r);
+            Show("battle", session);
+        }
+
+        /// <summary>Applies a finished (or skipped) fight, saves, and shows the result.</summary>
+        public void Finish(FightSession session)
+        {
+            var r = State.FinishFight(Data, session, Game.Now);
+            Game.Save();
+            Show("result", r);
         }
     }
 }
