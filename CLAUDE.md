@@ -5,7 +5,7 @@ Design source of truth: `docs/design/decisions.md`. If code and that file disagr
 
 ## Current phase
 
-Phase 1 — Core loop greybox: (a) roster ✓ (60 heroes as data; change heroes via tools/roster passes) (b) battle rules ✓ (roster pass 10, 12 synergy packages, decisions rows 28-30) (c) next: campaign + idle loot per the Game Modes and Progression Plan (Claude Docs); its 13 decisions await the owner's call.
+Phase 1 — Core loop greybox: (a) roster ✓ (60 heroes as data; change heroes via tools/roster passes) (b) battle rules ✓ (roster pass 10, 12 synergy packages, decisions rows 28-30) (c) next: campaign + idle loot per the Game Modes and Progression Plan (Claude Docs); its 13 decisions are settled (decisions rows 31-38, rows 4 and 11 updated).
 Phases: 1 Core loop → 2 Hero progression → 3 Gacha and roster → 4 Modes → 5 Art pass.
 Do not start work from a later phase unless asked.
 
