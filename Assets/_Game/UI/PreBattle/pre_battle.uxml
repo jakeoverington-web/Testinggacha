@@ -2,16 +2,23 @@
     <Style src="pre_battle.uss" />
     <ui:VisualElement class="prebattle">
         <ui:VisualElement class="bar">
-            <ui:Button name="back" text="◀ Map" class="btn btn--small" />
+            <ui:Button name="back" text="◀" class="btn btn--small" />
             <ui:Label name="title" class="title" />
         </ui:VisualElement>
-        <ui:Label name="power" class="subtitle" />
-        <ui:Label text="Enemy" class="section" />
-        <ui:VisualElement name="enemy-row" class="row" />
-        <ui:Label name="your-label" class="section" />
-        <ui:VisualElement name="your-row" class="row" />
-        <ui:Label text="Tap a hero to add or remove (up to 5)" class="subtitle" />
-        <ui:ScrollView name="picker" class="picker" />
-        <ui:Button name="fight" text="Fight" class="btn btn--primary fight" />
+        <ui:VisualElement class="bar power-bar">
+            <ui:Label name="power-you" class="power power--you" />
+            <ui:Label text="VS" class="power-vs" />
+            <ui:Label name="power-enemy" class="power power--enemy" />
+        </ui:VisualElement>
+        <ui:Label name="level-note" class="subtitle" />
+        <ui:VisualElement name="field" class="pb-field" />
+        <ui:Label text="Tap one of your heroes, then another slot, to swap positions" class="subtitle hint" />
+        <ui:VisualElement name="tabs" class="tabs" />
+        <ui:ScrollView name="roster" class="roster" />
+        <ui:VisualElement class="bar">
+            <ui:Button name="quick" text="Quick Deploy" class="btn" />
+            <ui:Button name="auto" text="Auto-Battle" class="btn" />
+            <ui:Button name="manual" text="Battle" class="btn btn--primary" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

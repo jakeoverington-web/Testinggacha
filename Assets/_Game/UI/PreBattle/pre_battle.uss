@@ -1,4 +1,23 @@
 .prebattle { flex-grow: 1; }
-.picker { flex-grow: 1; flex-basis: 0; margin: 8px 0; }
-.picker .unity-scroll-view__content-container { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-.fight { min-height: 150px; font-size: 48px; }
+.power-bar { justify-content: center; }
+.power { font-size: 40px; -unity-font-style: bold; flex-grow: 1; }
+.power--you { color: var(--gold); -unity-text-align: middle-right; }
+.power--enemy { color: var(--bad); -unity-text-align: middle-left; }
+.power-vs { font-size: 36px; color: var(--muted); margin: 0 24px; }
+/* Side view (row 16): same field as battle, allies left, enemies right. */
+.pb-field { height: 720px; margin: 8px 0; background-color: #121216; border-color: var(--line); border-width: 1px; }
+.slot { position: absolute; width: 150px; height: 130px; translate: -50% -50%; border-radius: 4px; padding: 6px;
+        justify-content: space-between; border-width: 3px; border-color: rgba(0, 0, 0, 0); }
+.slot--empty { background-color: rgba(0, 0, 0, 0); border-color: var(--line); justify-content: center; }
+.slot--enemy { border-color: #000000; }
+.slot--picked { border-color: var(--gold); }
+.slot__name { font-size: 22px; color: #FFFFFF; -unity-font-style: bold; white-space: normal; }
+.slot__meta { font-size: 20px; color: #F0F0F0; }
+.slot__plus { font-size: 48px; color: var(--muted); -unity-text-align: middle-center; }
+.hint { font-size: 26px; }
+.tabs { flex-direction: row; justify-content: center; margin: 6px 0; }
+.tab { min-width: 140px; min-height: 90px; font-size: 28px; margin: 4px; color: var(--text); background-color: var(--panel);
+       border-color: var(--line); border-width: 2px; border-radius: 4px; }
+.tab--on { border-color: var(--gold); color: var(--gold); }
+.roster { flex-grow: 1; flex-basis: 0; margin: 4px 0; }
+.roster .unity-scroll-view__content-container { flex-direction: row; flex-wrap: wrap; justify-content: center; }

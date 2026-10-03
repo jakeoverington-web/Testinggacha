@@ -51,7 +51,7 @@ namespace Gacha.UI
             if (_autoIn <= 0)
             {
                 _autoIn = -1;
-                _r.Fight(_result.StageIndex + 1, _r.State.LastSetup[CampaignState.Mode]);
+                _r.Fight(_result.StageIndex + 1, _r.State.LastSetup[CampaignState.Mode], manual: false);
                 return;
             }
             ShowAuto();
