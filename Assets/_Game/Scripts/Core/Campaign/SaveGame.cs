@@ -39,9 +39,13 @@ namespace Gacha.Core.Campaign
         public static CampaignState Read(string json, long now)
         {
             if (string.IsNullOrWhiteSpace(json)) return Fresh(now);
-            Node n;
-            try { n = Node.Of(Json.Parse(json)); }
-            catch (FormatException) { return Fresh(now); }
+            try { return ReadNode(Node.Of(Json.Parse(json)), now); }
+            catch (InvalidDataException) { throw; }
+            catch (Exception) { return Fresh(now); }   // truncated or damaged file (the parser can throw more than FormatException)
+        }
+
+        static CampaignState ReadNode(Node n, long now)
+        {
             if (n == null) return Fresh(now);
             int version = (int)n.Num("version", 0);
             if (version > Version) throw new InvalidDataException($"Save version {version} is newer than this build ({Version})");

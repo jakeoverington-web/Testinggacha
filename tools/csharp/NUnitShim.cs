@@ -51,6 +51,12 @@ namespace NUnit.Framework
         public static void GreaterOrEqual(double a, double b, string message = null) { if (!(a >= b)) throw new AssertionException($"Expected {a} >= {b}{Msg(message)}"); }
         public static void Less(double a, double b, string message = null) { if (!(a < b)) throw new AssertionException($"Expected {a} < {b}{Msg(message)}"); }
         public static void LessOrEqual(double a, double b, string message = null) { if (!(a <= b)) throw new AssertionException($"Expected {a} <= {b}{Msg(message)}"); }
+        public static void DoesNotThrow(TestDelegate code, string message = null)
+        {
+            try { code(); }
+            catch (Exception e) { throw new AssertionException($"Expected no exception but got {e.GetType().Name}: {e.Message}{Msg(message)}"); }
+        }
+
         public static T Throws<T>(TestDelegate code, string message = null) where T : Exception
         {
             try { code(); }

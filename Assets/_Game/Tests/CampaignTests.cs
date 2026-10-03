@@ -209,6 +209,20 @@ namespace Gacha.Tests
         }
 
         [Test]
+        public void Save_TruncatedAnywhere_StartsFreshOrReadsWhatItCan()
+        {
+            var st = CampaignState.New(seed: 7, now: T0);
+            st.Fight(G, 1, new[] { "cassia", "nyx" }, T0 + 60);
+            string full = SaveGame.Write(st);
+            for (int cut = 0; cut < full.Length; cut++)
+            {
+                CampaignState back = null;
+                Assert.DoesNotThrow(() => back = SaveGame.Read(full.Substring(0, cut), T0), "cut at " + cut);
+                Assert.IsNotNull(back);
+            }
+        }
+
+        [Test]
         public void Save_NewerVersion_Throws()
         {
             Assert.Throws<InvalidDataException>(() => SaveGame.Read("{\"version\": " + (SaveGame.Version + 1) + "}", T0));
