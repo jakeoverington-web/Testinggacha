@@ -49,15 +49,15 @@ Free, any time, full refund: stars back to 1★ returns copies, gold, and the fo
 
 - **4 slots, one fixed main stat each; every piece is a named type with one fixed extra stat (owner, 2026-10-03). No substats, no random rolls.**
 
-| Slot | Main stat | Types and their fixed extra stat (value at T10; scales linearly with tier) |
+| Slot | Main stat | Types and their fixed extra stat (value at Legendary; Uncommon/Rare/Epic give 1/4, 2/4, 3/4 of it) |
 |---|---|---|
 | Weapon | ATK | Keen: +15% crit rate · Brutal: +30% crit damage · Hexing: +20% effect hit · Radiant: +20% healing done |
 | Helm | HP | Warded: +20% effect resist · Blessed: +20% healing received · Sighted: +15% accuracy |
 | Armor | DEF | Guarding: +15% block · Evasive: +12% dodge · Leeching: +12% lifesteal |
 | Boots | Haste (faster skill cooldowns) | Quick: +15% attack speed · Charged: +20% energy gain · Striding: +20% move speed |
 
-- **Tiers T1-T10** (unlocked by breakthroughs, below). Main stat = tier x 4% of the hero's stat (T10 = 40%; Boots: tier x 4 haste), times (1 + 5% x upgrade level); upgrades +0 to +20 with gold (first draft: 400 x tier x level gold per step) raise the main stat only. Extra stat = T10 value x tier / 10. All first drafts, tuned by the sims.
-- **Drops are random; tier unlocks by breakthrough (owner, 2026-10-03):** first clears and the idle chest drop pieces whose slot, type and set are random, through the shared seeded RNG (save seed + a drop counter, hard rule 4). The tier is the highest unlocked: T1 from the start, then one tier more for each chapter-boss breakthrough every 2 chapters (clearing ch 2's boss unlocks T2, ch 4's T3 ... ch 18's T10). A piece's stats are never rolled: slot, type, set and tier fully determine them.
+- **4 rarities (owner, 2026-10-03): Uncommon, Rare, Epic, Legendary.** Main stat = 10% / 20% / 30% / 40% of the hero's stat (Boots: 10 / 20 / 30 / 40 haste), times (1 + 5% x upgrade level); upgrades +0 to +20 with gold (first draft: 1,000 x rarity rank x level gold per step, rank 1-4) raise the main stat only. Extra stat = the Legendary value x rank / 4. All first drafts, tuned by the sims.
+- **Drops are random; rarities unlock by breakthrough (owner, 2026-10-03):** first clears and the idle chest drop pieces whose slot, type, set and rarity are random, through the shared seeded RNG (save seed + a drop counter, hard rule 4). Uncommon drops from the start; Rare unlocks after ch 5's boss, Epic after ch 10's, Legendary after ch 15's. Each drop picks among unlocked rarities with odds favouring the newest: newest 50%, next 30%, next 15%, oldest 5% (renormalised while fewer are unlocked: 2 unlocked = 62.5 / 37.5, 3 unlocked = 52.6 / 31.6 / 15.8). A piece's stats are never rolled: slot, type, set and rarity fully determine them.
 - **5 sets** (owner: stat themes), 2-piece and 4-piece bonuses (first drafts):
 
 | Set | 2-piece | 4-piece |
@@ -91,4 +91,4 @@ Summoning and duplicates from pulls (phase 3), talents/runes/accessories (point 
 
 ## Decisions log changes (when built)
 
-Row 6 gains: 4 slots (Weapon ATK, Helm HP, Armor DEF, Boots haste), each piece a named type with one fixed extra stat (13 types), tiers by chapter, +20 upgrades, no substats/rerolling, random drops with tiers unlocked every 2 chapter bosses, 5 stat-theme sets. Row 7/31 gain: Contract slots own the level; sync to the lowest slot. New row: starter team (random, 1 tank + 1 healer) and dev panel. Open question "Gear slots per hero" closes.
+Row 6 gains: 4 slots (Weapon ATK, Helm HP, Armor DEF, Boots haste), each piece a named type with one fixed extra stat (13 types), tiers by chapter, +20 upgrades, no substats/rerolling, 4 rarities (Uncommon, Rare, Epic, Legendary) unlocked every 5 chapter bosses with odds favouring the newest, random seeded drops, 5 stat-theme sets. Row 7/31 gain: Contract slots own the level; sync to the lowest slot. New row: starter team (random, 1 tank + 1 healer) and dev panel. Open question "Gear slots per hero" closes.
