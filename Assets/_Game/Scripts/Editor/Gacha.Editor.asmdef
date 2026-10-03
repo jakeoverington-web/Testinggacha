@@ -1,0 +1,19 @@
+{
+    "name": "Gacha.Editor",
+    "rootNamespace": "Gacha.Editor",
+    "references": [
+        "Gacha.Core",
+        "Gacha.Game"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

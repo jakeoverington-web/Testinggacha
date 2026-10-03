@@ -1,0 +1,16 @@
+{
+    "name": "Gacha.Game",
+    "rootNamespace": "Gacha.Game",
+    "references": [
+        "Gacha.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
