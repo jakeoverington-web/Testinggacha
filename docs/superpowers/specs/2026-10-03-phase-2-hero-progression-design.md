@@ -58,6 +58,7 @@ Free, any time, full refund: stars back to 1★ returns copies, gold, and the fo
 
 - **4 rarities (owner, 2026-10-03): Uncommon, Rare, Epic, Legendary.** Main stat = 10% / 20% / 30% / 40% of the hero's stat (Boots: 10 / 20 / 30 / 40 haste), times (1 + 5% x upgrade level); upgrades +0 to +20 with gold (first draft: 1,000 x rarity rank x level gold per step, rank 1-4) raise the main stat only. Extra stat = the Legendary value x rank / 4. All first drafts, tuned by the sims.
 - **Drops are random; rarities unlock by breakthrough (owner, 2026-10-03):** first clears and the idle chest drop pieces whose slot, type, set and rarity are random, through the shared seeded RNG (save seed + a drop counter, hard rule 4). Uncommon drops from the start; Rare unlocks after ch 5's boss, Epic after ch 10's, Legendary after ch 15's. Each drop picks among unlocked rarities with odds favouring the newest: newest 50%, next 30%, next 15%, oldest 5% (renormalised while fewer are unlocked: 2 unlocked = 62.5 / 37.5, 3 unlocked = 52.6 / 31.6 / 15.8). A piece's stats are never rolled: slot, type, set and rarity fully determine them.
+- **Idle chest gear (owner, 2026-10-03), kept modest:** each full hour of loot in the chest has a 1-in-16 chance of a gear piece (about 1.5 per full 24 h), never more than 2 per 24 h of chest time. Rolled at collect with the seeded RNG; pieces wait in the chest like the rest of the loot. Hourglasses (2 h of loot) use the same rule.
 - **5 sets** (owner: stat themes), 2-piece and 4-piece bonuses (first drafts):
 
 | Set | 2-piece | 4-piece |
