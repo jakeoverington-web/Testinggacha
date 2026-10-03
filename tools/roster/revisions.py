@@ -378,4 +378,6 @@ PASSES[10] += [
  ("vaela","ultimate.text","A zone absorbs all enemy projectiles for 2s.","Vaela +8: 3s -> 2s"),
  ("ilyra","passive.text","Her burns stack up to three times; each stack on a target raises her damage to it by 5%. When an ally gives her energy, she gains ATK up (20%) for 4s (at most every 4s).","Tempo had only two damage payers (-25 vs a random team); Ilyra paid off nothing after Gathered was corrected"),
  ("velisande","ultimate.name","Pall of Fear","Her ultimate was named Dread, the same as a synergy package"),
+ ("caelith","passive.text","+30% damage to shields, and +30% to Exposed enemies.","Text named marked, weakened or cursed; the bonus has also applied to DEF-lowered enemies (Exposed)"),
+ ("vaela","passive.text","Gathered enemies take 10% more damage.","Same effect, named by its package"),
 ]

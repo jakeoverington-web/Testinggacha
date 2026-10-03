@@ -10737,7 +10737,7 @@
     },
     "passive": {
      "name": "Null",
-     "text": "Grouped or taunted enemies take 10% more damage.",
+     "text": "Gathered enemies take 10% more damage.",
      "tags": [
       "debuff_weaken"
      ],
@@ -11178,7 +11178,7 @@
     },
     "passive": {
      "name": "Unbind",
-     "text": "+30% damage to shields, and +30% to marked, weakened or cursed enemies.",
+     "text": "+30% damage to shields, and +30% to Exposed enemies.",
      "tags": [
       "dmg_single"
      ],
