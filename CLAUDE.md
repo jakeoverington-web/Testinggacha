@@ -5,9 +5,16 @@ Design source of truth: `docs/design/decisions.md`. If code and that file disagr
 
 ## Current phase
 
-Phase 1 — Core loop greybox, in this order: (a) roster design: 60 heroes as data (Hero Compendium; heroes.json, combat.json; change heroes via tools/roster passes); (b) battle rules built for exactly those kits (real-time, everyone acts at once, race counters + team bonuses); (c) campaign stages and idle loot.
+Phase 1 — Core loop greybox: (a) roster ✓ (60 heroes as data; change heroes via tools/roster passes) (b) battle rules ✓ (roster pass 10, 12 synergy packages, decisions rows 28-30) (c) next: campaign + idle loot per the Game Modes and Progression Plan (Claude Docs); its 13 decisions await the owner's call.
 Phases: 1 Core loop → 2 Hero progression → 3 Gacha and roster → 4 Modes → 5 Art pass.
 Do not start work from a later phase unless asked.
+
+## Working with the owner
+
+- One question at a time; stop immediately when the owner says "Wait".
+- Confirm before committing a design decision; the owner often changes their mind, so draft on a branch and merge to main only after approval.
+- Before finalizing a roster pass, show every changed kit text in one table.
+- No parallel or background agents without an explicit OK. Downloads need a yes with file, source and size stated. No recolour mock-ups.
 
 ## Hard rules
 
@@ -24,9 +31,25 @@ Do not start work from a later phase unless asked.
 
 - One feature or ticket per chat. Start from the Linear ticket; end with a commit referencing it.
 - Plan before code for anything over ~50 lines; ask before changing a design decision.
-- Core logic changes come with Edit Mode tests (NUnit) in `Assets/_Game/Tests/`. Run them with `tools/csharp/test.sh` (about 3 s, no Unity; method in `docs/design/testing.md`). Battle rules: `docs/design/battle-rules.md`.
+- Core logic changes come with Edit Mode tests (NUnit) in `Assets/_Game/Tests/` (method in `docs/design/testing.md`). Battle rules: `docs/design/battle-rules.md`.
 - Small commits with clear messages. Never commit secrets, store keys or final art.
 - When a design decision changes, update `docs/design/decisions.md` in the same commit.
+
+## Commands
+
+- `pwsh -File tools/csharp/test.ps1 [filter]` - all tests (~3 s, no Unity); needs PowerShell 7 (Windows PowerShell 5.1 lacks Roslyn). `tools/csharp/test.sh` on Linux/macOS.
+- `pwsh -File tools/csharp/test.ps1 -Main Gacha.Tests.Tools.<Tool> [args]` - balance tools: NicheReport, SynergyReport, PackageProbe, InteractionAudit, HeroProbe, Variant, Ablation (table in docs/design/testing.md).
+- `cd tools/roster; python check.py <pass>; python build.py` - after editing kits.py or adding a PASSES entry in revisions.py (every edit records why).
+- `python tools/roster/package_audit.py` - every hero's package claims must match her kit (decision row 30); expect 0 findings.
+
+## Gotchas
+
+- Golden replay hash changes on purpose with any rule or kit change: run tests, paste the printed "new hash" into InvariantTests.GoldenHash with a comment.
+- Passive texts must contain every number in their data (training-ground test), including condition windows (`stun+3`) and trigger cooldowns.
+- A synergy package names one condition, on the enemy OR your team (row 30); a skill name must never equal a package name.
+- New report versions replace old ones in docs/design (git rm the old file).
+- heroes.json is the source of truth; the Hero Compendium (Claude Docs) is a synced copy.
+- Unity 6.6 (row 13). Commit the .meta files Unity generates. Unity CLI (beta) only works for an agent on the same PC.
 
 ## Saving tokens and time
 
