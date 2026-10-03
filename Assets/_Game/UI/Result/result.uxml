@@ -12,5 +12,19 @@
             <ui:Button name="map" text="Map" class="btn" />
             <ui:Button name="stop-auto" text="Stop auto" class="btn" />
         </ui:VisualElement>
+        <ui:Button name="stats" text="Stats ▸" class="btn btn--small stats-button" />
+        <ui:VisualElement name="stats-panel" class="stats-panel">
+            <ui:VisualElement class="bar">
+                <ui:Button name="stats-you" text="Your team" class="tab" />
+                <ui:Button name="stats-enemy" text="Enemy team" class="tab" />
+                <ui:Button name="stats-close" text="✕" class="btn btn--small" />
+            </ui:VisualElement>
+            <ui:VisualElement class="stats-legend">
+                <ui:Label text="■ Damage dealt" class="legend legend--dealt" />
+                <ui:Label text="■ Healing" class="legend legend--heal" />
+                <ui:Label text="■ Damage taken" class="legend legend--taken" />
+            </ui:VisualElement>
+            <ui:ScrollView name="stats-rows" class="stats-rows" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

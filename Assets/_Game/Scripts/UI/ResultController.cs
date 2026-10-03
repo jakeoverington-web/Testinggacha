@@ -42,6 +42,13 @@ namespace Gacha.UI
 
             if (_r.State.AutoContinues(_r.Data, _result)) _autoIn = AutoDelay;
             ShowAuto();
+
+            // After-fight statistics: opened by tap; your team first, switchable to the enemy team.
+            var panel = root.Q("stats-panel");
+            root.Q<Button>("stats").clicked += () => { _autoIn = -1; ShowAuto(); panel.AddToClassList("stats-panel--open"); ShowStats(0); };
+            root.Q<Button>("stats-close").clicked += () => panel.RemoveFromClassList("stats-panel--open");
+            root.Q<Button>("stats-you").clicked += () => ShowStats(0);
+            root.Q<Button>("stats-enemy").clicked += () => ShowStats(1);
         }
 
         public void Tick(float dt)
@@ -62,6 +69,48 @@ namespace Gacha.UI
             bool running = _autoIn >= 0;
             _root.Q<Label>("auto").text = running ? $"Auto: next stage in {_autoIn:0.0} s" : _r.State.Auto && !_result.Won && !_result.Manual ? "Auto stopped after a defeat." : "";
             _root.Q<Button>("stop-auto").style.display = running ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        /// <summary>One card per hero in field order: race-coloured icon (greyed with "Died" if she fell) and three bars,
+        /// each scaled to the highest value of that stat among the team shown.</summary>
+        void ShowStats(int team)
+        {
+            _root.Q<Button>("stats-you").EnableInClassList("tab--on", team == 0);
+            _root.Q<Button>("stats-enemy").EnableInClassList("tab--on", team == 1);
+            var rows = _root.Q<ScrollView>("stats-rows");
+            rows.Clear();
+            var lines = _result.Stats.Where(l => l.Team == team).ToList();
+            double maxDealt = System.Math.Max(1, lines.Max(l => (double?)l.Dealt) ?? 0);
+            double maxHeal = System.Math.Max(1, lines.Max(l => (double?)l.Healed) ?? 0);
+            double maxTaken = System.Math.Max(1, lines.Max(l => (double?)l.Taken) ?? 0);
+            foreach (var l in lines)
+            {
+                var h = _r.Data.Heroes[l.Hero];
+                var row = new VisualElement(); row.AddToClassList("stat-hero");
+                if (!l.Alive) row.AddToClassList("stat-hero--fallen");
+                var icon = new VisualElement(); icon.AddToClassList("stat-hero__icon");
+                icon.style.backgroundColor = Placeholder.RaceColour(h.Core);
+                icon.Add(Placeholder.Label((team == 1 ? "Hollow " : "") + h.Name, "stat-hero__name"));
+                icon.Add(Placeholder.Label("Died", "stat-hero__died"));
+                row.Add(icon);
+                var bars = new VisualElement(); bars.AddToClassList("stat-hero__bars");
+                bars.Add(Bar(l.Dealt, maxDealt, "dealt"));
+                bars.Add(Bar(l.Healed, maxHeal, "heal"));
+                bars.Add(Bar(l.Taken, maxTaken, "taken"));
+                row.Add(bars);
+                rows.Add(row);
+            }
+        }
+
+        static VisualElement Bar(double value, double max, string kind)
+        {
+            var bar = new VisualElement(); bar.AddToClassList("stat-bar");
+            var track = new VisualElement(); track.AddToClassList("stat-bar__track");
+            var fill = new VisualElement(); fill.AddToClassList("stat-bar__fill"); fill.AddToClassList("stat-bar__fill--" + kind);
+            fill.style.width = Length.Percent((float)(100 * value / max));
+            track.Add(fill); bar.Add(track);
+            bar.Add(Placeholder.Label(Placeholder.Short(System.Math.Round(value)), "stat-bar__value"));
+            return bar;
         }
 
         static string Name(string res) => res switch { "heroXp" => "Hero XP", "gold" => "gold", "starlight" => "Starlight", _ => res };
