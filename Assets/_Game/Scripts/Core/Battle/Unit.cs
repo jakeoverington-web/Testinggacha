@@ -32,6 +32,8 @@ namespace Gacha.Core.Battle
         public Stats Base;
         public double Hp, Energy, X, Y, AttackTimer, CastLock, ExpiresAt = double.MaxValue;
         public bool Alive = true, Moved, NoRevive, Revived, Untargetable;
+        /// <summary>Manual mode: the player tapped this hero's ultimate; it casts at the next legal moment.</summary>
+        public bool UltRequested;
         public readonly double[] Cd = new double[2];
         public readonly List<Status> Statuses = new List<Status>();
         public readonly List<Shield> Shields = new List<Shield>();

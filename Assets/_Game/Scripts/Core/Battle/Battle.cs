@@ -119,6 +119,7 @@ namespace Gacha.Core.Battle
             double dt = T.Tick;
             Time = Math.Round((_tickCount + 1) * dt, 6);
             _tickCount++;
+            if (_queued.Count > 0) ApplyInputs();
 
             foreach (var u in Units) u.Moved = false;
             TickStatuses(dt);
@@ -190,7 +191,7 @@ namespace Gacha.Core.Battle
 
             if (u.IsHero && !u.Has("charm"))
             {
-                if (u.Energy >= 100 - 1e-9 && TryCast(u, u.Def.Ult)) return;
+                if (u.Energy >= 100 - 1e-9 && (!ManualUltimates[u.Team] || u.UltRequested) && TryCast(u, u.Def.Ult)) { u.UltRequested = false; return; }
                 if (!u.Has("silence"))
                 {
                     if (u.Cd[0] <= 0 && TryCast(u, u.Def.S1)) { u.Cd[0] = u.Def.S1.Cooldown; return; }
