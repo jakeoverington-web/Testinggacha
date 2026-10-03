@@ -4,6 +4,7 @@ using System.IO;
 using Gacha.Core.Campaign;
 using Gacha.Core.Data;
 using Gacha.Core.Economy;
+using Gacha.Core.Gear;
 using Gacha.Core.Progression;
 
 namespace Gacha.Core.Battle
@@ -182,6 +183,10 @@ namespace Gacha.Core.Battle
         public StatScaling Progression;
         /// <summary>Idle loot rates (economy.json); null when the file is absent.</summary>
         public IdleRates Idle;
+        /// <summary>Phase 2: level caps and costs, star costs (progression.json), gear rules (gear.json). Null when absent.</summary>
+        public LevelCosts Levels;
+        public StarCosts StarCosts;
+        public GearCatalog Gear;
         /// <summary>Campaign stages in order (stages.json); index = stage index − 1. Empty when the file is absent.</summary>
         public List<StageDef> Stages = new List<StageDef>();
 
@@ -192,7 +197,14 @@ namespace Gacha.Core.Battle
                 File.ReadAllText(Path.Combine(dataDir, "battle.json")),
                 File.ReadAllText(Path.Combine(dataDir, "races.json")));
             var prog = Path.Combine(dataDir, "progression.json");
-            if (File.Exists(prog)) g.Progression = StatScaling.FromJson(File.ReadAllText(prog));
+            if (File.Exists(prog))
+            {
+                var progJson = File.ReadAllText(prog);
+                g.Progression = StatScaling.FromJson(progJson);
+                if (progJson.Contains("\"levelCaps\"")) { g.Levels = LevelCosts.FromJson(progJson); g.StarCosts = StarCosts.FromJson(progJson); }
+            }
+            var gear = Path.Combine(dataDir, "gear.json");
+            if (File.Exists(gear)) g.Gear = GearCatalog.FromJson(File.ReadAllText(gear));
             var eco = Path.Combine(dataDir, "economy.json");
             if (File.Exists(eco)) g.Idle = IdleRates.FromJson(File.ReadAllText(eco));
             var stages = Path.Combine(dataDir, "stages.json");

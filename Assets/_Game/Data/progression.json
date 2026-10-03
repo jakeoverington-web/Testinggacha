@@ -1,6 +1,30 @@
 {
-  "_schema": "Hero growth (decisions rows 31, 34). HP, ATK and DEF grow levelGrowth x their level-1 value per level; stars multiply on top (index 0 = 1 star). Star level caps and costs arrive in phase 2.",
+  "_schema": "Hero growth (decisions rows 7, 31, 34; phase 2 spec). HP, ATK and DEF grow levelGrowth x their level-1 value per level; stars multiply on top (index 0 = 1 star). levelCaps: top-five (Contract slot) cap per star. levelCost: XP and gold to reach that level from the one below, at breakpoints (plan doc Leveling table); between breakpoints the cost is interpolated log-linearly. starlight: Starlight spent to reach those levels. starCosts: what reaching each star costs (plan doc 10-rank table; first draft, tuned by the economy sim).",
   "levelGrowth": 0.04,
   "maxLevel": 200,
-  "starMult": [1.0, 1.05, 1.10, 1.15, 1.20, 1.30, 1.40, 1.50, 1.60, 1.70]
+  "starMult": [1.0, 1.05, 1.10, 1.15, 1.20, 1.30, 1.40, 1.50, 1.60, 1.70],
+  "levelCaps": [60, 70, 80, 90, 100, 120, 140, 160, 180, 200],
+  "levelCost": {
+    "2": [40, 60],
+    "20": [98, 150],
+    "40": [350, 520],
+    "60": [1200, 1800],
+    "80": [3600, 5400],
+    "100": [9600, 14000],
+    "130": [36000, 53000],
+    "160": [120000, 170000],
+    "200": [500000, 740000]
+  },
+  "starlight": { "20": 10, "40": 30, "60": 100, "80": 270, "100": 640, "120": 1400, "140": 3000, "160": 6000, "180": 11000 },
+  "starCosts": [
+    { "to": 2, "copies": 1, "fodder": 0, "gold": 25000 },
+    { "to": 3, "copies": 1, "fodder": 0, "gold": 50000 },
+    { "to": 4, "copies": 1, "fodder": 0, "gold": 100000 },
+    { "to": 5, "copies": 2, "fodder": 0, "gold": 200000 },
+    { "to": 6, "copies": 1, "fodder": 2, "gold": 300000 },
+    { "to": 7, "copies": 1, "fodder": 3, "gold": 450000 },
+    { "to": 8, "copies": 0, "fodder": 3, "gold": 650000 },
+    { "to": 9, "copies": 0, "fodder": 3, "gold": 1000000 },
+    { "to": 10, "copies": 1, "fodder": 4, "gold": 1325000 }
+  ]
 }

@@ -57,7 +57,7 @@ for h in sorted(R, key=lambda h: (CORE_ORDER.index(h["core"]), ROLE_ORDER.index(
         "applies": h["applies"], "payoffs": h["payoffs"],
         "synergy": sorted([{"hero": b, "via": sorted(ks)} for b, ks in partners[h["id"]].items()], key=lambda x: x["hero"]),
         "art": {"look": h["look"], "fullbody": f"hero_{h['id']}_fullbody", "card": f"hero_{h['id']}_card", "icon": f"hero_{h['id']}_icon"},
-        "maxStars": 5, "bond": None,
+        "maxStars": 10, "bond": None,
     })
     kits.apply(heroes[-1])
 json.dump({"_schema": "hero v3 — 60 heroes; ids are permanent; text values are tuning starting points. Generated from the Hero Compendium build (pass %d)." % FINAL,

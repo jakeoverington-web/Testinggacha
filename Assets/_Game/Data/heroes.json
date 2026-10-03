@@ -144,7 +144,7 @@
     "card": "hero_cassia_card",
     "icon": "hero_cassia_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "highest_atk",
@@ -363,7 +363,7 @@
     "card": "hero_isolde_card",
     "icon": "hero_isolde_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -571,7 +571,7 @@
     "card": "hero_valeria_card",
     "icon": "hero_valeria_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -805,7 +805,7 @@
     "card": "hero_ilyra_card",
     "icon": "hero_ilyra_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "densest",
@@ -1096,7 +1096,7 @@
     "card": "hero_lucienne_card",
     "icon": "hero_lucienne_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest_with:blind",
@@ -1345,7 +1345,7 @@
     "card": "hero_ophira_card",
     "icon": "hero_ophira_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "highest_atk",
@@ -1562,7 +1562,7 @@
     "card": "hero_solenne_card",
     "icon": "hero_solenne_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "highest_atk",
@@ -1712,7 +1712,7 @@
     "card": "hero_aurelle_card",
     "icon": "hero_aurelle_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -1938,7 +1938,7 @@
     "card": "hero_elara_card",
     "icon": "hero_elara_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -2185,7 +2185,7 @@
     "card": "hero_amarante_card",
     "icon": "hero_amarante_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "most_buffed",
@@ -2401,7 +2401,7 @@
     "card": "hero_rosalind_card",
     "icon": "hero_rosalind_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -2620,7 +2620,7 @@
     "card": "hero_seravelle_card",
     "icon": "hero_seravelle_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -2758,7 +2758,7 @@
     "card": "hero_corvina_card",
     "icon": "hero_corvina_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -2944,7 +2944,7 @@
     "card": "hero_sangrael_card",
     "icon": "hero_sangrael_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -3167,7 +3167,7 @@
     "card": "hero_maelis_card",
     "icon": "hero_maelis_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "highest_atk",
@@ -3359,7 +3359,7 @@
     "card": "hero_nyx_card",
     "icon": "hero_nyx_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "lowest_hp_back",
@@ -3545,7 +3545,7 @@
     "card": "hero_ravenna_card",
     "icon": "hero_ravenna_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest_with:bleed",
@@ -3723,7 +3723,7 @@
     "card": "hero_sable_card",
     "icon": "hero_sable_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "lowest_hp",
@@ -3876,7 +3876,7 @@
     "card": "hero_mordessa_card",
     "icon": "hero_mordessa_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -4059,7 +4059,7 @@
     "card": "hero_thessaly_card",
     "icon": "hero_thessaly_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -4251,7 +4251,7 @@
     "card": "hero_vesper_card",
     "icon": "hero_vesper_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "near_weakest_ally",
@@ -4483,7 +4483,7 @@
     "card": "hero_liora_card",
     "icon": "hero_liora_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "highest_atk",
@@ -4647,7 +4647,7 @@
     "card": "hero_noctelle_card",
     "icon": "hero_noctelle_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -4828,7 +4828,7 @@
     "card": "hero_velisande_card",
     "icon": "hero_velisande_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "healer_first",
@@ -5025,7 +5025,7 @@
     "card": "hero_briar_card",
     "icon": "hero_briar_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -5216,7 +5216,7 @@
     "card": "hero_eldrith_card",
     "icon": "hero_eldrith_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -5480,7 +5480,7 @@
     "card": "hero_hartwen_card",
     "icon": "hero_hartwen_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -5723,7 +5723,7 @@
     "card": "hero_kaida_card",
     "icon": "hero_kaida_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -5966,7 +5966,7 @@
     "card": "hero_rhiannon_card",
     "icon": "hero_rhiannon_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -6241,7 +6241,7 @@
     "card": "hero_sylwen_card",
     "icon": "hero_sylwen_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "lowest_hp",
@@ -6463,7 +6463,7 @@
     "card": "hero_venna_card",
     "icon": "hero_venna_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "lowest_hp",
@@ -6620,7 +6620,7 @@
     "card": "hero_mireille_card",
     "icon": "hero_mireille_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -6766,7 +6766,7 @@
     "card": "hero_nimue_card",
     "icon": "hero_nimue_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -7014,7 +7014,7 @@
     "card": "hero_fenna_card",
     "icon": "hero_fenna_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "densest",
@@ -7280,7 +7280,7 @@
     "card": "hero_wren_card",
     "icon": "hero_wren_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest_with:root",
@@ -7502,7 +7502,7 @@
     "card": "hero_zephyra_card",
     "icon": "hero_zephyra_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -7690,7 +7690,7 @@
     "card": "hero_coralie_card",
     "icon": "hero_coralie_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -7907,7 +7907,7 @@
     "card": "hero_thalassa_card",
     "icon": "hero_thalassa_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -8105,7 +8105,7 @@
     "card": "hero_calypso_card",
     "icon": "hero_calypso_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "isolated_else_carry",
@@ -8388,7 +8388,7 @@
     "card": "hero_halcyra_card",
     "icon": "hero_halcyra_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "random",
@@ -8661,7 +8661,7 @@
     "card": "hero_nerissa_card",
     "icon": "hero_nerissa_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "lowest_hp",
@@ -8931,7 +8931,7 @@
     "card": "hero_ysra_card",
     "icon": "hero_ysra_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "with_else_highest_atk:soaked",
@@ -9117,7 +9117,7 @@
     "card": "hero_marisol_card",
     "icon": "hero_marisol_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -9328,7 +9328,7 @@
     "card": "hero_odette_card",
     "icon": "hero_odette_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -9543,7 +9543,7 @@
     "card": "hero_siora_card",
     "icon": "hero_siora_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -9763,7 +9763,7 @@
     "card": "hero_lorelei_card",
     "icon": "hero_lorelei_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "highest_atk",
@@ -10035,7 +10035,7 @@
     "card": "hero_ondine_card",
     "icon": "hero_ondine_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "highest_atk",
@@ -10325,7 +10325,7 @@
     "card": "hero_pelagia_card",
     "icon": "hero_pelagia_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "densest",
@@ -10473,7 +10473,7 @@
     "card": "hero_draxa_card",
     "icon": "hero_draxa_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -10636,7 +10636,7 @@
     "card": "hero_runa_card",
     "icon": "hero_runa_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -10858,7 +10858,7 @@
     "card": "hero_vaela_card",
     "icon": "hero_vaela_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -11083,7 +11083,7 @@
     "card": "hero_astraea_card",
     "icon": "hero_astraea_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "densest",
@@ -11275,7 +11275,7 @@
     "card": "hero_caelith_card",
     "icon": "hero_caelith_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "highest_atk",
@@ -11498,7 +11498,7 @@
     "card": "hero_isaura_card",
     "icon": "hero_isaura_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "most_energy",
@@ -11649,7 +11649,7 @@
     "card": "hero_zaria_card",
     "icon": "hero_zaria_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "densest",
@@ -11840,7 +11840,7 @@
     "card": "hero_lunaith_card",
     "icon": "hero_lunaith_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -12019,7 +12019,7 @@
     "card": "hero_selene_card",
     "icon": "hero_selene_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -12286,7 +12286,7 @@
     "card": "hero_elowen_card",
     "icon": "hero_elowen_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -12504,7 +12504,7 @@
     "card": "hero_seren_card",
     "icon": "hero_seren_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",
@@ -12647,7 +12647,7 @@
     "card": "hero_tempra_card",
     "icon": "hero_tempra_icon"
    },
-   "maxStars": 5,
+   "maxStars": 10,
    "bond": null,
    "ai": {
     "enemy": "nearest",

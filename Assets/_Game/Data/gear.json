@@ -1,0 +1,42 @@
+{
+  "_schema": "Gear (decisions row 6; phase 2 spec). 4 slots with one fixed main stat; every piece is a named type with one fixed extra stat (value at Legendary; lower rarities give rank/4 of it). Main stat = mainPct of the hero's stat (boots: mainHaste haste) x (1 + upgradePct x upgrade). Rarities unlock after that chapter's boss (0 = from the start). Drop odds: newest unlocked first, renormalised over the unlocked ones. Idle: pieces for a full 24 h chest, each kept with chance hours/24. Set bonuses are 2-piece and 4-piece. Stat names match StatBonus fields. First drafts, tuned by the sims.",
+  "slots": [
+    { "id": "weapon", "main": "atkPct" },
+    { "id": "helm", "main": "hpPct" },
+    { "id": "armor", "main": "defPct" },
+    { "id": "boots", "main": "haste" }
+  ],
+  "types": [
+    { "id": "keen", "slot": "weapon", "stat": "critRate", "value": 0.15 },
+    { "id": "brutal", "slot": "weapon", "stat": "critDmg", "value": 0.30 },
+    { "id": "hexing", "slot": "weapon", "stat": "effectHit", "value": 0.20 },
+    { "id": "radiant", "slot": "weapon", "stat": "healPower", "value": 0.20 },
+    { "id": "warded", "slot": "helm", "stat": "effectRes", "value": 0.20 },
+    { "id": "blessed", "slot": "helm", "stat": "healRecv", "value": 0.20 },
+    { "id": "sighted", "slot": "helm", "stat": "accuracy", "value": 0.15 },
+    { "id": "guarding", "slot": "armor", "stat": "block", "value": 0.15 },
+    { "id": "evasive", "slot": "armor", "stat": "dodge", "value": 0.12 },
+    { "id": "leeching", "slot": "armor", "stat": "lifesteal", "value": 0.12 },
+    { "id": "quick", "slot": "boots", "stat": "atkSpdPct", "value": 0.15 },
+    { "id": "charged", "slot": "boots", "stat": "energyRegen", "value": 0.20 },
+    { "id": "striding", "slot": "boots", "stat": "moveSpdPct", "value": 0.20 }
+  ],
+  "rarities": [
+    { "id": "uncommon", "mainPct": 0.10, "mainHaste": 10, "unlockAfterChapter": 0 },
+    { "id": "rare", "mainPct": 0.20, "mainHaste": 20, "unlockAfterChapter": 5 },
+    { "id": "epic", "mainPct": 0.30, "mainHaste": 30, "unlockAfterChapter": 10 },
+    { "id": "legendary", "mainPct": 0.40, "mainHaste": 40, "unlockAfterChapter": 15 }
+  ],
+  "sets": [
+    { "id": "fury", "two": { "atkPct": 0.10 }, "four": { "critRate": 0.15 } },
+    { "id": "bulwark", "two": { "defPct": 0.10 }, "four": { "shieldRecv": 0.20 } },
+    { "id": "swiftness", "two": { "haste": 10 }, "four": { "haste": 20 } },
+    { "id": "vigor", "two": { "energyRegen": 0.10 }, "four": { "startEnergy": 30 } },
+    { "id": "renewal", "two": { "healPower": 0.10 }, "four": { "healRecv": 0.15 } }
+  ],
+  "dropOdds": [0.50, 0.30, 0.15, 0.05],
+  "idlePieces": [ { "count": 1, "chance": 0.50 }, { "count": 2, "chance": 0.35 }, { "count": 3, "chance": 0.12 }, { "count": 4, "chance": 0.03 } ],
+  "upgradePct": 0.05,
+  "maxUpgrade": 20,
+  "upgradeGoldPerRankLevel": 1000
+}

@@ -39,7 +39,7 @@ Do not start work from a later phase unless asked.
 
 - `pwsh -File tools/csharp/test.ps1 [filter]` - all tests (~3 s, no Unity); needs PowerShell 7 (Windows PowerShell 5.1 lacks Roslyn). `tools/csharp/test.sh` on Linux/macOS.
 - `pwsh -File tools/csharp/test.ps1 -Main Gacha.Tests.Tools.<Tool> [args]` - balance tools: NicheReport, SynergyReport, PackageProbe, InteractionAudit, HeroProbe, Variant, Ablation; campaign tools: StageGen (writes Data/stages.json, ~9 min), CampaignGate (table in docs/design/testing.md).
-- `cd tools/roster; python check.py <pass>; python build.py` - after editing kits.py or adding a PASSES entry in revisions.py (every edit records why).
+- `cd tools/roster; python check.py <pass>; python build.py` (on Windows set `PYTHONUTF8=1`, or the em dash in heroes.json is written in the wrong encoding) - after editing kits.py or adding a PASSES entry in revisions.py (every edit records why).
 - `unity command run_tests --mode editor --timeout 300 --result-only` - same tests inside the open Unity Editor (owner's PC only; Unity CLI ships with Hub, Pipeline package installed). Args are `--name value`, not `name=value`.
 - `python tools/roster/package_audit.py` - every hero's package claims must match her kit (decision row 30); expect 0 findings.
 
