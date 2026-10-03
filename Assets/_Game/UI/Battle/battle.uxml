@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="battle.uss" />
+    <ui:VisualElement class="battle">
+        <ui:VisualElement>
+            <ui:Label name="title" class="title" />
+            <ui:Label name="clock" class="subtitle" />
+        </ui:VisualElement>
+        <ui:VisualElement name="field" class="field" />
+        <ui:VisualElement class="bar">
+            <ui:Button name="speed" text="Speed 1×" class="btn" />
+            <ui:Button name="skip" text="Skip" class="btn" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

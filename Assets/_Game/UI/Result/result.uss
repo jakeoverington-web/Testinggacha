@@ -1,0 +1,5 @@
+.result { flex-grow: 1; justify-content: center; }
+.outcome { font-size: 96px; -unity-font-style: bold; -unity-text-align: middle-center; margin-bottom: 24px; }
+.outcome--win { color: var(--gold); }
+.outcome--loss { color: var(--bad); }
+.result__buttons { margin-top: 48px; }

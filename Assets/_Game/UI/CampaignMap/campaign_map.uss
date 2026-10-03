@@ -1,0 +1,17 @@
+.map { flex-grow: 1; }
+.badges { flex-direction: row; flex-wrap: wrap; justify-content: center; margin: 8px 0; }
+.badge { font-size: 26px; color: var(--muted); border-color: var(--line); border-width: 1px; border-radius: 4px; padding: 6px 14px; margin: 4px; }
+.badge--open { color: var(--gold); border-color: var(--gold); }
+.banners { flex-grow: 1; flex-basis: 0; margin: 12px 0; }
+.banner { height: 140px; width: 46%; margin: 8px 0; font-size: 34px; white-space: normal; }
+.banner--left { align-self: flex-start; margin-left: 6%; }
+.banner--mid { align-self: center; }
+.banner--right { align-self: flex-end; margin-right: 6%; }
+.banner--cleared { opacity: 0.55; }
+.banner--current { border-color: var(--gold); border-width: 4px; color: var(--gold); }
+.banner--locked { opacity: 0.3; }
+.banner--gate { background-color: #2A2418; }
+.banner--boss { background-color: #3A1418; }
+.chest { border-color: var(--line); border-top-width: 1px; padding: 20px 8px; }
+.chest__title { font-size: 34px; color: var(--gold); -unity-font-style: bold; }
+.chest__text { font-size: 30px; color: var(--text); white-space: normal; margin: 4px 0; }

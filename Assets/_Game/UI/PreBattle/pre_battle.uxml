@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="pre_battle.uss" />
+    <ui:VisualElement class="prebattle">
+        <ui:VisualElement class="bar">
+            <ui:Button name="back" text="◀ Map" class="btn btn--small" />
+            <ui:Label name="title" class="title" />
+        </ui:VisualElement>
+        <ui:Label name="power" class="subtitle" />
+        <ui:Label text="Enemy" class="section" />
+        <ui:VisualElement name="enemy-row" class="row" />
+        <ui:Label name="your-label" class="section" />
+        <ui:VisualElement name="your-row" class="row" />
+        <ui:Label text="Tap a hero to add or remove (up to 5)" class="subtitle" />
+        <ui:ScrollView name="picker" class="picker" />
+        <ui:Button name="fight" text="Fight" class="btn btn--primary fight" />
+    </ui:VisualElement>
+</ui:UXML>

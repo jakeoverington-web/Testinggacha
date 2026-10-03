@@ -1,0 +1,11 @@
+.battle { flex-grow: 1; justify-content: space-between; }
+/* Side view (decisions row 16): the sim field is 16 wide x 6 deep, so the stage is a wide band, not the whole portrait screen. */
+.field { height: 640px; margin: 16px 0; background-color: #121216; border-color: var(--line); border-width: 1px; }
+.token { position: absolute; width: 124px; height: 96px; translate: -50% -50%; border-radius: 4px; padding: 4px;
+         justify-content: space-between; border-width: 3px; border-color: rgba(0, 0, 0, 0); }
+.token--enemy { border-color: #000000; }
+.token--dead { opacity: 0.2; }
+.token--summon { width: 100px; height: 70px; }
+.token__name { font-size: 20px; color: #FFFFFF; -unity-font-style: bold; white-space: normal; }
+.token__hp { height: 12px; background-color: #300; }
+.token__hpfill { height: 100%; background-color: var(--good); }

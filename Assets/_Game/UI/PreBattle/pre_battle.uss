@@ -1,0 +1,4 @@
+.prebattle { flex-grow: 1; }
+.picker { flex-grow: 1; flex-basis: 0; margin: 8px 0; }
+.picker .unity-scroll-view__content-container { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+.fight { min-height: 150px; font-size: 48px; }

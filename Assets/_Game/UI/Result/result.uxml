@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="result.uss" />
+    <ui:VisualElement class="result">
+        <ui:Label name="outcome" class="outcome" />
+        <ui:Label name="stage" class="subtitle" />
+        <ui:Label name="rewards" class="subtitle" />
+        <ui:Label name="idle" class="subtitle" />
+        <ui:Label name="auto" class="subtitle" />
+        <ui:VisualElement class="result__buttons">
+            <ui:Button name="next" text="Next stage" class="btn btn--primary" />
+            <ui:Button name="retry" text="Retry" class="btn" />
+            <ui:Button name="map" text="Map" class="btn" />
+            <ui:Button name="stop-auto" text="Stop auto" class="btn" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

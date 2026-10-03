@@ -1,0 +1,35 @@
+/* Shared greybox styles. Night Gold palette (decisions row 24) as flat placeholders; fonts and art come in phase 5. */
+:root {
+    --ink: #0A0A0B;
+    --panel: #16161A;
+    --line: #3A3428;
+    --gold: #CDB582;
+    --text: #E8E4DA;
+    --muted: #8C877C;
+    --good: #6FBF73;
+    --bad: #D06060;
+}
+.app { flex-grow: 1; background-color: var(--ink); }
+.app__host { flex-grow: 1; }
+.screen { flex-grow: 1; padding: 24px 32px; }
+.bar { flex-direction: row; align-items: center; justify-content: space-between; margin: 6px 0; }
+.bar__text { font-size: 28px; color: var(--text); flex-grow: 1; -unity-text-align: middle-center; }
+.title { font-size: 48px; color: var(--gold); -unity-font-style: bold; -unity-text-align: middle-center; flex-grow: 1; }
+.subtitle { font-size: 32px; color: var(--muted); -unity-text-align: middle-center; white-space: normal; margin: 4px 0; }
+.btn { min-height: 120px; min-width: 200px; font-size: 38px; color: var(--text); background-color: var(--panel);
+       border-color: var(--line); border-width: 2px; border-radius: 4px; margin: 6px; }
+.btn--small { min-width: 120px; }
+.btn--primary { color: var(--ink); background-color: var(--gold); border-color: var(--gold); -unity-font-style: bold; }
+.btn:disabled { opacity: 0.35; }
+.toggle { font-size: 34px; color: var(--text); }
+.toggle Label { font-size: 34px; color: var(--text); min-width: 100px; }
+.row { flex-direction: row; justify-content: center; flex-wrap: wrap; }
+.tile { width: 180px; height: 200px; margin: 6px; padding: 8px; border-radius: 4px; justify-content: space-between;
+        border-width: 3px; border-color: rgba(0, 0, 0, 0); }
+.tile--hollow { opacity: 0.85; border-color: #000000; }
+.tile--selected { border-color: var(--gold); }
+.tile--empty { background-color: var(--panel); border-color: var(--line); }
+.tile__name { font-size: 26px; color: #FFFFFF; -unity-font-style: bold; white-space: normal; }
+.tile__role { font-size: 22px; color: #F0F0F0; }
+.tile__caption { font-size: 22px; color: #FFFFFF; white-space: normal; }
+.section { font-size: 30px; color: var(--gold); margin: 16px 0 6px 0; }

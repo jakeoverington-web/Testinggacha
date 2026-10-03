@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="campaign_map.uss" />
+    <ui:VisualElement name="map" class="map">
+        <ui:VisualElement class="bar">
+            <ui:Label name="wallet" class="bar__text" />
+        </ui:VisualElement>
+        <ui:VisualElement class="bar">
+            <ui:Button name="prev" text="◀" class="btn btn--small" />
+            <ui:Label name="chapter-title" class="title" />
+            <ui:Button name="next" text="▶" class="btn btn--small" />
+        </ui:VisualElement>
+        <ui:VisualElement name="badges" class="badges" />
+        <ui:ScrollView name="banners" class="banners" />
+        <ui:VisualElement class="chest">
+            <ui:Label text="Idle chest" class="chest__title" />
+            <ui:Label name="chest-rates" class="chest__text" />
+            <ui:Label name="chest-held" class="chest__text" />
+            <ui:VisualElement class="bar">
+                <ui:Toggle name="auto" label="Auto" class="toggle" />
+                <ui:Button name="collect" text="Collect" class="btn" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

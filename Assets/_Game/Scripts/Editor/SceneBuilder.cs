@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Gacha.Game;
+using Gacha.UI;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -40,8 +41,14 @@ namespace Gacha.Editor
             c.clearFlags = CameraClearFlags.SolidColor;
             c.backgroundColor = new Color(0.04f, 0.04f, 0.045f);   // Night Gold black (row 24)
 
-            var root = new GameObject("Game", typeof(GameService), typeof(UIDocument));
+            var root = new GameObject("Game", typeof(GameService), typeof(UIDocument), typeof(UiRoot));
             root.GetComponent<UIDocument>().panelSettings = panel;
+            var ui = root.GetComponent<UiRoot>();
+            ui.Common = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/_Game/UI/Common/common.uss");
+            ui.Map = Tree("CampaignMap/campaign_map");
+            ui.PreBattle = Tree("PreBattle/pre_battle");
+            ui.Battle = Tree("Battle/battle");
+            ui.Result = Tree("Result/result");
 
             if (!AssetDatabase.IsValidFolder("Assets/_Game/Scenes")) AssetDatabase.CreateFolder("Assets/_Game", "Scenes");
             EditorSceneManager.SaveScene(scene, ScenePath);
@@ -49,6 +56,13 @@ namespace Gacha.Editor
             EditorBuildSettings.scenes = scenes.ToArray();
             AssetDatabase.SaveAssets();
             Debug.Log("Gacha: built " + ScenePath);
+        }
+
+        static VisualTreeAsset Tree(string path)
+        {
+            var t = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/_Game/UI/" + path + ".uxml");
+            if (t == null) throw new System.IO.FileNotFoundException("Missing UXML " + path);
+            return t;
         }
     }
 }
