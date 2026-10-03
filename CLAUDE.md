@@ -5,7 +5,7 @@ Design source of truth: `docs/design/decisions.md`. If code and that file disagr
 
 ## Current phase
 
-Phase 1 — Core loop greybox: (a) roster ✓ (60 heroes as data; change heroes via tools/roster passes) (b) battle rules ✓ (roster pass 10, 12 synergy packages, decisions rows 28-30) (c) campaign + idle loot ✓ greybox (600 generated stages, idle chest, map/pre-battle/battle/result screens, auto mode; gate passed: docs/design/campaign-gate-v1.md). Battle redesign ✓ (decisions rows 1, 39: live battles, tap-to-cast ultimates, pre-battle on the battlefield). Next: Phase 2 hero progression. Designed for phase 4: towers and Boss mode (docs/superpowers/specs/2026-10-03-towers-boss-mode-design.md).
+Phase 1 — Core loop greybox: (a) roster ✓ (60 heroes as data; change heroes via tools/roster passes) (b) battle rules ✓ (roster pass 10, 12 synergy packages, decisions rows 28-30) (c) campaign + idle loot ✓ greybox (600 generated stages, idle chest, map/pre-battle/battle/result screens, auto mode; gate passed: docs/design/campaign-gate-v1.md). Battle redesign ✓ (decisions rows 1, 39: live battles, tap-to-cast ultimates, pre-battle on the battlefield). Phase 2 hero progression ✓ (decisions rows 6, 7, 31, 40: Contract slots, 10 stars, fodder and Sigils, resets, gear, dev panel; economy gate passed). Next: Phase 3 gacha when the owner says so. Designed for phase 4: towers and Boss mode (docs/superpowers/specs/2026-10-03-towers-boss-mode-design.md).
 Phases: 1 Core loop → 2 Hero progression → 3 Gacha and roster → 4 Modes → 5 Art pass.
 Do not start work from a later phase unless asked.
 
