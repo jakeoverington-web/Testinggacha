@@ -135,7 +135,7 @@ namespace Gacha.Core.Battle
                 {
                     case "heal":
                         {
-                            double raw = n.Num("m") * u.Atk + n.Num("pct") * t.MaxHp + n.Num("lastHeal") * u.LastHeal;
+                            double raw = (n.Num("m") * u.Atk + n.Num("pct") * t.MaxHp + n.Num("lastHeal") * u.LastHeal) * u.RankMult(ctx.Ability);
                             if (n.Has("over"))
                             {
                                 double over = n.Num("over");
@@ -147,7 +147,7 @@ namespace Gacha.Core.Battle
                         }
                     case "shield":
                         {
-                            double raw = n.Num("m") * u.Atk + n.Num("pct") * u.MaxHp + n.Num("pctTarget") * t.MaxHp + n.Num("fromEvent") * ctx.EvtAmount;
+                            double raw = (n.Num("m") * u.Atk + n.Num("pct") * u.MaxHp + n.Num("pctTarget") * t.MaxHp + n.Num("fromEvent") * ctx.EvtAmount) * u.RankMult(ctx.Ability);
                             AddShield(u, t, raw, n.Num("breakHeal"));
                             break;
                         }
@@ -155,7 +155,7 @@ namespace Gacha.Core.Battle
                         {
                             string s = n.Str("s");
                             double dur = n.Has("dur") ? n.Num("dur") : T.DefaultDur(s, 3);
-                            ApplyStatus(u, t, s, dur, n.Num("v"), n);
+                            ApplyStatus(u, t, s, dur, n.Num("v") * u.RankMult(ctx.Ability), n);
                             break;
                         }
                     case "energy":
@@ -221,7 +221,7 @@ namespace Gacha.Core.Battle
                 foreach (var t in targets)
                 {
                     if (!t.Alive) continue;
-                    double raw = n.Num("m") * u.Atk + n.Num("pctMaxHp") * t.MaxHp;
+                    double raw = (n.Num("m") * u.Atk + n.Num("pctMaxHp") * t.MaxHp) * u.RankMult(ctx.Ability);
                     var h = new HitInfo { Kind = ctx.Kind, Elem = n.Str("elem"), CanCrit = ctx.Kind != HitKind.Proc, IgnoreDef = n.Num("ignoreDef"), Projectile = projectile, Ability = ctx.Ability };
                     double dealt = Hit(u, t, raw, h);
                     total += dealt;
@@ -248,7 +248,8 @@ namespace Gacha.Core.Battle
             bool onlySoaked = n.Bool("onlySoaked"), twice = n.Bool("soakedDouble");
             var cur = start[0];
             var hitInfo = new Func<HitInfo>(() => new HitInfo { Kind = ctx.Kind, Elem = n.Str("elem"), CanCrit = ctx.Kind != HitKind.Proc, Ability = ctx.Ability });
-            if (!n.Bool("skipFirst")) Hit(u, cur, n.Num("m") * u.Atk, hitInfo());
+            double rank = u.RankMult(ctx.Ability);
+            if (!n.Bool("skipFirst")) Hit(u, cur, n.Num("m") * u.Atk * rank, hitInfo());
             var hitSet = new HashSet<Unit> { cur };
             for (int b = 0; b < bounces && !Over; b++)
             {
@@ -257,7 +258,7 @@ namespace Gacha.Core.Battle
                 var fresh = pool.FindAll(x => !hitSet.Contains(x));
                 var next = Pick(fresh.Count > 0 ? fresh : pool, x => -Dist(x, cur));
                 int times = twice && cur.Has("soaked") && next.Has("soaked") ? 2 : 1;
-                for (int k = 0; k < times; k++) Hit(u, next, n.Num("m") * u.Atk, hitInfo());
+                for (int k = 0; k < times; k++) Hit(u, next, n.Num("m") * u.Atk * rank, hitInfo());
                 hitSet.Add(next);
                 cur = next;
             }
@@ -490,7 +491,7 @@ namespace Gacha.Core.Battle
             {
                 if (!owner.Alive || owner.IsOff("passive") || !InScope(owner, m.Scope, subject)) continue;
                 if (m.If != null && !Eval(m.If, new Cond { Self = owner, Src = src, Tgt = tgt, Hit = h })) continue;
-                double v = m.V;
+                double v = m.V * owner.RankMult("passive");
                 if (m.PerStack != null) { int st = 0; if (tgt != null) foreach (var s in tgt.Statuses) if (s.Id == m.PerStack && s.Source == owner.Index) st++; v *= st; }
                 if (m.PerBuff > 0) v *= Math.Min(m.PerBuff, BuffCount(subject));
                 sum += v;

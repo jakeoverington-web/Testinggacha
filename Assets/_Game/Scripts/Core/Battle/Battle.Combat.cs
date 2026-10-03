@@ -236,7 +236,7 @@ namespace Gacha.Core.Battle
         public void AddShield(Unit src, Unit t, double raw, double breakHeal)
         {
             if (!t.Alive || raw <= 0) return;
-            double amt = raw * (1 + src.Base.HealPower) * (1 + t.Base.HealRecv + ModSum("heal_in", t, src, t));
+            double amt = raw * (1 + src.Base.HealPower) * (1 + t.Base.HealRecv + ModSum("heal_in", t, src, t)) * (1 + t.ShieldRecv);
             double room = T.ShieldCap * t.MaxHp - t.ShieldTotal;
             amt = Math.Min(amt, Math.Max(0, room));
             if (amt <= 0) return;

@@ -34,6 +34,19 @@ namespace Gacha.Core.Battle
         public bool Alive = true, Moved, NoRevive, Revived, Untargetable;
         /// <summary>Manual mode: the player tapped this hero's ultimate; it casts at the next legal moment.</summary>
         public bool UltRequested;
+        /// <summary>Phase 2: gear and set effects that are not plain stats.</summary>
+        public double ShieldRecv, StartEnergy;
+        /// <summary>Ability ranks [ult, s1, s2, passive] from stars; null = all rank 1.</summary>
+        public int[] Ranks;
+
+        /// <summary>Rank 2 raises an ability's magnitudes by 10%, rank 3 by 20% (plan doc); other sources are unaffected.</summary>
+        public double RankMult(string ability)
+        {
+            if (Ranks == null) return 1.0;
+            int i = ability == "ult" ? 0 : ability == "s1" ? 1 : ability == "s2" ? 2 : ability == "passive" ? 3 : -1;
+            if (i < 0 || i >= Ranks.Length) return 1.0;
+            return Ranks[i] >= 3 ? 1.2 : Ranks[i] == 2 ? 1.1 : 1.0;
+        }
         public readonly double[] Cd = new double[2];
         public readonly List<Status> Statuses = new List<Status>();
         public readonly List<Shield> Shields = new List<Shield>();
