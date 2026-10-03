@@ -6,7 +6,7 @@ Goal: every rule change is checked in seconds, without opening Unity, and the sa
 
 | Step | Command | Time |
 | --- | --- | --- |
-| Run everything | `tools/csharp/test.sh` (632 tests) | ~3 s |
+| Run everything | `tools/csharp/test.sh` (633 tests) | ~3 s |
 | Run one area | `tools/csharp/test.sh Energy` (name filter) | ~1.5 s |
 | Quick balance sweep | `tools/csharp/test.sh -Main Gacha.Tests.Tools.BalanceSweep 1000 1` (2,000 random battles) | ~5 s |
 | Damage line (30 s vs dummies) | `tools/csharp/test.sh -Main Gacha.Tests.Tools.TrainingReport` | ~3 s |

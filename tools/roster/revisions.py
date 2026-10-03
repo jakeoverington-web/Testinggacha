@@ -296,7 +296,7 @@ PASSES[9] = [
  ("venna","skill2.text","Poisons (3%/s) and slows enemies in an area for 3s.","Venna -9: 2% -> 3%; the amount is now in the text"),
 ]
 
-# ---------------- PASS 10 (PROTOTYPE, awaiting owner approval): 27 keywords -> 12 deeper packages ----------------
+# ---------------- PASS 10: 27 keywords -> 12 packages (owner approved 2026-10-03) ----------------
 # Owner rule (2026-10-03): a package names ONE kind of condition, either on the enemy or on your own team, never both.
 # Kill (an event), Dispel (enemy buffs removed) and Isolated (opposite of Gathered) stop being packages and stay as hero traits.
 # Synergy report v2: thin keywords lost to random teams because their few enablers were modest tanks and supports.

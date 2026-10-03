@@ -38,6 +38,7 @@ Code: `Assets/_Game/Scripts/Core/Battle/` (engine-free). Tuning: `Data/battle.js
 | Shields | Stack, capped at 50% max HP (trimmed if max HP shrinks), last 10 s, not dispellable |
 | Revive | Once per hero per battle |
 | Payoff window | A condition written `stun+3` is true while the status is on and for 3 s after it ends; used for control and stealth payoffs (control lasts 1-2.5 s and sleep breaks on the first hit) |
+| Drained | An enemy who loses energy to an ability is Drained for 4 s (`statusDefaults.drained`); part of the Disrupted package |
 | Race team bonus | 3 of one race + 2 of another: +12% ATK and HP; 5 of one race: +20% (races.json `teamBonus`) |
 
 ## AI
@@ -57,3 +58,23 @@ These fill gaps the kit text leaves open; all are data in `kits.py` or `battle.j
 | Projectiles (Coralie, Vaela walls) | Basic attacks and single-target skills from ranged heroes |
 | Summons | Wolves 30% HP / 40% ATK for 10 s, double damage to enemies rooted or knocked up (or in the last 3 s); decoy 20% HP, taunts enemies within 3 m; Rhiannon's stag is untargetable, 50% ATK, leaves with her |
 | Small kit reads | Halcyra's Static Mark hits for 80% lightning; Vesper's ultimate heals each ally (not split) by the % of damage in its text; Seren's Star Map gives 5 energy per ally hit; Aurelle revives the first ally to fall in 8 s; Mireille's after-regen starts when Bloomfall ends |
+
+## Synergy packages (decisions row 30)
+
+Payoff text names a package; this is what each one checks.
+
+| Package | Side | True when |
+| --- | --- | --- |
+| Burn | enemy | burning |
+| Soaked | enemy | soaked |
+| Wounds | enemy | bleeding or poisoned |
+| Hindered | enemy | slowed, or rooted, stunned or knocked up (now or in the last 3 s) |
+| Dread | enemy | asleep, feared or charmed (now or in the last 3 s) |
+| Exposed | enemy | marked, weakened, DEF-lowered or cursed (either curse) |
+| Disrupted | enemy | blinded, silenced or Drained |
+| Gathered | enemy | standing close together, or taunted |
+| Lifesteal | team | allies heal through lifesteal |
+| Stealth | team | the ally is stealthed or left stealth within 3 s |
+| Tempo | team | allies gain energy or recharge skills faster |
+| Guarded | team | the ally is shielded or buffed |
+

@@ -84,6 +84,6 @@ namespace Gacha.Tests
             Assert.AreEqual(GoldenHash, r.Hash, $"winner {r.Winner} at {r.Time:0.0}s; new hash 0x{r.Hash:X16}UL");
         }
 
-        public const ulong GoldenHash = 0x96E77318BD501137UL;   // pass 10 draft: 12 packages (not on main)
+        public const ulong GoldenHash = 0x96E77318BD501137UL;   // + pass 10: 12 packages, Drained status (2026-10-03)
     }
 }

@@ -112,7 +112,7 @@ rl = ["| Pass | Focus | Edits | Issues found after |", "| --- | --- | --- | --- 
       f"| 7 | First balance pass from the niche report (battle sim) | {len(PASSES[7])} | {counts.get(7)} |",
       f"| 8 | Ablation pass: targeting, aim and pulled-back buffs | {len(PASSES[8])} | {counts.get(8)} |",
       f"| 9 | Synergy pass: stronger payoffs, amplifiers, debuff tiers, carry trims | {len(PASSES[9])} | {counts.get(9)} |",
-      f"| 10 | Keywords merged into 11 packages (prototype) | {len(PASSES[10])} | {counts.get(10)} |"]
+      f"| 10 | Keywords merged into 12 packages; conflict audit; balance round | {len(PASSES[10])} | {counts.get(10)} |"]
 open("md/revlog.md", "w").write("\n".join(rl))
 
 # role/race summary
