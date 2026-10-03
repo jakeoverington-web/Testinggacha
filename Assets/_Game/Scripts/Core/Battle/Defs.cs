@@ -195,6 +195,8 @@ namespace Gacha.Core.Battle
             if (File.Exists(prog)) g.Progression = StatScaling.FromJson(File.ReadAllText(prog));
             var eco = Path.Combine(dataDir, "economy.json");
             if (File.Exists(eco)) g.Idle = IdleRates.FromJson(File.ReadAllText(eco));
+            var stages = Path.Combine(dataDir, "stages.json");
+            if (File.Exists(stages)) g.Stages = StageDef.ListFromJson(File.ReadAllText(stages));
             return g;
         }
 
