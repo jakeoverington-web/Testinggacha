@@ -69,7 +69,7 @@ namespace Gacha.Core.Campaign
                 if (held != null) foreach (var k in held.Keys) s.Chest.Held[k] = held.Num(k);
             }
             var ls = n.Obj("lastSetup");
-            if (ls != null) foreach (var k in ls.Keys) s.LastSetup[k] = ls.Strs(k);
+            if (ls != null) foreach (var k in ls.Keys) s.LastSetup[k] = CampaignState.Slots(ls.Strs(k));   // old saves: a plain hero list fills slots in order
             return s;
         }
 

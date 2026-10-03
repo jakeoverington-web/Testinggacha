@@ -94,7 +94,7 @@ namespace Gacha.Tests
             Assert.IsTrue(r.Won); Assert.IsTrue(r.FirstClear); Assert.AreEqual(1, r.StageIndex);
             Assert.AreEqual(1, st.HighestCleared);
             Assert.AreEqual(500, st.Wallet.Get("gold")); Assert.AreEqual(200, st.Wallet.Get("heroXp"));
-            CollectionAssert.AreEqual(Team, st.LastSetup["campaign"]);
+            CollectionAssert.AreEqual(new[] { "cassia", "", "", "", "" }, st.LastSetup["campaign"]);
         }
 
         [Test]
@@ -194,7 +194,7 @@ namespace Gacha.Tests
             Assert.AreEqual(st.Chest.LastSettled, back.Chest.LastSettled);
             Assert.AreEqual(st.Chest.AccruedSeconds, back.Chest.AccruedSeconds);
             Assert.AreEqual(st.Chest.Get("gold"), back.Chest.Get("gold"));
-            CollectionAssert.AreEqual(new[] { "cassia", "nyx" }, back.LastSetup["campaign"]);
+            CollectionAssert.AreEqual(new[] { "cassia", "nyx", "", "", "" }, back.LastSetup["campaign"]);
         }
 
         [Test]
@@ -220,6 +220,75 @@ namespace Gacha.Tests
                 Assert.DoesNotThrow(() => back = SaveGame.Read(full.Substring(0, cut), T0), "cut at " + cut);
                 Assert.IsNotNull(back);
             }
+        }
+
+        [Test]
+        public void StartFinish_EqualsFight()
+        {
+            var a = Fresh(); var b = Fresh();
+            var team = new[] { "cassia", "nyx" };
+            var ra = a.Fight(G, 1, team, T0 + 10);
+            var session = b.StartFight(G, 1, team, manual: false);
+            var rb = b.FinishFight(G, session, T0 + 10);
+            Assert.AreEqual(ra.Battle.Hash, rb.Battle.Hash);
+            Assert.AreEqual(ra.FirstClear, rb.FirstClear);
+            Assert.AreEqual(a.Wallet.Get("gold"), b.Wallet.Get("gold"));
+            Assert.AreEqual(a.HighestCleared, b.HighestCleared);
+        }
+
+        [Test]
+        public void Slots_PlaceHeroesInTheirCells()
+        {
+            var setup = Fresh().PlayerSetup(G, 1, new[] { "", "", "", "cassia", "" });
+            CollectionAssert.AreEqual(new[] { "cassia" }, setup.Heroes);
+            CollectionAssert.AreEqual(G.Tuning.Formation[3], setup.Cells[0]);
+        }
+
+        [Test]
+        public void Slots_EmptyAllowed_DuplicatesRejected()
+        {
+            var st = Fresh();
+            Assert.IsTrue(st.Fight(G, 1, new[] { "", "cassia" }, T0).Won);
+            Assert.Throws<ArgumentException>(() => st.Fight(G, 1, new[] { "cassia", "", "cassia" }, T0));
+            Assert.Throws<ArgumentException>(() => st.Fight(G, 1, new[] { "", "", "" }, T0));
+            Assert.Throws<ArgumentException>(() => st.Fight(G, 1, new[] { "cassia", "", "", "", "", "nyx" }, T0));
+        }
+
+        [Test]
+        public void Skip_RunsRestOnAuto_ReplayMatches()
+        {
+            var st = Fresh();
+            st.HighestCleared = 1;
+            var s = st.StartFight(G, 2, new[] { "nyx", "cassia" }, manual: true);
+            Assert.IsTrue(s.Battle.ManualUltimates[0]);
+            for (int i = 0; i < 300 && !s.Battle.Over; i++)
+            {
+                foreach (var u in s.Battle.Units) if (u.Team == 0 && u.IsHero && u.Alive && u.Energy >= 100 - 1e-9 && !u.UltRequested)
+                    s.Battle.Queue(new BattleInput { Kind = InputKind.CastUltimate, Unit = u.Index });
+                s.Battle.Step();
+            }
+            var r = st.FinishFight(G, s, T0);                      // Skip: the rest runs on auto
+            Assert.IsTrue(r.Manual);
+            Assert.IsTrue(r.Inputs.Count > 0);
+            Assert.AreEqual(InputKind.SetAuto, r.Inputs[r.Inputs.Count - 1].Kind, "Skip is logged as switching to auto");
+            var replay = Battle.Replay(G, r.Player, r.Enemy, r.Seed, new[] { true, false }, r.Inputs);
+            Assert.AreEqual(r.Battle.Hash, replay.Hash);
+        }
+
+        [Test]
+        public void Save_OldHeroList_LoadsAsSlots()
+        {
+            var st = SaveGame.Read("{\"version\":1,\"highestCleared\":2,\"lastSetup\":{\"campaign\":[\"cassia\",\"nyx\"]}}", T0);
+            CollectionAssert.AreEqual(new[] { "cassia", "nyx", "", "", "" }, st.LastSetup["campaign"]);
+        }
+
+        [Test]
+        public void Save_SlotsRoundTrip()
+        {
+            var st = Fresh();
+            st.Fight(G, 1, new[] { "", "nyx", "", "cassia", "" }, T0);
+            var back = SaveGame.Read(SaveGame.Write(st), T0);
+            CollectionAssert.AreEqual(new[] { "", "nyx", "", "cassia", "" }, back.LastSetup["campaign"]);
         }
 
         [Test]

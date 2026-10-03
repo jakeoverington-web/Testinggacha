@@ -51,6 +51,19 @@ namespace Gacha.Core.Campaign
         /// <summary>Seed and setups, so the screen can replay the exact battle.</summary>
         public ulong Seed;
         public TeamSetup Player, Enemy;
+        /// <summary>Whether the fight started with manual ultimates, and the inputs applied (replay with Battle.Replay).</summary>
+        public bool Manual;
+        public IList<BattleInput> Inputs = new List<BattleInput>();
+    }
+
+    /// <summary>A fight in progress (redesign spec): the UI steps Battle in whole ticks and queues inputs, then calls FinishFight.</summary>
+    public sealed class FightSession
+    {
+        public Battle.Battle Battle;
+        public int StageIndex;
+        public ulong Seed;
+        public TeamSetup Player, Enemy;
+        public bool Manual;
     }
 
     /// <summary>
@@ -72,12 +85,27 @@ namespace Gacha.Core.Campaign
 
         public static CampaignState New(ulong seed, long now) => new CampaignState { Seed = seed, Chest = IdleChest.StartAt(now) };
 
-        public TeamSetup PlayerSetup(GameData g, int stageIndex, IList<string> heroes)
+        /// <summary>Slots: up to 5 hero ids, "" = empty; slot i stands on battle.json default cell i.</summary>
+        public TeamSetup PlayerSetup(GameData g, int stageIndex, IList<string> slots)
         {
             int level = Expected.Level(stageIndex), stars = Expected.Stars(Expected.Chapter(stageIndex));
-            var t = new TeamSetup(ToArray(heroes)) { Scales = new List<double>() };
-            foreach (var _ in heroes) t.Scales.Add(g.Progression.Mult(level, stars));
+            var t = new TeamSetup { Scales = new List<double>(), Cells = new List<int[]>() };
+            for (int i = 0; i < slots.Count; i++)
+            {
+                if (string.IsNullOrEmpty(slots[i])) continue;
+                t.Heroes.Add(slots[i]);
+                t.Scales.Add(g.Progression.Mult(level, stars));
+                t.Cells.Add(g.Tuning.Formation[i]);
+            }
             return t;
+        }
+
+        /// <summary>Pads or reads a slot list to exactly MaxTeam entries ("" for empty).</summary>
+        public static List<string> Slots(IList<string> slots)
+        {
+            var r = new List<string>();
+            for (int i = 0; i < MaxTeam; i++) r.Add(slots != null && i < slots.Count && slots[i] != null ? slots[i] : "");
+            return r;
         }
 
         public TeamSetup EnemySetup(GameData g, int stageIndex)
@@ -88,27 +116,52 @@ namespace Gacha.Core.Campaign
             return t;
         }
 
-        /// <summary>Plays a stage. Only cleared stages and the next one can be fought; a first win pays first-clear rewards once.</summary>
-        public FightResult Fight(GameData g, int stageIndex, IList<string> heroes, long now)
+        /// <summary>Plays a stage to the end on auto (tools, auto-chaining). Same as StartFight + FinishFight.</summary>
+        public FightResult Fight(GameData g, int stageIndex, IList<string> slots, long now) =>
+            FinishFight(g, StartFight(g, stageIndex, slots, manual: false), now);
+
+        /// <summary>Starts a live fight. Only cleared stages and the next one can be fought.</summary>
+        public FightSession StartFight(GameData g, int stageIndex, IList<string> slots, bool manual)
         {
             int max = Math.Min(HighestCleared + 1, g.Stages.Count);
             if (stageIndex < 1 || stageIndex > max) throw new InvalidOperationException($"Stage {stageIndex} is locked (next is {HighestCleared + 1})");
-            if (heroes == null || heroes.Count < 1 || heroes.Count > MaxTeam) throw new ArgumentException("A team has 1 to 5 heroes");
+            if (slots == null || slots.Count > MaxTeam) throw new ArgumentException("A team has at most 5 slots");
+            var heroes = new List<string>();
+            foreach (var h in slots) if (!string.IsNullOrEmpty(h)) heroes.Add(h);
+            if (heroes.Count < 1) throw new ArgumentException("A team needs at least 1 hero");
             if (new HashSet<string>(heroes).Count != heroes.Count) throw new ArgumentException("A hero can only appear once in a team");
             foreach (var h in heroes) if (!g.Heroes.ContainsKey(h)) throw new ArgumentException("Unknown hero " + h);
 
             ulong seed = new Rng(Seed ^ (ulong)Attempts).NextULong();
             Attempts++;
-            LastSetup[Mode] = new List<string>(heroes);
-            var player = PlayerSetup(g, stageIndex, heroes);
+            LastSetup[Mode] = Slots(slots);
+            var player = PlayerSetup(g, stageIndex, slots);
             var enemy = EnemySetup(g, stageIndex);
-            var battle = new Battle.Battle(g, player, enemy, seed).Run();
-            var r = new FightResult { Battle = battle, StageIndex = stageIndex, Won = battle.Winner == 0, Seed = seed, Player = player, Enemy = enemy };
-            if (r.Won && stageIndex == HighestCleared + 1)
+            var battle = new Battle.Battle(g, player, enemy, seed);
+            battle.ManualUltimates[0] = manual;
+            return new FightSession { Battle = battle, StageIndex = stageIndex, Seed = seed, Player = player, Enemy = enemy, Manual = manual };
+        }
+
+        /// <summary>Finishes a fight: an unfinished one runs to the end on auto (Skip, logged as SetAuto), then a first win pays once.</summary>
+        public FightResult FinishFight(GameData g, FightSession s, long now)
+        {
+            var b = s.Battle;
+            if (!b.Over)
+            {
+                if (b.ManualUltimates[0]) b.Queue(new BattleInput { Kind = InputKind.SetAuto, Team = 0, On = true });
+                while (!b.Over) b.Step();
+            }
+            var battle = b.Result();
+            var r = new FightResult
+            {
+                Battle = battle, StageIndex = s.StageIndex, Won = battle.Winner == 0, Seed = s.Seed, Player = s.Player, Enemy = s.Enemy,
+                Manual = s.Manual, Inputs = new List<BattleInput>(b.Inputs)
+            };
+            if (r.Won && s.StageIndex == HighestCleared + 1)
             {
                 Chest.Settle(now, HighestCleared, g.Idle);   // loot so far keeps the old rate
-                HighestCleared = stageIndex;
-                foreach (var kv in g.Stages[stageIndex - 1].FirstClear) Wallet.Add(kv.Key, kv.Value);
+                HighestCleared = s.StageIndex;
+                foreach (var kv in g.Stages[s.StageIndex - 1].FirstClear) Wallet.Add(kv.Key, kv.Value);
                 r.FirstClear = true;
             }
             return r;
@@ -119,6 +172,5 @@ namespace Gacha.Core.Campaign
 
         public void Collect(GameData g, long now) => Chest.Collect(now, HighestCleared, g.Idle, Wallet);
 
-        static string[] ToArray(IList<string> l) { var a = new string[l.Count]; l.CopyTo(a, 0); return a; }
     }
 }
