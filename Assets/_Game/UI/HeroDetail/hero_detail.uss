@@ -1,0 +1,20 @@
+.detail { flex-grow: 1; }
+.detail__stars { font-size: 44px; color: #FFE38A; -unity-text-align: middle-center; }
+.detail__stars--diamond { color: #8FD6FF; }
+.detail__body { flex-direction: row; margin: 8px 0; }
+/* Full-body art slot, 1:2 (CLAUDE.md art slots): placeholder until phase 5. */
+.art { width: 380px; height: 760px; border-radius: 4px; justify-content: flex-end; padding: 12px; border-width: 4px; border-color: rgba(0, 0, 0, 0); }
+.art--diamond { border-color: #8FD6FF; }
+.art__label { font-size: 26px; color: #FFFFFF; white-space: normal; }
+.detail__side { flex-grow: 1; margin-left: 16px; }
+.stats { font-size: 28px; color: var(--text); white-space: normal; }
+.skills { font-size: 24px; color: var(--muted); white-space: normal; display: none; margin-top: 8px; }
+.skills--open { display: flex; }
+.gear-slot { width: 230px; min-height: 130px; margin: 6px; font-size: 22px; white-space: normal; }
+.gear-slot--picked { border-color: var(--gold); }
+.gear-list { max-height: 360px; margin: 4px 0; }
+.gear-row { flex-direction: row; align-items: center; justify-content: space-between; margin: 4px 0; }
+.gear-row__text { font-size: 24px; color: var(--text); flex-grow: 1; white-space: normal; }
+.gear-row .btn { min-height: 90px; min-width: 150px; font-size: 26px; }
+.actions .btn { min-width: 220px; font-size: 30px; }
+.message { color: var(--gold); }

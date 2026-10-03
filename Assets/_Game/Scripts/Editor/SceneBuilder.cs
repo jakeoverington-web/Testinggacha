@@ -49,6 +49,9 @@ namespace Gacha.Editor
             ui.PreBattle = Tree("PreBattle/pre_battle");
             ui.Battle = Tree("Battle/battle");
             ui.Result = Tree("Result/result");
+            ui.Heroes = Tree("Heroes/heroes");
+            ui.HeroDetail = Tree("HeroDetail/hero_detail");
+            ui.Dev = Tree("Dev/dev");
 
             if (!AssetDatabase.IsValidFolder("Assets/_Game/Scenes")) AssetDatabase.CreateFolder("Assets/_Game", "Scenes");
             EditorSceneManager.SaveScene(scene, ScenePath);

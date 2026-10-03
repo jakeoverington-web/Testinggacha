@@ -7,7 +7,7 @@ namespace Gacha.UI
     [RequireComponent(typeof(UIDocument))]
     public sealed class UiRoot : MonoBehaviour
     {
-        public VisualTreeAsset Map, PreBattle, Battle, Result;
+        public VisualTreeAsset Map, PreBattle, Battle, Result, Heroes, HeroDetail, Dev;
         public StyleSheet Common;
 
         ScreenRouter _router;
@@ -24,8 +24,12 @@ namespace Gacha.UI
             _host = new VisualElement();
             _host.AddToClassList("app__host");
             root.Add(_host);
+            // Bottom tab bar (phase 2): Campaign | Heroes; Modes arrives in phase 4.
+            var tabs = new VisualElement();
+            tabs.AddToClassList("tabbar");
+            root.Add(tabs);
             ApplySafeArea();
-            _router = new ScreenRouter(_host, this);
+            _router = new ScreenRouter(_host, this, tabs);
             _router.Show("map");
         }
 

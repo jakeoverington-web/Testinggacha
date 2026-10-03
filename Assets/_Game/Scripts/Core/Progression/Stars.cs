@@ -58,6 +58,37 @@ namespace Gacha.Core.Progression
             return true;
         }
 
+        /// <summary>
+        /// Picks fodder for the next rank: Sigils first, then spare copies of same-race heroes, then free 1-star same-race
+        /// heroes (not in a slot, not locked). Returns fewer than needed when the player is short.
+        /// </summary>
+        public static (List<string> heroes, int sigils) AutoFodder(GameData g, Collection c, string hero, Func<string, bool> locked = null)
+        {
+            var heroes = new List<string>();
+            var h = c.Get(hero);
+            if (h == null || h.Stars >= g.Levels.MaxStars) return (heroes, 0);
+            int need = g.StarCosts.For(h.Stars + 1).Fodder;
+            string race = g.Heroes[hero].Core;
+            int sigils = Math.Min(need, c.SigilsOf(race));
+            need -= sigils;
+            var candidates = new List<OwnedHero>();
+            foreach (var id in g.HeroOrder)
+            {
+                var o = c.Get(id);
+                if (o == null || id == hero || g.Heroes[id].Core != race) continue;
+                candidates.Add(o);
+            }
+            foreach (var o in candidates)
+                for (int k = 0; k < o.Copies && need > 0; k++) { heroes.Add(o.Id); need--; }
+            foreach (var o in candidates)
+            {
+                if (need <= 0) break;
+                if (o.Stars != 1 || c.InSlot(o.Id) || (locked != null && locked(o.Id))) continue;
+                heroes.Add(o.Id); need--;
+            }
+            return (heroes, sigils);
+        }
+
         /// <summary>Back to 1 star with a full refund: copies, gold, and the fodder spent as Sigils of her race.</summary>
         public static void Reset(GameData g, Collection c, string hero, Wallet w)
         {

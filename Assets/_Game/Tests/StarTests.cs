@@ -75,6 +75,29 @@ namespace Gacha.Tests
         }
 
         [Test]
+        public void AutoFodder_SigilsFirst_ThenSpareCopies_ThenFreeHeroes()
+        {
+            var c = new Collection(); c.Add("cassia", 3); c.Get("cassia").Stars = 9; c.Get("cassia").Copies = 1;   // to 10: 1 copy + 4 fodder
+            c.AddSigils("high", 1);
+            c.Add("isolde", 2);                                   // isolde + 1 spare copy
+            c.Add("valeria"); c.Add("seravelle"); c.Add("rosalind"); c.Add("nyx");
+            c.Contract(0, "valeria");                              // in a slot: never fodder
+            var (heroes, sigils) = Stars.AutoFodder(Lab.Data, c, "cassia", locked: id => id == "seravelle");
+            Assert.AreEqual(1, sigils);
+            CollectionAssert.AreEqual(new[] { "isolde", "isolde", "rosalind" }, heroes, "spare copy first, then free same-race heroes");
+            Assert.IsNull(Stars.Why(Lab.Data, c, "cassia", heroes, sigils, Gold(1e9), id => id == "seravelle"));
+        }
+
+        [Test]
+        public void AutoFodder_ShortReturnsWhatThereIs()
+        {
+            var c = new Collection(); c.Add("cassia", 2); c.Get("cassia").Stars = 5; c.Get("cassia").Copies = 1;   // needs 2 fodder
+            var (heroes, sigils) = Stars.AutoFodder(Lab.Data, c, "cassia");
+            Assert.AreEqual(0, heroes.Count + sigils);
+            Assert.IsNotNull(Stars.Why(Lab.Data, c, "cassia", heroes, sigils, Gold(1e9)));
+        }
+
+        [Test]
         public void Reset_RefundsEverything_AsCopiesGoldAndSigils()
         {
             var c = new Collection(); c.Add("cassia", 9); c.AddSigils("high", 15); var w = Gold(1e9);

@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="hero_detail.uss" />
+    <ui:VisualElement class="detail">
+        <ui:VisualElement class="bar">
+            <ui:Button name="back" text="◀" class="btn btn--small" />
+            <ui:Label name="name" class="title" />
+        </ui:VisualElement>
+        <ui:Label name="stars" class="detail__stars" />
+        <ui:Label name="sub" class="subtitle" />
+        <ui:VisualElement class="detail__body">
+            <ui:VisualElement name="art" class="art">
+                <ui:Label name="art-label" class="art__label" />
+            </ui:VisualElement>
+            <ui:VisualElement class="detail__side">
+                <ui:Label name="stats" class="stats" />
+                <ui:Button name="skills-toggle" text="Skills ▸" class="btn btn--small" />
+                <ui:Label name="skills" class="skills" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label text="Gear" class="section" />
+        <ui:VisualElement name="gear" class="row" />
+        <ui:ScrollView name="gear-list" class="gear-list" />
+        <ui:Label name="message" class="subtitle message" />
+        <ui:VisualElement class="row actions">
+            <ui:Button name="level" class="btn" />
+            <ui:Button name="star" class="btn" />
+            <ui:Button name="best" text="Equip Best" class="btn" />
+            <ui:Button name="reset" text="Reset stars" class="btn" />
+        </ui:VisualElement>
+        <ui:VisualElement name="contract" class="row actions" />
+    </ui:VisualElement>
+</ui:UXML>

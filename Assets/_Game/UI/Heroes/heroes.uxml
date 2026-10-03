@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="heroes.uss" />
+    <ui:VisualElement class="heroes">
+        <ui:VisualElement class="bar">
+            <ui:Label text="Heroes" class="title" />
+            <ui:Button name="dev" text="Dev" class="btn btn--small" />
+        </ui:VisualElement>
+        <ui:Label text="Contract slots: your top five set everyone's level" class="section" />
+        <ui:VisualElement name="slots" class="row" />
+        <ui:VisualElement class="bar">
+            <ui:Label name="count" class="section" />
+        </ui:VisualElement>
+        <ui:VisualElement name="tabs" class="tabs" />
+        <ui:ScrollView name="grid" class="grid" />
+    </ui:VisualElement>
+</ui:UXML>

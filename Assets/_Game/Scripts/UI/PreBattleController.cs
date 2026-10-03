@@ -28,15 +28,15 @@ namespace Gacha.UI
             _level = Expected.Level(_stage); _stars = Expected.Stars(s.Chapter);
             _field = root.Q("field");
             root.Q<Label>("title").text = $"Stage {s.Chapter}-{s.Stage}";
-            root.Q<Label>("level-note").text = $"Your team fights at level {_level}, {Placeholder.Stars(_stars)}";
+            root.Q<Label>("level-note").text = "Your heroes fight at their own levels, stars and gear";
             root.Q<Button>("back").clicked += () => _r.Show("map", s.Chapter);
-            root.Q<Button>("quick").clicked += () => { _slots = QuickDeploy.Pick(_r.Data, _r.Data.HeroOrder, _level, _stars); _picked = -1; Refresh(); };
+            root.Q<Button>("quick").clicked += () => { _slots = QuickDeploy.Pick(Owned(), h => _r.State.HeroPower(_r.Data, h), _r.Data); _picked = -1; Refresh(); };
             root.Q<Button>("auto").clicked += () => Go(manual: false);
             root.Q<Button>("manual").clicked += () => Go(manual: true);
 
             _r.State.LastSetup.TryGetValue(CampaignState.Mode, out var last);
-            _slots = CampaignState.Slots(last?.Select(h => _r.Data.Heroes.ContainsKey(h) ? h : "").ToList());
-            if (_slots.All(h => h == "")) _slots = QuickDeploy.Pick(_r.Data, _r.Data.HeroOrder, _level, _stars);
+            _slots = CampaignState.Slots(last?.Select(h => _r.State.Collection.Owns(h) ? h : "").ToList());
+            if (_slots.All(h => h == "")) _slots = QuickDeploy.Pick(Owned(), h => _r.State.HeroPower(_r.Data, h), _r.Data);
 
             var tabs = root.Q("tabs");
             foreach (var (id, label) in Races)
@@ -50,6 +50,9 @@ namespace Gacha.UI
         }
 
         public void Tick(float dt) { }
+
+        /// <summary>Owned heroes in roster order.</summary>
+        List<string> Owned() => _r.Data.HeroOrder.Where(_r.State.Collection.Owns).ToList();
 
         void Go(bool manual)
         {
@@ -82,7 +85,7 @@ namespace Gacha.UI
         {
             var g = _r.Data; var s = g.Stages[_stage - 1];
             var team = _slots.Where(h => h != "").ToList();
-            _root.Q<Label>("power-you").text = Placeholder.Short(team.Count == 0 ? 0 : TeamPower.Of(g, team, _level, _stars));
+            _root.Q<Label>("power-you").text = Placeholder.Short(team.Sum(h => _r.State.HeroPower(g, h)));
             _root.Q<Label>("power-enemy").text = Placeholder.Short(s.Power);
 
             _field.Clear();
@@ -96,7 +99,7 @@ namespace Gacha.UI
                     el = new VisualElement(); el.AddToClassList("slot"); el.AddToClassList("slot--empty");
                     el.Add(Placeholder.Label("+", "slot__plus"));
                 }
-                else el = Token(g.Heroes[_slots[i]], $"Lv {_level}", hollow: false);
+                else el = Token(g.Heroes[_slots[i]], $"Lv {_r.State.Collection.Level(g, _slots[i])}", hollow: false);
                 if (i == _picked) el.AddToClassList("slot--picked");
                 Place(el, cells[i], ally: true);
                 el.RegisterCallback<ClickEvent>(_ => TapSlot(slot));
@@ -116,7 +119,7 @@ namespace Gacha.UI
             var roster = _root.Q<ScrollView>("roster");
             float y = roster.scrollOffset.y;
             roster.Clear();
-            foreach (var id in g.HeroOrder)
+            foreach (var id in Owned())
             {
                 var h = g.Heroes[id];
                 if (_race != "" && h.Core != _race) continue;

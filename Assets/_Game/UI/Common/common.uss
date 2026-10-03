@@ -32,4 +32,8 @@
 .tile__name { font-size: 26px; color: #FFFFFF; -unity-font-style: bold; white-space: normal; }
 .tile__role { font-size: 22px; color: #F0F0F0; }
 .tile__caption { font-size: 22px; color: #FFFFFF; white-space: normal; }
+/* Bottom tab bar (phase 2): Campaign | Heroes. */
+.tabbar { flex-direction: row; background-color: var(--panel); border-color: var(--line); border-top-width: 2px; }
+.tabbar__tab { flex-grow: 1; min-height: 130px; font-size: 36px; color: var(--muted); background-color: rgba(0, 0, 0, 0); border-width: 0; margin: 0; }
+.tabbar__tab--on { color: var(--gold); -unity-font-style: bold; }
 .section { font-size: 30px; color: var(--gold); margin: 16px 0 6px 0; }

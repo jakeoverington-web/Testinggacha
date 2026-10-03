@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="dev">
+        <ui:VisualElement class="bar">
+            <ui:Button name="back" text="◀" class="btn btn--small" />
+            <ui:Label text="Dev panel (not in release builds)" class="title" />
+        </ui:VisualElement>
+        <ui:Label name="wallet" class="subtitle" />
+        <ui:VisualElement name="buttons" class="row" />
+        <ui:Label name="message" class="subtitle" />
+    </ui:VisualElement>
+</ui:UXML>

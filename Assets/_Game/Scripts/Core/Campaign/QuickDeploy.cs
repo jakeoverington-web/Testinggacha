@@ -9,11 +9,15 @@ namespace Gacha.Core.Campaign
     /// </summary>
     public static class QuickDeploy
     {
-        public static List<string> Pick(GameData g, IEnumerable<string> owned, int level, int stars)
+        public static List<string> Pick(GameData g, IEnumerable<string> owned, int level, int stars) =>
+            Pick(owned, id => TeamPower.Hero(g, id, level, stars), g);
+
+        /// <summary>Same rule with each hero's own power (real levels, stars and gear).</summary>
+        public static List<string> Pick(IEnumerable<string> owned, System.Func<string, double> power, GameData g)
         {
             var pool = new List<(string id, double power, int order)>();
             int n = 0;
-            foreach (var id in owned) pool.Add((id, TeamPower.Hero(g, id, level, stars), n++));
+            foreach (var id in owned) pool.Add((id, power(id), n++));
             pool.Sort((a, b) => a.power != b.power ? b.power.CompareTo(a.power) : a.order.CompareTo(b.order));
             if (pool.Count > CampaignState.MaxTeam) pool.RemoveRange(CampaignState.MaxTeam, pool.Count - CampaignState.MaxTeam);
 
