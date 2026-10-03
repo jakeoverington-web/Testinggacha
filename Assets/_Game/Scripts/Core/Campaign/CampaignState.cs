@@ -62,6 +62,8 @@ namespace Gacha.Core.Campaign
         /// <summary>Seed and setups, so the screen can replay the exact battle.</summary>
         public ulong Seed;
         public TeamSetup Player, Enemy;
+        /// <summary>After-fight statistics per hero, both teams, in field order.</summary>
+        public List<HeroLine> Stats = new List<HeroLine>();
         /// <summary>Gear dropped by this fight (a chapter boss's first clear).</summary>
         public List<GearItem> Gear = new List<GearItem>();
         /// <summary>Whether the fight started with manual ultimates, and the inputs applied (replay with Battle.Replay).</summary>
@@ -213,7 +215,7 @@ namespace Gacha.Core.Campaign
             var r = new FightResult
             {
                 Battle = battle, StageIndex = s.StageIndex, Won = battle.Winner == 0, Seed = s.Seed, Player = s.Player, Enemy = s.Enemy,
-                Manual = s.Manual, Inputs = new List<BattleInput>(b.Inputs)
+                Manual = s.Manual, Inputs = new List<BattleInput>(b.Inputs), Stats = FightStats.From(b)
             };
             if (r.Won && s.StageIndex == HighestCleared + 1)
             {
