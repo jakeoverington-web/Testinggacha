@@ -91,4 +91,4 @@ Summoning and duplicates from pulls (phase 3), talents/runes/accessories (point 
 
 ## Decisions log changes (when built)
 
-Row 6 gains: 4 slots (Weapon ATK, Helm HP, Armor DEF, Boots haste), each piece a named type with one fixed extra stat (13 types), tiers by chapter, +20 upgrades, no substats/rerolling, 4 rarities (Uncommon, Rare, Epic, Legendary) unlocked every 5 chapter bosses with odds favouring the newest, random seeded drops, 5 stat-theme sets. Row 7/31 gain: Contract slots own the level; sync to the lowest slot. New row: starter team (random, 1 tank + 1 healer) and dev panel. Open question "Gear slots per hero" closes.
+Row 6 gains: 4 slots (Weapon ATK, Helm HP, Armor DEF, Boots haste), each piece a named type with one fixed extra stat (13 types), +20 upgrades, no substats/rerolling, 4 rarities (Uncommon, Rare, Epic, Legendary) unlocked every 5 chapter bosses with odds favouring the newest, random seeded drops, 5 stat-theme sets. Row 7/31 gain: Contract slots own the level; sync to the lowest slot. New row: starter team (random, 1 tank + 1 healer) and dev panel. Open question "Gear slots per hero" closes.
